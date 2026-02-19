@@ -1,0 +1,22 @@
+{
+  "updatedAt": "2026-02-19T20:12:00Z",
+  "health": {
+    "gateway": "ok",
+    "doctor": "ok-with-warnings",
+    "anthropic429Recent": true
+  },
+  "models": {
+    "primary": "openai-codex/gpt-5.3-codex",
+    "premiumFallback": ["anthropic/claude-sonnet-4-6", "anthropic/claude-opus-4-6"],
+    "cheap": "anthropic/claude-haiku-3-5"
+  },
+  "sessions": {
+    "main": 1,
+    "subagentsMax": 2
+  },
+  "notes": [
+    "Codex is primary for reliability during Anthropic 429 windows.",
+    "Discord is locked to allowlist.",
+    "Semantic embeddings still need provider credentials (OPENAI_API_KEY or local model setup)."
+  ]
+}
