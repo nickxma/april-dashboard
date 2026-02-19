@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>April Control Dashboard</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a33;
+      --panel2: #0f1730;
+      --text: #e9eefc;
+      --muted: #a4b2d5;
+      --accent: #66d9ef;
+      --ok: #54d88a;
+      --warn: #ffb020;
+      --bad: #ff5d73;
+      --border: #27345f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: linear-gradient(180deg, #0b1020 0%, #070b16 100%);
+      color: var(--text);
+    }
+    header {
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(8px);
+      background: rgba(11,16,32,0.85);
+      z-index: 10;
+    }
+    h1 { margin: 0; font-size: 20px; }
+    .sub { color: var(--muted); margin-top: 6px; font-size: 13px; }
+
+    main {
+      padding: 18px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .card {
+      background: linear-gradient(180deg, var(--panel) 0%, var(--panel2) 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+    .span-3 { grid-column: span 3; }
+    .span-4 { grid-column: span 4; }
+    .span-6 { grid-column: span 6; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+    @media (max-width: 980px) {
+      .span-3,.span-4,.span-6,.span-8,.span-12 { grid-column: span 12; }
+    }
+
+    .kpi { font-size: 28px; font-weight: 700; margin: 6px 0; }
+    .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+    .pill { padding: 4px 8px; border-radius: 999px; font-size: 12px; border:1px solid var(--border); display:inline-block; }
+    .ok { color: var(--ok); }
+    .warn { color: var(--warn); }
+    .bad { color: var(--bad); }
+
+    ol { margin: 8px 0 0 18px; padding: 0; }
+    li { margin: 6px 0; color: #d7e0ff; }
+    .small { color: var(--muted); font-size: 12px; }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--border); font-size: 13px; }
+    th { color: var(--muted); font-weight: 600; }
+
+    .bar {
+      width: 100%; height: 10px; background: #0a1124; border: 1px solid var(--border);
+      border-radius: 999px; overflow: hidden; margin-top: 8px;
+    }
+    .fill { height: 100%; background: linear-gradient(90deg, #66d9ef, #7df0b7); width: 13%; }
+    code { color: #b5f2ff; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>April — Operator Dashboard</h1>
+    <div class="sub">Purpose: understand what April is, how she works, what she can access, and what to do next.</div>
+  </header>
+
+  <main>
+    <section class="card span-3">
+      <div class="label">Mode</div>
+      <div class="kpi">Single-Lane</div>
+      <div class="pill ok">Parallel blocked unless: GO PARALLEL</div>
+    </section>
+
+    <section class="card span-3">
+      <div class="label">Current Sessions</div>
+      <div class="kpi">1</div>
+      <div class="small">Target: keep at 1 to avoid rate spikes.</div>
+    </section>
+
+    <section class="card span-3">
+      <div class="label">Background Loops</div>
+      <div class="kpi">0</div>
+      <div class="small">Cron + subagents idle.</div>
+    </section>
+
+    <section class="card span-3">
+      <div class="label">Rate Limit Risk</div>
+      <div class="kpi ok">LOW</div>
+      <div class="small">Preflight checks enabled before tool bursts.</div>
+    </section>
+
+    <section class="card span-8">
+      <div class="label">How April Works (Execution Contract)</div>
+      <ol>
+        <li>Preflight check: active sessions, loops, usage headroom.</li>
+        <li>Summarize planned external calls before running them.</li>
+        <li>Stay single-threaded by default.</li>
+        <li>On 429: backoff <code>2s → 5s → 10s → 20s → 40s</code>, then stop and ask.</li>
+        <li>No infra/gateway changes unless explicitly approved.</li>
+      </ol>
+    </section>
+
+    <section class="card span-4">
+      <div class="label">Context Pressure</div>
+      <div class="kpi">~13%</div>
+      <div class="bar"><div class="fill"></div></div>
+      <div class="small">When this rises, move durable decisions into <code>memory.md</code>.</div>
+    </section>
+
+    <section class="card span-6">
+      <div class="label">Capabilities Matrix</div>
+      <table>
+        <thead><tr><th>Area</th><th>Status</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Web search/fetch</td><td class="ok">Available</td><td>Search + fetch + browser tool</td></tr>
+          <tr><td>GitHub via gh</td><td class="ok">Available</td><td>Authenticated as nickxma</td></tr>
+          <tr><td>Telegram messaging</td><td class="ok">Available</td><td>Configured</td></tr>
+          <tr><td>Notion</td><td class="warn">Not connected</td><td>Needs explicit integration</td></tr>
+          <tr><td>Email</td><td class="warn">Not connected</td><td>No default inbox access</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card span-6">
+      <div class="label">What We Should Do With April</div>
+      <ol>
+        <li>Ship fast static assets first (e.g., GitHub Pages), then evolve.</li>
+        <li>Use April for planning, checklists, and guarded execution.</li>
+        <li>Use memory files for goals, constraints, and open loops.</li>
+        <li>Add integrations one-by-one with least privilege.</li>
+      </ol>
+    </section>
+
+    <section class="card span-12">
+      <div class="label">Online Design Ideas Used</div>
+      <ol>
+        <li>AI assistant UI patterns: split views for conversation + controls (Adobe guide).</li>
+        <li>Observability best practices: track latency, token usage, cost, and error/rate-limit hits (Datadog/OpenTelemetry style docs).</li>
+        <li>Card-based dashboards for quick state visibility and low cognitive load (Home Assistant style).</li>
+      </ol>
+      <div class="small">This is a local prototype. Next step: wire live status data from OpenClaw status endpoints/logs.</div>
+    </section>
+  </main>
+</body>
+</html>
