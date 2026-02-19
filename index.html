@@ -3,481 +3,611 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claw OS Dashboard</title>
+  <title>Claw OS — OpenClaw Dashboard</title>
   <style>
     :root {
-      --bg: #0a1022;
-      --bg2: #070c1a;
-      --panel: #111a35;
-      --panel-soft: #0f1730;
-      --text: #ecf1ff;
-      --muted: #9fb0da;
-      --border: #2a3a67;
-      --accent: #67d9ef;
-      --ok: #59db8d;
+      --bg: #080e1e;
+      --bg2: #060a16;
+      --panel: #0f1830;
+      --panel2: #0c1427;
+      --text: #edf2ff;
+      --muted: #8ba4d4;
+      --border: #1e2e58;
+      --accent: #5fd4f4;
+      --ok: #4ed98a;
       --warn: #ffbe42;
-      --bad: #ff6478;
-      --pill: #152247;
+      --bad: #ff5f72;
+      --opus: #b988ff;
+      --sonnet: #5fd4f4;
+      --openai: #74c97b;
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
+      background: var(--bg);
       color: var(--text);
-      background: linear-gradient(180deg, var(--bg), var(--bg2));
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
       min-height: 100vh;
+      font-size: 14px;
     }
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(10,16,34,.9);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 18px;
-    }
-    .header-row {
-      max-width: 1300px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    h1 { margin: 0; font-size: 20px; }
-    .sub { color: var(--muted); font-size: 12px; margin-top: 4px; }
 
-    .tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+    /* ── Header ── */
+    header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(8,14,30,.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 18px;
     }
+    .hrow { max-width: 1320px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    h1 { font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+    .htag { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    /* ── Tabs ── */
+    .tabs { display: flex; flex-wrap: wrap; gap: 6px; }
     .tab {
       border: 1px solid var(--border);
-      background: var(--pill);
-      color: var(--text);
+      background: #0e1830;
+      color: var(--muted);
       border-radius: 999px;
-      padding: 7px 11px;
+      padding: 6px 13px;
       font-size: 12px;
       cursor: pointer;
+      transition: all .15s;
     }
-    .tab.active {
-      border-color: #4fd6ff;
-      box-shadow: 0 0 0 1px #4fd6ff33 inset;
-      color: #c8f6ff;
-    }
+    .tab:hover { color: var(--text); border-color: #3a5090; }
+    .tab.active { border-color: var(--accent); color: #d4f5ff; background: #0c2035; }
 
-    main {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 16px;
-    }
+    /* ── Layout ── */
+    main { max-width: 1320px; margin: 0 auto; padding: 16px; }
     .view { display: none; }
     .view.active { display: block; }
+    .grid { display: grid; grid-template-columns: repeat(12,1fr); gap: 12px; }
+    @media(max-width:900px){ [class*="span-"]{ grid-column: span 12 !important; } }
+    .span-3{grid-column:span 3} .span-4{grid-column:span 4} .span-5{grid-column:span 5}
+    .span-6{grid-column:span 6} .span-7{grid-column:span 7} .span-8{grid-column:span 8}
+    .span-9{grid-column:span 9} .span-12{grid-column:span 12}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 12px;
-    }
+    /* ── Cards ── */
     .card {
-      background: linear-gradient(180deg, var(--panel), var(--panel-soft));
+      background: linear-gradient(160deg, var(--panel), var(--panel2));
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 14px;
-      box-shadow: 0 8px 24px rgba(0,0,0,.26);
+      padding: 16px;
     }
-    .span-3{grid-column: span 3;} .span-4{grid-column: span 4;} .span-5{grid-column: span 5;}
-    .span-6{grid-column: span 6;} .span-7{grid-column: span 7;} .span-8{grid-column: span 8;} .span-12{grid-column: span 12;}
-    @media (max-width: 960px){
-      .span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-12 { grid-column: span 12; }
-    }
+    .card-title { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 10px; }
+    .kpi { font-size: 28px; font-weight: 700; line-height: 1; margin: 6px 0 4px; }
+    .kpi-sub { font-size: 12px; color: var(--muted); }
 
-    .label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
-    .kpi { font-size: 28px; font-weight: 700; margin: 8px 0 4px; }
-    .small { color: var(--muted); font-size: 12px; }
-    .pill {
-      display: inline-block;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 4px 8px;
-      margin-right: 6px;
-      margin-top: 6px;
-      font-size: 12px;
-      color: #cfe3ff;
-    }
-    .ok { color: var(--ok); }
-    .warn { color: var(--warn); }
-    .bad { color: var(--bad); }
-
-    ul { margin: 10px 0 0 18px; padding: 0; }
-    li { margin: 6px 0; }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 8px;
-      font-size: 13px;
-    }
-    th, td {
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-      padding: 8px 6px;
-      vertical-align: top;
-    }
-    th { color: var(--muted); font-weight: 600; }
-
+    /* ── Badges / pills ── */
     .badge {
+      display: inline-block;
       border: 1px solid var(--border);
       border-radius: 999px;
-      padding: 2px 8px;
+      padding: 3px 9px;
       font-size: 11px;
-      background: #122149;
-      display: inline-block;
+      background: #0e1830;
     }
+    .badge.opus { border-color: #7a44c0; color: var(--opus); background: #180d2e; }
+    .badge.sonnet { border-color: #2a7090; color: var(--sonnet); background: #071828; }
+    .badge.ok { border-color: #1e6040; color: var(--ok); background: #071a10; }
+    .badge.warn { border-color: #7a5a00; color: var(--warn); background: #1a1400; }
+    .badge.openai { border-color: #2e6e35; color: var(--openai); background: #071209; }
 
-    .status-dot {
-      width: 9px; height: 9px; border-radius: 50%; display: inline-block; margin-right: 6px;
-      vertical-align: middle;
-    }
-    .dot-ok { background: var(--ok); }
-    .dot-warn { background: var(--warn); }
-    .dot-bad { background: var(--bad); }
+    /* ── Tables ── */
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { text-align: left; border-bottom: 1px solid var(--border); padding: 8px 6px; vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing:.06em; }
+    tr:last-child td { border-bottom: none; }
 
-    .bar {
-      margin-top: 8px;
-      height: 10px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      overflow: hidden;
-      background: #0b1226;
-    }
-    .fill { height: 100%; background: linear-gradient(90deg, #67d9ef, #79efba); }
+    /* ── Lists ── */
+    ul { padding-left: 18px; }
+    li { margin: 5px 0; color: var(--text); }
+    ol { padding-left: 18px; }
+    ol li { margin: 6px 0; }
 
-    .footer-note {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-    code { color: #bff4ff; }
-    .link-btn {
-      display: inline-block;
-      margin-top: 8px;
-      font-size: 12px;
-      color: #bff4ff;
-      text-decoration: none;
-      border: 1px solid var(--border);
-      padding: 6px 10px;
-      border-radius: 10px;
-      background: #101a37;
-    }
+    /* ── SVG diagrams ── */
+    .diagram { width:100%; border:1px solid var(--border); border-radius:12px; background:#060c1c; display:block; }
+
+    /* ── Bars ── */
+    .bar { height:8px; border-radius:999px; background:#0b1226; overflow:hidden; margin-top:6px; }
+    .fill { height:100%; border-radius:999px; background: linear-gradient(90deg, var(--accent), #7ae8d4); }
+
+    /* ── Misc ── */
+    .dot { width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle; }
+    .dot-ok { background:var(--ok); } .dot-warn { background:var(--warn); } .dot-bad { background:var(--bad); }
+    code { color:#b4f2ff; font-size:12px; font-family: 'JetBrains Mono', monospace; }
+    .link-btn { display:inline-block;margin:4px 6px 4px 0;font-size:12px;color:#b4eaff;text-decoration:none;border:1px solid var(--border);padding:6px 11px;border-radius:10px;background:#0b1a35; }
+    .section-note { color:var(--muted); font-size:12px; margin-top:10px; line-height:1.6; }
+    .rule-box { border:1px solid var(--border); border-radius:10px; padding:10px 14px; background:#080e1e; margin-top:8px; }
+    .rule-box li { font-size:13px; }
+    strong { color:#d8eaff; }
   </style>
 </head>
 <body>
-  <header>
-    <div class="header-row">
-      <div>
-        <h1>Claw — OpenClaw Operating Dashboard</h1>
-        <div class="sub">Your click-through snapshot: agents, sub-agents, objectives, memory contracts, integrations, and operating rules.</div>
-      </div>
-      <nav class="tabs" id="tabs"></nav>
+
+<header>
+  <div class="hrow">
+    <div>
+      <h1>🦞 Claw OS — OpenClaw Dashboard</h1>
+      <div class="htag">Nick's operating environment · MMM4 · America/Chicago</div>
     </div>
-  </header>
+    <nav class="tabs" id="tabs"></nav>
+  </div>
+</header>
 
-  <main>
-    <section class="view active" data-view="overview">
-      <div class="grid">
-        <article class="card span-3">
-          <div class="label">Execution Mode</div>
-          <div class="kpi">Single-Lane</div>
-          <div class="small">Parallel only if you explicitly say: <code>GO PARALLEL</code></div>
-        </article>
+<main>
 
-        <article class="card span-3">
-          <div class="label">Primary Agent</div>
-          <div class="kpi">1</div>
-          <div class="small">Main operator model handles judgment + user-facing output.</div>
-        </article>
+  <!-- ══ OVERVIEW ══ -->
+  <section class="view active" data-view="overview">
+    <div class="grid">
+      <article class="card span-3">
+        <div class="card-title">Main Model</div>
+        <div class="kpi" style="color:var(--opus)">Opus</div>
+        <div class="kpi-sub">anthropic/claude-opus-4-6</div>
+      </article>
+      <article class="card span-3">
+        <div class="card-title">Sub-agent Model</div>
+        <div class="kpi" style="color:var(--sonnet)">Sonnet</div>
+        <div class="kpi-sub">anthropic/claude-sonnet-4-6</div>
+      </article>
+      <article class="card span-3">
+        <div class="card-title">Max Concurrency</div>
+        <div class="kpi">1 / 2</div>
+        <div class="kpi-sub">Main sessions / Sub-agents</div>
+      </article>
+      <article class="card span-3">
+        <div class="card-title">Execution Mode</div>
+        <div class="kpi ok" style="color:var(--ok)">Guarded</div>
+        <div class="kpi-sub">Parallel only via GO PARALLEL</div>
+      </article>
 
-        <article class="card span-3">
-          <div class="label">Sub-Agent Pattern</div>
-          <div class="kpi">On-demand</div>
-          <div class="small">Spin up only for complex/long tasks.</div>
-        </article>
+      <article class="card span-8">
+        <div class="card-title">What is OpenClaw?</div>
+        <p class="section-note">OpenClaw is the Gateway that runs on your Mac Mini (MMM4). It connects your AI agents to messaging channels (Telegram, iMessage, Discord), tools (web, files, GitHub, Notion), and your workspace. You talk to Claw via any of those channels — the gateway routes it to the right agent session.</p>
+        <p class="section-note" style="margin-top:8px;">Think of it as: <strong>you → channel → gateway → agent session → tools → reply back to you.</strong></p>
+      </article>
 
-        <article class="card span-3">
-          <div class="label">Risk Posture</div>
-          <div class="kpi ok">Guarded</div>
-          <div class="small">No infra/config changes without explicit GO.</div>
-        </article>
+      <article class="card span-4">
+        <div class="card-title">Active Channels</div>
+        <table>
+          <tr><td><span class="dot dot-ok"></span>Telegram</td><td><span class="badge ok">on</span></td></tr>
+          <tr><td><span class="dot dot-ok"></span>iMessage</td><td><span class="badge ok">on</span></td></tr>
+          <tr><td><span class="dot dot-ok"></span>Discord</td><td><span class="badge ok">on</span></td></tr>
+          <tr><td><span class="dot dot-ok"></span>Webchat</td><td><span class="badge ok">on</span></td></tr>
+        </table>
+      </article>
 
-        <article class="card span-8">
-          <div class="label">Operating Contract (How to think about OpenClaw)</div>
+      <article class="card span-12">
+        <div class="card-title">Quick Links</div>
+        <a class="link-btn" href="#" onclick="setView('agents');return false;">Agent Map</a>
+        <a class="link-btn" href="#" onclick="setView('sessions');return false;">Sessions Explained</a>
+        <a class="link-btn" href="#" onclick="setView('tools');return false;">Tools & Access</a>
+        <a class="link-btn" href="#" onclick="setView('config');return false;">Config Snapshot</a>
+        <a class="link-btn" href="https://nickxma.github.io/april-dashboard/" target="_blank">🌐 Live (GitHub Pages)</a>
+        <a class="link-btn" href="https://docs.openclaw.ai" target="_blank">📖 Docs</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══ AGENTS ══ -->
+  <section class="view" data-view="agents">
+    <div class="grid">
+      <article class="card span-12">
+        <div class="card-title">Agent Hierarchy Diagram</div>
+        <svg class="diagram" viewBox="0 0 1100 520" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0 0L10 5L0 10z" fill="#5fd4f4"/>
+            </marker>
+          </defs>
+
+          <!-- YOU -->
+          <rect x="460" y="20" width="180" height="60" rx="12" fill="#0a1828" stroke="#1e3060"/>
+          <text x="550" y="46" fill="#adc8f0" text-anchor="middle" font-size="13" font-weight="600">Nick</text>
+          <text x="550" y="64" fill="#6080b0" text-anchor="middle" font-size="11">Telegram · iMessage · Discord</text>
+
+          <!-- Arrow down to Gateway -->
+          <line x1="550" y1="80" x2="550" y2="125" stroke="#5fd4f4" stroke-width="1.5" marker-end="url(#arr)"/>
+          <text x="560" y="108" fill="#3a7090" font-size="10">any channel</text>
+
+          <!-- GATEWAY -->
+          <rect x="380" y="125" width="340" height="55" rx="12" fill="#0a1828" stroke="#2a4080"/>
+          <text x="550" y="149" fill="#8ab8e0" text-anchor="middle" font-size="12" font-weight="600">OpenClaw Gateway (MMM4 :18789)</text>
+          <text x="550" y="167" fill="#506080" text-anchor="middle" font-size="11">Routes messages · manages sessions · applies policies</text>
+
+          <!-- Arrow down to Main Agent -->
+          <line x1="550" y1="180" x2="550" y2="228" stroke="#b988ff" stroke-width="2" marker-end="url(#arr)"/>
+
+          <!-- MAIN AGENT -->
+          <rect x="350" y="228" width="400" height="80" rx="14" fill="#130825" stroke="#7a44c0"/>
+          <text x="550" y="256" fill="#d8b8ff" text-anchor="middle" font-size="16" font-weight="700">Main Agent — Claw</text>
+          <text x="550" y="276" fill="#9070c0" text-anchor="middle" font-size="12">Model: claude-opus-4-6 (high-judgment)</text>
+          <text x="550" y="294" fill="#9070c0" text-anchor="middle" font-size="11">Strategy · synthesis · memory · final reply to Nick</text>
+
+          <!-- Arrows to sub-agents -->
+          <line x1="420" y1="308" x2="200" y2="375" stroke="#5fd4f4" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+          <line x1="550" y1="308" x2="550" y2="375" stroke="#5fd4f4" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+          <line x1="680" y1="308" x2="900" y2="375" stroke="#5fd4f4" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+          <text x="250" y="345" fill="#2a6080" font-size="10">spawn on-demand</text>
+
+          <!-- Sub-agent: Research -->
+          <rect x="60" y="375" width="270" height="100" rx="12" fill="#071525" stroke="#2a5070"/>
+          <text x="195" y="402" fill="#5fd4f4" text-anchor="middle" font-size="14" font-weight="600">Research Agent</text>
+          <text x="195" y="421" fill="#4090a8" text-anchor="middle" font-size="11">Model: claude-sonnet-4-6</text>
+          <text x="195" y="439" fill="#4090a8" text-anchor="middle" font-size="11">web_search + web_fetch</text>
+          <text x="195" y="457" fill="#4090a8" text-anchor="middle" font-size="11">Returns cited findings</text>
+
+          <!-- Sub-agent: Builder -->
+          <rect x="410" y="375" width="270" height="100" rx="12" fill="#071525" stroke="#2a5070"/>
+          <text x="545" y="402" fill="#5fd4f4" text-anchor="middle" font-size="14" font-weight="600">Builder Agent</text>
+          <text x="545" y="421" fill="#4090a8" text-anchor="middle" font-size="11">Model: claude-sonnet-4-6</text>
+          <text x="545" y="439" fill="#4090a8" text-anchor="middle" font-size="11">File edits · scaffolds · tests</text>
+          <text x="545" y="457" fill="#4090a8" text-anchor="middle" font-size="11">No infra changes</text>
+
+          <!-- Sub-agent: Ops Guard -->
+          <rect x="760" y="375" width="270" height="100" rx="12" fill="#071525" stroke="#2a5070"/>
+          <text x="895" y="402" fill="#5fd4f4" text-anchor="middle" font-size="14" font-weight="600">Ops Guard Agent</text>
+          <text x="895" y="421" fill="#4090a8" text-anchor="middle" font-size="11">Model: claude-sonnet-4-6</text>
+          <text x="895" y="439" fill="#4090a8" text-anchor="middle" font-size="11">Risk · policy checks</text>
+          <text x="895" y="457" fill="#4090a8" text-anchor="middle" font-size="11">Returns GO / NO-GO</text>
+
+          <!-- OpenAI fallback note -->
+          <text x="550" y="500" fill="#2a5030" text-anchor="middle" font-size="11">openai-codex/gpt-5.3-codex — configured but not in active hierarchy (optional fallback)</text>
+        </svg>
+      </article>
+
+      <article class="card span-6">
+        <div class="card-title">Model Roles</div>
+        <table>
+          <thead><tr><th>Agent</th><th>Model</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge opus">Main</span></td><td><code>opus</code></td><td>Strategy, synthesis, final answer, memory</td></tr>
+            <tr><td><span class="badge sonnet">Sub-agents</span></td><td><code>sonnet</code></td><td>Research, code, validation</td></tr>
+            <tr><td><span class="badge openai">Fallback</span></td><td><code>gpt-5.3-codex</code></td><td>Optional; not in active hierarchy</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="card span-6">
+        <div class="card-title">Concurrency Guardrails</div>
+        <table>
+          <thead><tr><th>Setting</th><th>Value</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>Main sessions</td><td><strong>1</strong></td><td>No parallel main instances</td></tr>
+            <tr><td>Sub-agents</td><td><strong>2</strong></td><td>Rate-limit safe ceiling</td></tr>
+            <tr><td>GO PARALLEL</td><td>Opt-in</td><td>Only when you explicitly say so</td></tr>
+          </tbody>
+        </table>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══ SESSIONS ══ -->
+  <section class="view" data-view="sessions">
+    <div class="grid">
+      <article class="card span-12">
+        <div class="card-title">What is a Session?</div>
+        <p class="section-note">A <strong>session</strong> is one continuous conversation thread between you and an agent. Every message you send goes into the session's context window. The agent remembers everything in the current session, but starts fresh in a new session (unless memory.md has durable facts).</p>
+      </article>
+
+      <article class="card span-12">
+        <div class="card-title">Session Types — Visual</div>
+        <svg class="diagram" viewBox="0 0 1100 400" xmlns="http://www.w3.org/2000/svg">
+          <!-- Main Session -->
+          <rect x="30" y="30" width="300" height="340" rx="14" fill="#0d0820" stroke="#7a44c0" stroke-width="1.5"/>
+          <text x="180" y="58" fill="#c090ff" text-anchor="middle" font-size="14" font-weight="700">Main Session</text>
+          <text x="180" y="76" fill="#7050a0" text-anchor="middle" font-size="11">agent:main:main</text>
+          <rect x="55" y="90" width="250" height="40" rx="8" fill="#130825" stroke="#4a2870"/>
+          <text x="180" y="107" fill="#d8b8ff" text-anchor="middle" font-size="12">You ← → Claw (Opus)</text>
+          <text x="180" y="122" fill="#7050a0" text-anchor="middle" font-size="11">persistent · rolling context</text>
+          <text x="180" y="155" fill="#6040a0" text-anchor="middle" font-size="11">• Lives as long as you're talking</text>
+          <text x="180" y="174" fill="#6040a0" text-anchor="middle" font-size="11">• Context window: 200k tokens</text>
+          <text x="180" y="193" fill="#6040a0" text-anchor="middle" font-size="11">• Compaction on safeguard mode</text>
+          <text x="180" y="212" fill="#6040a0" text-anchor="middle" font-size="11">• memory.md survives restarts</text>
+          <text x="180" y="231" fill="#6040a0" text-anchor="middle" font-size="11">• Only 1 runs at a time (guarded)</text>
+
+          <!-- Sub-agent Session -->
+          <rect x="400" y="30" width="300" height="340" rx="14" fill="#071525" stroke="#2a5070" stroke-width="1.5"/>
+          <text x="550" y="58" fill="#5fd4f4" text-anchor="middle" font-size="14" font-weight="700">Sub-agent Session</text>
+          <text x="550" y="76" fill="#2a7090" text-anchor="middle" font-size="11">agent:main:sub-XXXX</text>
+          <rect x="425" y="90" width="250" height="40" rx="8" fill="#071525" stroke="#1a4060"/>
+          <text x="550" y="107" fill="#8ee0f8" text-anchor="middle" font-size="12">Spawned by Main Agent</text>
+          <text x="550" y="122" fill="#2a7090" text-anchor="middle" font-size="11">runs in background</text>
+          <text x="550" y="155" fill="#2a6080" text-anchor="middle" font-size="11">• Created for a specific task</text>
+          <text x="550" y="174" fill="#2a6080" text-anchor="middle" font-size="11">• Uses Sonnet (cheaper model)</text>
+          <text x="550" y="193" fill="#2a6080" text-anchor="middle" font-size="11">• Max 2 running at once</text>
+          <text x="550" y="212" fill="#2a6080" text-anchor="middle" font-size="11">• Reports back to main agent</text>
+          <text x="550" y="231" fill="#2a6080" text-anchor="middle" font-size="11">• Auto-cleaned after completion</text>
+
+          <!-- Isolated/Cron Session -->
+          <rect x="770" y="30" width="300" height="340" rx="14" fill="#071a10" stroke="#1e5030" stroke-width="1.5"/>
+          <text x="920" y="58" fill="#4ed98a" text-anchor="middle" font-size="14" font-weight="700">Isolated/Cron Session</text>
+          <text x="920" y="76" fill="#1e6040" text-anchor="middle" font-size="11">agent:isolated:XXXX</text>
+          <rect x="795" y="90" width="250" height="40" rx="8" fill="#071a10" stroke="#1e4030"/>
+          <text x="920" y="107" fill="#7ae8b0" text-anchor="middle" font-size="12">Scheduled / Timed Tasks</text>
+          <text x="920" y="122" fill="#1e6040" text-anchor="middle" font-size="11">no live user in loop</text>
+          <text x="920" y="155" fill="#1e5030" text-anchor="middle" font-size="11">• Used for cron jobs</text>
+          <text x="920" y="174" fill="#1e5030" text-anchor="middle" font-size="11">• Heartbeat checks</text>
+          <text x="920" y="193" fill="#1e5030" text-anchor="middle" font-size="11">• Long-running background work</text>
+          <text x="920" y="212" fill="#1e5030" text-anchor="middle" font-size="11">• Delivers results via announce</text>
+          <text x="920" y="231" fill="#1e5030" text-anchor="middle" font-size="11">• Fully isolated from main ctx</text>
+
+          <!-- context flow arrows -->
+          <line x1="330" y1="200" x2="395" y2="200" stroke="#3a5080" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+          <text x="362" y="193" fill="#3a5080" font-size="10" text-anchor="middle">spawn</text>
+          <line x1="400" y1="220" x2="335" y2="220" stroke="#2a6080" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+          <text x="368" y="235" fill="#2a6080" font-size="10" text-anchor="middle">report</text>
+        </svg>
+      </article>
+
+      <article class="card span-6">
+        <div class="card-title">Session Lifecycle</div>
+        <ol>
+          <li>You send a message on any channel</li>
+          <li>Gateway routes it to main session</li>
+          <li>Main agent decides: handle directly or spawn sub-agent</li>
+          <li>If sub-agent: spawned with narrowly scoped task</li>
+          <li>Sub-agent completes → result returned to main</li>
+          <li>Main synthesizes → replies to you</li>
+          <li>Durable facts written to memory.md</li>
+        </ol>
+      </article>
+
+      <article class="card span-6">
+        <div class="card-title">Context Window vs Memory</div>
+        <table>
+          <thead><tr><th>Thing</th><th>Scope</th><th>Survives restart?</th></tr></thead>
+          <tbody>
+            <tr><td>Session context</td><td>Current conversation</td><td>No (unless compacted)</td></tr>
+            <tr><td>memory.md</td><td>Durable facts/decisions</td><td>✅ Yes</td></tr>
+            <tr><td>memory/YYYY-MM-DD.md</td><td>Daily notes</td><td>✅ Yes</td></tr>
+            <tr><td>Notion DB</td><td>Objectives/projects</td><td>✅ Yes (external)</td></tr>
+          </tbody>
+        </table>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══ TOOLS ══ -->
+  <section class="view" data-view="tools">
+    <div class="grid">
+      <article class="card span-12">
+        <div class="card-title">Tools & Capabilities Matrix</div>
+        <table>
+          <thead><tr><th>Tool</th><th>What it does</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td><code>web_search</code></td><td>Search the web (Brave API)</td><td><span class="badge ok">active</span></td><td>API key configured</td></tr>
+            <tr><td><code>web_fetch</code></td><td>Fetch + extract page content</td><td><span class="badge ok">active</span></td><td></td></tr>
+            <tr><td><code>exec</code></td><td>Run shell commands on MMM4</td><td><span class="badge ok">active</span></td><td>Elevated mode available</td></tr>
+            <tr><td><code>Read/Write/Edit</code></td><td>File system access</td><td><span class="badge ok">active</span></td><td>Workspace: ~/.openclaw/workspace</td></tr>
+            <tr><td><code>browser</code></td><td>Browser automation (Playwright)</td><td><span class="badge warn">intermittent</span></td><td>API-first preferred</td></tr>
+            <tr><td><code>notion</code> (skill)</td><td>Read/write Notion databases</td><td><span class="badge ok">active</span></td><td>Read-first; write on explicit command</td></tr>
+            <tr><td><code>github / gh</code></td><td>Issues, PRs, CI, API</td><td><span class="badge ok">active</span></td><td>Authenticated as nickxma</td></tr>
+            <tr><td><code>cron</code></td><td>Schedule jobs + reminders</td><td><span class="badge ok">active</span></td><td></td></tr>
+            <tr><td><code>sessions_spawn</code></td><td>Spawn sub-agent sessions</td><td><span class="badge ok">active</span></td><td>Max 2 concurrent sub-agents</td></tr>
+            <tr><td><code>memory_search</code></td><td>Semantic search over memory files</td><td><span class="badge ok">active</span></td><td></td></tr>
+            <tr><td><code>tts</code></td><td>Text-to-speech</td><td><span class="badge ok">active</span></td><td></td></tr>
+            <tr><td><code>image</code></td><td>Vision model analysis</td><td><span class="badge ok">active</span></td><td></td></tr>
+            <tr><td><code>nodes</code></td><td>Paired device control (camera/screen)</td><td><span class="badge ok">active</span></td><td>Camera/screen cmds blocked by policy</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="card span-6">
+        <div class="card-title">Channels You Can Talk Through</div>
+        <table>
+          <thead><tr><th>Channel</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Telegram</td><td><span class="badge ok">on</span></td><td>DM pairing; group allowlist</td></tr>
+            <tr><td>iMessage</td><td><span class="badge ok">on</span></td><td></td></tr>
+            <tr><td>Discord</td><td><span class="badge ok">on</span></td><td></td></tr>
+            <tr><td>Webchat</td><td><span class="badge ok">on</span></td><td>This interface</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="card span-6">
+        <div class="card-title">Blocked by Policy</div>
+        <div class="rule-box">
           <ul>
-            <li>Main agent = strategic brain, synthesis, final answers.</li>
-            <li>Sub-agents = cheap specialists (research/build/ops-check) when needed.</li>
-            <li>Memory = durable decisions, preferences, constraints, open loops.</li>
-            <li>Notion = read-first; write only on your explicit command.</li>
-            <li>No destructive/system actions without direct approval.</li>
+            <li>camera.snap / camera.clip</li>
+            <li>screen.record</li>
+            <li>calendar.add / contacts.add / reminders.add</li>
+            <li>Any infra/config change without explicit <code>GO</code></li>
+            <li>Notion writes without explicit command</li>
+            <li>Parallel execution without <code>GO PARALLEL</code></li>
           </ul>
-        </article>
+        </div>
+      </article>
+    </div>
+  </section>
 
-        <article class="card span-4">
-          <div class="label">Context Pressure</div>
-          <div class="kpi">~20%</div>
-          <div class="bar"><div class="fill" style="width:20%"></div></div>
-          <div class="small">Keep durable facts in <code>memory.md</code>; keep chat lean.</div>
-        </article>
+  <!-- ══ CONFIG ══ -->
+  <section class="view" data-view="config">
+    <div class="grid">
+      <article class="card span-6">
+        <div class="card-title">Active Configuration Snapshot</div>
+        <table>
+          <thead><tr><th>Setting</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Main model</td><td><span class="badge opus">anthropic/claude-opus-4-6</span></td></tr>
+            <tr><td>Sub-agent model</td><td><span class="badge sonnet">anthropic/claude-sonnet-4-6</span></td></tr>
+            <tr><td>Fallback provider</td><td><span class="badge openai">openai-codex (standby)</span></td></tr>
+            <tr><td>Max concurrent sessions</td><td>1</td></tr>
+            <tr><td>Max concurrent sub-agents</td><td>2</td></tr>
+            <tr><td>Compaction mode</td><td>safeguard</td></tr>
+            <tr><td>Workspace</td><td><code>~/.openclaw/workspace</code></td></tr>
+            <tr><td>Gateway port</td><td>18789 (loopback)</td></tr>
+            <tr><td>Tailscale SSH</td><td><span class="badge warn">off — run: sudo tailscale set --ssh=true</span></td></tr>
+            <tr><td>Tailscale node</td><td>mmm4 · 100.74.228.112</td></tr>
+          </tbody>
+        </table>
+      </article>
 
-        <article class="card span-12">
-          <div class="label">Quick Links</div>
-          <a class="link-btn" href="./agent-architecture.html">Open Architecture Diagram</a>
-          <a class="link-btn" href="https://docs.openclaw.ai" target="_blank" rel="noreferrer">OpenClaw Docs</a>
-          <a class="link-btn" href="../memory.md">Open memory.md</a>
-        </article>
-      </div>
-    </section>
+      <article class="card span-6">
+        <div class="card-title">Model Aliases</div>
+        <table>
+          <thead><tr><th>Alias</th><th>Full Model</th><th>Use for</th></tr></thead>
+          <tbody>
+            <tr><td><code>/model opus</code></td><td>anthropic/claude-opus-4-6</td><td>Strategy, complex reasoning</td></tr>
+            <tr><td><code>/model sonnet</code></td><td>anthropic/claude-sonnet-4-6</td><td>Day-to-day, coding, fast tasks</td></tr>
+          </tbody>
+        </table>
+        <div class="card-title" style="margin-top:16px;">Skills Installed</div>
+        <table>
+          <thead><tr><th>Skill</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>notion</td><td>Read Notion DBs; manual writes</td></tr>
+            <tr><td>github</td><td>gh CLI — PRs, issues, CI</td></tr>
+            <tr><td>coding-agent</td><td>Delegate complex coding tasks</td></tr>
+            <tr><td>weather</td><td>Weather lookups</td></tr>
+            <tr><td>clawhub</td><td>Install/update skills</td></tr>
+            <tr><td>healthcheck</td><td>Security / host audits</td></tr>
+          </tbody>
+        </table>
+      </article>
 
-    <section class="view" data-view="agents">
-      <div class="grid">
-        <article class="card span-7">
-          <div class="label">Agent Topology</div>
-          <ul>
-            <li><strong>Main Operator</strong>: high-judgment model for planning, prioritization, and final user response.</li>
-            <li><strong>Research Sub-agent</strong>: cheap model + web tools for evidence gathering.</li>
-            <li><strong>Builder Sub-agent</strong>: cheap coding model for implementation/prototyping.</li>
-            <li><strong>Ops Guard Sub-agent</strong>: cheap validator for risk/policy checks.</li>
-            <li>All outputs route back to Main Operator for final decision.</li>
-          </ul>
-          <div class="footer-note">Pattern goal: quality where needed, cost control everywhere else.</div>
-        </article>
+      <article class="card span-12">
+        <div class="card-title">How to Change Config Safely</div>
+        <ol>
+          <li>Tell Claw what you want to change.</li>
+          <li>Claw describes the exact change and waits for your explicit <strong>GO</strong>.</li>
+          <li>Claw applies via <code>config.patch</code> (safe merge — not a full overwrite).</li>
+          <li>Gateway restarts automatically; pings you when back online.</li>
+          <li>Durable changes also written to memory.md.</li>
+        </ol>
+      </article>
+    </div>
+  </section>
 
-        <article class="card span-5">
-          <div class="label">Control Rules</div>
-          <ul>
-            <li>Default single lane.</li>
-            <li>No background swarm unless explicitly requested.</li>
-            <li>Sub-agents do work; main agent talks to Nick.</li>
-            <li>Model switching stays intentional, not automatic drift.</li>
-          </ul>
-          <span class="pill">Main: quality-first</span>
-          <span class="pill">Subs: cost-first</span>
-          <span class="pill">Parallel: opt-in</span>
-        </article>
+  <!-- ══ OBJECTIVES ══ -->
+  <section class="view" data-view="objectives">
+    <div class="grid">
+      <article class="card span-4">
+        <div class="card-title">Source</div>
+        <div class="small" style="color:var(--muted)"><span class="dot dot-ok"></span>Notion — Objectives DB</div>
+        <p class="section-note">Read-first. Writes only on explicit command ("add database entry …").</p>
+      </article>
+      <article class="card span-8">
+        <div class="card-title">Highlighted Objectives (from Notion)</div>
+        <table>
+          <thead><tr><th>Objective</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Become a stablecoin expert</td><td><span class="badge warn">Recovering</span></td></tr>
+            <tr><td>Something (in crypto) part-time</td><td><span class="badge">Pass</span></td></tr>
+            <tr><td>Sell Manhattan co-op</td><td><span class="badge warn">Recovering</span></td></tr>
+          </tbody>
+        </table>
+        <p class="section-note">Type: <strong>"read my objectives from Notion"</strong> to pull the full live list.</p>
+      </article>
+    </div>
+  </section>
 
-        <article class="card span-12">
-          <div class="label">Model Allocation Blueprint</div>
-          <table>
-            <thead><tr><th>Role</th><th>Suggested Model Tier</th><th>When to Use</th><th>Output Type</th></tr></thead>
-            <tbody>
-              <tr><td>Main operator</td><td>High-quality (e.g., opus class)</td><td>Strategy, tradeoffs, final output</td><td>User-facing response + decisions</td></tr>
-              <tr><td>Research sub-agent</td><td>Low-cost fast model</td><td>Search, summarize, source extraction</td><td>Bullet findings + citations</td></tr>
-              <tr><td>Builder sub-agent</td><td>Low-cost coding model</td><td>Scaffold/update files, repetitive coding</td><td>Patches + test notes</td></tr>
-              <tr><td>Ops guard sub-agent</td><td>Low-cost validator</td><td>Safety/policy/risk checks</td><td>GO / NO-GO recommendation</td></tr>
-            </tbody>
-          </table>
-        </article>
-      </div>
-    </section>
+  <!-- ══ MEMORY ══ -->
+  <section class="view" data-view="memory">
+    <div class="grid">
+      <article class="card span-6">
+        <div class="card-title">What Gets Written to Memory</div>
+        <ul>
+          <li>Decisions and preferences</li>
+          <li>Constraints and guardrails</li>
+          <li>Active projects and deadlines</li>
+          <li>Names, recurring routines</li>
+          <li>Open loops and commitments</li>
+        </ul>
+        <p class="section-note" style="margin-top:10px;">Secrets are <strong>not</strong> stored unless you explicitly ask.</p>
+      </article>
+      <article class="card span-6">
+        <div class="card-title">Current Key Constraints (from memory.md)</div>
+        <ul>
+          <li>Parallel blocked by default → <code>GO PARALLEL</code> to unlock</li>
+          <li>System changes require explicit approval</li>
+          <li>Rate-limit guardrails on concurrency</li>
+          <li>Notion writes manual-only on explicit command</li>
+          <li>First-install artifacts archived (2026-02-19)</li>
+        </ul>
+      </article>
+      <article class="card span-12">
+        <div class="card-title">Open Loops</div>
+        <table>
+          <thead><tr><th>Loop</th><th>Status</th><th>Next Action</th></tr></thead>
+          <tbody>
+            <tr><td>Tailscale SSH enable on MMM4</td><td><span class="badge warn">Pending</span></td><td><code>sudo tailscale set --ssh=true</code></td></tr>
+            <tr><td>Dashboard live data wiring</td><td><span class="badge warn">Pending</span></td><td>v2 when requested</td></tr>
+            <tr><td>Notion write schema definition</td><td><span class="badge warn">Pending</span></td><td>Define which fields are write-safe</td></tr>
+            <tr><td>Notion token rotation</td><td><span class="badge warn">Pending</span></td><td>Rotate token exposed in chat</td></tr>
+          </tbody>
+        </table>
+      </article>
+    </div>
+  </section>
 
-    <section class="view" data-view="subagents">
-      <div class="grid">
-        <article class="card span-4">
-          <div class="label">Current State</div>
-          <div class="kpi">Idle</div>
-          <div class="small">No long-running sub-agent swarm active.</div>
-        </article>
-        <article class="card span-8">
-          <div class="label">Sub-agent SOP (when active)</div>
-          <ol>
-            <li>Define one narrow task per sub-agent.</li>
-            <li>Set expected output format before spawn.</li>
-            <li>Check milestones only (not noisy polling).</li>
-            <li>Main agent merges outputs + resolves conflicts.</li>
-            <li>Write durable outcomes to memory.</li>
-          </ol>
-        </article>
+  <!-- ══ RUNBOOK ══ -->
+  <section class="view" data-view="runbook">
+    <div class="grid">
+      <article class="card span-6">
+        <div class="card-title">Daily Operating Pattern</div>
+        <ol>
+          <li>Check Overview: mode, posture, open loops.</li>
+          <li>Pick objective → attach one measurable next action.</li>
+          <li>If task is big → Claw spawns sub-agent (Sonnet) automatically.</li>
+          <li>Review output → approve or steer.</li>
+          <li>Durable decisions → written to memory.md.</li>
+          <li>Optional: push updates to Notion explicitly.</li>
+        </ol>
+      </article>
+      <article class="card span-6">
+        <div class="card-title">Weekly 15-min Review Template</div>
+        <ul>
+          <li>What objective moved this week?</li>
+          <li>What stalled — and what's the real blocker?</li>
+          <li>One leverage move for next week?</li>
+          <li>Any config / tool upgrades worth shipping?</li>
+          <li>Memory hygiene: archive stale loops.</li>
+        </ul>
+      </article>
+      <article class="card span-12">
+        <div class="card-title">Model Switching Cheatsheet</div>
+        <table>
+          <thead><tr><th>Command</th><th>Effect</th><th>When to use</th></tr></thead>
+          <tbody>
+            <tr><td><code>/model opus</code></td><td>Switch this session to Opus</td><td>Strategy, hard tradeoffs, planning</td></tr>
+            <tr><td><code>/model sonnet</code></td><td>Switch this session to Sonnet</td><td>Coding, quick answers, day-to-day</td></tr>
+            <tr><td>(default)</td><td>Opus — main coordinator</td><td>Most conversations</td></tr>
+            <tr><td>sub-agents</td><td>Always use Sonnet automatically</td><td>Background tasks, research, builds</td></tr>
+          </tbody>
+        </table>
+      </article>
+    </div>
+  </section>
 
-        <article class="card span-12">
-          <div class="label">Task Lanes You Can Reuse</div>
-          <table>
-            <thead><tr><th>Lane</th><th>Scope</th><th>Model Bias</th><th>Stop Condition</th></tr></thead>
-            <tbody>
-              <tr><td>Research lane</td><td>Gather facts, compare options</td><td>Fast + cheap</td><td>3-5 sourced findings</td></tr>
-              <tr><td>Build lane</td><td>Implement concrete file changes</td><td>Cheap coding</td><td>Patch + basic validation</td></tr>
-              <tr><td>Audit lane</td><td>Check risks / hidden regressions</td><td>Cheap validator</td><td>GO/NO-GO report</td></tr>
-            </tbody>
-          </table>
-        </article>
-      </div>
-    </section>
+</main>
 
-    <section class="view" data-view="objectives">
-      <div class="grid">
-        <article class="card span-4">
-          <div class="label">Objective Snapshot Source</div>
-          <div class="small"><span class="status-dot dot-ok"></span>Notion Objectives DB connected</div>
-          <div class="footer-note">Read-first integration; writes only on explicit command.</div>
-        </article>
+<script>
+  const TABS = [
+    ["overview","Overview"],["agents","Agents"],["sessions","Sessions"],
+    ["tools","Tools"],["config","Config"],["objectives","Objectives"],
+    ["memory","Memory"],["runbook","Runbook"]
+  ];
+  const tabsEl = document.getElementById("tabs");
+  const views = [...document.querySelectorAll(".view")];
 
-        <article class="card span-8">
-          <div class="label">Highlighted Objectives</div>
-          <table>
-            <thead><tr><th>Objective</th><th>Status</th><th>Notes</th></tr></thead>
-            <tbody>
-              <tr><td>Become a stablecoin expert</td><td><span class="badge">Recovering</span></td><td>High-priority domain objective</td></tr>
-              <tr><td>Something (in crypto) part-time (at least)</td><td><span class="badge">Pass</span></td><td>Related optional lane</td></tr>
-              <tr><td>Sell manhattan co-op</td><td><span class="badge">Recovering</span></td><td>Non-crypto but material objective</td></tr>
-            </tbody>
-          </table>
-        </article>
+  function setView(id) {
+    views.forEach(v => v.classList.toggle("active", v.dataset.view === id));
+    [...tabsEl.querySelectorAll(".tab")].forEach(t => t.classList.toggle("active", t.dataset.view === id));
+    history.replaceState({},"",'#'+id);
+  }
+  window.setView = setView;
 
-        <article class="card span-12">
-          <div class="label">How to Use This Tab</div>
-          <ul>
-            <li>Treat this as your strategic board: active objective themes + status drift.</li>
-            <li>For execution, pick one objective per week and attach one measurable next action.</li>
-            <li>When you say “add database entry …”, we write to Notion manually.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
+  TABS.forEach(([id,label]) => {
+    const b = document.createElement("button");
+    b.className = "tab"; b.dataset.view = id; b.textContent = label;
+    b.onclick = () => setView(id);
+    tabsEl.appendChild(b);
+  });
 
-    <section class="view" data-view="memory">
-      <div class="grid">
-        <article class="card span-6">
-          <div class="label">Durable Memory Policy</div>
-          <ul>
-            <li>Capture: decisions, preferences, constraints, active loops.</li>
-            <li>Avoid storing secrets unless explicitly requested.</li>
-            <li>Use durable memory for multi-day continuity.</li>
-          </ul>
-        </article>
-
-        <article class="card span-6">
-          <div class="label">Current Key Constraints</div>
-          <ul>
-            <li>Parallel blocked by default (only via <code>GO PARALLEL</code>).</li>
-            <li>System changes require explicit approval token.</li>
-            <li>Guardrails to avoid rate-limit spikes and runaway processes.</li>
-          </ul>
-        </article>
-
-        <article class="card span-12">
-          <div class="label">Open Loops (Tracked)</div>
-          <table>
-            <thead><tr><th>Loop</th><th>Status</th><th>Next Action</th></tr></thead>
-            <tbody>
-              <tr><td>Notion integration maturity</td><td><span class="badge">In progress</span></td><td>Use read snapshots; define write schema later</td></tr>
-              <tr><td>OpenClaw operating dashboard</td><td><span class="badge">Shipped v1</span></td><td>Add live status hooks when requested</td></tr>
-            </tbody>
-          </table>
-        </article>
-      </div>
-    </section>
-
-    <section class="view" data-view="integrations">
-      <div class="grid">
-        <article class="card span-12">
-          <div class="label">Integration Matrix</div>
-          <table>
-            <thead><tr><th>Integration</th><th>State</th><th>Mode</th><th>Policy</th></tr></thead>
-            <tbody>
-              <tr><td>Notion</td><td><span class="status-dot dot-ok"></span>Connected</td><td>Read-first</td><td>Manual writes only on explicit command</td></tr>
-              <tr><td>Browser automation</td><td><span class="status-dot dot-warn"></span>Intermittent</td><td>Fallback path</td><td>Use API-first where possible</td></tr>
-              <tr><td>GitHub (gh)</td><td><span class="status-dot dot-ok"></span>Available</td><td>On demand</td><td>No bulk destructive actions without GO</td></tr>
-            </tbody>
-          </table>
-        </article>
-
-        <article class="card span-6">
-          <div class="label">Notion Command Examples</div>
-          <ul>
-            <li><code>read my objectives from notion</code></li>
-            <li><code>add a database entry: ...</code></li>
-            <li><code>update objective status in notion: ...</code></li>
-          </ul>
-        </article>
-
-        <article class="card span-6">
-          <div class="label">Write Guardrails</div>
-          <ul>
-            <li>No silent writes.</li>
-            <li>No delete/archive unless explicit and confirmed.</li>
-            <li>Writes should be narrowly scoped to requested rows/fields.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="view" data-view="runbook">
-      <div class="grid">
-        <article class="card span-12">
-          <div class="label">Operator Runbook</div>
-          <ol>
-            <li>Check Overview tab: mode, risk posture, current focus.</li>
-            <li>Pick objective from Objectives tab.</li>
-            <li>If task is big, activate sub-agent lane(s) deliberately.</li>
-            <li>Review output in Agents/Sub-agents tabs.</li>
-            <li>Store durable decisions in memory.</li>
-            <li>Optionally push explicit updates to Notion.</li>
-          </ol>
-        </article>
-
-        <article class="card span-6">
-          <div class="label">Weekly 15-min Review Template</div>
-          <ul>
-            <li>What objective moved this week?</li>
-            <li>What stalled and why?</li>
-            <li>What single leverage move next week?</li>
-          </ul>
-        </article>
-
-        <article class="card span-6">
-          <div class="label">Upgrade Backlog</div>
-          <ul>
-            <li>Live session/sub-agent ingestion from OpenClaw runtime.</li>
-            <li>Objective burn-down and trend charts.</li>
-            <li>One-click export of weekly summary.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    const tabDefs = [
-      ["overview", "Overview"],
-      ["agents", "Agents"],
-      ["subagents", "Sub-agents"],
-      ["objectives", "Objectives"],
-      ["memory", "Memory"],
-      ["integrations", "Integrations"],
-      ["runbook", "Runbook"]
-    ];
-
-    const tabsEl = document.getElementById("tabs");
-    const views = [...document.querySelectorAll(".view")];
-
-    function setView(view) {
-      views.forEach(v => v.classList.toggle("active", v.dataset.view === view));
-      [...tabsEl.querySelectorAll(".tab")].forEach(t => t.classList.toggle("active", t.dataset.view === view));
-      history.replaceState({}, "", `#${view}`);
-    }
-
-    tabDefs.forEach(([id, label]) => {
-      const b = document.createElement("button");
-      b.className = "tab";
-      b.dataset.view = id;
-      b.textContent = label;
-      b.onclick = () => setView(id);
-      tabsEl.appendChild(b);
-    });
-
-    const initial = (location.hash || "#overview").slice(1);
-    const exists = tabDefs.some(([id]) => id === initial);
-    setView(exists ? initial : "overview");
-  </script>
+  const init = (location.hash||"#overview").slice(1);
+  setView(TABS.some(([id])=>id===init) ? init : "overview");
+</script>
 </body>
 </html>
