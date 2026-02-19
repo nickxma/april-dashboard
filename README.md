@@ -1,17 +1,25 @@
-# April Dashboard UI (Prototype)
+# Claw OpenClaw Dashboard (v1)
 
 ## Open
 - Double-click `index.html`
-- or run: `open /Users/nick/.openclaw/workspace/dashboard-ui/index.html`
+- or run:
+  - `open /Users/nick/.openclaw/workspace/dashboard-ui/index.html`
 
 ## What this is
-A static control dashboard to explain:
-1. How April works
-2. What access is available vs missing
-3. Safe-mode guardrails
-4. Suggested next actions
+A clickable snapshot website for your OpenClaw operating model:
+1. Overview (mode, risk posture, quick links)
+2. Agents (main vs sub-agent architecture)
+3. Sub-agents (SOP + reusable task lanes)
+4. Objectives (Notion snapshot framing)
+5. Memory (durable rules + open loops)
+6. Integrations (state + write guardrails)
+7. Runbook (weekly operating cadence)
+
+## Related files
+- `agent-architecture.html` — visual architecture diagram
+- `../memory.md` — durable memory source
 
 ## Next upgrade (optional)
-- Pull live values from OpenClaw status output
-- Add activity timeline (last tool calls, last errors)
-- Add model switch panel (OpenAI/Anthropic)
+- Wire live OpenClaw runtime/session values
+- Add objective status trend charts
+- Add one-click weekly report export
