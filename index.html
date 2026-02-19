@@ -177,8 +177,11 @@
 
     <article class="card span-8">
       <div class="card-title">What is this setup?</div>
-      <p class="section-intro">OpenClaw is an AI gateway running on your Mac Mini (<strong>MMM4</strong>). It connects Claw — your AI agent — to your messaging channels, tools, and memory. You talk to Claw from any device; OpenClaw routes everything behind the scenes.</p>
-      <p class="section-intro" style="margin-top:0">The 4-tier model system means Claw automatically picks the right model for the task: fast and capable for most things, expensive+smart only when it matters, cheap for trivial work.</p>
+      <p class="section-intro">This is a personal AI operating system running on your Mac Mini (<strong>MMM4</strong>). OpenClaw is the runtime layer: it receives messages, applies policy, routes to the right session, calls tools, and sends responses back to you.</p>
+      <p class="section-intro" style="margin-top:0">At a systems level: <strong>Input channels → Gateway → Main session → Sub-agents/tools → Memory + external systems (Notion/GitHub) → Output channels</strong>. Your laptop can SSH in and manage the same machine remotely; you are not running a second brain, just another terminal into the same one.</p>
+      <p class="section-intro" style="margin-top:0">Model policy is optimized for reliability and cost control: <strong>Codex main</strong> for stable day-to-day execution, <strong>Sonnet/Opus</strong> for premium reasoning on demand, and <strong>Haiku</strong> for low-intensity background tasks. This keeps throughput high while reducing Anthropic 429 disruption risk.</p>
+      <p class="section-intro" style="margin-top:0">Memory is split into two layers: session context (temporary) and durable memory files (<code>MEMORY.md</code>, <code>memory/*.md</code>). Notion is your external objective system; writes are manual-only by your explicit command.</p>
+      <p class="section-intro" style="margin-top:0">First-principles dashboard objective: show <strong>state</strong> (what is true now), <strong>control</strong> (what you can change), <strong>risk</strong> (what can break), and <strong>next actions</strong> (what to do next). If a panel doesn't help one of those four, it should be removed.</p>
     </article>
 
     <article class="card span-4">
@@ -200,6 +203,7 @@
       <a class="link-btn" href="#" onclick="setView('config');return false;">⚙️ Config</a>
       <a class="link-btn" href="#" onclick="setView('objectives');return false;">🎯 Objectives</a>
       <a class="link-btn" href="#" onclick="setView('memory');return false;">🧠 Memory</a>
+      <a class="link-btn" href="#" onclick="setView('todos');return false;">✅ To-Dos</a>
       <a class="link-btn" href="https://nickxma.github.io/april-dashboard/" target="_blank">🌐 Live URL</a>
     </article>
   </div>
@@ -671,6 +675,26 @@
   </div>
 </section>
 
+<!-- ══════════════════════ TODOS ══════════════════════ -->
+<section class="view" data-view="todos">
+  <div class="grid">
+    <article class="card span-12">
+      <div class="card-title">Open To-Dos (Operator Queue)</div>
+      <table>
+        <thead><tr><th>Todo</th><th>Status</th><th>Owner</th><th>Next step</th></tr></thead>
+        <tbody>
+          <tr><td>Fix/Install Obsidian skill integration</td><td><span class="tag warn">Blocked (ClawHub rate limit)</span></td><td>Claw</td><td>Retry install when rate limit resets; then map to <code>/Users/nick/Obsidian</code></td></tr>
+          <tr><td>Validate Things 3 skill availability</td><td><span class="tag warn">Not found yet</span></td><td>Claw</td><td>Search skill registry alternatives / direct automation approach</td></tr>
+          <tr><td>Rotate exposed API keys from chat</td><td><span class="tag warn">Pending</span></td><td>Nick</td><td>Rotate OpenAI/Notion tokens, then update config secrets</td></tr>
+          <tr><td>Enable Tailscale SSH on MMM4</td><td><span class="tag warn">Pending</span></td><td>Nick</td><td><code>sudo tailscale set --ssh=true</code></td></tr>
+          <tr><td>Dashboard live telemetry v5</td><td><span class="tag plain">Backlog</span></td><td>Claw</td><td>Add auto-refresh for sessions/errors/model state JSON</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Use this as the execution queue. Keep it short, actionable, and tied to a next command.</p>
+    </article>
+  </div>
+</section>
+
 <!-- ══════════════════════ RUNBOOK ══════════════════════ -->
 <section class="view" data-view="runbook">
   <div class="grid">
@@ -703,7 +727,7 @@
   const TABS=[
     ["overview","Overview"],["architecture","Architecture"],["agents","Agents"],
     ["sessions","Sessions"],["tools","Tools"],["config","Config"],
-    ["objectives","Objectives"],["memory","Memory"],["runbook","Runbook"]
+    ["objectives","Objectives"],["memory","Memory"],["todos","To-Dos"],["runbook","Runbook"]
   ];
   const tabsEl=document.getElementById("tabs");
   const views=[...document.querySelectorAll(".view")];
