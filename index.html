@@ -15,7 +15,7 @@
       --border:   #c7d1e3;
       --shadow:   rgba(31,44,78,.12);
 
-      --sonnet:   #7c6ff7;   /* purple */
+      --sonnet:   #3f6fa8;   /* steel blue */
       --opus:     #e0608a;   /* pink */
       --codex:    #3ab88a;   /* green */
       --haiku:    #f5a623;   /* amber */
@@ -50,7 +50,7 @@
       box-shadow: 0 2px 16px var(--shadow);
     }
     .hrow { max-width:1360px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
-    h1 { font-size:18px; font-weight:800; background:linear-gradient(90deg,#7c6ff7,#e0608a); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    h1 { font-size:18px; font-weight:800; background:linear-gradient(90deg,#284a73,#4f6b88); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
     .htag { font-size:11px; color:var(--muted); margin-top:2px; }
 
     /* ── Tabs ── */
@@ -144,7 +144,7 @@
   <div class="hrow">
     <div>
       <h1>🦞 Claw OS — OpenClaw Dashboard</h1>
-      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · America/Chicago</div>
+      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · America/Chicago · build bfaedf4</div>
     </div>
     <nav class="tabs" id="tabs"></nav>
   </div>
@@ -166,8 +166,8 @@
     </article>
     <article class="card span-3">
       <div class="card-title">Coding</div>
-      <div class="kpi" style="color:var(--sonnet)">Sonnet</div>
-      <div class="kpi-sub">claude-sonnet-4-6 · premium fallback</div>
+      <div class="kpi" style="color:var(--sonnet)">Fallback</div>
+      <div class="kpi-sub">sonnet/opus on demand</div>
     </article>
     <article class="card span-3">
       <div class="card-title">Cheap / Menial</div>
@@ -185,7 +185,7 @@
       <div class="card-title">Channels Online</div>
       <table>
         <tr><td><span class="dot dot-ok"></span>Telegram</td><td><span class="tag ok">on</span></td></tr>
-        <tr><td><span class="dot dot-ok"></span>iMessage</td><td><span class="tag ok">on</span></td></tr>
+        <tr><td><span class="dot dot-warn"></span>iMessage</td><td><span class="tag warn">off</span></td></tr>
         <tr><td><span class="dot dot-ok"></span>Discord</td><td><span class="tag ok">on</span></td></tr>
         <tr><td><span class="dot dot-ok"></span>Webchat</td><td><span class="tag ok">on</span></td></tr>
       </table>
@@ -281,7 +281,7 @@
         <!-- Claw Agent boxes -->
         <rect x="390" y="230" width="420" height="70" rx="12" fill="#fff0f8" stroke="#f0a0c8" stroke-width="1.5"/>
         <text x="600" y="255" fill="#c03060" text-anchor="middle" font-size="14" font-weight="700">Claw — Main Agent Session</text>
-        <text x="600" y="273" fill="#d06090" text-anchor="middle" font-size="11">Model: Sonnet 4.6 (orchestrator) · 200k ctx · 1 session max</text>
+        <text x="600" y="273" fill="#d06090" text-anchor="middle" font-size="11">Model: Codex 5.3 (orchestrator) · 272k ctx · 1 session max</text>
         <text x="600" y="291" fill="#d06090" text-anchor="middle" font-size="10">Reads SOUL.md · USER.md · memory.md on every session start</text>
 
         <!-- Sub-agent row -->
@@ -301,7 +301,7 @@
 
         <rect x="393" y="442" width="195" height="90" rx="10" fill="#edf0ff" stroke="#c0c8f8" stroke-width="1.5"/>
         <text x="490" y="465" fill="#4050b0" text-anchor="middle" font-size="12" font-weight="600">Research Agent</text>
-        <text x="490" y="483" fill="#6070c0" text-anchor="middle" font-size="10">Model: Sonnet 4.6</text>
+        <text x="490" y="483" fill="#6070c0" text-anchor="middle" font-size="10">Model: Haiku 3.5 (default)</text>
         <text x="490" y="498" fill="#6070c0" text-anchor="middle" font-size="10">web_search + fetch</text>
         <text x="490" y="513" fill="#6070c0" text-anchor="middle" font-size="10">cited findings</text>
 
@@ -385,9 +385,9 @@
     <article class="card span-6">
       <div class="card-title">How a message flows</div>
       <ol>
-        <li>You send a message on Telegram / iMessage / Discord / Webchat</li>
+        <li>You send a message on Telegram / Discord / Webchat</li>
         <li>OpenClaw gateway receives it and routes to main session</li>
-        <li>Claw (Sonnet 4.6) reads context + memory and decides what to do</li>
+        <li>Claw (Codex 5.3) reads context + memory and decides what to do</li>
         <li>If complex → spawns a sub-agent with the right model tier</li>
         <li>Sub-agent runs, returns structured output</li>
         <li>Claw synthesizes and replies to you</li>
@@ -471,7 +471,7 @@
     </article>
     <article class="card span-6">
       <div class="card-title">Sub-agent Default Model</div>
-      <p class="note">Sub-agents default to <strong>Sonnet 4.6</strong> unless overridden at spawn time. Claw will use Opus for deep-think tasks, Codex for coding tasks, and Haiku for trivial tasks automatically based on task type.</p>
+      <p class="note">Sub-agents default to <strong>Haiku 3.5</strong> unless overridden at spawn time. Claw will use Sonnet/Opus for premium reasoning and Codex for coding tasks.</p>
     </article>
   </div>
 </section>
@@ -484,7 +484,7 @@
       <table>
         <thead><tr><th>Type</th><th>Key</th><th>Model</th><th>Lifetime</th><th>Who talks to it</th></tr></thead>
         <tbody>
-          <tr><td><span class="tag sonnet">Main</span></td><td><code>agent:main:main</code></td><td>Sonnet 4.6</td><td>Ongoing conversation</td><td>You directly</td></tr>
+          <tr><td><span class="tag codex">Main</span></td><td><code>agent:main:main</code></td><td>Codex 5.3</td><td>Ongoing conversation</td><td>You directly</td></tr>
           <tr><td><span class="tag plain">Sub-agent</span></td><td><code>agent:main:sub-XXXX</code></td><td>Varies (Opus/Codex/Haiku)</td><td>Single task → auto-cleanup</td><td>Main agent only</td></tr>
           <tr><td><span class="tag ok">Isolated/Cron</span></td><td><code>agent:isolated:XXXX</code></td><td>Configurable</td><td>Scheduled / timed</td><td>Nobody (async)</td></tr>
         </tbody>
