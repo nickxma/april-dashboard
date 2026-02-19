@@ -6,24 +6,34 @@
   <title>Claw OS — OpenClaw Dashboard</title>
   <style>
     :root {
-      --bg: #080e1e;
-      --bg2: #060a16;
-      --panel: #0f1830;
-      --panel2: #0c1427;
-      --text: #edf2ff;
-      --muted: #8ba4d4;
-      --border: #1e2e58;
-      --accent: #5fd4f4;
-      --ok: #4ed98a;
-      --warn: #ffbe42;
-      --bad: #ff5f72;
-      --opus: #b988ff;
-      --sonnet: #5fd4f4;
-      --openai: #74c97b;
+      --bg:       #f0f4ff;
+      --bg2:      #e8eeff;
+      --panel:    #ffffff;
+      --panel2:   #f7f9ff;
+      --text:     #1a1f3a;
+      --muted:    #6070a0;
+      --border:   #d0d8f0;
+      --shadow:   rgba(80,100,200,.10);
+
+      --sonnet:   #7c6ff7;   /* purple */
+      --opus:     #e0608a;   /* pink */
+      --codex:    #3ab88a;   /* green */
+      --haiku:    #f5a623;   /* amber */
+
+      --ok:       #2ecc89;
+      --warn:     #f5a623;
+      --bad:      #f06070;
+
+      --tag-sonnet-bg:  #ede8ff; --tag-sonnet-fg: #5b4ecc;
+      --tag-opus-bg:    #ffe8f0; --tag-opus-fg:   #c03060;
+      --tag-codex-bg:   #e0f7ef; --tag-codex-fg:  #1d7a5a;
+      --tag-haiku-bg:   #fff3dc; --tag-haiku-fg:  #a06010;
+      --tag-ok-bg:      #e2f9ef; --tag-ok-fg:     #1a8058;
+      --tag-warn-bg:    #fff3dc; --tag-warn-fg:   #a06010;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing:border-box; margin:0; padding:0; }
     body {
-      background: var(--bg);
+      background: linear-gradient(140deg, #eef2ff 0%, #f5f0ff 50%, #fdf0f8 100%);
       color: var(--text);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
       min-height: 100vh;
@@ -32,582 +42,685 @@
 
     /* ── Header ── */
     header {
-      position: sticky; top: 0; z-index: 20;
-      background: rgba(8,14,30,.94);
-      backdrop-filter: blur(10px);
+      position: sticky; top:0; z-index:20;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
-      padding: 12px 18px;
+      padding: 12px 20px;
+      box-shadow: 0 2px 16px var(--shadow);
     }
-    .hrow { max-width: 1320px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-    h1 { font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
-    .htag { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .hrow { max-width:1360px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    h1 { font-size:18px; font-weight:800; background:linear-gradient(90deg,#7c6ff7,#e0608a); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .htag { font-size:11px; color:var(--muted); margin-top:2px; }
 
     /* ── Tabs ── */
-    .tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tabs { display:flex; flex-wrap:wrap; gap:6px; }
     .tab {
-      border: 1px solid var(--border);
-      background: #0e1830;
+      border: 1.5px solid var(--border);
+      background: white;
       color: var(--muted);
-      border-radius: 999px;
-      padding: 6px 13px;
-      font-size: 12px;
-      cursor: pointer;
+      border-radius:999px;
+      padding: 6px 14px;
+      font-size:12px; font-weight:600;
+      cursor:pointer;
       transition: all .15s;
+      box-shadow: 0 1px 4px var(--shadow);
     }
-    .tab:hover { color: var(--text); border-color: #3a5090; }
-    .tab.active { border-color: var(--accent); color: #d4f5ff; background: #0c2035; }
+    .tab:hover { color:var(--text); border-color:#b0b8e8; }
+    .tab.active { background:linear-gradient(90deg,#7c6ff7,#e0608a); color:white; border-color:transparent; box-shadow:0 2px 10px rgba(120,100,240,.30); }
 
     /* ── Layout ── */
-    main { max-width: 1320px; margin: 0 auto; padding: 16px; }
-    .view { display: none; }
-    .view.active { display: block; }
-    .grid { display: grid; grid-template-columns: repeat(12,1fr); gap: 12px; }
-    @media(max-width:900px){ [class*="span-"]{ grid-column: span 12 !important; } }
+    main { max-width:1360px; margin:0 auto; padding:18px; }
+    .view { display:none; }
+    .view.active { display:block; }
+    .grid { display:grid; grid-template-columns:repeat(12,1fr); gap:14px; }
+    @media(max-width:900px){ [class*="span-"]{ grid-column:span 12 !important; } }
     .span-3{grid-column:span 3} .span-4{grid-column:span 4} .span-5{grid-column:span 5}
     .span-6{grid-column:span 6} .span-7{grid-column:span 7} .span-8{grid-column:span 8}
     .span-9{grid-column:span 9} .span-12{grid-column:span 12}
 
     /* ── Cards ── */
     .card {
-      background: linear-gradient(160deg, var(--panel), var(--panel2));
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px;
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius:18px;
+      padding:18px;
+      box-shadow: 0 4px 20px var(--shadow);
     }
-    .card-title { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 10px; }
-    .kpi { font-size: 28px; font-weight: 700; line-height: 1; margin: 6px 0 4px; }
-    .kpi-sub { font-size: 12px; color: var(--muted); }
+    .card-title { font-size:11px; text-transform:uppercase; letter-spacing:.09em; color:var(--muted); font-weight:700; margin-bottom:12px; }
+    .kpi { font-size:30px; font-weight:800; line-height:1; margin:6px 0 4px; }
+    .kpi-sub { font-size:12px; color:var(--muted); }
 
-    /* ── Badges / pills ── */
-    .badge {
-      display: inline-block;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 3px 9px;
-      font-size: 11px;
-      background: #0e1830;
+    /* ── Badges ── */
+    .tag {
+      display:inline-block; border-radius:999px;
+      padding:3px 10px; font-size:11px; font-weight:600; margin:2px;
     }
-    .badge.opus { border-color: #7a44c0; color: var(--opus); background: #180d2e; }
-    .badge.sonnet { border-color: #2a7090; color: var(--sonnet); background: #071828; }
-    .badge.ok { border-color: #1e6040; color: var(--ok); background: #071a10; }
-    .badge.warn { border-color: #7a5a00; color: var(--warn); background: #1a1400; }
-    .badge.openai { border-color: #2e6e35; color: var(--openai); background: #071209; }
+    .tag.sonnet { background:var(--tag-sonnet-bg); color:var(--tag-sonnet-fg); }
+    .tag.opus   { background:var(--tag-opus-bg);   color:var(--tag-opus-fg); }
+    .tag.codex  { background:var(--tag-codex-bg);  color:var(--tag-codex-fg); }
+    .tag.haiku  { background:var(--tag-haiku-bg);  color:var(--tag-haiku-fg); }
+    .tag.ok     { background:var(--tag-ok-bg);     color:var(--tag-ok-fg); }
+    .tag.warn   { background:var(--tag-warn-bg);   color:var(--tag-warn-fg); }
+    .tag.plain  { background:#f0f2ff; color:#4050a0; }
 
     /* ── Tables ── */
-    table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    th, td { text-align: left; border-bottom: 1px solid var(--border); padding: 8px 6px; vertical-align: top; }
-    th { color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing:.06em; }
-    tr:last-child td { border-bottom: none; }
+    table { width:100%; border-collapse:collapse; font-size:13px; }
+    th,td { text-align:left; border-bottom:1px solid #e8ecf8; padding:9px 8px; vertical-align:top; }
+    th { color:var(--muted); font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
+    tr:last-child td { border-bottom:none; }
+    tr:hover td { background:#fafbff; }
 
     /* ── Lists ── */
-    ul { padding-left: 18px; }
-    li { margin: 5px 0; color: var(--text); }
-    ol { padding-left: 18px; }
-    ol li { margin: 6px 0; }
-
-    /* ── SVG diagrams ── */
-    .diagram { width:100%; border:1px solid var(--border); border-radius:12px; background:#060c1c; display:block; }
-
-    /* ── Bars ── */
-    .bar { height:8px; border-radius:999px; background:#0b1226; overflow:hidden; margin-top:6px; }
-    .fill { height:100%; border-radius:999px; background: linear-gradient(90deg, var(--accent), #7ae8d4); }
+    ul { padding-left:18px; }
+    li { margin:5px 0; }
+    ol { padding-left:20px; }
+    ol li { margin:7px 0; }
 
     /* ── Misc ── */
-    .dot { width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle; }
-    .dot-ok { background:var(--ok); } .dot-warn { background:var(--warn); } .dot-bad { background:var(--bad); }
-    code { color:#b4f2ff; font-size:12px; font-family: 'JetBrains Mono', monospace; }
-    .link-btn { display:inline-block;margin:4px 6px 4px 0;font-size:12px;color:#b4eaff;text-decoration:none;border:1px solid var(--border);padding:6px 11px;border-radius:10px;background:#0b1a35; }
-    .section-note { color:var(--muted); font-size:12px; margin-top:10px; line-height:1.6; }
-    .rule-box { border:1px solid var(--border); border-radius:10px; padding:10px 14px; background:#080e1e; margin-top:8px; }
-    .rule-box li { font-size:13px; }
-    strong { color:#d8eaff; }
+    .dot { width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle; }
+    .dot-ok  { background:#2ecc89; } .dot-warn { background:#f5a623; } .dot-bad { background:#f06070; }
+    code { color:#5b4ecc; font-size:12px; background:#f0edff; padding:1px 5px; border-radius:5px; }
+    .note { color:var(--muted); font-size:12px; line-height:1.7; margin-top:8px; }
+    .link-btn { display:inline-block;margin:4px 6px 4px 0;font-size:12px;color:#5b4ecc;text-decoration:none;border:1.5px solid #c8c0f8;padding:6px 13px;border-radius:10px;background:#f4f2ff;font-weight:600; }
+    .link-btn:hover { background:#ebe8ff; }
+    .section-intro { font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:14px; }
+
+    /* ── Model color bars ── */
+    .model-bar { display:flex; align-items:center; gap:10px; margin:6px 0; font-size:13px; }
+    .model-bar .bar { flex:1; height:10px; border-radius:999px; background:#eeeff8; overflow:hidden; }
+    .model-bar .fill { height:100%; border-radius:999px; }
+    .fill-sonnet { background:linear-gradient(90deg,#a890ff,#7c6ff7); }
+    .fill-opus   { background:linear-gradient(90deg,#ff90b8,#e0608a); }
+    .fill-codex  { background:linear-gradient(90deg,#6fe8c0,#3ab88a); }
+    .fill-haiku  { background:linear-gradient(90deg,#ffd088,#f5a623); }
+
+    /* ── SVG diagrams ── */
+    .diagram { width:100%; border:1.5px solid var(--border); border-radius:14px; background:white; display:block; }
   </style>
 </head>
 <body>
-
 <header>
   <div class="hrow">
     <div>
       <h1>🦞 Claw OS — OpenClaw Dashboard</h1>
-      <div class="htag">Nick's operating environment · MMM4 · America/Chicago</div>
+      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · America/Chicago</div>
     </div>
     <nav class="tabs" id="tabs"></nav>
   </div>
 </header>
-
 <main>
 
-  <!-- ══ OVERVIEW ══ -->
-  <section class="view active" data-view="overview">
-    <div class="grid">
-      <article class="card span-3">
-        <div class="card-title">Main Model</div>
-        <div class="kpi" style="color:var(--opus)">Opus</div>
-        <div class="kpi-sub">anthropic/claude-opus-4-6</div>
-      </article>
-      <article class="card span-3">
-        <div class="card-title">Sub-agent Model</div>
-        <div class="kpi" style="color:var(--sonnet)">Sonnet</div>
-        <div class="kpi-sub">anthropic/claude-sonnet-4-6</div>
-      </article>
-      <article class="card span-3">
-        <div class="card-title">Max Concurrency</div>
-        <div class="kpi">1 / 2</div>
-        <div class="kpi-sub">Main sessions / Sub-agents</div>
-      </article>
-      <article class="card span-3">
-        <div class="card-title">Execution Mode</div>
-        <div class="kpi ok" style="color:var(--ok)">Guarded</div>
-        <div class="kpi-sub">Parallel only via GO PARALLEL</div>
-      </article>
+<!-- ══════════════════════ OVERVIEW ══════════════════════ -->
+<section class="view active" data-view="overview">
+  <div class="grid">
+    <article class="card span-3">
+      <div class="card-title">Orchestrator</div>
+      <div class="kpi" style="color:var(--sonnet)">Sonnet</div>
+      <div class="kpi-sub">claude-sonnet-4-6 · default model</div>
+    </article>
+    <article class="card span-3">
+      <div class="card-title">Deep Think</div>
+      <div class="kpi" style="color:var(--opus)">Opus</div>
+      <div class="kpi-sub">claude-opus-4-6 · on demand</div>
+    </article>
+    <article class="card span-3">
+      <div class="card-title">Coding</div>
+      <div class="kpi" style="color:var(--codex)">Codex</div>
+      <div class="kpi-sub">gpt-5.3-codex · code tasks</div>
+    </article>
+    <article class="card span-3">
+      <div class="card-title">Cheap / Menial</div>
+      <div class="kpi" style="color:var(--haiku)">Haiku</div>
+      <div class="kpi-sub">claude-haiku-3-5 · simple tasks</div>
+    </article>
 
-      <article class="card span-8">
-        <div class="card-title">What is OpenClaw?</div>
-        <p class="section-note">OpenClaw is the Gateway that runs on your Mac Mini (MMM4). It connects your AI agents to messaging channels (Telegram, iMessage, Discord), tools (web, files, GitHub, Notion), and your workspace. You talk to Claw via any of those channels — the gateway routes it to the right agent session.</p>
-        <p class="section-note" style="margin-top:8px;">Think of it as: <strong>you → channel → gateway → agent session → tools → reply back to you.</strong></p>
-      </article>
+    <article class="card span-8">
+      <div class="card-title">What is this setup?</div>
+      <p class="section-intro">OpenClaw is an AI gateway running on your Mac Mini (<strong>MMM4</strong>). It connects Claw — your AI agent — to your messaging channels, tools, and memory. You talk to Claw from any device; OpenClaw routes everything behind the scenes.</p>
+      <p class="section-intro" style="margin-top:0">The 4-tier model system means Claw automatically picks the right model for the task: fast and capable for most things, expensive+smart only when it matters, cheap for trivial work.</p>
+    </article>
 
-      <article class="card span-4">
-        <div class="card-title">Active Channels</div>
-        <table>
-          <tr><td><span class="dot dot-ok"></span>Telegram</td><td><span class="badge ok">on</span></td></tr>
-          <tr><td><span class="dot dot-ok"></span>iMessage</td><td><span class="badge ok">on</span></td></tr>
-          <tr><td><span class="dot dot-ok"></span>Discord</td><td><span class="badge ok">on</span></td></tr>
-          <tr><td><span class="dot dot-ok"></span>Webchat</td><td><span class="badge ok">on</span></td></tr>
-        </table>
-      </article>
+    <article class="card span-4">
+      <div class="card-title">Channels Online</div>
+      <table>
+        <tr><td><span class="dot dot-ok"></span>Telegram</td><td><span class="tag ok">on</span></td></tr>
+        <tr><td><span class="dot dot-ok"></span>iMessage</td><td><span class="tag ok">on</span></td></tr>
+        <tr><td><span class="dot dot-ok"></span>Discord</td><td><span class="tag ok">on</span></td></tr>
+        <tr><td><span class="dot dot-ok"></span>Webchat</td><td><span class="tag ok">on</span></td></tr>
+      </table>
+    </article>
 
-      <article class="card span-12">
-        <div class="card-title">Quick Links</div>
-        <a class="link-btn" href="#" onclick="setView('agents');return false;">Agent Map</a>
-        <a class="link-btn" href="#" onclick="setView('sessions');return false;">Sessions Explained</a>
-        <a class="link-btn" href="#" onclick="setView('tools');return false;">Tools & Access</a>
-        <a class="link-btn" href="#" onclick="setView('config');return false;">Config Snapshot</a>
-        <a class="link-btn" href="https://nickxma.github.io/april-dashboard/" target="_blank">🌐 Live (GitHub Pages)</a>
-        <a class="link-btn" href="https://docs.openclaw.ai" target="_blank">📖 Docs</a>
-      </article>
-    </div>
-  </section>
+    <article class="card span-12">
+      <div class="card-title">Quick Navigation</div>
+      <a class="link-btn" href="#" onclick="setView('architecture');return false;">🗺 System Architecture</a>
+      <a class="link-btn" href="#" onclick="setView('agents');return false;">🤖 Agent Hierarchy</a>
+      <a class="link-btn" href="#" onclick="setView('sessions');return false;">🧵 Sessions</a>
+      <a class="link-btn" href="#" onclick="setView('tools');return false;">🔧 Tools</a>
+      <a class="link-btn" href="#" onclick="setView('config');return false;">⚙️ Config</a>
+      <a class="link-btn" href="#" onclick="setView('objectives');return false;">🎯 Objectives</a>
+      <a class="link-btn" href="#" onclick="setView('memory');return false;">🧠 Memory</a>
+      <a class="link-btn" href="https://nickxma.github.io/april-dashboard/" target="_blank">🌐 Live URL</a>
+    </article>
+  </div>
+</section>
 
-  <!-- ══ AGENTS ══ -->
-  <section class="view" data-view="agents">
-    <div class="grid">
-      <article class="card span-12">
-        <div class="card-title">Agent Hierarchy Diagram</div>
-        <svg class="diagram" viewBox="0 0 1100 520" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M0 0L10 5L0 10z" fill="#5fd4f4"/>
-            </marker>
-          </defs>
+<!-- ══════════════════════ ARCHITECTURE ══════════════════════ -->
+<section class="view" data-view="architecture">
+  <div class="grid">
+    <article class="card span-12">
+      <div class="card-title">Full System Architecture — How Claw Works</div>
+      <svg class="diagram" viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" font-family="Inter,ui-sans-serif,sans-serif">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0L10 5L0 10z" fill="#9080e0"/>
+          </marker>
+          <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M0 0L10 5L0 10z" fill="#b0b8d8"/>
+          </marker>
+          <!-- subtle gradient bg zones -->
+          <linearGradient id="grad-you" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fef0f8"/><stop offset="100%" stop-color="#ffe8f6"/>
+          </linearGradient>
+          <linearGradient id="grad-hw" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#f0f4ff"/><stop offset="100%" stop-color="#e8eeff"/>
+          </linearGradient>
+          <linearGradient id="grad-gw" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#f5f0ff"/><stop offset="100%" stop-color="#ede8ff"/>
+          </linearGradient>
+          <linearGradient id="grad-ext" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#f0fff8"/><stop offset="100%" stop-color="#e4f8ee"/>
+          </linearGradient>
+        </defs>
 
-          <!-- YOU -->
-          <rect x="460" y="20" width="180" height="60" rx="12" fill="#0a1828" stroke="#1e3060"/>
-          <text x="550" y="46" fill="#adc8f0" text-anchor="middle" font-size="13" font-weight="600">Nick</text>
-          <text x="550" y="64" fill="#6080b0" text-anchor="middle" font-size="11">Telegram · iMessage · Discord</text>
+        <!-- ── ZONE: YOU ── -->
+        <rect x="10" y="10" width="340" height="150" rx="14" fill="url(#grad-you)" stroke="#f0b8d8" stroke-width="1.5"/>
+        <text x="25" y="34" fill="#c03060" font-size="11" font-weight="700" letter-spacing=".06em">YOU</text>
 
-          <!-- Arrow down to Gateway -->
-          <line x1="550" y1="80" x2="550" y2="125" stroke="#5fd4f4" stroke-width="1.5" marker-end="url(#arr)"/>
-          <text x="560" y="108" fill="#3a7090" font-size="10">any channel</text>
+        <rect x="30" y="45" width="90" height="50" rx="10" fill="white" stroke="#f0b0d0"/>
+        <text x="75" y="67" fill="#c03060" text-anchor="middle" font-size="12" font-weight="600">Telegram</text>
+        <text x="75" y="84" fill="#d080a0" text-anchor="middle" font-size="10">mobile / web</text>
 
-          <!-- GATEWAY -->
-          <rect x="380" y="125" width="340" height="55" rx="12" fill="#0a1828" stroke="#2a4080"/>
-          <text x="550" y="149" fill="#8ab8e0" text-anchor="middle" font-size="12" font-weight="600">OpenClaw Gateway (MMM4 :18789)</text>
-          <text x="550" y="167" fill="#506080" text-anchor="middle" font-size="11">Routes messages · manages sessions · applies policies</text>
+        <rect x="135" y="45" width="90" height="50" rx="10" fill="white" stroke="#f0b0d0"/>
+        <text x="180" y="67" fill="#c03060" text-anchor="middle" font-size="12" font-weight="600">iMessage</text>
+        <text x="180" y="84" fill="#d080a0" text-anchor="middle" font-size="10">Apple devices</text>
 
-          <!-- Arrow down to Main Agent -->
-          <line x1="550" y1="180" x2="550" y2="228" stroke="#b988ff" stroke-width="2" marker-end="url(#arr)"/>
+        <rect x="240" y="45" width="90" height="50" rx="10" fill="white" stroke="#f0b0d0"/>
+        <text x="285" y="67" fill="#c03060" text-anchor="middle" font-size="12" font-weight="600">Discord</text>
+        <text x="285" y="84" fill="#d080a0" text-anchor="middle" font-size="10">any device</text>
 
-          <!-- MAIN AGENT -->
-          <rect x="350" y="228" width="400" height="80" rx="14" fill="#130825" stroke="#7a44c0"/>
-          <text x="550" y="256" fill="#d8b8ff" text-anchor="middle" font-size="16" font-weight="700">Main Agent — Claw</text>
-          <text x="550" y="276" fill="#9070c0" text-anchor="middle" font-size="12">Model: claude-opus-4-6 (high-judgment)</text>
-          <text x="550" y="294" fill="#9070c0" text-anchor="middle" font-size="11">Strategy · synthesis · memory · final reply to Nick</text>
+        <text x="180" y="126" fill="#c06080" text-anchor="middle" font-size="11">Also: SSH from MacBook → MMM4</text>
+        <text x="180" y="143" fill="#d090a8" text-anchor="middle" font-size="10">via Tailscale (100.74.228.112)</text>
 
-          <!-- Arrows to sub-agents -->
-          <line x1="420" y1="308" x2="200" y2="375" stroke="#5fd4f4" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
-          <line x1="550" y1="308" x2="550" y2="375" stroke="#5fd4f4" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
-          <line x1="680" y1="308" x2="900" y2="375" stroke="#5fd4f4" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
-          <text x="250" y="345" fill="#2a6080" font-size="10">spawn on-demand</text>
+        <!-- ── ZONE: MAC MINI (HARDWARE) ── -->
+        <rect x="370" y="10" width="460" height="680" rx="14" fill="url(#grad-hw)" stroke="#c0c8f0" stroke-width="2"/>
+        <text x="390" y="34" fill="#4050b0" font-size="11" font-weight="700" letter-spacing=".06em">MAC MINI — MMM4 (always-on server)</text>
 
-          <!-- Sub-agent: Research -->
-          <rect x="60" y="375" width="270" height="100" rx="12" fill="#071525" stroke="#2a5070"/>
-          <text x="195" y="402" fill="#5fd4f4" text-anchor="middle" font-size="14" font-weight="600">Research Agent</text>
-          <text x="195" y="421" fill="#4090a8" text-anchor="middle" font-size="11">Model: claude-sonnet-4-6</text>
-          <text x="195" y="439" fill="#4090a8" text-anchor="middle" font-size="11">web_search + web_fetch</text>
-          <text x="195" y="457" fill="#4090a8" text-anchor="middle" font-size="11">Returns cited findings</text>
+        <!-- OpenClaw Gateway box -->
+        <rect x="390" y="50" width="420" height="160" rx="12" fill="url(#grad-gw)" stroke="#a090e8" stroke-width="1.5"/>
+        <text x="600" y="74" fill="#5b4ecc" text-anchor="middle" font-size="13" font-weight="700">OpenClaw Gateway :18789</text>
+        <text x="600" y="92" fill="#8070c0" text-anchor="middle" font-size="11">Node.js daemon · SIGUSR1 restart · loopback bind</text>
 
-          <!-- Sub-agent: Builder -->
-          <rect x="410" y="375" width="270" height="100" rx="12" fill="#071525" stroke="#2a5070"/>
-          <text x="545" y="402" fill="#5fd4f4" text-anchor="middle" font-size="14" font-weight="600">Builder Agent</text>
-          <text x="545" y="421" fill="#4090a8" text-anchor="middle" font-size="11">Model: claude-sonnet-4-6</text>
-          <text x="545" y="439" fill="#4090a8" text-anchor="middle" font-size="11">File edits · scaffolds · tests</text>
-          <text x="545" y="457" fill="#4090a8" text-anchor="middle" font-size="11">No infra changes</text>
+        <rect x="408" y="102" width="110" height="36" rx="8" fill="white" stroke="#d0c8f8"/>
+        <text x="463" y="117" fill="#6050c0" text-anchor="middle" font-size="11" font-weight="600">Session Mgr</text>
+        <text x="463" y="132" fill="#9080d0" text-anchor="middle" font-size="10">main · sub · isolated</text>
 
-          <!-- Sub-agent: Ops Guard -->
-          <rect x="760" y="375" width="270" height="100" rx="12" fill="#071525" stroke="#2a5070"/>
-          <text x="895" y="402" fill="#5fd4f4" text-anchor="middle" font-size="14" font-weight="600">Ops Guard Agent</text>
-          <text x="895" y="421" fill="#4090a8" text-anchor="middle" font-size="11">Model: claude-sonnet-4-6</text>
-          <text x="895" y="439" fill="#4090a8" text-anchor="middle" font-size="11">Risk · policy checks</text>
-          <text x="895" y="457" fill="#4090a8" text-anchor="middle" font-size="11">Returns GO / NO-GO</text>
+        <rect x="530" y="102" width="110" height="36" rx="8" fill="white" stroke="#d0c8f8"/>
+        <text x="585" y="117" fill="#6050c0" text-anchor="middle" font-size="11" font-weight="600">Channel Router</text>
+        <text x="585" y="132" fill="#9080d0" text-anchor="middle" font-size="10">Telegram/iMsg/Discord</text>
 
-          <!-- OpenAI fallback note -->
-          <text x="550" y="500" fill="#2a5030" text-anchor="middle" font-size="11">openai-codex/gpt-5.3-codex — configured but not in active hierarchy (optional fallback)</text>
-        </svg>
-      </article>
+        <rect x="652" y="102" width="110" height="36" rx="8" fill="white" stroke="#d0c8f8"/>
+        <text x="707" y="117" fill="#6050c0" text-anchor="middle" font-size="11" font-weight="600">Memory Hooks</text>
+        <text x="707" y="132" fill="#9080d0" text-anchor="middle" font-size="10">memory.md · daily</text>
 
-      <article class="card span-6">
-        <div class="card-title">Model Roles</div>
-        <table>
-          <thead><tr><th>Agent</th><th>Model</th><th>Purpose</th></tr></thead>
-          <tbody>
-            <tr><td><span class="badge opus">Main</span></td><td><code>opus</code></td><td>Strategy, synthesis, final answer, memory</td></tr>
-            <tr><td><span class="badge sonnet">Sub-agents</span></td><td><code>sonnet</code></td><td>Research, code, validation</td></tr>
-            <tr><td><span class="badge openai">Fallback</span></td><td><code>gpt-5.3-codex</code></td><td>Optional; not in active hierarchy</td></tr>
-          </tbody>
-        </table>
-      </article>
+        <rect x="775" y="102" width="26" height="36" rx="8" fill="white" stroke="#d0c8f8"/>
+        <text x="788" y="125" fill="#9080d0" text-anchor="middle" font-size="10">…</text>
 
-      <article class="card span-6">
-        <div class="card-title">Concurrency Guardrails</div>
-        <table>
-          <thead><tr><th>Setting</th><th>Value</th><th>Why</th></tr></thead>
-          <tbody>
-            <tr><td>Main sessions</td><td><strong>1</strong></td><td>No parallel main instances</td></tr>
-            <tr><td>Sub-agents</td><td><strong>2</strong></td><td>Rate-limit safe ceiling</td></tr>
-            <tr><td>GO PARALLEL</td><td>Opt-in</td><td>Only when you explicitly say so</td></tr>
-          </tbody>
-        </table>
-      </article>
-    </div>
-  </section>
+        <text x="600" y="192" fill="#8070c0" text-anchor="middle" font-size="10">Tools: exec · read/write · browser · cron · nodes · message</text>
 
-  <!-- ══ SESSIONS ══ -->
-  <section class="view" data-view="sessions">
-    <div class="grid">
-      <article class="card span-12">
-        <div class="card-title">What is a Session?</div>
-        <p class="section-note">A <strong>session</strong> is one continuous conversation thread between you and an agent. Every message you send goes into the session's context window. The agent remembers everything in the current session, but starts fresh in a new session (unless memory.md has durable facts).</p>
-      </article>
+        <!-- Claw Agent boxes -->
+        <rect x="390" y="230" width="420" height="70" rx="12" fill="#fff0f8" stroke="#f0a0c8" stroke-width="1.5"/>
+        <text x="600" y="255" fill="#c03060" text-anchor="middle" font-size="14" font-weight="700">Claw — Main Agent Session</text>
+        <text x="600" y="273" fill="#d06090" text-anchor="middle" font-size="11">Model: Sonnet 4.6 (orchestrator) · 200k ctx · 1 session max</text>
+        <text x="600" y="291" fill="#d06090" text-anchor="middle" font-size="10">Reads SOUL.md · USER.md · memory.md on every session start</text>
 
-      <article class="card span-12">
-        <div class="card-title">Session Types — Visual</div>
-        <svg class="diagram" viewBox="0 0 1100 400" xmlns="http://www.w3.org/2000/svg">
-          <!-- Main Session -->
-          <rect x="30" y="30" width="300" height="340" rx="14" fill="#0d0820" stroke="#7a44c0" stroke-width="1.5"/>
-          <text x="180" y="58" fill="#c090ff" text-anchor="middle" font-size="14" font-weight="700">Main Session</text>
-          <text x="180" y="76" fill="#7050a0" text-anchor="middle" font-size="11">agent:main:main</text>
-          <rect x="55" y="90" width="250" height="40" rx="8" fill="#130825" stroke="#4a2870"/>
-          <text x="180" y="107" fill="#d8b8ff" text-anchor="middle" font-size="12">You ← → Claw (Opus)</text>
-          <text x="180" y="122" fill="#7050a0" text-anchor="middle" font-size="11">persistent · rolling context</text>
-          <text x="180" y="155" fill="#6040a0" text-anchor="middle" font-size="11">• Lives as long as you're talking</text>
-          <text x="180" y="174" fill="#6040a0" text-anchor="middle" font-size="11">• Context window: 200k tokens</text>
-          <text x="180" y="193" fill="#6040a0" text-anchor="middle" font-size="11">• Compaction on safeguard mode</text>
-          <text x="180" y="212" fill="#6040a0" text-anchor="middle" font-size="11">• memory.md survives restarts</text>
-          <text x="180" y="231" fill="#6040a0" text-anchor="middle" font-size="11">• Only 1 runs at a time (guarded)</text>
+        <!-- Sub-agent row -->
+        <text x="600" y="328" fill="#5b4ecc" text-anchor="middle" font-size="11" font-weight="600">Sub-agents (spawned on-demand · max 2 concurrent)</text>
 
-          <!-- Sub-agent Session -->
-          <rect x="400" y="30" width="300" height="340" rx="14" fill="#071525" stroke="#2a5070" stroke-width="1.5"/>
-          <text x="550" y="58" fill="#5fd4f4" text-anchor="middle" font-size="14" font-weight="700">Sub-agent Session</text>
-          <text x="550" y="76" fill="#2a7090" text-anchor="middle" font-size="11">agent:main:sub-XXXX</text>
-          <rect x="425" y="90" width="250" height="40" rx="8" fill="#071525" stroke="#1a4060"/>
-          <text x="550" y="107" fill="#8ee0f8" text-anchor="middle" font-size="12">Spawned by Main Agent</text>
-          <text x="550" y="122" fill="#2a7090" text-anchor="middle" font-size="11">runs in background</text>
-          <text x="550" y="155" fill="#2a6080" text-anchor="middle" font-size="11">• Created for a specific task</text>
-          <text x="550" y="174" fill="#2a6080" text-anchor="middle" font-size="11">• Uses Sonnet (cheaper model)</text>
-          <text x="550" y="193" fill="#2a6080" text-anchor="middle" font-size="11">• Max 2 running at once</text>
-          <text x="550" y="212" fill="#2a6080" text-anchor="middle" font-size="11">• Reports back to main agent</text>
-          <text x="550" y="231" fill="#2a6080" text-anchor="middle" font-size="11">• Auto-cleaned after completion</text>
+        <rect x="393" y="338" width="195" height="90" rx="10" fill="#fff8e8" stroke="#f8d888" stroke-width="1.5"/>
+        <text x="490" y="361" fill="#a06010" text-anchor="middle" font-size="12" font-weight="600">Deep Think Agent</text>
+        <text x="490" y="379" fill="#c08030" text-anchor="middle" font-size="10">Model: Opus 4.6</text>
+        <text x="490" y="394" fill="#c08030" text-anchor="middle" font-size="10">Complex reasoning, strategy</text>
+        <text x="490" y="409" fill="#c08030" text-anchor="middle" font-size="10">tradeoffs, hard analysis</text>
 
-          <!-- Isolated/Cron Session -->
-          <rect x="770" y="30" width="300" height="340" rx="14" fill="#071a10" stroke="#1e5030" stroke-width="1.5"/>
-          <text x="920" y="58" fill="#4ed98a" text-anchor="middle" font-size="14" font-weight="700">Isolated/Cron Session</text>
-          <text x="920" y="76" fill="#1e6040" text-anchor="middle" font-size="11">agent:isolated:XXXX</text>
-          <rect x="795" y="90" width="250" height="40" rx="8" fill="#071a10" stroke="#1e4030"/>
-          <text x="920" y="107" fill="#7ae8b0" text-anchor="middle" font-size="12">Scheduled / Timed Tasks</text>
-          <text x="920" y="122" fill="#1e6040" text-anchor="middle" font-size="11">no live user in loop</text>
-          <text x="920" y="155" fill="#1e5030" text-anchor="middle" font-size="11">• Used for cron jobs</text>
-          <text x="920" y="174" fill="#1e5030" text-anchor="middle" font-size="11">• Heartbeat checks</text>
-          <text x="920" y="193" fill="#1e5030" text-anchor="middle" font-size="11">• Long-running background work</text>
-          <text x="920" y="212" fill="#1e5030" text-anchor="middle" font-size="11">• Delivers results via announce</text>
-          <text x="920" y="231" fill="#1e5030" text-anchor="middle" font-size="11">• Fully isolated from main ctx</text>
+        <rect x="602" y="338" width="205" height="90" rx="10" fill="#e8fff4" stroke="#88e8b8" stroke-width="1.5"/>
+        <text x="705" y="361" fill="#1d7a5a" text-anchor="middle" font-size="12" font-weight="600">Coding Agent</text>
+        <text x="705" y="379" fill="#2a9070" text-anchor="middle" font-size="10">Model: Codex 5.3</text>
+        <text x="705" y="394" fill="#2a9070" text-anchor="middle" font-size="10">File edits, scaffolds</text>
+        <text x="705" y="409" fill="#2a9070" text-anchor="middle" font-size="10">tests, code review</text>
 
-          <!-- context flow arrows -->
-          <line x1="330" y1="200" x2="395" y2="200" stroke="#3a5080" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
-          <text x="362" y="193" fill="#3a5080" font-size="10" text-anchor="middle">spawn</text>
-          <line x1="400" y1="220" x2="335" y2="220" stroke="#2a6080" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
-          <text x="368" y="235" fill="#2a6080" font-size="10" text-anchor="middle">report</text>
-        </svg>
-      </article>
+        <rect x="393" y="442" width="195" height="90" rx="10" fill="#edf0ff" stroke="#c0c8f8" stroke-width="1.5"/>
+        <text x="490" y="465" fill="#4050b0" text-anchor="middle" font-size="12" font-weight="600">Research Agent</text>
+        <text x="490" y="483" fill="#6070c0" text-anchor="middle" font-size="10">Model: Sonnet 4.6</text>
+        <text x="490" y="498" fill="#6070c0" text-anchor="middle" font-size="10">web_search + fetch</text>
+        <text x="490" y="513" fill="#6070c0" text-anchor="middle" font-size="10">cited findings</text>
 
-      <article class="card span-6">
-        <div class="card-title">Session Lifecycle</div>
-        <ol>
-          <li>You send a message on any channel</li>
-          <li>Gateway routes it to main session</li>
-          <li>Main agent decides: handle directly or spawn sub-agent</li>
-          <li>If sub-agent: spawned with narrowly scoped task</li>
-          <li>Sub-agent completes → result returned to main</li>
-          <li>Main synthesizes → replies to you</li>
-          <li>Durable facts written to memory.md</li>
-        </ol>
-      </article>
+        <rect x="602" y="442" width="205" height="90" rx="10" fill="#fff8ee" stroke="#f8d8a8" stroke-width="1.5"/>
+        <text x="705" y="465" fill="#a06010" text-anchor="middle" font-size="12" font-weight="600">Cheap / Menial Agent</text>
+        <text x="705" y="483" fill="#c08030" text-anchor="middle" font-size="10">Model: Haiku 3.5</text>
+        <text x="705" y="498" fill="#c08030" text-anchor="middle" font-size="10">Summaries, tweet reading</text>
+        <text x="705" y="513" fill="#c08030" text-anchor="middle" font-size="10">simple lookups, formatting</text>
 
-      <article class="card span-6">
-        <div class="card-title">Context Window vs Memory</div>
-        <table>
-          <thead><tr><th>Thing</th><th>Scope</th><th>Survives restart?</th></tr></thead>
-          <tbody>
-            <tr><td>Session context</td><td>Current conversation</td><td>No (unless compacted)</td></tr>
-            <tr><td>memory.md</td><td>Durable facts/decisions</td><td>✅ Yes</td></tr>
-            <tr><td>memory/YYYY-MM-DD.md</td><td>Daily notes</td><td>✅ Yes</td></tr>
-            <tr><td>Notion DB</td><td>Objectives/projects</td><td>✅ Yes (external)</td></tr>
-          </tbody>
-        </table>
-      </article>
-    </div>
-  </section>
+        <!-- Workspace box -->
+        <rect x="390" y="548" width="420" height="80" rx="12" fill="white" stroke="#d0d8f0" stroke-width="1.5"/>
+        <text x="600" y="571" fill="#4050b0" text-anchor="middle" font-size="12" font-weight="700">Workspace: ~/.openclaw/workspace</text>
+        <text x="600" y="589" fill="#8090c0" text-anchor="middle" font-size="10">memory.md · memory/YYYY-MM-DD.md · dashboard-ui/ · skills/</text>
+        <text x="600" y="607" fill="#8090c0" text-anchor="middle" font-size="10">SOUL.md · USER.md · AGENTS.md · MEMORY.md · HEARTBEAT.md</text>
+        <text x="600" y="625" fill="#a0a8d0" text-anchor="middle" font-size="10">GitHub repo: nickxma/april-dashboard (dashboard mirror)</text>
 
-  <!-- ══ TOOLS ══ -->
-  <section class="view" data-view="tools">
-    <div class="grid">
-      <article class="card span-12">
-        <div class="card-title">Tools & Capabilities Matrix</div>
-        <table>
-          <thead><tr><th>Tool</th><th>What it does</th><th>Status</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td><code>web_search</code></td><td>Search the web (Brave API)</td><td><span class="badge ok">active</span></td><td>API key configured</td></tr>
-            <tr><td><code>web_fetch</code></td><td>Fetch + extract page content</td><td><span class="badge ok">active</span></td><td></td></tr>
-            <tr><td><code>exec</code></td><td>Run shell commands on MMM4</td><td><span class="badge ok">active</span></td><td>Elevated mode available</td></tr>
-            <tr><td><code>Read/Write/Edit</code></td><td>File system access</td><td><span class="badge ok">active</span></td><td>Workspace: ~/.openclaw/workspace</td></tr>
-            <tr><td><code>browser</code></td><td>Browser automation (Playwright)</td><td><span class="badge warn">intermittent</span></td><td>API-first preferred</td></tr>
-            <tr><td><code>notion</code> (skill)</td><td>Read/write Notion databases</td><td><span class="badge ok">active</span></td><td>Read-first; write on explicit command</td></tr>
-            <tr><td><code>github / gh</code></td><td>Issues, PRs, CI, API</td><td><span class="badge ok">active</span></td><td>Authenticated as nickxma</td></tr>
-            <tr><td><code>cron</code></td><td>Schedule jobs + reminders</td><td><span class="badge ok">active</span></td><td></td></tr>
-            <tr><td><code>sessions_spawn</code></td><td>Spawn sub-agent sessions</td><td><span class="badge ok">active</span></td><td>Max 2 concurrent sub-agents</td></tr>
-            <tr><td><code>memory_search</code></td><td>Semantic search over memory files</td><td><span class="badge ok">active</span></td><td></td></tr>
-            <tr><td><code>tts</code></td><td>Text-to-speech</td><td><span class="badge ok">active</span></td><td></td></tr>
-            <tr><td><code>image</code></td><td>Vision model analysis</td><td><span class="badge ok">active</span></td><td></td></tr>
-            <tr><td><code>nodes</code></td><td>Paired device control (camera/screen)</td><td><span class="badge ok">active</span></td><td>Camera/screen cmds blocked by policy</td></tr>
-          </tbody>
-        </table>
-      </article>
+        <!-- ── ZONE: EXTERNAL SERVICES ── -->
+        <rect x="850" y="10" width="340" height="680" rx="14" fill="url(#grad-ext)" stroke="#88d8b0" stroke-width="1.5"/>
+        <text x="870" y="34" fill="#1a7050" font-size="11" font-weight="700" letter-spacing=".06em">EXTERNAL SERVICES</text>
 
-      <article class="card span-6">
-        <div class="card-title">Channels You Can Talk Through</div>
-        <table>
-          <thead><tr><th>Channel</th><th>Status</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td>Telegram</td><td><span class="badge ok">on</span></td><td>DM pairing; group allowlist</td></tr>
-            <tr><td>iMessage</td><td><span class="badge ok">on</span></td><td></td></tr>
-            <tr><td>Discord</td><td><span class="badge ok">on</span></td><td></td></tr>
-            <tr><td>Webchat</td><td><span class="badge ok">on</span></td><td>This interface</td></tr>
-          </tbody>
-        </table>
-      </article>
+        <rect x="870" y="50" width="300" height="60" rx="10" fill="white" stroke="#b0e8d0"/>
+        <text x="1020" y="76" fill="#1d7a5a" text-anchor="middle" font-size="13" font-weight="600">Notion</text>
+        <text x="1020" y="93" fill="#4a9a78" text-anchor="middle" font-size="10">Objectives DB · read-first · manual writes</text>
 
-      <article class="card span-6">
-        <div class="card-title">Blocked by Policy</div>
-        <div class="rule-box">
-          <ul>
-            <li>camera.snap / camera.clip</li>
-            <li>screen.record</li>
-            <li>calendar.add / contacts.add / reminders.add</li>
-            <li>Any infra/config change without explicit <code>GO</code></li>
-            <li>Notion writes without explicit command</li>
-            <li>Parallel execution without <code>GO PARALLEL</code></li>
-          </ul>
-        </div>
-      </article>
-    </div>
-  </section>
+        <rect x="870" y="125" width="300" height="60" rx="10" fill="white" stroke="#b0e8d0"/>
+        <text x="1020" y="151" fill="#1d7a5a" text-anchor="middle" font-size="13" font-weight="600">Anthropic API</text>
+        <text x="1020" y="168" fill="#4a9a78" text-anchor="middle" font-size="10">Sonnet · Opus · Haiku · sk-ant…</text>
 
-  <!-- ══ CONFIG ══ -->
-  <section class="view" data-view="config">
-    <div class="grid">
-      <article class="card span-6">
-        <div class="card-title">Active Configuration Snapshot</div>
-        <table>
-          <thead><tr><th>Setting</th><th>Value</th></tr></thead>
-          <tbody>
-            <tr><td>Main model</td><td><span class="badge opus">anthropic/claude-opus-4-6</span></td></tr>
-            <tr><td>Sub-agent model</td><td><span class="badge sonnet">anthropic/claude-sonnet-4-6</span></td></tr>
-            <tr><td>Fallback provider</td><td><span class="badge openai">openai-codex (standby)</span></td></tr>
-            <tr><td>Max concurrent sessions</td><td>1</td></tr>
-            <tr><td>Max concurrent sub-agents</td><td>2</td></tr>
-            <tr><td>Compaction mode</td><td>safeguard</td></tr>
-            <tr><td>Workspace</td><td><code>~/.openclaw/workspace</code></td></tr>
-            <tr><td>Gateway port</td><td>18789 (loopback)</td></tr>
-            <tr><td>Tailscale SSH</td><td><span class="badge warn">off — run: sudo tailscale set --ssh=true</span></td></tr>
-            <tr><td>Tailscale node</td><td>mmm4 · 100.74.228.112</td></tr>
-          </tbody>
-        </table>
-      </article>
+        <rect x="870" y="200" width="300" height="60" rx="10" fill="white" stroke="#b0e8d0"/>
+        <text x="1020" y="226" fill="#1d7a5a" text-anchor="middle" font-size="13" font-weight="600">OpenAI API</text>
+        <text x="1020" y="243" fill="#4a9a78" text-anchor="middle" font-size="10">Codex 5.3 · OAuth mode</text>
 
-      <article class="card span-6">
-        <div class="card-title">Model Aliases</div>
-        <table>
-          <thead><tr><th>Alias</th><th>Full Model</th><th>Use for</th></tr></thead>
-          <tbody>
-            <tr><td><code>/model opus</code></td><td>anthropic/claude-opus-4-6</td><td>Strategy, complex reasoning</td></tr>
-            <tr><td><code>/model sonnet</code></td><td>anthropic/claude-sonnet-4-6</td><td>Day-to-day, coding, fast tasks</td></tr>
-          </tbody>
-        </table>
-        <div class="card-title" style="margin-top:16px;">Skills Installed</div>
-        <table>
-          <thead><tr><th>Skill</th><th>Purpose</th></tr></thead>
-          <tbody>
-            <tr><td>notion</td><td>Read Notion DBs; manual writes</td></tr>
-            <tr><td>github</td><td>gh CLI — PRs, issues, CI</td></tr>
-            <tr><td>coding-agent</td><td>Delegate complex coding tasks</td></tr>
-            <tr><td>weather</td><td>Weather lookups</td></tr>
-            <tr><td>clawhub</td><td>Install/update skills</td></tr>
-            <tr><td>healthcheck</td><td>Security / host audits</td></tr>
-          </tbody>
-        </table>
-      </article>
+        <rect x="870" y="275" width="300" height="60" rx="10" fill="white" stroke="#b0e8d0"/>
+        <text x="1020" y="301" fill="#1d7a5a" text-anchor="middle" font-size="13" font-weight="600">Brave Search API</text>
+        <text x="1020" y="318" fill="#4a9a78" text-anchor="middle" font-size="10">web_search tool · key configured</text>
 
-      <article class="card span-12">
-        <div class="card-title">How to Change Config Safely</div>
-        <ol>
-          <li>Tell Claw what you want to change.</li>
-          <li>Claw describes the exact change and waits for your explicit <strong>GO</strong>.</li>
-          <li>Claw applies via <code>config.patch</code> (safe merge — not a full overwrite).</li>
-          <li>Gateway restarts automatically; pings you when back online.</li>
-          <li>Durable changes also written to memory.md.</li>
-        </ol>
-      </article>
-    </div>
-  </section>
+        <rect x="870" y="350" width="300" height="60" rx="10" fill="white" stroke="#b0e8d0"/>
+        <text x="1020" y="376" fill="#1d7a5a" text-anchor="middle" font-size="13" font-weight="600">GitHub</text>
+        <text x="1020" y="393" fill="#4a9a78" text-anchor="middle" font-size="10">gh CLI · nickxma · april-dashboard pages</text>
 
-  <!-- ══ OBJECTIVES ══ -->
-  <section class="view" data-view="objectives">
-    <div class="grid">
-      <article class="card span-4">
-        <div class="card-title">Source</div>
-        <div class="small" style="color:var(--muted)"><span class="dot dot-ok"></span>Notion — Objectives DB</div>
-        <p class="section-note">Read-first. Writes only on explicit command ("add database entry …").</p>
-      </article>
-      <article class="card span-8">
-        <div class="card-title">Highlighted Objectives (from Notion)</div>
-        <table>
-          <thead><tr><th>Objective</th><th>Status</th></tr></thead>
-          <tbody>
-            <tr><td>Become a stablecoin expert</td><td><span class="badge warn">Recovering</span></td></tr>
-            <tr><td>Something (in crypto) part-time</td><td><span class="badge">Pass</span></td></tr>
-            <tr><td>Sell Manhattan co-op</td><td><span class="badge warn">Recovering</span></td></tr>
-          </tbody>
-        </table>
-        <p class="section-note">Type: <strong>"read my objectives from Notion"</strong> to pull the full live list.</p>
-      </article>
-    </div>
-  </section>
+        <rect x="870" y="425" width="300" height="60" rx="10" fill="white" stroke="#b0e8d0"/>
+        <text x="1020" y="451" fill="#1d7a5a" text-anchor="middle" font-size="13" font-weight="600">Tailscale</text>
+        <text x="1020" y="468" fill="#4a9a78" text-anchor="middle" font-size="10">mmm4 · 100.74.228.112 · SSH pending</text>
 
-  <!-- ══ MEMORY ══ -->
-  <section class="view" data-view="memory">
-    <div class="grid">
-      <article class="card span-6">
-        <div class="card-title">What Gets Written to Memory</div>
-        <ul>
-          <li>Decisions and preferences</li>
-          <li>Constraints and guardrails</li>
-          <li>Active projects and deadlines</li>
-          <li>Names, recurring routines</li>
-          <li>Open loops and commitments</li>
-        </ul>
-        <p class="section-note" style="margin-top:10px;">Secrets are <strong>not</strong> stored unless you explicitly ask.</p>
-      </article>
-      <article class="card span-6">
-        <div class="card-title">Current Key Constraints (from memory.md)</div>
-        <ul>
-          <li>Parallel blocked by default → <code>GO PARALLEL</code> to unlock</li>
-          <li>System changes require explicit approval</li>
-          <li>Rate-limit guardrails on concurrency</li>
-          <li>Notion writes manual-only on explicit command</li>
-          <li>First-install artifacts archived (2026-02-19)</li>
-        </ul>
-      </article>
-      <article class="card span-12">
-        <div class="card-title">Open Loops</div>
-        <table>
-          <thead><tr><th>Loop</th><th>Status</th><th>Next Action</th></tr></thead>
-          <tbody>
-            <tr><td>Tailscale SSH enable on MMM4</td><td><span class="badge warn">Pending</span></td><td><code>sudo tailscale set --ssh=true</code></td></tr>
-            <tr><td>Dashboard live data wiring</td><td><span class="badge warn">Pending</span></td><td>v2 when requested</td></tr>
-            <tr><td>Notion write schema definition</td><td><span class="badge warn">Pending</span></td><td>Define which fields are write-safe</td></tr>
-            <tr><td>Notion token rotation</td><td><span class="badge warn">Pending</span></td><td>Rotate token exposed in chat</td></tr>
-          </tbody>
-        </table>
-      </article>
-    </div>
-  </section>
+        <rect x="870" y="500" width="300" height="60" rx="10" fill="white" stroke="#b0e8d0"/>
+        <text x="1020" y="526" fill="#1d7a5a" text-anchor="middle" font-size="13" font-weight="600">Telegram Bot</text>
+        <text x="1020" y="543" fill="#4a9a78" text-anchor="middle" font-size="10">DM pairing · group allowlist</text>
 
-  <!-- ══ RUNBOOK ══ -->
-  <section class="view" data-view="runbook">
-    <div class="grid">
-      <article class="card span-6">
-        <div class="card-title">Daily Operating Pattern</div>
-        <ol>
-          <li>Check Overview: mode, posture, open loops.</li>
-          <li>Pick objective → attach one measurable next action.</li>
-          <li>If task is big → Claw spawns sub-agent (Sonnet) automatically.</li>
-          <li>Review output → approve or steer.</li>
-          <li>Durable decisions → written to memory.md.</li>
-          <li>Optional: push updates to Notion explicitly.</li>
-        </ol>
-      </article>
-      <article class="card span-6">
-        <div class="card-title">Weekly 15-min Review Template</div>
-        <ul>
-          <li>What objective moved this week?</li>
-          <li>What stalled — and what's the real blocker?</li>
-          <li>One leverage move for next week?</li>
-          <li>Any config / tool upgrades worth shipping?</li>
-          <li>Memory hygiene: archive stale loops.</li>
-        </ul>
-      </article>
-      <article class="card span-12">
-        <div class="card-title">Model Switching Cheatsheet</div>
-        <table>
-          <thead><tr><th>Command</th><th>Effect</th><th>When to use</th></tr></thead>
-          <tbody>
-            <tr><td><code>/model opus</code></td><td>Switch this session to Opus</td><td>Strategy, hard tradeoffs, planning</td></tr>
-            <tr><td><code>/model sonnet</code></td><td>Switch this session to Sonnet</td><td>Coding, quick answers, day-to-day</td></tr>
-            <tr><td>(default)</td><td>Opus — main coordinator</td><td>Most conversations</td></tr>
-            <tr><td>sub-agents</td><td>Always use Sonnet automatically</td><td>Background tasks, research, builds</td></tr>
-          </tbody>
-        </table>
-      </article>
-    </div>
-  </section>
+        <!-- ── FLOW ARROWS ── -->
+        <!-- You → Gateway -->
+        <line x1="350" y1="70" x2="388" y2="100" stroke="#e090c0" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+        <text x="358" y="88" fill="#c060a0" font-size="9">msg in</text>
+
+        <!-- Gateway → Main Agent -->
+        <line x1="600" y1="210" x2="600" y2="228" stroke="#9080e0" stroke-width="2" marker-end="url(#arr)"/>
+
+        <!-- Main Agent → Sub-agents -->
+        <line x1="490" y1="300" x2="490" y2="336" stroke="#d0a0c0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+        <line x1="600" y1="300" x2="600" y2="336" stroke="#d0a0c0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+        <line x1="705" y1="300" x2="705" y2="336" stroke="#d0a0c0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+
+        <!-- Sub-agent row 2 -->
+        <line x1="490" y1="428" x2="490" y2="440" stroke="#d0a0c0" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <line x1="705" y1="428" x2="705" y2="440" stroke="#d0a0c0" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+        <!-- Workspace arrows -->
+        <line x1="490" y1="532" x2="490" y2="546" stroke="#b0b8e0" stroke-width="1.5" marker-end="url(#arr2)"/>
+        <line x1="705" y1="532" x2="705" y2="546" stroke="#b0b8e0" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+        <!-- Gateway → External -->
+        <line x1="812" y1="130" x2="868" y2="80" stroke="#88d8b0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="812" y1="150" x2="868" y2="155" stroke="#88d8b0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="812" y1="160" x2="868" y2="230" stroke="#88d8b0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="812" y1="160" x2="868" y2="305" stroke="#88d8b0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="812" y1="160" x2="868" y2="380" stroke="#88d8b0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="812" y1="160" x2="868" y2="455" stroke="#88d8b0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="812" y1="160" x2="868" y2="530" stroke="#88d8b0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+      </svg>
+    </article>
+
+    <article class="card span-6">
+      <div class="card-title">How a message flows</div>
+      <ol>
+        <li>You send a message on Telegram / iMessage / Discord / Webchat</li>
+        <li>OpenClaw gateway receives it and routes to main session</li>
+        <li>Claw (Sonnet 4.6) reads context + memory and decides what to do</li>
+        <li>If complex → spawns a sub-agent with the right model tier</li>
+        <li>Sub-agent runs, returns structured output</li>
+        <li>Claw synthesizes and replies to you</li>
+        <li>Durable decisions written to memory.md</li>
+      </ol>
+    </article>
+    <article class="card span-6">
+      <div class="card-title">Physical setup</div>
+      <table>
+        <thead><tr><th>Layer</th><th>What</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Hardware</td><td>Mac Mini MMM4</td><td>Always-on · arm64 · macOS 25.3</td></tr>
+          <tr><td>Network</td><td>Tailscale</td><td>100.74.228.112 · SSH pending</td></tr>
+          <tr><td>Gateway</td><td>OpenClaw 2026.2.17</td><td>Port 18789 · local mode</td></tr>
+          <tr><td>Your laptop</td><td>SSH into MMM4</td><td>Via Tailscale tailnet</td></tr>
+          <tr><td>Remote dashboard</td><td>GitHub Pages</td><td>nickxma.github.io/april-dashboard</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════ AGENTS ══════════════════════ -->
+<section class="view" data-view="agents">
+  <div class="grid">
+    <article class="card span-12">
+      <div class="card-title">4-Tier Model Hierarchy</div>
+      <table>
+        <thead><tr><th>Tier</th><th>Model</th><th>Alias</th><th>When Used</th><th>Relative Cost</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="tag sonnet">Orchestrator</span></td>
+            <td><code>claude-sonnet-4-6</code></td>
+            <td><code>/model sonnet</code></td>
+            <td>All conversations, coordination, most tasks</td>
+            <td>
+              <div class="model-bar"><div class="bar"><div class="fill fill-sonnet" style="width:40%"></div></div><span>Medium</span></div>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="tag opus">Deep Think</span></td>
+            <td><code>claude-opus-4-6</code></td>
+            <td><code>/model opus</code></td>
+            <td>Complex strategy, hard tradeoffs, analysis</td>
+            <td>
+              <div class="model-bar"><div class="bar"><div class="fill fill-opus" style="width:90%"></div></div><span>High</span></div>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="tag codex">Coding</span></td>
+            <td><code>gpt-5.3-codex</code></td>
+            <td><code>/model codex</code></td>
+            <td>File edits, scaffolds, tests, code review</td>
+            <td>
+              <div class="model-bar"><div class="bar"><div class="fill fill-codex" style="width:55%"></div></div><span>Medium</span></div>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="tag haiku">Cheap</span></td>
+            <td><code>claude-haiku-3-5</code></td>
+            <td><code>/model haiku</code></td>
+            <td>Summaries, simple lookups, tweet reading, formatting</td>
+            <td>
+              <div class="model-bar"><div class="bar"><div class="fill fill-haiku" style="width:12%"></div></div><span>Very Low</span></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </article>
+
+    <article class="card span-6">
+      <div class="card-title">Concurrency Rules</div>
+      <table>
+        <thead><tr><th>Setting</th><th>Limit</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr><td>Main sessions</td><td><strong>1</strong></td><td>No parallel main instances</td></tr>
+          <tr><td>Sub-agents</td><td><strong>2</strong></td><td>Rate-limit safe ceiling</td></tr>
+          <tr><td>GO PARALLEL</td><td>opt-in</td><td>Only when you explicitly say so</td></tr>
+        </tbody>
+      </table>
+    </article>
+    <article class="card span-6">
+      <div class="card-title">Sub-agent Default Model</div>
+      <p class="note">Sub-agents default to <strong>Sonnet 4.6</strong> unless overridden at spawn time. Claw will use Opus for deep-think tasks, Codex for coding tasks, and Haiku for trivial tasks automatically based on task type.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════ SESSIONS ══════════════════════ -->
+<section class="view" data-view="sessions">
+  <div class="grid">
+    <article class="card span-12">
+      <div class="card-title">Session Types</div>
+      <table>
+        <thead><tr><th>Type</th><th>Key</th><th>Model</th><th>Lifetime</th><th>Who talks to it</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag sonnet">Main</span></td><td><code>agent:main:main</code></td><td>Sonnet 4.6</td><td>Ongoing conversation</td><td>You directly</td></tr>
+          <tr><td><span class="tag plain">Sub-agent</span></td><td><code>agent:main:sub-XXXX</code></td><td>Varies (Opus/Codex/Haiku)</td><td>Single task → auto-cleanup</td><td>Main agent only</td></tr>
+          <tr><td><span class="tag ok">Isolated/Cron</span></td><td><code>agent:isolated:XXXX</code></td><td>Configurable</td><td>Scheduled / timed</td><td>Nobody (async)</td></tr>
+        </tbody>
+      </table>
+    </article>
+    <article class="card span-6">
+      <div class="card-title">Context Window vs Memory</div>
+      <table>
+        <thead><tr><th>Storage</th><th>Scope</th><th>Survives restart?</th></tr></thead>
+        <tbody>
+          <tr><td>Session context</td><td>Current conversation</td><td>No</td></tr>
+          <tr><td>memory.md</td><td>Durable facts/decisions</td><td>✅ Yes</td></tr>
+          <tr><td>memory/YYYY-MM-DD.md</td><td>Daily notes</td><td>✅ Yes</td></tr>
+          <tr><td>Notion DB</td><td>Objectives/projects</td><td>✅ Yes (external)</td></tr>
+        </tbody>
+      </table>
+    </article>
+    <article class="card span-6">
+      <div class="card-title">Session Lifecycle</div>
+      <ol>
+        <li>You send message → gateway routes to main session</li>
+        <li>Main agent handles directly, or spawns sub-agent</li>
+        <li>Sub-agent runs isolated task, reports back</li>
+        <li>Main synthesizes → sends reply to you</li>
+        <li>Durable facts → memory.md</li>
+      </ol>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════ TOOLS ══════════════════════ -->
+<section class="view" data-view="tools">
+  <div class="grid">
+    <article class="card span-12">
+      <div class="card-title">Tools & Capabilities</div>
+      <table>
+        <thead><tr><th>Tool</th><th>What it does</th><th>Status</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><code>web_search</code></td><td>Search the web (Brave)</td><td><span class="tag ok">active</span></td><td>API key configured</td></tr>
+          <tr><td><code>web_fetch</code></td><td>Fetch + extract page content</td><td><span class="tag ok">active</span></td><td></td></tr>
+          <tr><td><code>exec</code></td><td>Run shell commands on MMM4</td><td><span class="tag ok">active</span></td><td>Elevated mode available</td></tr>
+          <tr><td><code>Read / Write / Edit</code></td><td>File system</td><td><span class="tag ok">active</span></td><td>~/.openclaw/workspace</td></tr>
+          <tr><td><code>browser</code></td><td>Browser automation</td><td><span class="tag warn">intermittent</span></td><td>Use API-first</td></tr>
+          <tr><td><code>notion</code> skill</td><td>Read/write Notion databases</td><td><span class="tag ok">active</span></td><td>Read-first; write on explicit cmd</td></tr>
+          <tr><td><code>github / gh</code></td><td>Issues, PRs, CI</td><td><span class="tag ok">active</span></td><td>Authed as nickxma</td></tr>
+          <tr><td><code>cron</code></td><td>Scheduled jobs + reminders</td><td><span class="tag ok">active</span></td><td></td></tr>
+          <tr><td><code>sessions_spawn</code></td><td>Spawn sub-agents</td><td><span class="tag ok">active</span></td><td>Max 2 concurrent</td></tr>
+          <tr><td><code>memory_search</code></td><td>Semantic search over memory</td><td><span class="tag ok">active</span></td><td></td></tr>
+          <tr><td><code>tts</code></td><td>Text-to-speech</td><td><span class="tag ok">active</span></td><td></td></tr>
+          <tr><td><code>image</code></td><td>Vision model</td><td><span class="tag ok">active</span></td><td></td></tr>
+          <tr><td><code>nodes</code></td><td>Paired device control</td><td><span class="tag ok">active</span></td><td>Camera/screen blocked by policy</td></tr>
+        </tbody>
+      </table>
+    </article>
+    <article class="card span-6">
+      <div class="card-title">Blocked by Policy</div>
+      <ul>
+        <li>camera.snap / camera.clip / screen.record</li>
+        <li>calendar.add / contacts.add / reminders.add</li>
+        <li>Infra/config changes without explicit <strong>GO</strong></li>
+        <li>Notion writes without explicit command</li>
+        <li>Parallel execution without <strong>GO PARALLEL</strong></li>
+      </ul>
+    </article>
+    <article class="card span-6">
+      <div class="card-title">Skills Installed</div>
+      <table>
+        <thead><tr><th>Skill</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td>notion</td><td>Read Notion DBs; manual writes</td></tr>
+          <tr><td>github</td><td>gh CLI — PRs, issues, CI</td></tr>
+          <tr><td>coding-agent</td><td>Delegate complex coding tasks</td></tr>
+          <tr><td>weather</td><td>Weather lookups (no key needed)</td></tr>
+          <tr><td>clawhub</td><td>Install/update skills from clawhub.com</td></tr>
+          <tr><td>healthcheck</td><td>Security / host audits</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════ CONFIG ══════════════════════ -->
+<section class="view" data-view="config">
+  <div class="grid">
+    <article class="card span-6">
+      <div class="card-title">Active Config Snapshot</div>
+      <table>
+        <thead><tr><th>Setting</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Main model</td><td><span class="tag sonnet">claude-sonnet-4-6</span></td></tr>
+          <tr><td>Sub-agent default</td><td><span class="tag sonnet">claude-sonnet-4-6</span></td></tr>
+          <tr><td>Deep think</td><td><span class="tag opus">claude-opus-4-6</span></td></tr>
+          <tr><td>Coding</td><td><span class="tag codex">gpt-5.3-codex</span></td></tr>
+          <tr><td>Cheap/menial</td><td><span class="tag haiku">claude-haiku-3-5</span></td></tr>
+          <tr><td>Max concurrent sessions</td><td>1</td></tr>
+          <tr><td>Max sub-agents</td><td>2</td></tr>
+          <tr><td>Compaction mode</td><td>safeguard</td></tr>
+          <tr><td>Workspace</td><td><code>~/.openclaw/workspace</code></td></tr>
+          <tr><td>Gateway port</td><td>18789 (loopback)</td></tr>
+          <tr><td>Tailscale SSH</td><td><span class="tag warn">off — enable: sudo tailscale set --ssh=true</span></td></tr>
+        </tbody>
+      </table>
+    </article>
+    <article class="card span-6">
+      <div class="card-title">Model Switching Cheatsheet</div>
+      <table>
+        <thead><tr><th>Command</th><th>Switches to</th><th>Use for</th></tr></thead>
+        <tbody>
+          <tr><td><code>/model sonnet</code></td><td>Sonnet 4.6</td><td>Default — most conversations</td></tr>
+          <tr><td><code>/model opus</code></td><td>Opus 4.6</td><td>Hard strategy, analysis</td></tr>
+          <tr><td><code>/model codex</code></td><td>Codex 5.3</td><td>Coding tasks</td></tr>
+          <tr><td><code>/model haiku</code></td><td>Haiku 3.5</td><td>Quick/cheap tasks</td></tr>
+        </tbody>
+      </table>
+      <div class="card-title" style="margin-top:16px;">How to Change Config Safely</div>
+      <ol>
+        <li>Tell Claw what you want changed</li>
+        <li>Claw proposes exact change + waits for <strong>GO</strong></li>
+        <li>Applied via <code>config.patch</code> (safe merge)</li>
+        <li>Gateway restarts, pings you when back</li>
+      </ol>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════ OBJECTIVES ══════════════════════ -->
+<section class="view" data-view="objectives">
+  <div class="grid">
+    <article class="card span-4">
+      <div class="card-title">Source</div>
+      <p class="note"><span class="dot dot-ok"></span><strong>Notion — Objectives DB</strong><br>37 objectives tracked.<br><br>Read-first. Writes only on explicit command.</p>
+      <p class="note" style="margin-top:12px;">Type: <em>"read my objectives from Notion"</em> to pull a live list.</p>
+    </article>
+    <article class="card span-8">
+      <div class="card-title">Highlighted Objectives</div>
+      <table>
+        <thead><tr><th>Objective</th><th>Status</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Become a stablecoin expert</td><td><span class="tag warn">Recovering</span></td><td>Core crypto domain objective</td></tr>
+          <tr><td>Something (in crypto) part-time</td><td><span class="tag plain">Pass</span></td><td>Related opportunity track</td></tr>
+          <tr><td>Sell Manhattan co-op</td><td><span class="tag warn">Recovering</span></td><td>Material financial objective</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════ MEMORY ══════════════════════ -->
+<section class="view" data-view="memory">
+  <div class="grid">
+    <article class="card span-6">
+      <div class="card-title">What Gets Stored</div>
+      <ul>
+        <li>Decisions and preferences</li>
+        <li>Constraints and guardrails</li>
+        <li>Active projects and deadlines</li>
+        <li>Open loops and commitments</li>
+        <li>Names, recurring routines</li>
+      </ul>
+      <p class="note" style="margin-top:10px;">Secrets are <strong>not</strong> stored unless explicitly requested.</p>
+    </article>
+    <article class="card span-6">
+      <div class="card-title">Key Constraints (from memory.md)</div>
+      <ul>
+        <li>Parallel blocked by default → <code>GO PARALLEL</code> to unlock</li>
+        <li>System changes need explicit approval</li>
+        <li>Rate-limit guardrails on concurrency</li>
+        <li>Notion writes manual-only</li>
+        <li>First-install artifacts archived (2026-02-19)</li>
+      </ul>
+    </article>
+    <article class="card span-12">
+      <div class="card-title">Open Loops</div>
+      <table>
+        <thead><tr><th>Loop</th><th>Status</th><th>Next Action</th></tr></thead>
+        <tbody>
+          <tr><td>Tailscale SSH on MMM4</td><td><span class="tag warn">Pending</span></td><td><code>sudo tailscale set --ssh=true</code></td></tr>
+          <tr><td>Notion token rotation</td><td><span class="tag warn">Pending</span></td><td>Rotate token exposed in chat earlier</td></tr>
+          <tr><td>Notion write schema</td><td><span class="tag warn">Pending</span></td><td>Define which fields are safe to write</td></tr>
+          <tr><td>Dashboard live wiring (v3)</td><td><span class="tag plain">Backlog</span></td><td>Wire real session/sub-agent status</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════ RUNBOOK ══════════════════════ -->
+<section class="view" data-view="runbook">
+  <div class="grid">
+    <article class="card span-6">
+      <div class="card-title">Daily Operating Pattern</div>
+      <ol>
+        <li>Check Overview: mode, posture, open loops</li>
+        <li>Pick one objective, attach one next action</li>
+        <li>Claw handles or spawns right sub-agent tier automatically</li>
+        <li>Review output → steer if needed</li>
+        <li>Durable decisions written to memory.md</li>
+        <li>Optional: push updates to Notion explicitly</li>
+      </ol>
+    </article>
+    <article class="card span-6">
+      <div class="card-title">Weekly 15-min Review</div>
+      <ul>
+        <li>What objective moved this week?</li>
+        <li>What stalled — real blocker?</li>
+        <li>One leverage move for next week?</li>
+        <li>Config / tool upgrades worth shipping?</li>
+        <li>Memory hygiene: archive stale loops</li>
+      </ul>
+    </article>
+  </div>
+</section>
 
 </main>
-
 <script>
-  const TABS = [
-    ["overview","Overview"],["agents","Agents"],["sessions","Sessions"],
-    ["tools","Tools"],["config","Config"],["objectives","Objectives"],
-    ["memory","Memory"],["runbook","Runbook"]
+  const TABS=[
+    ["overview","Overview"],["architecture","Architecture"],["agents","Agents"],
+    ["sessions","Sessions"],["tools","Tools"],["config","Config"],
+    ["objectives","Objectives"],["memory","Memory"],["runbook","Runbook"]
   ];
-  const tabsEl = document.getElementById("tabs");
-  const views = [...document.querySelectorAll(".view")];
-
-  function setView(id) {
-    views.forEach(v => v.classList.toggle("active", v.dataset.view === id));
-    [...tabsEl.querySelectorAll(".tab")].forEach(t => t.classList.toggle("active", t.dataset.view === id));
-    history.replaceState({},"",'#'+id);
+  const tabsEl=document.getElementById("tabs");
+  const views=[...document.querySelectorAll(".view")];
+  function setView(id){
+    views.forEach(v=>v.classList.toggle("active",v.dataset.view===id));
+    [...tabsEl.querySelectorAll(".tab")].forEach(t=>t.classList.toggle("active",t.dataset.view===id));
+    history.replaceState({},"","#"+id);
   }
-  window.setView = setView;
-
-  TABS.forEach(([id,label]) => {
-    const b = document.createElement("button");
-    b.className = "tab"; b.dataset.view = id; b.textContent = label;
-    b.onclick = () => setView(id);
+  window.setView=setView;
+  TABS.forEach(([id,label])=>{
+    const b=document.createElement("button");
+    b.className="tab";b.dataset.view=id;b.textContent=label;
+    b.onclick=()=>setView(id);
     tabsEl.appendChild(b);
   });
-
-  const init = (location.hash||"#overview").slice(1);
-  setView(TABS.some(([id])=>id===init) ? init : "overview");
+  const init=(location.hash||"#overview").slice(1);
+  setView(TABS.some(([id])=>id===init)?init:"overview");
 </script>
 </body>
 </html>
