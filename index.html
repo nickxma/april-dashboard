@@ -156,8 +156,8 @@
   <div class="grid">
     <article class="card span-3">
       <div class="card-title">Orchestrator</div>
-      <div class="kpi" style="color:var(--sonnet)">Sonnet</div>
-      <div class="kpi-sub">claude-sonnet-4-6 · default model</div>
+      <div class="kpi" style="color:var(--codex)">Codex</div>
+      <div class="kpi-sub">gpt-5.3-codex · default model</div>
     </article>
     <article class="card span-3">
       <div class="card-title">Deep Think</div>
@@ -166,8 +166,8 @@
     </article>
     <article class="card span-3">
       <div class="card-title">Coding</div>
-      <div class="kpi" style="color:var(--codex)">Codex</div>
-      <div class="kpi-sub">gpt-5.3-codex · code tasks</div>
+      <div class="kpi" style="color:var(--sonnet)">Sonnet</div>
+      <div class="kpi-sub">claude-sonnet-4-6 · premium fallback</div>
     </article>
     <article class="card span-3">
       <div class="card-title">Cheap / Menial</div>
@@ -574,8 +574,8 @@
       <table>
         <thead><tr><th>Setting</th><th>Value</th></tr></thead>
         <tbody>
-          <tr><td>Main model</td><td><span class="tag sonnet">claude-sonnet-4-6</span></td></tr>
-          <tr><td>Sub-agent default</td><td><span class="tag sonnet">claude-sonnet-4-6</span></td></tr>
+          <tr><td>Main model</td><td><span class="tag codex">gpt-5.3-codex</span></td></tr>
+          <tr><td>Sub-agent default</td><td><span class="tag haiku">claude-haiku-3-5</span></td></tr>
           <tr><td>Deep think</td><td><span class="tag opus">claude-opus-4-6</span></td></tr>
           <tr><td>Coding</td><td><span class="tag codex">gpt-5.3-codex</span></td></tr>
           <tr><td>Cheap/menial</td><td><span class="tag haiku">claude-haiku-3-5</span></td></tr>
@@ -593,9 +593,9 @@
       <table>
         <thead><tr><th>Command</th><th>Switches to</th><th>Use for</th></tr></thead>
         <tbody>
-          <tr><td><code>/model sonnet</code></td><td>Sonnet 4.6</td><td>Default — most conversations</td></tr>
+          <tr><td><code>/model codex</code></td><td>Codex 5.3</td><td>Default — most conversations + reliability</td></tr>
+          <tr><td><code>/model sonnet</code></td><td>Sonnet 4.6</td><td>Premium fallback when Anthropic quota is available</td></tr>
           <tr><td><code>/model opus</code></td><td>Opus 4.6</td><td>Hard strategy, analysis</td></tr>
-          <tr><td><code>/model codex</code></td><td>Codex 5.3</td><td>Coding tasks</td></tr>
           <tr><td><code>/model haiku</code></td><td>Haiku 3.5</td><td>Quick/cheap tasks</td></tr>
         </tbody>
       </table>
