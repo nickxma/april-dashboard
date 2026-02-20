@@ -144,7 +144,7 @@
   <div class="hrow">
     <div>
       <h1>🦞 Claw OS — OpenClaw Dashboard</h1>
-      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · America/Chicago · v1.2 · build 7baae84</div>
+      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.02.19-r3 (fa00ffb)</div>
     </div>
     <nav class="tabs" id="tabs"></nav>
   </div>
@@ -178,33 +178,30 @@
     <article class="card span-8">
       <div class="card-title">What is this setup?</div>
       <p class="section-intro">This is a personal AI operating system running on your Mac Mini (<strong>MMM4</strong>). OpenClaw is the runtime layer: it receives messages, applies policy, routes to the right session, calls tools, and sends responses back to you.</p>
-      <p class="section-intro" style="margin-top:0">At a systems level: <strong>Input channels → Gateway → Main session → Sub-agents/tools → Memory + external systems (Notion/GitHub) → Output channels</strong>. Your laptop can SSH in and manage the same machine remotely; you are not running a second brain, just another terminal into the same one.</p>
+      <p class="section-intro" style="margin-top:0">At a systems level: <strong>Input channels → Gateway → Main session → Sub-agents/tools → Memory + external systems (Notion/GitHub) → Output channels</strong>. Your laptop can SSH into MMM4 and operate the same runtime from anywhere.</p>
       <p class="section-intro" style="margin-top:0">Model policy is optimized for reliability and cost control: <strong>Codex main</strong> for stable day-to-day execution, <strong>Sonnet/Opus</strong> for premium reasoning on demand, and <strong>Haiku</strong> for low-intensity background tasks. This keeps throughput high while reducing Anthropic 429 disruption risk.</p>
       <p class="section-intro" style="margin-top:0">Memory is split into two layers: session context (temporary) and durable memory files (<code>MEMORY.md</code>, <code>memory/*.md</code>). Notion is your external objective system; writes are manual-only by your explicit command.</p>
       <p class="section-intro" style="margin-top:0">First-principles dashboard objective: show <strong>state</strong> (what is true now), <strong>control</strong> (what you can change), <strong>risk</strong> (what can break), and <strong>next actions</strong> (what to do next). If a panel doesn't help one of those four, it should be removed.</p>
     </article>
 
     <article class="card span-4">
-      <div class="card-title">Channels Online</div>
+      <div class="card-title">Channels (on/off)</div>
       <table>
-        <tr><td><span class="dot dot-ok"></span>Telegram</td><td><span class="tag ok">on</span></td></tr>
-        <tr><td><span class="dot dot-warn"></span>iMessage</td><td><span class="tag warn">off</span></td></tr>
-        <tr><td><span class="dot dot-ok"></span>Discord</td><td><span class="tag ok">on</span></td></tr>
         <tr><td><span class="dot dot-ok"></span>Webchat</td><td><span class="tag ok">on</span></td></tr>
+        <tr><td><span class="dot dot-ok"></span>Telegram</td><td><span class="tag ok">on</span></td></tr>
+        <tr><td><span class="dot dot-ok"></span>Discord</td><td><span class="tag ok">on</span></td></tr>
+        <tr><td><span class="dot dot-warn"></span>iMessage</td><td><span class="tag warn">off</span></td></tr>
+        <tr><td><span class="dot dot-warn"></span>Signal</td><td><span class="tag warn">off</span></td></tr>
+        <tr><td><span class="dot dot-warn"></span>Slack</td><td><span class="tag warn">off</span></td></tr>
+        <tr><td><span class="dot dot-warn"></span>WhatsApp</td><td><span class="tag warn">off</span></td></tr>
+        <tr><td><span class="dot dot-warn"></span>Google Chat</td><td><span class="tag warn">off</span></td></tr>
+        <tr><td><span class="dot dot-warn"></span>IRC</td><td><span class="tag warn">off</span></td></tr>
       </table>
     </article>
 
     <article class="card span-12">
-      <div class="card-title">Quick Navigation</div>
-      <a class="link-btn" href="#" onclick="setView('architecture');return false;">🗺 System Architecture</a>
-      <a class="link-btn" href="#" onclick="setView('agents');return false;">🤖 Agent Hierarchy</a>
-      <a class="link-btn" href="#" onclick="setView('sessions');return false;">🧵 Sessions</a>
-      <a class="link-btn" href="#" onclick="setView('tools');return false;">🔧 Tools</a>
-      <a class="link-btn" href="#" onclick="setView('config');return false;">⚙️ Config</a>
-      <a class="link-btn" href="#" onclick="setView('objectives');return false;">🎯 Objectives</a>
-      <a class="link-btn" href="#" onclick="setView('memory');return false;">🧠 Memory</a>
-      <a class="link-btn" href="#" onclick="setView('todos');return false;">✅ To-Dos</a>
-      <a class="link-btn" href="https://nickxma.github.io/april-dashboard/" target="_blank">🌐 Live URL</a>
+      <div class="card-title">Topline</div>
+      <p class="section-intro" style="margin-bottom:0">Use the top menu as the sole navigation. Priority read order: Overview → To-Dos → Objectives → Sessions.</p>
     </article>
   </div>
 </section>
@@ -725,9 +722,9 @@
 </main>
 <script>
   const TABS=[
-    ["overview","Overview"],["architecture","Architecture"],["agents","Agents"],
-    ["sessions","Sessions"],["tools","Tools"],["config","Config"],
-    ["objectives","Objectives"],["memory","Memory"],["todos","To-Dos"],["runbook","Runbook"]
+    ["overview","Overview"],["todos","To-Dos"],["objectives","Objectives"],
+    ["sessions","Sessions"],["architecture","Architecture"],["tools","Tools"],
+    ["config","Config"],["memory","Memory"]
   ];
   const tabsEl=document.getElementById("tabs");
   const views=[...document.querySelectorAll(".view")];
