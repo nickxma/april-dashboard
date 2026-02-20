@@ -506,12 +506,27 @@
     <article class="card span-6">
       <div class="card-title">Session Lifecycle</div>
       <ol>
-        <li>You send message → gateway routes to main session</li>
+        <li>You send message → gateway routes to a channel session</li>
         <li>Main agent handles directly, or spawns sub-agent</li>
         <li>Sub-agent runs isolated task, reports back</li>
-        <li>Main synthesizes → sends reply to you</li>
+        <li>Main synthesizes → sends reply to same channel/session</li>
         <li>Durable facts → memory.md</li>
       </ol>
+    </article>
+
+    <article class="card span-12">
+      <div class="card-title">Channel ↔ Session Map (vernacular)</div>
+      <table>
+        <thead><tr><th>Term</th><th>What it actually means</th><th>Example</th><th>Context sharing?</th></tr></thead>
+        <tbody>
+          <tr><td>Gateway</td><td>Router/runtime process on MMM4</td><td><code>openclaw-gateway :18789</code></td><td>N/A</td></tr>
+          <tr><td>Main session</td><td>Your direct conversation thread with Claw</td><td><code>agent:main:main</code></td><td>Own context window</td></tr>
+          <tr><td>Channel session</td><td>Per-channel/per-thread conversation state</td><td>Telegram DM vs Discord channel</td><td>Separate by default</td></tr>
+          <tr><td>Sub-agent</td><td>Temporary worker session spawned by main</td><td><code>agent:main:sub-*</code></td><td>No direct user chat; reports back</td></tr>
+          <tr><td>Isolated session</td><td>Background/cron worker session</td><td><code>agent:isolated:*</code></td><td>Separate</td></tr>
+        </tbody>
+      </table>
+      <p class="note">If you have 10 Telegram channels, each channel/thread can accumulate its own context. They are not 10 sub-agents. Sub-agents are spawned workers for tasks, not channels.</p>
     </article>
   </div>
 </section>
