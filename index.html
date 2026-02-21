@@ -33,9 +33,9 @@
     }
     * { box-sizing:border-box; margin:0; padding:0; }
     body {
-      background: linear-gradient(155deg, #f5f4f2 0%, #efede9 55%, #f7f6f3 100%);
+      background: linear-gradient(180deg, #f6f5f3 0%, #f2f1ee 100%);
       color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       min-height: 100vh;
       font-size: 14px;
     }
@@ -43,31 +43,31 @@
     /* ── Header ── */
     header {
       position: sticky; top:0; z-index:20;
-      background: rgba(255,255,255,.85);
-      backdrop-filter: blur(12px);
+      background: rgba(250,249,247,.92);
+      backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
       padding: 12px 20px;
-      box-shadow: 0 2px 16px var(--shadow);
+      box-shadow: 0 1px 4px var(--shadow);
     }
     .hrow { max-width:1360px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
-    h1 { font-size:18px; font-weight:800; background:linear-gradient(90deg,#284a73,#4f6b88); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    h1 { font-size:18px; font-weight:700; color:#2a2a2a; letter-spacing:-0.01em; }
     .htag { font-size:11px; color:var(--muted); margin-top:2px; }
 
     /* ── Tabs ── */
     .tabs { display:flex; flex-wrap:wrap; gap:6px; }
     .tab {
-      border: 1.5px solid var(--border);
-      background: white;
+      border: 1px solid var(--border);
+      background: #fff;
       color: var(--muted);
-      border-radius:999px;
-      padding: 6px 14px;
+      border-radius:10px;
+      padding: 6px 12px;
       font-size:12px; font-weight:600;
       cursor:pointer;
-      transition: all .15s;
-      box-shadow: 0 1px 4px var(--shadow);
+      transition: all .12s;
+      box-shadow: 0 1px 2px var(--shadow);
     }
-    .tab:hover { color:var(--text); border-color:#b0b8e8; }
-    .tab.active { background:linear-gradient(90deg,#7c8f9f,#a88f7a); color:white; border-color:transparent; box-shadow:0 2px 10px rgba(96,86,72,.20); }
+    .tab:hover { color:var(--text); border-color:#d5d0c8; }
+    .tab.active { background:#f0ece6; color:#2e2a26; border-color:#d7d2ca; box-shadow:none; }
 
     /* ── Layout ── */
     main { max-width:1360px; margin:0 auto; padding:18px; }
@@ -82,10 +82,10 @@
     /* ── Cards ── */
     .card {
       background: white;
-      border: 1.5px solid var(--border);
-      border-radius:18px;
-      padding:18px;
-      box-shadow: 0 4px 20px var(--shadow);
+      border: 1px solid var(--border);
+      border-radius:12px;
+      padding:16px;
+      box-shadow: 0 1px 6px var(--shadow);
     }
     .card-title { font-size:11px; text-transform:uppercase; letter-spacing:.09em; color:var(--muted); font-weight:700; margin-bottom:12px; }
     .kpi { font-size:30px; font-weight:800; line-height:1; margin:6px 0 4px; }
@@ -105,11 +105,11 @@
     .tag.plain  { background:#f0f2ff; color:#4050a0; }
 
     /* ── Tables ── */
-    table { width:100%; border-collapse:collapse; font-size:13px; }
-    th,td { text-align:left; border-bottom:1px solid #e8ecf8; padding:9px 8px; vertical-align:top; }
-    th { color:var(--muted); font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
+    table { width:100%; border-collapse:collapse; font-size:13px; table-layout: fixed; }
+    th,td { text-align:left; border-bottom:1px solid #eeebe6; padding:9px 8px; vertical-align:top; word-break: break-word; overflow-wrap:anywhere; }
+    th { color:var(--muted); font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:.04em; }
     tr:last-child td { border-bottom:none; }
-    tr:hover td { background:#fafbff; }
+    tr:hover td { background:#fbfaf8; }
 
     /* ── Lists ── */
     ul { padding-left:18px; }
@@ -144,7 +144,7 @@
   <div class="hrow">
     <div>
       <h1>✦ April OS — OpenClaw Dashboard</h1>
-      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.02.21-r6 (d600805)</div>
+      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.02.21-r7 (pending)</div>
     </div>
     <nav class="tabs" id="tabs"></nav>
   </div>
@@ -240,10 +240,7 @@
       </table>
     </article>
 
-    <article class="card span-12">
-      <div class="card-title">Topline</div>
-      <p class="section-intro" style="margin-bottom:0">Use the top menu as the sole navigation. Priority read order: Overview → To-Dos → Objectives → Sessions.</p>
-    </article>
+    <!-- Topline removed: replaced by Control Tower as single operating view -->
   </div>
 </section>
 
