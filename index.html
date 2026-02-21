@@ -3,37 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claw OS — OpenClaw Dashboard</title>
+  <title>April OS — OpenClaw Dashboard</title>
   <style>
     :root {
-      --bg:       #e8edf7;
-      --bg2:      #dfe6f3;
-      --panel:    #fdfefe;
-      --panel2:   #f3f6fb;
-      --text:     #141a2b;
-      --muted:    #586787;
-      --border:   #c7d1e3;
-      --shadow:   rgba(31,44,78,.12);
+      --bg:       #f5f4f2;
+      --bg2:      #eeece8;
+      --panel:    #ffffff;
+      --panel2:   #f7f6f4;
+      --text:     #1f1f1f;
+      --muted:    #6f6a63;
+      --border:   #e3e0da;
+      --shadow:   rgba(30, 24, 16, .08);
 
-      --sonnet:   #3f6fa8;   /* steel blue */
-      --opus:     #e0608a;   /* pink */
-      --codex:    #3ab88a;   /* green */
-      --haiku:    #f5a623;   /* amber */
+      --sonnet:   #5c7ea8;
+      --opus:     #c7778f;
+      --codex:    #4a8f70;
+      --haiku:    #c48a45;
 
-      --ok:       #2ecc89;
-      --warn:     #f5a623;
-      --bad:      #f06070;
+      --ok:       #4a8f70;
+      --warn:     #c48a45;
+      --bad:      #c06a63;
 
-      --tag-sonnet-bg:  #ede8ff; --tag-sonnet-fg: #5b4ecc;
-      --tag-opus-bg:    #ffe8f0; --tag-opus-fg:   #c03060;
-      --tag-codex-bg:   #e0f7ef; --tag-codex-fg:  #1d7a5a;
-      --tag-haiku-bg:   #fff3dc; --tag-haiku-fg:  #a06010;
-      --tag-ok-bg:      #e2f9ef; --tag-ok-fg:     #1a8058;
-      --tag-warn-bg:    #fff3dc; --tag-warn-fg:   #a06010;
+      --tag-sonnet-bg:  #eef2f7; --tag-sonnet-fg: #4f6f96;
+      --tag-opus-bg:    #f8edf1; --tag-opus-fg:   #9a5d72;
+      --tag-codex-bg:   #eaf3ee; --tag-codex-fg:  #3d735b;
+      --tag-haiku-bg:   #f7efe5; --tag-haiku-fg:  #8d6232;
+      --tag-ok-bg:      #eaf3ee; --tag-ok-fg:     #3d735b;
+      --tag-warn-bg:    #f8f0e6; --tag-warn-fg:   #8d6232;
     }
     * { box-sizing:border-box; margin:0; padding:0; }
     body {
-      background: linear-gradient(140deg, #e7ecf5 0%, #dfe6f2 55%, #e8ebf4 100%);
+      background: linear-gradient(155deg, #f5f4f2 0%, #efede9 55%, #f7f6f3 100%);
       color: var(--text);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
       min-height: 100vh;
@@ -67,7 +67,7 @@
       box-shadow: 0 1px 4px var(--shadow);
     }
     .tab:hover { color:var(--text); border-color:#b0b8e8; }
-    .tab.active { background:linear-gradient(90deg,#7c6ff7,#e0608a); color:white; border-color:transparent; box-shadow:0 2px 10px rgba(120,100,240,.30); }
+    .tab.active { background:linear-gradient(90deg,#7c8f9f,#a88f7a); color:white; border-color:transparent; box-shadow:0 2px 10px rgba(96,86,72,.20); }
 
     /* ── Layout ── */
     main { max-width:1360px; margin:0 auto; padding:18px; }
@@ -143,7 +143,7 @@
 <header>
   <div class="hrow">
     <div>
-      <h1>🦞 Claw OS — OpenClaw Dashboard</h1>
+      <h1>✦ April OS — OpenClaw Dashboard</h1>
       <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.02.19-r5 (4fc8f81)</div>
     </div>
     <nav class="tabs" id="tabs"></nav>
@@ -175,6 +175,47 @@
       <div class="kpi-sub">claude-haiku-3-5 · simple tasks</div>
     </article>
 
+    <article class="card span-12">
+      <div class="card-title">Top Priorities (Now)</div>
+      <table>
+        <thead><tr><th>Priority</th><th>Task</th><th>Owner</th><th>Next Action</th></tr></thead>
+        <tbody>
+          <tr><td>P1</td><td>Remote command access from any browser</td><td>Nick</td><td>Use WebChat via SSH tunnel (<code>ssh -L 18789:localhost:18789 &lt;host&gt;</code>) or Tailscale Serve HTTPS</td></tr>
+          <tr><td>P2</td><td>Things 3 read access for agent (scan/list sync)</td><td>Nick</td><td>Grant Full Disk Access to OpenClaw.app, then rerun: <code>things today --limit 30</code></td></tr>
+          <tr><td>P3</td><td>Define dashboard "must-do" queue + refresh rhythm</td><td>Claw</td><td>Keep this table to top 3 only and refresh on each planning checkpoint</td></tr>
+          <tr><td>P4</td><td>Notion objective loop completion</td><td>Claw + Nick</td><td>Confirm first write action to Objectives DB (manual command only)</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Rule: if a task is not in this table, it is not top priority.</p>
+    </article>
+
+    <article class="card span-7">
+      <div class="card-title">Agent Activity (at-a-glance)</div>
+      <table>
+        <thead><tr><th>Agent</th><th>Status</th><th>Workstream</th><th>Cadence / Next run</th></tr></thead>
+        <tbody>
+          <tr><td>Main (April)</td><td><span class="tag plain">On-demand</span></td><td>Orchestration + approvals + reverse prompting</td><td>Runs when Nick messages</td></tr>
+          <tr><td>Sub-agents (ephemeral)</td><td><span class="tag warn">0 active</span></td><td>Deep work only when spawned for a task</td><td>No always-on subagents yet</td></tr>
+          <tr><td>april-low-cost-reliability-sweep</td><td><span class="tag ok">Scheduled</span></td><td>Dashboard + Things probe + reliability log</td><td>Every 6h</td></tr>
+          <tr><td>april-daily-improvement-scout</td><td><span class="tag ok">Scheduled</span></td><td>Daily infrastructure improvements (low-cost)</td><td>07:15 America/Chicago</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Last refresh model: planned/manual snapshots for reliability. Move to live auto-sync only after telemetry proves stable.</p>
+    </article>
+
+    <article class="card span-5">
+      <div class="card-title">What Nick is currently blocking (sorted)</div>
+      <table>
+        <thead><tr><th>Blocker</th><th>Owner</th><th>Score</th><th>Next step</th></tr></thead>
+        <tbody>
+          <tr><td>Grant Full Disk Access for Things DB read</td><td>Nick</td><td><span class="tag warn">10.0</span></td><td>Enable access for OpenClaw runtime; rerun <code>things today --limit 5 --format json</code></td></tr>
+          <tr><td>Choose remote command path default</td><td>Nick</td><td><span class="tag plain">7.0</span></td><td>Pick SSH tunnel vs Tailscale Serve as standard</td></tr>
+          <tr><td>Approve first Notion write template</td><td>Nick</td><td><span class="tag plain">6.0</span></td><td>Send one explicit “add objective entry” command</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Priority score = Value ÷ Effort (higher first). This list should stay short and executable.</p>
+    </article>
+
     <article class="card span-8">
       <div class="card-title">What is this setup?</div>
       <p class="section-intro">This is a personal AI operating system running on your Mac Mini (<strong>MMM4</strong>). OpenClaw is the runtime layer: it receives messages, applies policy, routes to the right session, calls tools, and sends responses back to you.</p>
@@ -202,6 +243,55 @@
     <article class="card span-12">
       <div class="card-title">Topline</div>
       <p class="section-intro" style="margin-bottom:0">Use the top menu as the sole navigation. Priority read order: Overview → To-Dos → Objectives → Sessions.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════ CONTROL TOWER ══════════════════════ -->
+<section class="view" data-view="control-tower">
+  <div class="grid">
+    <article class="card span-12">
+      <div class="card-title">Control Tower — single operating view</div>
+      <p class="section-intro">Use this page as your default cockpit: what is running, what is blocked by Nick, and what matters most now.</p>
+    </article>
+
+    <article class="card span-7">
+      <div class="card-title">Agent Activity (live plan)</div>
+      <table>
+        <thead><tr><th>Agent</th><th>Status</th><th>Workstream</th><th>Cadence / next run</th></tr></thead>
+        <tbody>
+          <tr><td>Main (April)</td><td><span class="tag plain">On-demand</span></td><td>Orchestration, approvals, reverse prompting</td><td>Runs when Nick messages</td></tr>
+          <tr><td>Sub-agents</td><td><span class="tag warn">0 active</span></td><td>Spawned for focused tasks only</td><td>Not always-on yet</td></tr>
+          <tr><td>april-low-cost-reliability-sweep</td><td><span class="tag ok">Scheduled</span></td><td>Dashboard + Things probe + reliability log</td><td>Every 6h</td></tr>
+          <tr><td>april-daily-improvement-scout</td><td><span class="tag ok">Scheduled</span></td><td>Daily infrastructure improvements</td><td>07:15 America/Chicago</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Mode: Planned/manual reporting for reliability. Upgrade to live telemetry after stability is proven.</p>
+    </article>
+
+    <article class="card span-5">
+      <div class="card-title">Nick-blocked queue (priority ranked)</div>
+      <table>
+        <thead><tr><th>Blocker</th><th>Score</th><th>Owner</th><th>Next action</th></tr></thead>
+        <tbody>
+          <tr><td>Grant Full Disk Access for Things DB read</td><td><span class="tag warn">10.0</span></td><td>Nick</td><td>Enable access for OpenClaw runtime; rerun <code>things today --limit 5 --format json</code></td></tr>
+          <tr><td>Choose remote command path standard</td><td><span class="tag plain">7.0</span></td><td>Nick</td><td>Pick SSH tunnel vs Tailscale Serve default</td></tr>
+          <tr><td>Approve first Notion write template</td><td><span class="tag plain">6.0</span></td><td>Nick</td><td>Send explicit “add objective entry” command with fields</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Scoring method: Value ÷ Effort (higher = do first).</p>
+    </article>
+
+    <article class="card span-12">
+      <div class="card-title">Top priorities (next actions)</div>
+      <table>
+        <thead><tr><th>Priority</th><th>Task</th><th>Ball</th><th>Scheduled agent</th><th>Next action</th></tr></thead>
+        <tbody>
+          <tr><td>P1</td><td>Unblock Things ingestion</td><td>Nick</td><td>Main (April)</td><td>Grant disk permissions and confirm with one probe command</td></tr>
+          <tr><td>P2</td><td>Lock remote access path</td><td>Nick</td><td>Main (April)</td><td>Choose SSH tunnel or Tailscale Serve as standard</td></tr>
+          <tr><td>P3</td><td>Keep autonomous background work low-cost</td><td>April</td><td>Haiku scheduled jobs</td><td>Maintain reliability sweep + daily scout with strict timeout caps</td></tr>
+        </tbody>
+      </table>
     </article>
   </div>
 </section>
@@ -691,18 +781,17 @@
 <section class="view" data-view="todos">
   <div class="grid">
     <article class="card span-12">
-      <div class="card-title">Open To-Dos (Operator Queue)</div>
+      <div class="card-title">Tasks (Clear Ownership Queue)</div>
       <table>
-        <thead><tr><th>Todo</th><th>Status</th><th>Owner</th><th>Next step</th></tr></thead>
+        <thead><tr><th>Task</th><th>Status</th><th>Ball</th><th>Next step</th><th>Scheduled agent</th></tr></thead>
         <tbody>
-          <tr><td>Fix/Install Obsidian skill integration</td><td><span class="tag warn">Blocked (ClawHub rate limit)</span></td><td>Claw</td><td>Retry install when rate limit resets; then map to <code>/Users/nick/Obsidian</code></td></tr>
-          <tr><td>Validate Things 3 skill availability</td><td><span class="tag warn">Not found yet</span></td><td>Claw</td><td>Search skill registry alternatives / direct automation approach</td></tr>
-          <tr><td>Rotate exposed API keys from chat</td><td><span class="tag warn">Pending</span></td><td>Nick</td><td>Rotate OpenAI/Notion tokens, then update config secrets</td></tr>
-          <tr><td>Enable Tailscale SSH on MMM4</td><td><span class="tag warn">Pending</span></td><td>Nick</td><td><code>sudo tailscale set --ssh=true</code></td></tr>
-          <tr><td>Dashboard live telemetry v5</td><td><span class="tag plain">Backlog</span></td><td>Claw</td><td>Add auto-refresh for sessions/errors/model state JSON</td></tr>
+          <tr><td>Set up browser-based remote command access</td><td><span class="tag warn">Waiting</span></td><td>Nick</td><td>Pick SSH tunnel or Tailscale Serve and confirm preferred path</td><td>Main (Claw)</td></tr>
+          <tr><td>Restore Things 3 scan reliability</td><td><span class="tag warn">Blocked</span></td><td>Nick</td><td>Grant Full Disk Access to OpenClaw/host runtime, then rerun <code>things today --limit 30</code></td><td>Main (Claw)</td></tr>
+          <tr><td>Build top-level must-do task view in dashboard</td><td><span class="tag ok">In progress</span></td><td>Claw</td><td>Keep this table as single source of truth and trim to active items only</td><td>Coding Agent (Codex)</td></tr>
+          <tr><td>Notion objective write flow (manual-only)</td><td><span class="tag plain">Ready</span></td><td>Nick</td><td>Send explicit command for first write action (entry + fields)</td><td>Main (Claw)</td></tr>
         </tbody>
       </table>
-      <p class="note">Use this as the execution queue. Keep it short, actionable, and tied to a next command.</p>
+      <p class="note">Status values: <strong>Ready</strong>, <strong>In progress</strong>, <strong>Waiting</strong>, <strong>Blocked</strong>, <strong>Done</strong>. Ball = whose court it is right now. Agent assignment mode: <strong>Planned (manual)</strong> for reliability (no noisy live polling/rate-limit risk).</p>
     </article>
   </div>
 </section>
@@ -737,7 +826,7 @@
 </main>
 <script>
   const TABS=[
-    ["overview","Overview"],["todos","To-Dos"],["objectives","Objectives"],
+    ["overview","Overview"],["control-tower","Control Tower"],["todos","To-Dos"],["objectives","Objectives"],
     ["sessions","Sessions"],["architecture","Architecture"],["tools","Tools"],
     ["config","Config"],["memory","Memory"]
   ];
