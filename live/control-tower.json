@@ -1,0 +1,24 @@
+{
+  "updatedAt": "2026-02-20 21:30 CST",
+  "projects": [
+    {"name":"Launch Twitter account for AI + mindfulness content","percent":18},
+    {"name":"Stablecoin expertise content pipeline","percent":12},
+    {"name":"Autonomous background ops (low-cost)","percent":35}
+  ],
+  "agents": [
+    {"name":"Main (April)","status":"On-demand","workstream":"Orchestration, approvals, reverse prompting","cadence":"Runs when Nick messages"},
+    {"name":"Sub-agents","status":"0 active","workstream":"Spawned for focused tasks only","cadence":"None active right now"},
+    {"name":"april-low-cost-reliability-sweep","status":"Scheduled","workstream":"Dashboard + Things probe + reliability log","cadence":"Every 6h"},
+    {"name":"april-daily-improvement-scout","status":"Scheduled","workstream":"Daily infrastructure improvements","cadence":"07:15 America/Chicago"},
+    {"name":"april-briefs (morning/afternoon/evening/night)","status":"Scheduled","workstream":"4 daily execution briefs","cadence":"08:30 / 13:00 / 18:30 / 22:00 CT"}
+  ],
+  "blockers": [
+    {"item":"Choose remote command path standard","score":7.0,"owner":"Nick","next":"Pick SSH tunnel vs Tailscale Serve default"},
+    {"item":"Approve first Notion write template","score":6.0,"owner":"Nick","next":"Send explicit add-objective-entry command"}
+  ],
+  "priorities": [
+    {"rank":"P1","task":"Wire richer live telemetry into Control Tower","ball":"April","agent":"Main (April)","next":"Keep JSON feed refreshed and keep dashboard live deploys current"},
+    {"rank":"P2","task":"Start Things-driven priority ingestion","ball":"April","agent":"Main (April)","next":"Map top 10 Today/Inbox items into ranked execution queue"},
+    {"rank":"P3","task":"Lock remote access path standard","ball":"Nick","agent":"Main (April)","next":"Confirm SSH tunnel or Tailscale Serve as default"}
+  ]
+}

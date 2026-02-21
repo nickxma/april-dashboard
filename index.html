@@ -150,7 +150,7 @@
   <div class="hrow">
     <div>
       <h1>✦ April OS — OpenClaw Dashboard</h1>
-      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.02.21-r9</div>
+      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.02.21-r10</div>
     </div>
     <nav class="tabs" id="tabs"></nav>
   </div>
@@ -224,21 +224,20 @@
 
     <article class="card span-12">
       <div class="card-title">Ongoing Projects (live scorecard)</div>
-      <div class="progress-row"><div class="label">Launch Twitter account for AI + mindfulness content</div><div class="track"><div class="fill" style="width:18%"></div></div><div class="pct">18%</div></div>
-      <div class="progress-row"><div class="label">Stablecoin expertise content pipeline</div><div class="track"><div class="fill" style="width:12%"></div></div><div class="pct">12%</div></div>
-      <div class="progress-row"><div class="label">Autonomous background ops (low-cost)</div><div class="track"><div class="fill" style="width:35%"></div></div><div class="pct">35%</div></div>
-      <p class="note">Scoring rule: 0-100 based on concrete milestones completed, not vibes. I’ll ask for progress check-ins on a cadence and update this honestly.</p>
+      <div id="ct-projects">
+        <div class="progress-row"><div class="label">Launch Twitter account for AI + mindfulness content</div><div class="track"><div class="fill" style="width:18%"></div></div><div class="pct">18%</div></div>
+        <div class="progress-row"><div class="label">Stablecoin expertise content pipeline</div><div class="track"><div class="fill" style="width:12%"></div></div><div class="pct">12%</div></div>
+        <div class="progress-row"><div class="label">Autonomous background ops (low-cost)</div><div class="track"><div class="fill" style="width:35%"></div></div><div class="pct">35%</div></div>
+      </div>
+      <p class="note" id="ct-updated">Scoring rule: 0-100 based on concrete milestones completed, not vibes. I’ll ask for progress check-ins on a cadence and update this honestly.</p>
     </article>
 
     <article class="card span-7">
       <div class="card-title">Agent Activity (live plan)</div>
       <table>
         <thead><tr><th>Agent</th><th>Status</th><th>Workstream</th><th>Cadence / next run</th></tr></thead>
-        <tbody>
+        <tbody id="ct-agents">
           <tr><td>Main (April)</td><td><span class="tag plain">On-demand</span></td><td>Orchestration, approvals, reverse prompting</td><td>Runs when Nick messages</td></tr>
-          <tr><td>Sub-agents</td><td><span class="tag warn">0 active</span></td><td>Spawned for focused tasks only</td><td>Not always-on yet</td></tr>
-          <tr><td>april-low-cost-reliability-sweep</td><td><span class="tag ok">Scheduled</span></td><td>Dashboard + Things probe + reliability log</td><td>Every 6h</td></tr>
-          <tr><td>april-daily-improvement-scout</td><td><span class="tag ok">Scheduled</span></td><td>Daily infrastructure improvements</td><td>07:15 America/Chicago</td></tr>
         </tbody>
       </table>
       <p class="note">Mode: Planned/manual reporting for reliability. Upgrade to live telemetry after stability is proven.</p>
@@ -248,10 +247,8 @@
       <div class="card-title">Nick-blocked queue (priority ranked)</div>
       <table>
         <thead><tr><th>Blocker</th><th>Score</th><th>Owner</th><th>Next action</th></tr></thead>
-        <tbody>
+        <tbody id="ct-blockers">
           <tr><td>Grant Full Disk Access for Things DB read</td><td><span class="tag warn">10.0</span></td><td>Nick</td><td>Enable access for OpenClaw runtime; rerun <code>things today --limit 5 --format json</code></td></tr>
-          <tr><td>Choose remote command path standard</td><td><span class="tag plain">7.0</span></td><td>Nick</td><td>Pick SSH tunnel vs Tailscale Serve default</td></tr>
-          <tr><td>Approve first Notion write template</td><td><span class="tag plain">6.0</span></td><td>Nick</td><td>Send explicit “add objective entry” command with fields</td></tr>
         </tbody>
       </table>
       <p class="note">Scoring method: Value ÷ Effort (higher = do first).</p>
@@ -261,10 +258,8 @@
       <div class="card-title">Top priorities (next actions)</div>
       <table>
         <thead><tr><th>Priority</th><th>Task</th><th>Ball</th><th>Scheduled agent</th><th>Next action</th></tr></thead>
-        <tbody>
+        <tbody id="ct-priorities">
           <tr><td>P1</td><td>Unblock Things ingestion</td><td>Nick</td><td>Main (April)</td><td>Grant disk permissions and confirm with one probe command</td></tr>
-          <tr><td>P2</td><td>Lock remote access path</td><td>Nick</td><td>Main (April)</td><td>Choose SSH tunnel or Tailscale Serve as standard</td></tr>
-          <tr><td>P3</td><td>Keep autonomous background work low-cost</td><td>April</td><td>Haiku scheduled jobs</td><td>Maintain reliability sweep + daily scout with strict timeout caps</td></tr>
         </tbody>
       </table>
     </article>
@@ -819,8 +814,42 @@
     b.onclick=()=>setView(id);
     tabsEl.appendChild(b);
   });
+
+  const esc=(s)=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+  function tagClass(status){
+    const x=String(status||"").toLowerCase();
+    if(["ok","active","scheduled","in progress","done","on-demand"].includes(x)) return "ok";
+    if(["blocked","critical"].includes(x)) return "warn";
+    return "plain";
+  }
+  function renderControlTower(data){
+    if(!data) return;
+    const pEl=document.getElementById('ct-projects');
+    const aEl=document.getElementById('ct-agents');
+    const bEl=document.getElementById('ct-blockers');
+    const rEl=document.getElementById('ct-priorities');
+    const uEl=document.getElementById('ct-updated');
+
+    if(pEl && Array.isArray(data.projects)) pEl.innerHTML = data.projects.map(p=>`<div class="progress-row"><div class="label">${esc(p.name)}</div><div class="track"><div class="fill" style="width:${Math.max(0,Math.min(100,Number(p.percent)||0))}%"></div></div><div class="pct">${Math.max(0,Math.min(100,Number(p.percent)||0))}%</div></div>`).join('');
+    if(aEl && Array.isArray(data.agents)) aEl.innerHTML = data.agents.map(a=>`<tr><td>${esc(a.name)}</td><td><span class="tag ${tagClass(a.status)}">${esc(a.status)}</span></td><td>${esc(a.workstream)}</td><td>${esc(a.cadence)}</td></tr>`).join('');
+    if(bEl && Array.isArray(data.blockers)) bEl.innerHTML = data.blockers.map(b=>`<tr><td>${esc(b.item)}</td><td><span class="tag ${tagClass(b.score>=8?"critical":"plain")}">${esc(b.score)}</span></td><td>${esc(b.owner)}</td><td>${esc(b.next)}</td></tr>`).join('');
+    if(rEl && Array.isArray(data.priorities)) rEl.innerHTML = data.priorities.map(x=>`<tr><td>${esc(x.rank)}</td><td>${esc(x.task)}</td><td>${esc(x.ball)}</td><td>${esc(x.agent)}</td><td>${esc(x.next)}</td></tr>`).join('');
+    if(uEl && data.updatedAt) uEl.textContent = `Live telemetry refreshed: ${data.updatedAt}`;
+  }
+
+  async function loadControlTower(){
+    try {
+      const res = await fetch(`./live/control-tower.json?t=${Date.now()}`,{cache:'no-store'});
+      if(!res.ok) return;
+      const data = await res.json();
+      renderControlTower(data);
+    } catch {}
+  }
+
   const init=(location.hash||"#overview").slice(1);
   setView(TABS.some(([id])=>id===init)?init:"overview");
+  loadControlTower();
+  setInterval(loadControlTower, 60000);
 </script>
 </body>
 </html>
