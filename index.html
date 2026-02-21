@@ -144,7 +144,7 @@
   <div class="hrow">
     <div>
       <h1>✦ April OS — OpenClaw Dashboard</h1>
-      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.02.21-r7</div>
+      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.02.21-r8</div>
     </div>
     <nav class="tabs" id="tabs"></nav>
   </div>
@@ -176,44 +176,8 @@
     </article>
 
     <article class="card span-12">
-      <div class="card-title">Top Priorities (Now)</div>
-      <table>
-        <thead><tr><th>Priority</th><th>Task</th><th>Owner</th><th>Next Action</th></tr></thead>
-        <tbody>
-          <tr><td>P1</td><td>Remote command access from any browser</td><td>Nick</td><td>Use WebChat via SSH tunnel (<code>ssh -L 18789:localhost:18789 &lt;host&gt;</code>) or Tailscale Serve HTTPS</td></tr>
-          <tr><td>P2</td><td>Things 3 read access for agent (scan/list sync)</td><td>Nick</td><td>Grant Full Disk Access to OpenClaw.app, then rerun: <code>things today --limit 30</code></td></tr>
-          <tr><td>P3</td><td>Define dashboard "must-do" queue + refresh rhythm</td><td>Claw</td><td>Keep this table to top 3 only and refresh on each planning checkpoint</td></tr>
-          <tr><td>P4</td><td>Notion objective loop completion</td><td>Claw + Nick</td><td>Confirm first write action to Objectives DB (manual command only)</td></tr>
-        </tbody>
-      </table>
-      <p class="note">Rule: if a task is not in this table, it is not top priority.</p>
-    </article>
-
-    <article class="card span-7">
-      <div class="card-title">Agent Activity (at-a-glance)</div>
-      <table>
-        <thead><tr><th>Agent</th><th>Status</th><th>Workstream</th><th>Cadence / Next run</th></tr></thead>
-        <tbody>
-          <tr><td>Main (April)</td><td><span class="tag plain">On-demand</span></td><td>Orchestration + approvals + reverse prompting</td><td>Runs when Nick messages</td></tr>
-          <tr><td>Sub-agents (ephemeral)</td><td><span class="tag warn">0 active</span></td><td>Deep work only when spawned for a task</td><td>No always-on subagents yet</td></tr>
-          <tr><td>april-low-cost-reliability-sweep</td><td><span class="tag ok">Scheduled</span></td><td>Dashboard + Things probe + reliability log</td><td>Every 6h</td></tr>
-          <tr><td>april-daily-improvement-scout</td><td><span class="tag ok">Scheduled</span></td><td>Daily infrastructure improvements (low-cost)</td><td>07:15 America/Chicago</td></tr>
-        </tbody>
-      </table>
-      <p class="note">Last refresh model: planned/manual snapshots for reliability. Move to live auto-sync only after telemetry proves stable.</p>
-    </article>
-
-    <article class="card span-5">
-      <div class="card-title">What Nick is currently blocking (sorted)</div>
-      <table>
-        <thead><tr><th>Blocker</th><th>Owner</th><th>Score</th><th>Next step</th></tr></thead>
-        <tbody>
-          <tr><td>Grant Full Disk Access for Things DB read</td><td>Nick</td><td><span class="tag warn">10.0</span></td><td>Enable access for OpenClaw runtime; rerun <code>things today --limit 5 --format json</code></td></tr>
-          <tr><td>Choose remote command path default</td><td>Nick</td><td><span class="tag plain">7.0</span></td><td>Pick SSH tunnel vs Tailscale Serve as standard</td></tr>
-          <tr><td>Approve first Notion write template</td><td>Nick</td><td><span class="tag plain">6.0</span></td><td>Send one explicit “add objective entry” command</td></tr>
-        </tbody>
-      </table>
-      <p class="note">Priority score = Value ÷ Effort (higher first). This list should stay short and executable.</p>
+      <div class="card-title">Overview intent</div>
+      <p class="section-intro" style="margin-bottom:0">This page is now strictly system snapshot (model posture, architecture context, and channel posture). Operational queueing, blockers, and agent execution state live only in <strong>Control Tower</strong>.</p>
     </article>
 
     <article class="card span-8">
