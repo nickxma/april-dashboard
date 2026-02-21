@@ -135,6 +135,12 @@
     .fill-codex  { background:linear-gradient(90deg,#6fe8c0,#3ab88a); }
     .fill-haiku  { background:linear-gradient(90deg,#ffd088,#f5a623); }
 
+    .progress-row { display:flex; align-items:center; gap:10px; margin:10px 0; }
+    .progress-row .label { width:280px; color:var(--text); font-weight:600; font-size:13px; }
+    .progress-row .track { flex:1; height:10px; border-radius:999px; background:#ece9e4; overflow:hidden; }
+    .progress-row .fill { height:100%; background:linear-gradient(90deg,#7ea18f,#4a8f70); }
+    .progress-row .pct { width:48px; text-align:right; color:var(--muted); font-size:12px; }
+
     /* ── SVG diagrams ── */
     .diagram { width:100%; border:1.5px solid var(--border); border-radius:14px; background:white; display:block; }
   </style>
@@ -144,7 +150,7 @@
   <div class="hrow">
     <div>
       <h1>✦ April OS — OpenClaw Dashboard</h1>
-      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.02.21-r8</div>
+      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.02.21-r9</div>
     </div>
     <nav class="tabs" id="tabs"></nav>
   </div>
@@ -214,6 +220,14 @@
     <article class="card span-12">
       <div class="card-title">Control Tower — single operating view</div>
       <p class="section-intro">Use this page as your default cockpit: what is running, what is blocked by Nick, and what matters most now.</p>
+    </article>
+
+    <article class="card span-12">
+      <div class="card-title">Ongoing Projects (live scorecard)</div>
+      <div class="progress-row"><div class="label">Launch Twitter account for AI + mindfulness content</div><div class="track"><div class="fill" style="width:18%"></div></div><div class="pct">18%</div></div>
+      <div class="progress-row"><div class="label">Stablecoin expertise content pipeline</div><div class="track"><div class="fill" style="width:12%"></div></div><div class="pct">12%</div></div>
+      <div class="progress-row"><div class="label">Autonomous background ops (low-cost)</div><div class="track"><div class="fill" style="width:35%"></div></div><div class="pct">35%</div></div>
+      <p class="note">Scoring rule: 0-100 based on concrete milestones completed, not vibes. I’ll ask for progress check-ins on a cadence and update this honestly.</p>
     </article>
 
     <article class="card span-7">
