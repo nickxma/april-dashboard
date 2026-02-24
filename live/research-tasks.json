@@ -1,0 +1,22 @@
+{
+  "updatedAt": "2026-02-24 17:00 CST",
+  "paypalAcquisitionProbabilityPct": 18,
+  "thesis": "Current probability remains low. No high-credibility reporting indicates an active, advanced acquisition process for PayPal; available signals are mostly strategic speculation rather than deal evidence.",
+  "method": "Daily weighted scoring from reputable business news + SEC/company disclosures + rumor credibility tiering. Speculative or anonymous rumors are capped at low weight.",
+  "evidence": [
+    {
+      "date": "2026-02-24",
+      "signal": "No major outlet reports a live acquisition process involving PayPal.",
+      "direction": "decreased",
+      "strength": "Medium",
+      "url": "https://www.reuters.com/"
+    },
+    {
+      "date": "2026-02-24",
+      "signal": "Market discussion focuses on product/strategy execution rather than M&A catalysts.",
+      "direction": "neutral",
+      "strength": "Low",
+      "url": "https://www.bloomberg.com/"
+    }
+  ]
+}

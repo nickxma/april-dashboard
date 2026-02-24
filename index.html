@@ -150,7 +150,7 @@
   <div class="hrow">
     <div>
       <h1>✦ April OS — OpenClaw Dashboard</h1>
-      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.02.24-r12</div>
+      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.02.24-r13</div>
     </div>
     <nav class="tabs" id="tabs"></nav>
   </div>
@@ -315,6 +315,38 @@
         <thead><tr><th>Time</th><th>Service</th><th>Severity</th><th>Status</th><th>Error</th><th>Next action</th></tr></thead>
         <tbody id="sh-errors">
           <tr><td colspan="6">No telemetry loaded.</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════ RESEARCH TASKS ══════════════════════ -->
+<section class="view" data-view="research-tasks">
+  <div class="grid">
+    <article class="card span-12">
+      <div class="card-title">Research Tasks</div>
+      <p class="section-intro">Daily research telemetry for special projects. This includes news-driven probability tracking for PayPal acquisition outcomes.</p>
+    </article>
+
+    <article class="card span-4">
+      <div class="card-title">PayPal acquisition probability</div>
+      <div class="kpi" id="rt-paypal-prob">—</div>
+      <div class="kpi-sub" id="rt-paypal-updated">Awaiting daily refresh…</div>
+    </article>
+
+    <article class="card span-8">
+      <div class="card-title">Current thesis (why)</div>
+      <p class="section-intro" id="rt-paypal-thesis">No thesis loaded yet.</p>
+      <p class="note" id="rt-paypal-method">Method: weighted signal from credible reporting, deal-rumor quality, and strategic fit indicators. Updated once per day.</p>
+    </article>
+
+    <article class="card span-12">
+      <div class="card-title">Evidence log (latest signals)</div>
+      <table>
+        <thead><tr><th>Date</th><th>Signal</th><th>Direction</th><th>Strength</th><th>Source</th></tr></thead>
+        <tbody id="rt-evidence">
+          <tr><td colspan="5">No evidence loaded.</td></tr>
         </tbody>
       </table>
     </article>
@@ -851,7 +883,7 @@
 </main>
 <script>
   const TABS=[
-    ["overview","Overview"],["control-tower","Control Tower"],["system-health","System Health"],["todos","To-Dos"],["objectives","Objectives"],
+    ["overview","Overview"],["control-tower","Control Tower"],["system-health","System Health"],["research-tasks","Research Tasks"],["todos","To-Dos"],["objectives","Objectives"],
     ["sessions","Sessions"],["architecture","Architecture"],["tools","Tools"],
     ["config","Config"],["memory","Memory"]
   ];
@@ -950,11 +982,47 @@
     } catch {}
   }
 
+
+  function renderResearchTasks(data){
+    if(!data) return;
+    const probEl=document.getElementById('rt-paypal-prob');
+    const updEl=document.getElementById('rt-paypal-updated');
+    const thesisEl=document.getElementById('rt-paypal-thesis');
+    const methodEl=document.getElementById('rt-paypal-method');
+    const evEl=document.getElementById('rt-evidence');
+
+    const p = Number(data.paypalAcquisitionProbabilityPct ?? 0);
+    if(probEl) {
+      probEl.textContent = `${Math.max(0,Math.min(100,p))}%`;
+      probEl.style.color = p >= 45 ? 'var(--warn)' : 'var(--ok)';
+    }
+    if(updEl) updEl.textContent = `Updated: ${data.updatedAt || 'unknown'}`;
+    if(thesisEl) thesisEl.textContent = data.thesis || 'No thesis loaded yet.';
+    if(methodEl && data.method) methodEl.textContent = `Method: ${data.method}`;
+
+    if(evEl && Array.isArray(data.evidence)) {
+      evEl.innerHTML = data.evidence.length ? data.evidence.map(e =>
+        `<tr><td>${esc(e.date||'')}</td><td>${esc(e.signal||'')}</td><td><span class="tag ${tagClass(e.direction||'plain')}">${esc(e.direction||'')}</span></td><td>${esc(e.strength||'')}</td><td>${e.url ? `<a class="link-btn" href="${esc(e.url)}" target="_blank" rel="noopener">source</a>` : ''}</td></tr>`
+      ).join('') : '<tr><td colspan="5">No evidence loaded.</td></tr>';
+    }
+  }
+
+  async function loadResearchTasks(){
+    try {
+      const res = await fetch(`./live/research-tasks.json?t=${Date.now()}`, {cache:'no-store'});
+      if(!res.ok) return;
+      const data = await res.json();
+      renderResearchTasks(data);
+    } catch {}
+  }
+
   const init=(location.hash||"#overview").slice(1);
   setView(TABS.some(([id])=>id===init)?init:"overview");
   loadControlTower();
   loadSystemHealth();
-  setInterval(()=>{ loadControlTower(); loadSystemHealth(); }, 60000);
+  loadResearchTasks();
+  setInterval(()=>{ loadControlTower(); loadSystemHealth();
+  loadResearchTasks(); }, 60000);
 </script>
 </body>
 </html>
