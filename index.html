@@ -150,7 +150,7 @@
   <div class="hrow">
     <div>
       <h1>✦ April OS — OpenClaw Dashboard</h1>
-      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.02.21-r11</div>
+      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.02.24-r12</div>
     </div>
     <nav class="tabs" id="tabs"></nav>
   </div>
@@ -262,6 +262,17 @@
           <tr><td>P1</td><td>Unblock Things ingestion</td><td>Nick</td><td>Main (April)</td><td>Grant disk permissions and confirm with one probe command</td></tr>
         </tbody>
       </table>
+    </article>
+
+    <article class="card span-12">
+      <div class="card-title">Active projects overview (what April is working on)</div>
+      <table>
+        <thead><tr><th>Project</th><th>Progress</th><th>Current focus</th><th>Next milestone</th></tr></thead>
+        <tbody id="ct-project-overview">
+          <tr><td>Launch Twitter account for AI + mindfulness content</td><td>18%</td><td>Define publishing cadence + first content batch</td><td>Publish first 3 posts</td></tr>
+        </tbody>
+      </table>
+      <p class="note">This section is generated from live control-tower telemetry and priorities, so you can see where execution time is going.</p>
     </article>
   </div>
 </section>
@@ -872,12 +883,20 @@
     const aEl=document.getElementById('ct-agents');
     const bEl=document.getElementById('ct-blockers');
     const rEl=document.getElementById('ct-priorities');
+    const oEl=document.getElementById('ct-project-overview');
     const uEl=document.getElementById('ct-updated');
 
     if(pEl && Array.isArray(data.projects)) pEl.innerHTML = data.projects.map(p=>`<div class="progress-row"><div class="label">${esc(p.name)}</div><div class="track"><div class="fill" style="width:${Math.max(0,Math.min(100,Number(p.percent)||0))}%"></div></div><div class="pct">${Math.max(0,Math.min(100,Number(p.percent)||0))}%</div></div>`).join('');
     if(aEl && Array.isArray(data.agents)) aEl.innerHTML = data.agents.map(a=>`<tr><td>${esc(a.name)}</td><td><span class="tag ${tagClass(a.status)}">${esc(a.status)}</span></td><td>${esc(a.workstream)}</td><td>${esc(a.cadence)}</td></tr>`).join('');
     if(bEl && Array.isArray(data.blockers)) bEl.innerHTML = data.blockers.map(b=>`<tr><td>${esc(b.item)}</td><td><span class="tag ${tagClass(b.score>=8?"critical":"plain")}">${esc(b.score)}</span></td><td>${esc(b.owner)}</td><td>${esc(b.next)}</td></tr>`).join('');
     if(rEl && Array.isArray(data.priorities)) rEl.innerHTML = data.priorities.map(x=>`<tr><td>${esc(x.rank)}</td><td>${esc(x.task)}</td><td>${esc(x.ball)}</td><td>${esc(x.agent)}</td><td>${esc(x.next)}</td></tr>`).join('');
+    if(oEl && Array.isArray(data.projects)) {
+      const nextByProject = Array.isArray(data.priorities) ? data.priorities : [];
+      oEl.innerHTML = data.projects.map((p, idx) => {
+        const linked = nextByProject[idx] || {};
+        return `<tr><td>${esc(p.name)}</td><td>${esc((Number(p.percent)||0) + '%')}</td><td>${esc(linked.task || 'Maintain progress and resolve blockers')}</td><td>${esc(linked.next || 'Define next concrete milestone')}</td></tr>`;
+      }).join('');
+    }
     if(uEl && data.updatedAt) uEl.textContent = `Live telemetry refreshed: ${data.updatedAt}`;
   }
 
