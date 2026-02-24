@@ -266,6 +266,50 @@
   </div>
 </section>
 
+<!-- ══════════════════════ SYSTEM HEALTH ══════════════════════ -->
+<section class="view" data-view="system-health">
+  <div class="grid">
+    <article class="card span-12">
+      <div class="card-title">System Health</div>
+      <p class="section-intro">Operational telemetry snapshot for core services and recent errors.</p>
+    </article>
+
+    <article class="card span-3">
+      <div class="card-title">Overall</div>
+      <div class="kpi" id="sh-overall">—</div>
+      <div class="kpi-sub" id="sh-updated">Awaiting telemetry…</div>
+    </article>
+
+    <article class="card span-3">
+      <div class="card-title">Services Healthy</div>
+      <div class="kpi" id="sh-services-healthy">0</div>
+      <div class="kpi-sub">Services currently passing checks</div>
+    </article>
+
+    <article class="card span-3">
+      <div class="card-title">Services Total</div>
+      <div class="kpi" id="sh-services-total">0</div>
+      <div class="kpi-sub">Total services monitored</div>
+    </article>
+
+    <article class="card span-3">
+      <div class="card-title">Open Errors</div>
+      <div class="kpi" id="sh-errors-open">0</div>
+      <div class="kpi-sub">Unresolved incidents</div>
+    </article>
+
+    <article class="card span-12">
+      <div class="card-title">Recent Errors</div>
+      <table>
+        <thead><tr><th>Time</th><th>Service</th><th>Severity</th><th>Status</th><th>Error</th><th>Next action</th></tr></thead>
+        <tbody id="sh-errors">
+          <tr><td colspan="6">No telemetry loaded.</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </div>
+</section>
+
 <!-- ══════════════════════ ARCHITECTURE ══════════════════════ -->
 <section class="view" data-view="architecture">
   <div class="grid">
@@ -796,7 +840,7 @@
 </main>
 <script>
   const TABS=[
-    ["overview","Overview"],["control-tower","Control Tower"],["todos","To-Dos"],["objectives","Objectives"],
+    ["overview","Overview"],["control-tower","Control Tower"],["system-health","System Health"],["todos","To-Dos"],["objectives","Objectives"],
     ["sessions","Sessions"],["architecture","Architecture"],["tools","Tools"],
     ["config","Config"],["memory","Memory"]
   ];
@@ -818,8 +862,8 @@
   const esc=(s)=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
   function tagClass(status){
     const x=String(status||"").toLowerCase();
-    if(["ok","active","scheduled","in progress","done","on-demand"].includes(x)) return "ok";
-    if(["blocked","critical"].includes(x)) return "warn";
+    if(["ok","active","scheduled","in progress","done","on-demand","resolved","healthy"].includes(x)) return "ok";
+    if(["blocked","critical","warn","warning","error","degraded","open"].includes(x)) return "warn";
     return "plain";
   }
   function renderControlTower(data){
@@ -846,10 +890,52 @@
     } catch {}
   }
 
+  function renderSystemHealth(data){
+    if(!data || !data.summary) return;
+    const s=data.summary;
+    const overallEl=document.getElementById('sh-overall');
+    const updatedEl=document.getElementById('sh-updated');
+    const healthyEl=document.getElementById('sh-services-healthy');
+    const totalEl=document.getElementById('sh-services-total');
+    const openEl=document.getElementById('sh-errors-open');
+    const errorsEl=document.getElementById('sh-errors');
+
+    const overall = s.overallStatus ?? s.overall ?? 'Unknown';
+    const total = Number(s.servicesTotal ?? s.enabledJobs ?? 0) || 0;
+    const failing = Number(s.failingJobs ?? 0) || 0;
+    const healthy = Number(s.servicesHealthy ?? Math.max(0, total - failing)) || 0;
+    const open = Number(s.errorsOpen ?? s.openErrors ?? 0) || 0;
+
+    if(overallEl) {
+      overallEl.textContent = esc(overall);
+      overallEl.style.color = ['ok','healthy','green'].includes(String(overall||'').toLowerCase()) ? 'var(--ok)' : 'var(--warn)';
+    }
+    if(updatedEl && data.updatedAt) updatedEl.textContent = `Updated: ${data.updatedAt}`;
+    if(healthyEl) healthyEl.textContent = esc(healthy);
+    if(totalEl) totalEl.textContent = esc(total);
+    if(openEl) openEl.textContent = esc(open);
+
+    if(errorsEl && Array.isArray(data.errors)) {
+      errorsEl.innerHTML = data.errors.length
+        ? data.errors.map(e=>`<tr><td>${esc(e.time || e.at || '')}</td><td>${esc(e.service || e.component || '')}</td><td><span class="tag ${tagClass(e.severity || 'warn')}">${esc(e.severity || 'warn')}</span></td><td><span class="tag ${tagClass(e.status || 'open')}">${esc(e.status || 'open')}</span></td><td>${esc(e.message || e.error || '')}</td><td>${esc(e.nextAction || e.suggestedFix || '')}</td></tr>`).join('')
+        : '<tr><td colspan="6">No active errors.</td></tr>';
+    }
+  }
+
+  async function loadSystemHealth(){
+    try {
+      const res = await fetch(`./live/system-health.json?t=${Date.now()}`,{cache:'no-store'});
+      if(!res.ok) return;
+      const data = await res.json();
+      renderSystemHealth(data);
+    } catch {}
+  }
+
   const init=(location.hash||"#overview").slice(1);
   setView(TABS.some(([id])=>id===init)?init:"overview");
   loadControlTower();
-  setInterval(loadControlTower, 60000);
+  loadSystemHealth();
+  setInterval(()=>{ loadControlTower(); loadSystemHealth(); }, 60000);
 </script>
 </body>
 </html>
