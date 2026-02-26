@@ -1,0 +1,29 @@
+{
+  "updatedAt": "2026-02-24 16:58 CST",
+  "paypalAcquisitionProbabilityPct": 36,
+  "thesis": "Probability moved up to moderate after same-day Bloomberg reporting and Reuters follow-on that Stripe has expressed preliminary interest in acquiring all or parts of PayPal. This is still unconfirmed and appears early-stage, not a signed process.",
+  "method": "Weighted by source credibility and deal-stage evidence: Reuters/Bloomberg high weight; secondary market commentary lower weight unless independently corroborated.",
+  "evidence": [
+    {
+      "date": "2026-02-24",
+      "signal": "Bloomberg reports Stripe considering acquisition of all or parts of PayPal.",
+      "direction": "increased",
+      "strength": "High",
+      "url": "https://www.bloomberg.com/news/articles/2026-02-24/payments-processor-stripe-expresses-interest-in-paypal"
+    },
+    {
+      "date": "2026-02-24",
+      "signal": "Reuters follow-on says Stripe has preliminary interest, citing Bloomberg reporting.",
+      "direction": "increased",
+      "strength": "High",
+      "url": "https://www.reuters.com/business/stripe-is-considering-acquisition-all-or-parts-paypal-bloomberg-news-reports-2026-02-24/"
+    },
+    {
+      "date": "2026-02-24",
+      "signal": "Coverage indicates discussions are early and no confirmed formal deal process yet.",
+      "direction": "neutral",
+      "strength": "Medium",
+      "url": "https://www.cnbc.com/2026/02/24/paypal-stock-stripe-acquisition-report.html"
+    }
+  ]
+}
