@@ -1,27 +1,11 @@
 {
-  "updatedAt": "2026-02-24 11:20 CST",
+  "updatedAt": "2026-03-08 17:58 CDT",
   "summary": {
-    "overallStatus": "Healthy",
-    "servicesHealthy": 6,
-    "servicesTotal": 7,
-    "errorsOpen": 1
+    "overall": "healthy",
+    "enabledJobs": 7,
+    "failingJobs": 0,
+    "staleJobs": 0,
+    "openErrors": 0
   },
-  "errors": [
-    {
-      "time": "2026-02-24 10:58 CST",
-      "service": "things-ingestion",
-      "severity": "warn",
-      "status": "open",
-      "message": "Full Disk Access not granted; Things DB probe blocked.",
-      "nextAction": "Grant Full Disk Access and rerun probe command."
-    },
-    {
-      "time": "2026-02-24 09:42 CST",
-      "service": "control-tower-refresh",
-      "severity": "ok",
-      "status": "resolved",
-      "message": "Scheduled refresh completed after transient file-lock delay.",
-      "nextAction": "No action required."
-    }
-  ]
+  "errors": []
 }

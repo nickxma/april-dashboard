@@ -150,7 +150,7 @@
   <div class="hrow">
     <div>
       <h1>✦ April OS — OpenClaw Dashboard</h1>
-      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.02.24-r14</div>
+      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.3.8-r16</div>
     </div>
     <nav class="tabs" id="tabs"></nav>
   </div>
@@ -161,24 +161,24 @@
 <section class="view active" data-view="overview">
   <div class="grid">
     <article class="card span-3">
-      <div class="card-title">Orchestrator</div>
-      <div class="kpi" style="color:var(--codex)">Codex</div>
-      <div class="kpi-sub">gpt-5.3-codex · default model</div>
-    </article>
-    <article class="card span-3">
-      <div class="card-title">Deep Think</div>
+      <div class="card-title">🧠 Orchestrator</div>
       <div class="kpi" style="color:var(--opus)">Opus</div>
-      <div class="kpi-sub">claude-opus-4-6 · on demand</div>
+      <div class="kpi-sub">claude-opus-4-6 · routing &amp; decisions</div>
     </article>
     <article class="card span-3">
-      <div class="card-title">Coding</div>
-      <div class="kpi" style="color:var(--sonnet)">Fallback</div>
-      <div class="kpi-sub">sonnet/opus on demand</div>
+      <div class="card-title">⚙️ Workhorse (default sub-agent)</div>
+      <div class="kpi" style="color:var(--codex)">Codex</div>
+      <div class="kpi-sub">gpt-5.3-codex · heavy lifting</div>
     </article>
     <article class="card span-3">
-      <div class="card-title">Cheap / Menial</div>
+      <div class="card-title">💡 Mid-tier</div>
+      <div class="kpi" style="color:var(--sonnet)">Sonnet</div>
+      <div class="kpi-sub">claude-sonnet-4-6 · balanced tasks</div>
+    </article>
+    <article class="card span-3">
+      <div class="card-title">💨 Lightweight</div>
       <div class="kpi" style="color:var(--haiku)">Haiku</div>
-      <div class="kpi-sub">claude-haiku-3-5 · simple tasks</div>
+      <div class="kpi-sub">claude-haiku-3-5 · cheap/fast tasks</div>
     </article>
 
     <article class="card span-12">
@@ -186,11 +186,53 @@
       <p class="section-intro" style="margin-bottom:0">This page is now strictly system snapshot (model posture, architecture context, and channel posture). Operational queueing, blockers, and agent execution state live only in <strong>Control Tower</strong>.</p>
     </article>
 
+    <article class="card span-12">
+      <div class="card-title">🧮 Model Allocation Policy — Who Uses What</div>
+      <table>
+        <thead><tr><th style="width:15%">Model</th><th style="width:10%">Provider</th><th style="width:12%">Cost Tier</th><th style="width:15%">Role</th><th>Used For</th><th style="width:18%">Usage Goal</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="tag opus">Opus 4-6</span></td>
+            <td>Anthropic</td>
+            <td>💰💰💰 High</td>
+            <td><strong>Orchestrator</strong></td>
+            <td>User replies, routing decisions, approval gates. Never spawned as sub-agent.</td>
+            <td>Minimal — keep lean</td>
+          </tr>
+          <tr>
+            <td><span class="tag sonnet">Sonnet 4-6</span></td>
+            <td>Anthropic</td>
+            <td>💰💰 Mid</td>
+            <td>Balanced sub-agent</td>
+            <td>Nuanced writing, complex reasoning needing Anthropic quality but not Opus cost.</td>
+            <td>Moderate — when Codex isn't ideal</td>
+          </tr>
+          <tr>
+            <td><span class="tag codex">Codex 5.3</span></td>
+            <td>OpenAI</td>
+            <td>💰💰 Mid</td>
+            <td><strong>Default workhorse</strong></td>
+            <td>Research, coding, multi-step analysis, tool-heavy tasks. Relieves Anthropic rate pressure.</td>
+            <td>Heavy — default sub-agent</td>
+          </tr>
+          <tr>
+            <td><span class="tag haiku">Haiku 3.5</span></td>
+            <td>Anthropic</td>
+            <td>💰 Low</td>
+            <td>Cheap/fast</td>
+            <td>Summaries, formatting, status checks, simple cron jobs, telemetry, hygiene.</td>
+            <td>Heavy — prefer for simple tasks</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">Plans: Anthropic Max ($200/mo) · OpenAI Plus ($20/mo). Primary constraint: never hit API rate limits. Opus/Sonnet/Haiku share Anthropic pool — spread load to Codex (OpenAI) to reduce 429 risk.</p>
+    </article>
+
     <article class="card span-8">
       <div class="card-title">What is this setup?</div>
       <p class="section-intro">This is a personal AI operating system running on your Mac Mini (<strong>MMM4</strong>). OpenClaw is the runtime layer: it receives messages, applies policy, routes to the right session, calls tools, and sends responses back to you.</p>
       <p class="section-intro" style="margin-top:0">At a systems level: <strong>Input channels → Gateway → Main session → Sub-agents/tools → Memory + external systems (Notion/GitHub) → Output channels</strong>. Your laptop can SSH into MMM4 and operate the same runtime from anywhere.</p>
-      <p class="section-intro" style="margin-top:0">Model policy is optimized for reliability and cost control: <strong>Codex main</strong> for stable day-to-day execution, <strong>Sonnet/Opus</strong> for premium reasoning on demand, and <strong>Haiku</strong> for low-intensity background tasks. This keeps throughput high while reducing Anthropic 429 disruption risk.</p>
+      <p class="section-intro" style="margin-top:0">Model policy: <strong>Opus orchestrator</strong> makes routing decisions and delegates work. <strong>Codex</strong> is the default workhorse for sub-agents (research, coding, heavy tasks). <strong>Sonnet</strong> for balanced Anthropic tasks when Codex isn't ideal. <strong>Haiku</strong> for cheap/fast background jobs. Opus usage is minimized — it decides, delegates, and stays lean. Plans: Anthropic Max ($200/mo), OpenAI Plus ($20/mo).</p>
       <p class="section-intro" style="margin-top:0">Memory is split into two layers: session context (temporary) and durable memory files (<code>MEMORY.md</code>, <code>memory/*.md</code>). Notion is your external objective system; writes are manual-only by your explicit command.</p>
       <p class="section-intro" style="margin-top:0">First-principles dashboard objective: show <strong>state</strong> (what is true now), <strong>control</strong> (what you can change), <strong>risk</strong> (what can break), and <strong>next actions</strong> (what to do next). If a panel doesn't help one of those four, it should be removed.</p>
     </article>
@@ -199,11 +241,11 @@
       <div class="card-title">Channels (on/off)</div>
       <table>
         <tr><td><span class="dot dot-ok"></span>Webchat</td><td><span class="tag ok">on</span></td></tr>
+        <tr><td><span class="dot dot-ok"></span>Slack</td><td><span class="tag ok">on</span></td></tr>
         <tr><td><span class="dot dot-ok"></span>Telegram</td><td><span class="tag ok">on</span></td></tr>
         <tr><td><span class="dot dot-ok"></span>Discord</td><td><span class="tag ok">on</span></td></tr>
         <tr><td><span class="dot dot-warn"></span>iMessage</td><td><span class="tag warn">off</span></td></tr>
         <tr><td><span class="dot dot-warn"></span>Signal</td><td><span class="tag warn">off</span></td></tr>
-        <tr><td><span class="dot dot-warn"></span>Slack</td><td><span class="tag warn">off</span></td></tr>
         <tr><td><span class="dot dot-warn"></span>WhatsApp</td><td><span class="tag warn">off</span></td></tr>
         <tr><td><span class="dot dot-warn"></span>Google Chat</td><td><span class="tag warn">off</span></td></tr>
         <tr><td><span class="dot dot-warn"></span>IRC</td><td><span class="tag warn">off</span></td></tr>
@@ -227,7 +269,7 @@
       <div id="ct-projects">
         <div class="progress-row"><div class="label">Launch Twitter account for AI + mindfulness content</div><div class="track"><div class="fill" style="width:18%"></div></div><div class="pct">18%</div></div>
         <div class="progress-row"><div class="label">Stablecoin expertise content pipeline</div><div class="track"><div class="fill" style="width:12%"></div></div><div class="pct">12%</div></div>
-        <div class="progress-row"><div class="label">Autonomous background ops (low-cost)</div><div class="track"><div class="fill" style="width:35%"></div></div><div class="pct">35%</div></div>
+        <div class="progress-row"><div class="label">Autonomous background ops (low-cost)</div><div class="track"><div class="fill" style="width:40%"></div></div><div class="pct">40%</div></div>
       </div>
       <p class="note" id="ct-updated">Scoring rule: 0-100 based on concrete milestones completed, not vibes. I’ll ask for progress check-ins on a cadence and update this honestly.</p>
     </article>
@@ -386,12 +428,12 @@
         <text x="25" y="34" fill="#c03060" font-size="11" font-weight="700" letter-spacing=".06em">YOU</text>
 
         <rect x="30" y="45" width="90" height="50" rx="10" fill="white" stroke="#f0b0d0"/>
-        <text x="75" y="67" fill="#c03060" text-anchor="middle" font-size="12" font-weight="600">Telegram</text>
-        <text x="75" y="84" fill="#d080a0" text-anchor="middle" font-size="10">mobile / web</text>
+        <text x="75" y="67" fill="#c03060" text-anchor="middle" font-size="12" font-weight="600">Slack</text>
+        <text x="75" y="84" fill="#d080a0" text-anchor="middle" font-size="10">Socket Mode</text>
 
         <rect x="135" y="45" width="90" height="50" rx="10" fill="white" stroke="#f0b0d0"/>
-        <text x="180" y="67" fill="#c03060" text-anchor="middle" font-size="12" font-weight="600">iMessage</text>
-        <text x="180" y="84" fill="#d080a0" text-anchor="middle" font-size="10">Apple devices</text>
+        <text x="180" y="67" fill="#c03060" text-anchor="middle" font-size="12" font-weight="600">Telegram</text>
+        <text x="180" y="84" fill="#d080a0" text-anchor="middle" font-size="10">mobile / web</text>
 
         <rect x="240" y="45" width="90" height="50" rx="10" fill="white" stroke="#f0b0d0"/>
         <text x="285" y="67" fill="#c03060" text-anchor="middle" font-size="12" font-weight="600">Discord</text>
@@ -415,7 +457,7 @@
 
         <rect x="530" y="102" width="110" height="36" rx="8" fill="white" stroke="#d0c8f8"/>
         <text x="585" y="117" fill="#6050c0" text-anchor="middle" font-size="11" font-weight="600">Channel Router</text>
-        <text x="585" y="132" fill="#9080d0" text-anchor="middle" font-size="10">Telegram/iMsg/Discord</text>
+        <text x="585" y="132" fill="#9080d0" text-anchor="middle" font-size="10">Slack/Telegram/Discord</text>
 
         <rect x="652" y="102" width="110" height="36" rx="8" fill="white" stroke="#d0c8f8"/>
         <text x="707" y="117" fill="#6050c0" text-anchor="middle" font-size="11" font-weight="600">Memory Hooks</text>
@@ -428,8 +470,8 @@
 
         <!-- Claw Agent boxes -->
         <rect x="390" y="230" width="420" height="70" rx="12" fill="#fff0f8" stroke="#f0a0c8" stroke-width="1.5"/>
-        <text x="600" y="255" fill="#c03060" text-anchor="middle" font-size="14" font-weight="700">Claw — Main Agent Session</text>
-        <text x="600" y="273" fill="#d06090" text-anchor="middle" font-size="11">Model: Codex 5.3 (orchestrator) · 272k ctx · 1 session max</text>
+        <text x="600" y="255" fill="#c03060" text-anchor="middle" font-size="14" font-weight="700">Claw — Main Agent Session (Orchestrator)</text>
+        <text x="600" y="273" fill="#d06090" text-anchor="middle" font-size="11">Model: Opus 4-6 · minimal usage · delegates heavy work to sub-agents</text>
         <text x="600" y="291" fill="#d06090" text-anchor="middle" font-size="10">Reads SOUL.md · USER.md · memory.md on every session start</text>
 
         <!-- Sub-agent row -->
@@ -449,7 +491,7 @@
 
         <rect x="393" y="442" width="195" height="90" rx="10" fill="#edf0ff" stroke="#c0c8f8" stroke-width="1.5"/>
         <text x="490" y="465" fill="#4050b0" text-anchor="middle" font-size="12" font-weight="600">Research Agent</text>
-        <text x="490" y="483" fill="#6070c0" text-anchor="middle" font-size="10">Model: Haiku 3.5 (default)</text>
+        <text x="490" y="483" fill="#6070c0" text-anchor="middle" font-size="10">Model: Codex 5.3 (default)</text>
         <text x="490" y="498" fill="#6070c0" text-anchor="middle" font-size="10">web_search + fetch</text>
         <text x="490" y="513" fill="#6070c0" text-anchor="middle" font-size="10">cited findings</text>
 
@@ -533,9 +575,9 @@
     <article class="card span-6">
       <div class="card-title">How a message flows</div>
       <ol>
-        <li>You send a message on Telegram / Discord / Webchat</li>
+        <li>You send a message on Slack / Telegram / Discord / Webchat</li>
         <li>OpenClaw gateway receives it and routes to main session</li>
-        <li>Claw (Codex 5.3) reads context + memory and decides what to do</li>
+        <li>Claw (Opus) reads context + memory and decides what to do</li>
         <li>If complex → spawns a sub-agent with the right model tier</li>
         <li>Sub-agent runs, returns structured output</li>
         <li>Claw synthesizes and replies to you</li>
@@ -547,9 +589,9 @@
       <table>
         <thead><tr><th>Layer</th><th>What</th><th>Notes</th></tr></thead>
         <tbody>
-          <tr><td>Hardware</td><td>Mac Mini MMM4</td><td>Always-on · arm64 · macOS 25.3</td></tr>
+          <tr><td>Hardware</td><td>Mac Mini MMM4</td><td>Always-on · arm64 · macOS 26.3</td></tr>
           <tr><td>Network</td><td>Tailscale</td><td>100.74.228.112 · SSH pending</td></tr>
-          <tr><td>Gateway</td><td>OpenClaw 2026.2.17</td><td>Port 18789 · local mode</td></tr>
+          <tr><td>Gateway</td><td>OpenClaw 2026.3.7</td><td>Port 18789 · local mode</td></tr>
           <tr><td>Your laptop</td><td>SSH into MMM4</td><td>Via Tailscale tailnet</td></tr>
           <tr><td>Remote dashboard</td><td>GitHub Pages</td><td>nickxma.github.io/april-dashboard</td></tr>
         </tbody>
@@ -567,12 +609,12 @@
         <thead><tr><th>Tier</th><th>Model</th><th>Alias</th><th>When Used</th><th>Relative Cost</th></tr></thead>
         <tbody>
           <tr>
-            <td><span class="tag sonnet">Orchestrator</span></td>
-            <td><code>claude-sonnet-4-6</code></td>
-            <td><code>/model sonnet</code></td>
-            <td>All conversations, coordination, most tasks</td>
+            <td><span class="tag opus">Orchestrator</span></td>
+            <td><code>claude-opus-4-6</code></td>
+            <td><code>/model opus</code></td>
+            <td>All conversations, routing, coordination, decisions</td>
             <td>
-              <div class="model-bar"><div class="bar"><div class="fill fill-sonnet" style="width:40%"></div></div><span>Medium</span></div>
+              <div class="model-bar"><div class="bar"><div class="fill fill-opus" style="width:90%"></div></div><span>High</span></div>
             </td>
           </tr>
           <tr>
@@ -619,7 +661,7 @@
     </article>
     <article class="card span-6">
       <div class="card-title">Sub-agent Default Model</div>
-      <p class="note">Sub-agents default to <strong>Haiku 3.5</strong> unless overridden at spawn time. Claw will use Sonnet/Opus for premium reasoning and Codex for coding tasks.</p>
+      <p class="note">Sub-agents default to <strong>Codex 5.3</strong> (gpt-5.3-codex) unless overridden at spawn time. Claw will use Sonnet for balanced Anthropic tasks and Haiku for cheap/fast jobs.</p>
     </article>
   </div>
 </section>
@@ -632,7 +674,7 @@
       <table>
         <thead><tr><th>Type</th><th>Key</th><th>Model</th><th>Lifetime</th><th>Who talks to it</th></tr></thead>
         <tbody>
-          <tr><td><span class="tag codex">Main</span></td><td><code>agent:main:main</code></td><td>Codex 5.3</td><td>Ongoing conversation</td><td>You directly</td></tr>
+          <tr><td><span class="tag opus">Main</span></td><td><code>agent:main:main</code></td><td>Opus 4-6</td><td>Ongoing conversation</td><td>You directly</td></tr>
           <tr><td><span class="tag plain">Sub-agent</span></td><td><code>agent:main:sub-XXXX</code></td><td>Varies (Opus/Codex/Haiku)</td><td>Single task → auto-cleanup</td><td>Main agent only</td></tr>
           <tr><td><span class="tag ok">Isolated/Cron</span></td><td><code>agent:isolated:XXXX</code></td><td>Configurable</td><td>Scheduled / timed</td><td>Nobody (async)</td></tr>
         </tbody>
@@ -696,6 +738,8 @@
           <tr><td><code>cron</code></td><td>Scheduled jobs + reminders</td><td><span class="tag ok">active</span></td><td></td></tr>
           <tr><td><code>sessions_spawn</code></td><td>Spawn sub-agents</td><td><span class="tag ok">active</span></td><td>Max 2 concurrent</td></tr>
           <tr><td><code>memory_search</code></td><td>Semantic search over memory</td><td><span class="tag ok">active</span></td><td></td></tr>
+          <tr><td><code>pdf</code></td><td>Analyze PDF documents</td><td><span class="tag ok">active</span></td><td></td></tr>
+          <tr><td><code>gog</code></td><td>Google Workspace (Gmail/Cal/Drive/Sheets/Docs)</td><td><span class="tag ok">active</span></td><td>Authed via gog CLI</td></tr>
           <tr><td><code>tts</code></td><td>Text-to-speech</td><td><span class="tag ok">active</span></td><td></td></tr>
           <tr><td><code>image</code></td><td>Vision model</td><td><span class="tag ok">active</span></td><td></td></tr>
           <tr><td><code>nodes</code></td><td>Paired device control</td><td><span class="tag ok">active</span></td><td>Camera/screen blocked by policy</td></tr>
@@ -720,7 +764,16 @@
           <tr><td>notion</td><td>Read Notion DBs; manual writes</td></tr>
           <tr><td>github</td><td>gh CLI — PRs, issues, CI</td></tr>
           <tr><td>coding-agent</td><td>Delegate complex coding tasks</td></tr>
+          <tr><td>slack</td><td>Slack messaging (Socket Mode)</td></tr>
+          <tr><td>gog</td><td>Google Workspace — Gmail/Cal/Drive/Sheets/Docs</td></tr>
+          <tr><td>obsidian</td><td>Obsidian vault read/write</td></tr>
+          <tr><td>things-mac</td><td>Things 3 task ingestion</td></tr>
           <tr><td>weather</td><td>Weather lookups (no key needed)</td></tr>
+          <tr><td>tmux</td><td>Terminal session management</td></tr>
+          <tr><td>openai-whisper</td><td>Audio transcription</td></tr>
+          <tr><td>video-frames</td><td>Video frame extraction + analysis</td></tr>
+          <tr><td>1password</td><td>Credential lookups (1Password CLI)</td></tr>
+          <tr><td>gemini</td><td>Google Gemini model access</td></tr>
           <tr><td>clawhub</td><td>Install/update skills from clawhub.com</td></tr>
           <tr><td>healthcheck</td><td>Security / host audits</td></tr>
         </tbody>
@@ -737,8 +790,8 @@
       <table>
         <thead><tr><th>Setting</th><th>Value</th></tr></thead>
         <tbody>
-          <tr><td>Main model</td><td><span class="tag codex">gpt-5.3-codex</span></td></tr>
-          <tr><td>Sub-agent default</td><td><span class="tag haiku">claude-haiku-3-5</span></td></tr>
+          <tr><td>Main model</td><td><span class="tag opus">claude-opus-4-6</span></td></tr>
+          <tr><td>Sub-agent default</td><td><span class="tag codex">gpt-5.3-codex</span></td></tr>
           <tr><td>Deep think</td><td><span class="tag opus">claude-opus-4-6</span></td></tr>
           <tr><td>Coding</td><td><span class="tag codex">gpt-5.3-codex</span></td></tr>
           <tr><td>Cheap/menial</td><td><span class="tag haiku">claude-haiku-3-5</span></td></tr>
@@ -756,9 +809,9 @@
       <table>
         <thead><tr><th>Command</th><th>Switches to</th><th>Use for</th></tr></thead>
         <tbody>
-          <tr><td><code>/model codex</code></td><td>Codex 5.3</td><td>Default — most conversations + reliability</td></tr>
-          <tr><td><code>/model sonnet</code></td><td>Sonnet 4.6</td><td>Premium fallback when Anthropic quota is available</td></tr>
-          <tr><td><code>/model opus</code></td><td>Opus 4.6</td><td>Hard strategy, analysis</td></tr>
+          <tr><td><code>/model opus</code></td><td>Opus 4.6</td><td>Default — orchestrator for all conversations</td></tr>
+          <tr><td><code>/model codex</code></td><td>Codex 5.3</td><td>Default sub-agent workhorse</td></tr>
+          <tr><td><code>/model sonnet</code></td><td>Sonnet 4.6</td><td>Balanced Anthropic tasks when Codex isn't ideal</td></tr>
           <tr><td><code>/model haiku</code></td><td>Haiku 3.5</td><td>Quick/cheap tasks</td></tr>
         </tbody>
       </table>
@@ -786,8 +839,9 @@
       <table>
         <thead><tr><th>Objective</th><th>Status</th><th>Notes</th></tr></thead>
         <tbody>
-          <tr><td>Become a stablecoin expert</td><td><span class="tag warn">Recovering</span></td><td>Core crypto domain objective</td></tr>
-          <tr><td>Something (in crypto) part-time</td><td><span class="tag plain">Pass</span></td><td>Related opportunity track</td></tr>
+          <tr><td>Baddies (dating)</td><td><span class="tag ok">Active</span></td><td>Personal life objective</td></tr>
+          <tr><td>Mindfulness content pipeline</td><td><span class="tag ok">Active</span></td><td>Waking Up transcript corpus → tweets/threads/essays/newsletter</td></tr>
+          <tr><td>Stablecoin expertise</td><td><span class="tag ok">Active</span></td><td>PayPal BCDC work, Arbitrum L2 wedge · deadline April 20</td></tr>
           <tr><td>Sell Manhattan co-op</td><td><span class="tag warn">Recovering</span></td><td>Material financial objective</td></tr>
         </tbody>
       </table>
@@ -824,10 +878,8 @@
       <table>
         <thead><tr><th>Loop</th><th>Status</th><th>Next Action</th></tr></thead>
         <tbody>
-          <tr><td>Tailscale SSH on MMM4</td><td><span class="tag warn">Pending</span></td><td><code>sudo tailscale set --ssh=true</code></td></tr>
-          <tr><td>Notion token rotation</td><td><span class="tag warn">Pending</span></td><td>Rotate token exposed in chat earlier</td></tr>
-          <tr><td>Notion write schema</td><td><span class="tag warn">Pending</span></td><td>Define which fields are safe to write</td></tr>
-          <tr><td>Dashboard live wiring (v3)</td><td><span class="tag plain">Backlog</span></td><td>Wire real session/sub-agent status</td></tr>
+          <tr><td>Dashboard rebuild as objectives homepage</td><td><span class="tag ok">In progress</span></td><td>This task — update all stale data, ship r16</td></tr>
+          <tr><td>Research tasks JSON stale</td><td><span class="tag warn">Stale</span></td><td>Last updated Feb 24 — needs daily refresh fix</td></tr>
         </tbody>
       </table>
     </article>
@@ -842,10 +894,9 @@
       <table>
         <thead><tr><th>Task</th><th>Status</th><th>Ball</th><th>Next step</th><th>Scheduled agent</th></tr></thead>
         <tbody>
-          <tr><td>Set up browser-based remote command access</td><td><span class="tag warn">Waiting</span></td><td>Nick</td><td>Pick SSH tunnel or Tailscale Serve and confirm preferred path</td><td>Main (Claw)</td></tr>
-          <tr><td>Restore Things 3 scan reliability</td><td><span class="tag warn">Blocked</span></td><td>Nick</td><td>Grant Full Disk Access to OpenClaw/host runtime, then rerun <code>things today --limit 30</code></td><td>Main (Claw)</td></tr>
-          <tr><td>Build top-level must-do task view in dashboard</td><td><span class="tag ok">In progress</span></td><td>Claw</td><td>Keep this table as single source of truth and trim to active items only</td><td>Coding Agent (Codex)</td></tr>
-          <tr><td>Notion objective write flow (manual-only)</td><td><span class="tag plain">Ready</span></td><td>Nick</td><td>Send explicit command for first write action (entry + fields)</td><td>Main (Claw)</td></tr>
+          <tr><td>Rebuild dashboard to reflect latest system state</td><td><span class="tag ok">In progress</span></td><td>Claw</td><td>Update all stale data, ship build r16</td><td>Coding Agent (Codex)</td></tr>
+          <tr><td>Stablecoin wedge matrix research</td><td><span class="tag ok">Active</span></td><td>Claw</td><td>PayPal BCDC + Arbitrum L2 wedge analysis · deadline April 20</td><td>Research Agent</td></tr>
+          <tr><td>Mindfulness tweet pipeline</td><td><span class="tag ok">Active</span></td><td>Claw</td><td>Waking Up transcript → tweets/threads/essays/newsletter</td><td>Coding Agent (Codex)</td></tr>
         </tbody>
       </table>
       <p class="note">Status values: <strong>Ready</strong>, <strong>In progress</strong>, <strong>Waiting</strong>, <strong>Blocked</strong>, <strong>Done</strong>. Ball = whose court it is right now. Agent assignment mode: <strong>Planned (manual)</strong> for reliability (no noisy live polling/rate-limit risk).</p>

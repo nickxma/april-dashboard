@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-08 16:57 CDT",
+  "updatedAt": "2026-02-24 10:56 CST",
   "projects": [
     {"name":"Launch Twitter account for AI + mindfulness content","percent":18},
     {"name":"Stablecoin expertise content pipeline","percent":12},
@@ -8,11 +8,13 @@
   "agents": [
     {"name":"Main (April)","status":"On-demand","workstream":"Orchestration, approvals, reverse prompting","cadence":"Runs when Nick messages"},
     {"name":"Sub-agents","status":"0 active","workstream":"Spawned for focused tasks only","cadence":"None active right now"},
-    {"name":"control-tower-telemetry-refresh","status":"Scheduled","workstream":"Refreshes live/control-tower.json","cadence":"Every 2h"},
-    {"name":"dashboard-system-healthcheck","status":"Scheduled","workstream":"Dashboard/system reliability checks","cadence":"Every 1h"},
-    {"name":"journal-prompt","status":"Scheduled","workstream":"Morning/evening journal prompts","cadence":"06:00 and 18:00 America/Chicago"},
-    {"name":"research-tasks-daily-refresh","status":"Scheduled","workstream":"Daily research task refresh","cadence":"07:35 America/Chicago"},
-    {"name":"obj-95 + obj-106 telemetry jobs","status":"Scheduled","workstream":"Objective-specific progress refresh","cadence":"Obj-95: 08:00 Sun/Mon/Wed/Fri; Obj-106: 09:00 Tue/Thu/Sat (America/Chicago)"}
+    {"name":"control-tower-telemetry-refresh","status":"Scheduled","workstream":"Refreshes live/control-tower.json","cadence":"Every 30m"},
+    {"name":"april-low-cost-reliability-sweep","status":"Scheduled","workstream":"Dashboard + Things probe + reliability log","cadence":"Every 6h"},
+    {"name":"april-daily-improvement-scout","status":"Scheduled","workstream":"Daily infrastructure improvements","cadence":"07:15 America/Chicago"},
+    {"name":"april-briefs (4/day)","status":"Scheduled","workstream":"Execution briefs","cadence":"08:30 / 13:00 / 18:30 / 22:00 CT"},
+    {"name":"april-proactive-checkins (5/day)","status":"Scheduled","workstream":"Short proactive prompts","cadence":"09:45 / 11:45 / 14:45 / 16:45 / 20:45 CT"},
+    {"name":"workspace-hygiene-report","status":"Scheduled","workstream":"Workspace hygiene report-only scan","cadence":"21:10 America/Chicago"},
+    {"name":"Weekly OpenClaw synthesis to Obsidian","status":"Scheduled","workstream":"Weekly synthesis export","cadence":"Sundays 18:00 America/Chicago"}
   ],
   "blockers": [
     {"item":"Choose remote command path standard","score":7.0,"owner":"Nick","next":"Pick SSH tunnel vs Tailscale Serve default"},
