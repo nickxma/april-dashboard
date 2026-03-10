@@ -1,11 +1,30 @@
 {
-  "updatedAt": "2026-03-08 17:58 CDT",
+  "updatedAt": "2026-03-10 12:25 CDT",
   "summary": {
-    "overall": "healthy",
+    "overall": "degraded",
     "enabledJobs": 7,
-    "failingJobs": 0,
+    "failingJobs": 2,
     "staleJobs": 0,
-    "openErrors": 0
+    "openErrors": 2
   },
-  "errors": []
+  "errors": [
+    {
+      "time": "2026-03-10 12:03 CDT",
+      "component": "control-tower-telemetry-refresh",
+      "severity": "critical",
+      "status": "open",
+      "error": "cron: job execution timed out",
+      "meaning": "The telemetry refresh did not finish before its timeout, so dashboard control-tower data may be outdated until the next successful run.",
+      "suggestedFix": "Increase this job's timeoutSeconds (or reduce task scope) so it can complete within one run."
+    },
+    {
+      "time": "2026-03-10 08:13 CDT",
+      "component": "obj-95-daily-tweet-draft",
+      "severity": "critical",
+      "status": "open",
+      "error": "cron: job execution timed out",
+      "meaning": "The daily tweet draft job exceeded runtime and stopped before finishing, so no fresh draft was delivered in that run.",
+      "suggestedFix": "Shorten prompt complexity and cap response length, or raise timeoutSeconds for this job."
+    }
+  ]
 }

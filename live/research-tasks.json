@@ -1,29 +1,43 @@
 {
-  "updatedAt": "2026-02-24 16:58 CST",
-  "paypalAcquisitionProbabilityPct": 36,
-  "thesis": "Probability moved up to moderate after same-day Bloomberg reporting and Reuters follow-on that Stripe has expressed preliminary interest in acquiring all or parts of PayPal. This is still unconfirmed and appears early-stage, not a signed process.",
-  "method": "Weighted by source credibility and deal-stage evidence: Reuters/Bloomberg high weight; secondary market commentary lower weight unless independently corroborated.",
+  "updatedAt": "2026-03-10 07:35 CDT",
+  "paypalAcquisitionProbabilityPct": 28,
+  "thesis": "Acquisition odds rose from low baseline after credible reports of preliminary buyer interest, but evidence still indicates very early-stage exploration with no confirmed process or financing path. PayPal’s ongoing standalone strategy actions and asset-level partnerships make a full-company deal plausible but not yet likely.",
+  "method": "Probability is a conservative base-rate estimate updated by weighting recency and credibility of corroborated reports, then discounting unverified rumor-stage signals and execution constraints.",
   "evidence": [
     {
       "date": "2026-02-24",
-      "signal": "Bloomberg reports Stripe considering acquisition of all or parts of PayPal.",
+      "signal": "Reuters reports (citing Bloomberg) that Stripe is considering acquiring all or parts of PayPal; both parties declined comment and Reuters could not independently verify.",
       "direction": "increased",
-      "strength": "High",
-      "url": "https://www.bloomberg.com/news/articles/2026-02-24/payments-processor-stripe-expresses-interest-in-paypal"
-    },
-    {
-      "date": "2026-02-24",
-      "signal": "Reuters follow-on says Stripe has preliminary interest, citing Bloomberg reporting.",
-      "direction": "increased",
-      "strength": "High",
+      "strength": "Medium",
       "url": "https://www.reuters.com/business/stripe-is-considering-acquisition-all-or-parts-paypal-bloomberg-news-reports-2026-02-24/"
     },
     {
-      "date": "2026-02-24",
-      "signal": "Coverage indicates discussions are early and no confirmed formal deal process yet.",
-      "direction": "neutral",
+      "date": "2026-02-23",
+      "signal": "Reuters reports Bloomberg claim that PayPal has held meetings with banks amid unsolicited interest; report says interest is preliminary and may not lead to a transaction.",
+      "direction": "increased",
       "strength": "Medium",
-      "url": "https://www.cnbc.com/2026/02/24/paypal-stock-stripe-acquisition-report.html"
+      "url": "https://www.reuters.com/business/paypal-attracts-takeover-interest-after-stock-slide-bloomberg-news-reports-2026-02-23/"
+    },
+    {
+      "date": "2026-02-03",
+      "signal": "Reuters: PayPal replaced its CEO after weak outlook and strategy reset commentary, increasing strategic optionality but also signaling operational turbulence.",
+      "direction": "increased",
+      "strength": "Low",
+      "url": "https://www.reuters.com/business/paypal-sees-2026-profit-below-estimates-holiday-quarter-results-fall-short-2026-02-03/"
+    },
+    {
+      "date": "2025-11-17",
+      "signal": "Reuters: PayPal renewed and expanded KKR BNPL receivables partnership, indicating continued execution of standalone asset-monetization strategy.",
+      "direction": "decreased",
+      "strength": "Medium",
+      "url": "https://www.reuters.com/business/kkr-buy-up-754-billion-paypals-european-bnpl-loans-renewed-deal-2025-11-17/"
+    },
+    {
+      "date": "2025-02-25",
+      "signal": "PayPal Investor Day laid out multi-year standalone growth targets and platform strategy, which is generally inconsistent with an active sale process at that time.",
+      "direction": "decreased",
+      "strength": "Low",
+      "url": "https://newsroom.paypal-corp.com/2025-02-25-PayPal-Introduces-Outlook-for-Accelerating-Growth-at-Investor-Day"
     }
   ]
 }
