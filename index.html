@@ -151,7 +151,7 @@
   <div class="hrow">
     <div>
       <h1>✦ April OS — OpenClaw Dashboard</h1>
-      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.3.8-r16</div>
+      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.3.12-r17</div>
     </div>
     <nav class="tabs" id="tabs"></nav>
   </div>
@@ -246,10 +246,7 @@
         <tr><td><span class="dot dot-ok"></span>Telegram</td><td><span class="tag ok">on</span></td></tr>
         <tr><td><span class="dot dot-ok"></span>Discord</td><td><span class="tag ok">on</span></td></tr>
         <tr><td><span class="dot dot-warn"></span>iMessage</td><td><span class="tag warn">off</span></td></tr>
-        <tr><td><span class="dot dot-warn"></span>Signal</td><td><span class="tag warn">off</span></td></tr>
         <tr><td><span class="dot dot-warn"></span>WhatsApp</td><td><span class="tag warn">off</span></td></tr>
-        <tr><td><span class="dot dot-warn"></span>Google Chat</td><td><span class="tag warn">off</span></td></tr>
-        <tr><td><span class="dot dot-warn"></span>IRC</td><td><span class="tag warn">off</span></td></tr>
       </table>
     </article>
 
@@ -396,6 +393,26 @@
   </div>
 </section>
 
+<!-- ══════════════════════ SLACK ══════════════════════ -->
+<section class="view" data-view="slack">
+  <div class="grid">
+    <article class="card span-12">
+      <div class="card-title">Slack Channels (active with Claw)</div>
+      <table>
+        <thead><tr><th style="width:18%">Channel</th><th style="width:22%">Channel ID</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><strong>#hq</strong></td><td><code>C0AKD18KN2G</code></td><td>Daily driver working channel</td></tr>
+          <tr><td><strong>#alerts</strong></td><td><code>C0AKD1VH8CU</code></td><td>Urgent/time-sensitive notifications (failures, 429s, blocked tasks, security)</td></tr>
+          <tr><td><strong>#dashboard</strong></td><td><code>C0AK32JBKTM</code></td><td>Dashboard building, UI changes, automated telemetry feed</td></tr>
+          <tr><td><strong>#april-journal</strong></td><td><code>C0AL3MWCR40</code></td><td>Journal prompts (6AM + 6PM), objective check-ins</td></tr>
+          <tr><td><strong>#obj-95</strong></td><td><code>C0AL3MQV41W</code></td><td>Mindfulness content engine, tweet/thread drafts from Waking Up corpus</td></tr>
+          <tr><td><strong>#obj-106</strong></td><td><code>C0AJTUZED2B</code></td><td>Stablecoin/PayPal/Ethereum research, wedge selection, Arbitrum L2</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </div>
+</section>
+
 <!-- ══════════════════════ ARCHITECTURE ══════════════════════ -->
 <section class="view" data-view="architecture">
   <div class="grid">
@@ -425,7 +442,7 @@
         </defs>
 
         <!-- ── ZONE: YOU ── -->
-        <rect x="10" y="10" width="340" height="150" rx="14" fill="url(#grad-you)" stroke="#f0b8d8" stroke-width="1.5"/>
+        <rect x="10" y="10" width="340" height="110" rx="14" fill="url(#grad-you)" stroke="#f0b8d8" stroke-width="1.5"/>
         <text x="25" y="34" fill="#c03060" font-size="11" font-weight="700" letter-spacing=".06em">YOU</text>
 
         <rect x="30" y="45" width="90" height="50" rx="10" fill="white" stroke="#f0b0d0"/>
@@ -440,8 +457,6 @@
         <text x="285" y="67" fill="#c03060" text-anchor="middle" font-size="12" font-weight="600">Discord</text>
         <text x="285" y="84" fill="#d080a0" text-anchor="middle" font-size="10">any device</text>
 
-        <text x="180" y="126" fill="#c06080" text-anchor="middle" font-size="11">Also: SSH from MacBook → MMM4</text>
-        <text x="180" y="143" fill="#d090a8" text-anchor="middle" font-size="10">via Tailscale (100.74.228.112)</text>
 
         <!-- ── ZONE: MAC MINI (HARDWARE) ── -->
         <rect x="370" y="10" width="460" height="680" rx="14" fill="url(#grad-hw)" stroke="#c0c8f0" stroke-width="2"/>
@@ -824,6 +839,38 @@
         <li>Gateway restarts, pings you when back</li>
       </ol>
     </article>
+
+    <article class="card span-6">
+      <div class="card-title">Memory — What Gets Stored</div>
+      <ul>
+        <li>Decisions and preferences</li>
+        <li>Constraints and guardrails</li>
+        <li>Active projects and deadlines</li>
+        <li>Open loops and commitments</li>
+        <li>Names, recurring routines</li>
+      </ul>
+      <p class="note" style="margin-top:10px;">Secrets are <strong>not</strong> stored unless explicitly requested.</p>
+    </article>
+    <article class="card span-6">
+      <div class="card-title">Memory — Key Constraints</div>
+      <ul>
+        <li>Parallel blocked by default → <code>GO PARALLEL</code> to unlock</li>
+        <li>System changes need explicit approval</li>
+        <li>Rate-limit guardrails on concurrency</li>
+        <li>Notion writes manual-only</li>
+        <li>First-install artifacts archived (2026-02-19)</li>
+      </ul>
+    </article>
+    <article class="card span-12">
+      <div class="card-title">Open Loops</div>
+      <table>
+        <thead><tr><th>Loop</th><th>Status</th><th>Next Action</th></tr></thead>
+        <tbody>
+          <tr><td>Dashboard rebuild as objectives homepage</td><td><span class="tag ok">In progress</span></td><td>This task — update all stale data, ship r16</td></tr>
+          <tr><td>Research tasks JSON stale</td><td><span class="tag warn">Stale</span></td><td>Last updated Feb 24 — needs daily refresh fix</td></tr>
+        </tbody>
+      </table>
+    </article>
   </div>
 </section>
 
@@ -850,42 +897,6 @@
   </div>
 </section>
 
-<!-- ══════════════════════ MEMORY ══════════════════════ -->
-<section class="view" data-view="memory">
-  <div class="grid">
-    <article class="card span-6">
-      <div class="card-title">What Gets Stored</div>
-      <ul>
-        <li>Decisions and preferences</li>
-        <li>Constraints and guardrails</li>
-        <li>Active projects and deadlines</li>
-        <li>Open loops and commitments</li>
-        <li>Names, recurring routines</li>
-      </ul>
-      <p class="note" style="margin-top:10px;">Secrets are <strong>not</strong> stored unless explicitly requested.</p>
-    </article>
-    <article class="card span-6">
-      <div class="card-title">Key Constraints (from memory.md)</div>
-      <ul>
-        <li>Parallel blocked by default → <code>GO PARALLEL</code> to unlock</li>
-        <li>System changes need explicit approval</li>
-        <li>Rate-limit guardrails on concurrency</li>
-        <li>Notion writes manual-only</li>
-        <li>First-install artifacts archived (2026-02-19)</li>
-      </ul>
-    </article>
-    <article class="card span-12">
-      <div class="card-title">Open Loops</div>
-      <table>
-        <thead><tr><th>Loop</th><th>Status</th><th>Next Action</th></tr></thead>
-        <tbody>
-          <tr><td>Dashboard rebuild as objectives homepage</td><td><span class="tag ok">In progress</span></td><td>This task — update all stale data, ship r16</td></tr>
-          <tr><td>Research tasks JSON stale</td><td><span class="tag warn">Stale</span></td><td>Last updated Feb 24 — needs daily refresh fix</td></tr>
-        </tbody>
-      </table>
-    </article>
-  </div>
-</section>
 
 <!-- ══════════════════════ TODOS ══════════════════════ -->
 <section class="view" data-view="todos">
@@ -905,39 +916,13 @@
   </div>
 </section>
 
-<!-- ══════════════════════ RUNBOOK ══════════════════════ -->
-<section class="view" data-view="runbook">
-  <div class="grid">
-    <article class="card span-6">
-      <div class="card-title">Daily Operating Pattern</div>
-      <ol>
-        <li>Check Overview: mode, posture, open loops</li>
-        <li>Pick one objective, attach one next action</li>
-        <li>Claw handles or spawns right sub-agent tier automatically</li>
-        <li>Review output → steer if needed</li>
-        <li>Durable decisions written to memory.md</li>
-        <li>Optional: push updates to Notion explicitly</li>
-      </ol>
-    </article>
-    <article class="card span-6">
-      <div class="card-title">Weekly 15-min Review</div>
-      <ul>
-        <li>What objective moved this week?</li>
-        <li>What stalled — real blocker?</li>
-        <li>One leverage move for next week?</li>
-        <li>Config / tool upgrades worth shipping?</li>
-        <li>Memory hygiene: archive stale loops</li>
-      </ul>
-    </article>
-  </div>
-</section>
 
 </main>
 <script>
   const TABS=[
     ["overview","Overview"],["control-tower","Control Tower"],["system-health","System Health"],["research-tasks","Research Tasks"],["todos","To-Dos"],["objectives","Objectives"],
-    ["sessions","Sessions"],["architecture","Architecture"],["tools","Tools"],
-    ["config","Config"],["memory","Memory"]
+    ["slack","Slack"],["sessions","Sessions"],["architecture","Architecture"],["tools","Tools"],
+    ["config","Config"]
   ];
   const tabsEl=document.getElementById("tabs");
   const views=[...document.querySelectorAll(".view")];

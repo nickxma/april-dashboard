@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-10 12:00 CDT",
+  "updatedAt": "2026-03-12 17:19 CDT",
   "projects": [
     {
       "name": "Launch Twitter account for AI + mindfulness content",
@@ -29,31 +29,31 @@
     },
     {
       "name": "control-tower-telemetry-refresh",
-      "status": "Running",
+      "status": "running",
       "workstream": "Refreshes live/control-tower.json",
       "cadence": "Every 2h"
     },
     {
       "name": "dashboard-system-health-refresh",
-      "status": "Scheduled",
+      "status": "ok",
       "workstream": "Dashboard/system reliability checks",
       "cadence": "Every 1h"
     },
     {
       "name": "journal-prompt + journal-prompt-evening",
-      "status": "Scheduled",
+      "status": "ok",
       "workstream": "Morning/evening journal prompts",
       "cadence": "06:00 and 18:00 America/Chicago (exact)"
     },
     {
       "name": "research-tasks-daily-refresh",
-      "status": "Scheduled",
+      "status": "error",
       "workstream": "Daily research task refresh",
       "cadence": "07:35 America/Chicago daily"
     },
     {
-      "name": "obj-95 + obj-106 scheduled jobs",
-      "status": "Scheduled",
+      "name": "obj-95-daily-tweet-draft + obj-106-stablecoin-research",
+      "status": "error",
       "workstream": "Objective-specific output/research refresh",
       "cadence": "Obj-95: 08:00 daily (exact); Obj-106: 09:00 Tue/Thu/Sat America/Chicago"
     }

@@ -1,30 +1,39 @@
 {
-  "updatedAt": "2026-03-10 12:25 CDT",
+  "updatedAt": "2026-03-12 18:36 CDT",
   "summary": {
-    "overall": "degraded",
+    "overall": "critical",
     "enabledJobs": 7,
-    "failingJobs": 2,
+    "failingJobs": 3,
     "staleJobs": 0,
-    "openErrors": 2
+    "openErrors": 3
   },
   "errors": [
     {
-      "time": "2026-03-10 12:03 CDT",
-      "component": "control-tower-telemetry-refresh",
+      "time": "2026-03-12 07:44 CDT",
+      "component": "research-tasks-daily-refresh",
       "severity": "critical",
       "status": "open",
       "error": "cron: job execution timed out",
-      "meaning": "The telemetry refresh did not finish before its timeout, so dashboard control-tower data may be outdated until the next successful run.",
-      "suggestedFix": "Increase this job's timeoutSeconds (or reduce task scope) so it can complete within one run."
+      "meaning": "The daily research refresh exceeded its execution window and did not complete, so telemetry may be outdated.",
+      "suggestedFix": "Increase timeoutSeconds for this job and cap source collection to 3 high-credibility links per run."
     },
     {
-      "time": "2026-03-10 08:13 CDT",
+      "time": "2026-03-12 08:15 CDT",
       "component": "obj-95-daily-tweet-draft",
       "severity": "critical",
       "status": "open",
       "error": "cron: job execution timed out",
-      "meaning": "The daily tweet draft job exceeded runtime and stopped before finishing, so no fresh draft was delivered in that run.",
-      "suggestedFix": "Shorten prompt complexity and cap response length, or raise timeoutSeconds for this job."
+      "meaning": "The tweet draft workflow ran too long and failed before delivering a result.",
+      "suggestedFix": "Split the workflow into two steps (draft generation first, posting only on GO) and lower per-run workload."
+    },
+    {
+      "time": "2026-03-12 09:13 CDT",
+      "component": "obj-106-stablecoin-research",
+      "severity": "critical",
+      "status": "open",
+      "error": "cron: job execution timed out",
+      "meaning": "The stablecoin research job did not finish in time, leaving the latest research log potentially incomplete.",
+      "suggestedFix": "Reduce scope to 3 fresh signals per run and raise timeoutSeconds to match expected research duration."
     }
   ]
 }

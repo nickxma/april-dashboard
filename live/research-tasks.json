@@ -1,43 +1,36 @@
 {
-  "updatedAt": "2026-03-10 07:35 CDT",
-  "paypalAcquisitionProbabilityPct": 28,
-  "thesis": "Acquisition odds rose from low baseline after credible reports of preliminary buyer interest, but evidence still indicates very early-stage exploration with no confirmed process or financing path. PayPal’s ongoing standalone strategy actions and asset-level partnerships make a full-company deal plausible but not yet likely.",
-  "method": "Probability is a conservative base-rate estimate updated by weighting recency and credibility of corroborated reports, then discounting unverified rumor-stage signals and execution constraints.",
+  "updatedAt": "2026-03-12 07:38 CDT",
+  "paypalAcquisitionProbabilityPct": 17,
+  "thesis": "Acquisition odds remain above baseline because Reuters reported preliminary takeover interest (including potential Stripe interest), but no buyer has confirmed intent and reports still describe discussions as early and uncertain. In the absence of corroborated process milestones (board process, financing package, regulatory pre-clear signals), probability should stay conservative.",
+  "method": "Started from a low base rate for mega-cap fintech takeouts and adjusted only for recent high-credibility reporting/filings, discounting unverified or preliminary rumor signals and requiring process evidence for larger moves.",
   "evidence": [
     {
       "date": "2026-02-24",
-      "signal": "Reuters reports (citing Bloomberg) that Stripe is considering acquiring all or parts of PayPal; both parties declined comment and Reuters could not independently verify.",
+      "signal": "Reuters (citing Bloomberg) reported Stripe has preliminary interest in acquiring all or parts of PayPal; both firms declined comment and Reuters could not independently verify.",
       "direction": "increased",
       "strength": "Medium",
       "url": "https://www.reuters.com/business/stripe-is-considering-acquisition-all-or-parts-paypal-bloomberg-news-reports-2026-02-24/"
     },
     {
       "date": "2026-02-23",
-      "signal": "Reuters reports Bloomberg claim that PayPal has held meetings with banks amid unsolicited interest; report says interest is preliminary and may not lead to a transaction.",
+      "signal": "Reuters reported unsolicited buyer interest and bank meetings, while also stating interest was preliminary and might not lead to a transaction.",
       "direction": "increased",
       "strength": "Medium",
       "url": "https://www.reuters.com/business/paypal-attracts-takeover-interest-after-stock-slide-bloomberg-news-reports-2026-02-23/"
     },
     {
       "date": "2026-02-03",
-      "signal": "Reuters: PayPal replaced its CEO after weak outlook and strategy reset commentary, increasing strategic optionality but also signaling operational turbulence.",
+      "signal": "Reuters reported CEO change and weak 2026 guidance; analysts flagged possible review of strategic assets, which can raise receptivity to inbound bids.",
       "direction": "increased",
       "strength": "Low",
       "url": "https://www.reuters.com/business/paypal-sees-2026-profit-below-estimates-holiday-quarter-results-fall-short-2026-02-03/"
     },
     {
-      "date": "2025-11-17",
-      "signal": "Reuters: PayPal renewed and expanded KKR BNPL receivables partnership, indicating continued execution of standalone asset-monetization strategy.",
-      "direction": "decreased",
-      "strength": "Medium",
-      "url": "https://www.reuters.com/business/kkr-buy-up-754-billion-paypals-european-bnpl-loans-renewed-deal-2025-11-17/"
-    },
-    {
-      "date": "2025-02-25",
-      "signal": "PayPal Investor Day laid out multi-year standalone growth targets and platform strategy, which is generally inconsistent with an active sale process at that time.",
+      "date": "2026-02-03",
+      "signal": "PayPal's official Q4/FY2025 release framed execution as a standalone operating plan and provided no disclosed sale-process indicators.",
       "direction": "decreased",
       "strength": "Low",
-      "url": "https://newsroom.paypal-corp.com/2025-02-25-PayPal-Introduces-Outlook-for-Accelerating-Growth-at-Investor-Day"
+      "url": "https://newsroom.paypal-corp.com/2026-02-03-PayPal-Reports-Fourth-Quarter-and-Full-Year-2025-Results"
     }
   ]
 }
