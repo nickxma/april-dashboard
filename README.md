@@ -1,4 +1,4 @@
-# Claw OpenClaw Dashboard (v1)
+# Claw OpenClaw Dashboard (v2)
 
 ## Open
 - Double-click `index.html`
