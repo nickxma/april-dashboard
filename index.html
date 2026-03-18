@@ -844,12 +844,24 @@
       ['journal-prompt-evening',        'sonnet', 18, 0,  2, allDays],
     ];
 
-    // Use 30-min slots from 5:30 to 19:00
-    const slots = [];
+    // Use 30-min slots; only include slots that have at least one event
+    const allSlots = [];
     for (let h = 5; h <= 19; h++) {
-      slots.push([h, 0]);
-      if (h < 19) slots.push([h, 30]);
+      allSlots.push([h, 0]);
+      allSlots.push([h, 30]);
     }
+    // Filter to slots that contain events (plus keep :00 for context when :30 has events)
+    const slotHasEvent = (sh, sm) => jobs.some(j => {
+      if (sm === 0) return j[2] === sh && j[3] < 30 && j[5].some(d => allDays.includes(d));
+      return j[2] === sh && j[3] >= 30 && j[5].some(d => allDays.includes(d));
+    });
+    const slots = allSlots.filter(([h, m]) => {
+      if (slotHasEvent(h, m)) return true;
+      // keep the :00 slot if :30 of same hour has events (for visual context)
+      if (m === 0 && slotHasEvent(h, 30)) return true;
+      // keep :00 of the hour after the last event hour for spacing
+      return false;
+    });
 
     // Build grid
     let html = '<div class="cal-header"></div>';
@@ -858,8 +870,8 @@
     slots.forEach(([h, m]) => {
       const hLabel = h === 12 ? '12' : h > 12 ? (h - 12) : h;
       const ampm = h >= 12 ? 'PM' : 'AM';
-      const label = m === 0 ? `${hLabel}${ampm}` : '';
-      html += `<div class="cal-time">${label}</div>`;
+      const label = m === 0 ? `${hLabel}${ampm}` : `${hLabel}:30`;
+      html += `<div class="cal-time"><span style="opacity:${m===0?1:.5}">${label}</span></div>`;
       for (let d = 0; d < 7; d++) {
         const eventsHere = jobs.filter(j => {
           if (!j[5].includes(d)) return false;
