@@ -150,11 +150,12 @@
     /* ── Calendar ── */
     .cal-grid {
       display: grid;
-      grid-template-columns: 68px repeat(7, 1fr);
+      grid-template-columns: 52px repeat(7, 1fr);
       border: 1px solid var(--border);
       border-radius: 4px;
-      overflow: hidden;
-      font-size: 12px;
+      overflow-x: auto;
+      font-size: 11px;
+      min-width: 0;
     }
     .cal-header {
       background: var(--hover);
@@ -201,8 +202,8 @@
     .cal-event.sonnet { border-left: 3px solid var(--sonnet-accent); }
     .cal-event.codex { border-left: 3px solid var(--codex-accent); }
     .cal-event.haiku { border-left: 3px solid var(--haiku-accent); }
-    .cal-event-name { font-weight: 600; }
-    .cal-event-meta { color: var(--secondary); font-size: 9px; }
+    .cal-event-name { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+    .cal-event-meta { color: var(--secondary); font-size: 9px; white-space: nowrap; }
 
     /* ── Diagram ── */
     .diagram { width: 100%; border: 1px solid var(--border); border-radius: 4px; background: white; display: block; }
