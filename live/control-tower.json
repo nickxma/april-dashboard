@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-17 19:30 CDT",
+  "updatedAt": "2026-03-18 15:30 CDT",
   "projects": [
     {
       "name": "Launch Twitter account for AI + mindfulness content",
@@ -59,7 +59,7 @@
     },
     {
       "name": "research-tasks-daily-refresh",
-      "status": "ok",
+      "status": "error (1 consecutive)",
       "workstream": "Daily research task refresh (PayPal acquisition probability)",
       "cadence": "07:35 America/Chicago daily"
     },
@@ -77,7 +77,7 @@
     },
     {
       "name": "readwise-weekly-groom",
-      "status": "ok",
+      "status": "ok (not yet run)",
       "workstream": "Weekly Readwise library triage",
       "cadence": "10:00 America/Chicago Sundays"
     }

@@ -44,7 +44,7 @@
     }
     .header-inner {
       max-width: 1280px; margin: 0 auto;
-      padding: 14px 24px 0;
+      padding: 10px 24px 0;
     }
     .header-top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
     h1 {
@@ -54,7 +54,7 @@
     .htag { font-size: 12px; color: var(--secondary); }
 
     /* ── Tabs ── */
-    .tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 12px 0 0; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 8px 0 0; }
     .tab {
       border: 1px solid var(--border);
       background: var(--bg);
@@ -71,10 +71,7 @@
 
     /* ── Subtitle bar ── */
     .subtitle-bar {
-      max-width: 1280px; margin: 0 auto;
-      padding: 8px 24px 10px;
-      font-size: 12px; color: var(--secondary);
-      border-bottom: 1px solid var(--border);
+      /* now inline in htag */
     }
 
     /* ── Layout ── */
@@ -209,13 +206,12 @@
     <div class="header-top">
       <div>
         <h1>&#10022; Claw OS</h1>
-        <div class="htag">Nick's AI operating environment &middot; Mac Mini MMM4 &middot; v26.12</div>
+        <div class="htag">Nick's AI operating environment &middot; Mac Mini MMM4 &middot; v26.12 &mdash; <span id="subtitle-bar">System snapshot</span></div>
       </div>
       <nav class="tabs" id="tabs"></nav>
     </div>
   </div>
 </header>
-<div class="subtitle-bar" id="subtitle-bar">System snapshot &mdash; models, channels, quick links</div>
 <main>
 
 <!-- ══════════════════════ TAB 1: OVERVIEW ══════════════════════ -->
