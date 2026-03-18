@@ -70,8 +70,12 @@
     .tab.active { background: var(--text); color: white; border-color: var(--text); }
 
     /* ── Subtitle bar ── */
-    .subtitle-bar {
-      /* now inline in htag */
+    .view-desc {
+      font-size: 13px;
+      color: var(--secondary);
+      padding: 6px 0 8px;
+      border-top: 1px solid var(--border);
+      margin-top: 8px;
     }
 
     /* ── Layout ── */
@@ -146,7 +150,7 @@
     /* ── Calendar ── */
     .cal-grid {
       display: grid;
-      grid-template-columns: 60px repeat(7, 1fr);
+      grid-template-columns: 68px repeat(7, 1fr);
       border: 1px solid var(--border);
       border-radius: 4px;
       overflow: hidden;
@@ -169,7 +173,7 @@
       text-align: right;
       border-right: 1px solid var(--border);
       border-bottom: 1px solid #f8f8f8;
-      height: 48px;
+      min-height: 36px;
       display: flex;
       align-items: flex-start;
       justify-content: flex-end;
@@ -178,21 +182,26 @@
       border-right: 1px solid #f8f8f8;
       border-bottom: 1px solid #f8f8f8;
       padding: 2px;
-      height: 48px;
-      position: relative;
+      min-height: 36px;
     }
     .cal-cell:last-child { border-right: none; }
+    .cal-cell.has-events { display: flex; flex-wrap: wrap; gap: 2px; align-items: flex-start; align-content: flex-start; }
     .cal-event {
       font-size: 10px;
-      padding: 3px 5px;
+      padding: 3px 6px;
       border-radius: 3px;
-      margin: 1px 0;
       line-height: 1.3;
       background: white;
       border: 1px solid var(--border);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
     }
+    .cal-cell.has-events.split { flex-direction: column; }
     .cal-event.sonnet { border-left: 3px solid var(--sonnet-accent); }
     .cal-event.codex { border-left: 3px solid var(--codex-accent); }
+    .cal-event.haiku { border-left: 3px solid var(--haiku-accent); }
     .cal-event-name { font-weight: 600; }
     .cal-event-meta { color: var(--secondary); font-size: 9px; }
 
@@ -206,10 +215,11 @@
     <div class="header-top">
       <div>
         <h1>&#10022; Claw OS</h1>
-        <div class="htag">Nick's AI operating environment &middot; Mac Mini MMM4 &middot; v26.12 &mdash; <span id="subtitle-bar">System snapshot</span></div>
+        <div class="htag">Nick's AI operating environment &middot; Mac Mini MMM4 &middot; v26.12</div>
       </div>
       <nav class="tabs" id="tabs"></nav>
     </div>
+    <div class="view-desc" id="subtitle-bar">System snapshot — models, channels, quick links</div>
   </div>
 </header>
 <main>
@@ -817,38 +827,54 @@
     if (!cal) return;
 
     const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-    const hours = [];
-    for (let h = 5; h <= 22; h++) hours.push(h);
 
-    // Jobs definition: [name, model, hour, minute, duration_min, days[]]
-    const allDays = [0,1,2,3,4,5,6]; // Mon=0..Sun=6
+    // Jobs: [name, model, hour, minute, duration_min, days[]]
+    const allDays = [0,1,2,3,4,5,6];
     const jobs = [
       ['journal-prompt',                'sonnet', 6,  0,  2, allDays],
       ['daily-obsidian-note',           'sonnet', 6,  5,  2, allDays],
+      ['healthcheck',                   'codex',  6,  30, 1, allDays],
+      ['dashboard-system-health',       'codex',  7,  0,  2, allDays],
       ['research-tasks-daily-refresh',  'codex',  7,  35, 3, allDays],
       ['obj-95-daily-tweet-draft',      'sonnet', 8,  0,  3, allDays],
-      ['obj-106-stablecoin-research',   'sonnet', 9,  0,  3, [1,3,5]], // Tue/Thu/Sat
-      ['journal-prompt-evening',        'sonnet', 18, 0,  2, allDays],
-      ['healthcheck:context-monitor',   'codex',  6,  30, 1, allDays],  // every 1h, show at representative slots
-      ['dashboard-system-health',       'codex',  7,  0,  2, allDays],
       ['control-tower-telemetry',       'codex',  8,  30, 2, allDays],
-      ['readwise-weekly-groom',         'codex',  10, 0,  5, [6]], // Sunday only
+      ['obj-106-stablecoin-research',   'sonnet', 9,  0,  3, [1,3,5]],
+      ['readwise-weekly-groom',         'codex',  10, 0,  5, [6]],
+      ['dashboard-objectives-weekly',   'codex',  7,  0,  3, [0]],
+      ['journal-prompt-evening',        'sonnet', 18, 0,  2, allDays],
     ];
+
+    // Use 30-min slots from 5:30 to 19:00
+    const slots = [];
+    for (let h = 5; h <= 19; h++) {
+      slots.push([h, 0]);
+      if (h < 19) slots.push([h, 30]);
+    }
 
     // Build grid
     let html = '<div class="cal-header"></div>';
     days.forEach(d => { html += `<div class="cal-header">${d}</div>`; });
 
-    hours.forEach(h => {
-      const label = h <= 12 ? `${h}AM` : `${h-12}PM`;
-      html += `<div class="cal-time">${h === 12 ? '12PM' : label}</div>`;
+    slots.forEach(([h, m]) => {
+      const hLabel = h === 12 ? '12' : h > 12 ? (h - 12) : h;
+      const ampm = h >= 12 ? 'PM' : 'AM';
+      const label = m === 0 ? `${hLabel}${ampm}` : '';
+      html += `<div class="cal-time">${label}</div>`;
       for (let d = 0; d < 7; d++) {
-        const eventsHere = jobs.filter(j => j[2] === h && j[5].includes(d));
+        const eventsHere = jobs.filter(j => {
+          if (!j[5].includes(d)) return false;
+          // Match job to this 30-min slot
+          if (m === 0) return j[2] === h && j[3] < 30;
+          return j[2] === h && j[3] >= 30;
+        });
+        const hasEv = eventsHere.length > 0;
+        const split = eventsHere.length > 1;
         let cellHtml = '';
         eventsHere.forEach(j => {
-          cellHtml += `<div class="cal-event ${j[1]}"><span class="cal-event-name">${j[0]}</span><br><span class="cal-event-meta">${j[1]} &middot; ~${j[4]}m</span></div>`;
+          const timeStr = `${j[2]}:${String(j[3]).padStart(2,'0')}`;
+          cellHtml += `<div class="cal-event ${j[1]}"><span class="cal-event-name">${j[0]}</span> <span class="cal-event-meta">${timeStr} · ${j[1]} · ~${j[4]}m</span></div>`;
         });
-        html += `<div class="cal-cell">${cellHtml}</div>`;
+        html += `<div class="cal-cell${hasEv ? ' has-events' : ''}${split ? ' split' : ''}">${cellHtml}</div>`;
       }
     });
 
