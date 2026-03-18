@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-03-18 15:45 CDT",
+  "updatedAt": "2026-03-18 16:45 CDT",
   "summary": {
     "overall": "degraded",
-    "enabledJobs": 10,
+    "enabledJobs": 11,
     "failingJobs": 1,
     "staleJobs": 0,
     "openErrors": 1
@@ -14,8 +14,8 @@
       "severity": "warn",
       "status": "open",
       "error": "The AI service is temporarily overloaded. Please try again in a moment.",
-      "meaning": "Anthropic API was overloaded when the Codex-model job ran, causing the daily PayPal research refresh to fail.",
-      "suggestedFix": "Will auto-retry next scheduled run (2026-03-19 07:35 CDT). No action needed unless it recurs."
+      "meaning": "The Anthropic API was overloaded when the Codex-model cron job ran, causing the research-tasks refresh to fail on its daily 7:35 AM run.",
+      "suggestedFix": "Will auto-retry next scheduled run (tomorrow 7:35 AM CDT). If persistent, check Anthropic status page or switch job model to a less-loaded provider."
     }
   ]
 }
