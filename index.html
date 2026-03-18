@@ -3,350 +3,432 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>April OS — OpenClaw Dashboard</title>
+  <title>Claw OS — OpenClaw Dashboard</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:       #f5f4f2;
-      --bg2:      #eeece8;
-      --panel:    #ffffff;
-      --panel2:   #f7f6f4;
-      --text:     #1f1f1f;
-      --muted:    #6f6a63;
-      --border:   #e3e0da;
-      --shadow:   rgba(30, 24, 16, .08);
-
-      --sonnet:   #5c7ea8;
-      --opus:     #c7778f;
-      --codex:    #4a8f70;
-      --haiku:    #c48a45;
-
-      --ok:       #4a8f70;
-      --warn:     #c48a45;
-      --bad:      #c06a63;
-
-      --tag-sonnet-bg:  #eef2f7; --tag-sonnet-fg: #4f6f96;
-      --tag-opus-bg:    #f8edf1; --tag-opus-fg:   #9a5d72;
-      --tag-codex-bg:   #eaf3ee; --tag-codex-fg:  #3d735b;
-      --tag-haiku-bg:   #f7efe5; --tag-haiku-fg:  #8d6232;
-      --tag-ok-bg:      #eaf3ee; --tag-ok-fg:     #3d735b;
-      --tag-warn-bg:    #f8f0e6; --tag-warn-fg:   #8d6232;
+      --bg: #FFFFFF;
+      --text: #111111;
+      --muted: #555555;
+      --secondary: #999999;
+      --border: #EEEEEE;
+      --hover: #FAFAFA;
+      --green: #22C55E;
+      --amber: #F59E0B;
+      --red: #EF4444;
+      --opus-accent: #c7778f;
+      --codex-accent: #4a8f70;
+      --sonnet-accent: #5c7ea8;
+      --haiku-accent: #c48a45;
     }
-    * { box-sizing:border-box; margin:0; padding:0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background: linear-gradient(180deg, #f6f5f3 0%, #f2f1ee 100%);
+      background: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100vh;
       font-size: 14px;
+      line-height: 1.5;
     }
 
     /* ── Header ── */
     header {
-      position: sticky; top:0; z-index:20;
-      background: rgba(250,249,247,.92);
-      backdrop-filter: blur(8px);
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
-      padding: 12px 20px;
-      box-shadow: 0 1px 4px var(--shadow);
     }
-    .hrow { max-width:1360px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
-    h1 { font-size:18px; font-weight:700; color:#2a2a2a; letter-spacing:-0.01em; }
-    .htag { font-size:11px; color:var(--muted); margin-top:2px; }
+    .header-inner {
+      max-width: 1280px; margin: 0 auto;
+      padding: 14px 24px 0;
+    }
+    .header-top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    h1 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -0.02em;
+    }
+    .htag { font-size: 12px; color: var(--secondary); }
 
     /* ── Tabs ── */
-    .tabs { display:flex; flex-wrap:wrap; gap:6px; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 12px 0 0; }
     .tab {
       border: 1px solid var(--border);
-      background: #fff;
+      background: var(--bg);
       color: var(--muted);
-      border-radius:10px;
-      padding: 6px 12px;
-      font-size:12px; font-weight:600;
-      cursor:pointer;
+      border-radius: 4px;
+      padding: 6px 14px;
+      font-size: 12px; font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
       transition: all .12s;
-      box-shadow: 0 1px 2px var(--shadow);
     }
-    .tab:hover { color:var(--text); border-color:#d5d0c8; }
-    .tab.active { background:#f0ece6; color:#2e2a26; border-color:#d7d2ca; box-shadow:none; }
+    .tab:hover { color: var(--text); background: var(--hover); }
+    .tab.active { background: var(--text); color: white; border-color: var(--text); }
+
+    /* ── Subtitle bar ── */
+    .subtitle-bar {
+      max-width: 1280px; margin: 0 auto;
+      padding: 8px 24px 10px;
+      font-size: 12px; color: var(--secondary);
+      border-bottom: 1px solid var(--border);
+    }
 
     /* ── Layout ── */
-    main { max-width:1360px; margin:0 auto; padding:18px; }
-    .view { display:none; }
-    .view.active { display:block; }
-    .grid { display:grid; grid-template-columns:repeat(12,1fr); gap:14px; }
-    @media(max-width:900px){ [class*="span-"]{ grid-column:span 12 !important; } }
-    .span-3{grid-column:span 3} .span-4{grid-column:span 4} .span-5{grid-column:span 5}
-    .span-6{grid-column:span 6} .span-7{grid-column:span 7} .span-8{grid-column:span 8}
-    .span-9{grid-column:span 9} .span-12{grid-column:span 12}
+    main { max-width: 1280px; margin: 0 auto; padding: 24px; }
+    .view { display: none; }
+    .view.active { display: block; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    @media(max-width: 900px) { [class*="span-"] { grid-column: span 12 !important; } }
+    .span-3 { grid-column: span 3 } .span-4 { grid-column: span 4 }
+    .span-5 { grid-column: span 5 } .span-6 { grid-column: span 6 }
+    .span-7 { grid-column: span 7 } .span-8 { grid-column: span 8 }
+    .span-9 { grid-column: span 9 } .span-12 { grid-column: span 12 }
 
     /* ── Cards ── */
     .card {
       background: white;
       border: 1px solid var(--border);
-      border-radius:12px;
-      padding:16px;
-      box-shadow: 0 1px 6px var(--shadow);
+      border-radius: 4px;
+      padding: 18px;
     }
-    .card-title { font-size:11px; text-transform:uppercase; letter-spacing:.09em; color:var(--muted); font-weight:700; margin-bottom:12px; }
-    .kpi { font-size:30px; font-weight:800; line-height:1; margin:6px 0 4px; }
-    .kpi-sub { font-size:12px; color:var(--muted); }
+    .card-title {
+      font-size: 11px; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--secondary); font-weight: 700; margin-bottom: 12px;
+    }
+    .kpi { font-size: 28px; font-weight: 700; line-height: 1; margin: 6px 0 4px; }
+    .kpi-sub { font-size: 12px; color: var(--muted); }
 
-    /* ── Badges ── */
+    /* ── Tags/pills ── */
     .tag {
-      display:inline-block; border-radius:999px;
-      padding:3px 10px; font-size:11px; font-weight:600; margin:2px;
+      display: inline-block; border-radius: 4px;
+      padding: 2px 8px; font-size: 11px; font-weight: 600;
+      border: 1px solid var(--border); color: var(--muted);
+      background: white;
     }
-    .tag.sonnet { background:var(--tag-sonnet-bg); color:var(--tag-sonnet-fg); }
-    .tag.opus   { background:var(--tag-opus-bg);   color:var(--tag-opus-fg); }
-    .tag.codex  { background:var(--tag-codex-bg);  color:var(--tag-codex-fg); }
-    .tag.haiku  { background:var(--tag-haiku-bg);  color:var(--tag-haiku-fg); }
-    .tag.ok     { background:var(--tag-ok-bg);     color:var(--tag-ok-fg); }
-    .tag.warn   { background:var(--tag-warn-bg);   color:var(--tag-warn-fg); }
-    .tag.plain  { background:#f0f2ff; color:#4050a0; }
+    .tag.opus   { border-left: 3px solid var(--opus-accent); }
+    .tag.codex  { border-left: 3px solid var(--codex-accent); }
+    .tag.sonnet { border-left: 3px solid var(--sonnet-accent); }
+    .tag.haiku  { border-left: 3px solid var(--haiku-accent); }
+    .tag.ok     { color: var(--green); border-color: var(--green); background: #f0fdf4; }
+    .tag.warn   { color: var(--amber); border-color: var(--amber); background: #fffbeb; }
+    .tag.bad    { color: var(--red); border-color: var(--red); background: #fef2f2; }
+    .tag.plain  { color: var(--muted); }
 
     /* ── Tables ── */
-    table { width:100%; border-collapse:collapse; font-size:13px; table-layout: fixed; }
-    th,td { text-align:left; border-bottom:1px solid #eeebe6; padding:9px 8px; vertical-align:top; word-break: break-word; overflow-wrap:anywhere; }
-    th { color:var(--muted); font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:.04em; }
-    tr:last-child td { border-bottom:none; }
-    tr:hover td { background:#fbfaf8; }
-
-    /* ── Lists ── */
-    ul { padding-left:18px; }
-    li { margin:5px 0; }
-    ol { padding-left:20px; }
-    ol li { margin:7px 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { text-align: left; border-bottom: 1px solid var(--border); padding: 8px 8px; vertical-align: top; }
+    th { color: var(--secondary); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--hover); }
 
     /* ── Misc ── */
-    .dot { width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle; }
-    .dot-ok  { background:#2ecc89; } .dot-warn { background:#f5a623; } .dot-bad { background:#f06070; }
-    code { color:#5b4ecc; font-size:12px; background:#f0edff; padding:1px 5px; border-radius:5px; }
-    .note { color:var(--muted); font-size:12px; line-height:1.7; margin-top:8px; }
-    .link-btn { display:inline-block;margin:4px 6px 4px 0;font-size:12px;color:#5b4ecc;text-decoration:none;border:1.5px solid #c8c0f8;padding:6px 13px;border-radius:10px;background:#f4f2ff;font-weight:600; }
-    .link-btn:hover { background:#ebe8ff; }
-    .section-intro { font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:14px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; vertical-align: middle; }
+    .dot-ok { background: var(--green); } .dot-warn { background: var(--amber); } .dot-bad { background: var(--red); }
+    code { color: var(--muted); font-size: 12px; background: #f5f5f5; padding: 1px 5px; border-radius: 3px; }
+    .note { color: var(--secondary); font-size: 12px; line-height: 1.7; margin-top: 8px; }
+    .section-intro { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+    .link-btn {
+      display: inline-block; margin: 2px 4px 2px 0; font-size: 12px;
+      color: var(--muted); text-decoration: none; border: 1px solid var(--border);
+      padding: 4px 10px; border-radius: 4px; background: white; font-weight: 500;
+    }
+    .link-btn:hover { background: var(--hover); color: var(--text); }
+    ul { padding-left: 18px; } li { margin: 4px 0; }
+    ol { padding-left: 20px; } ol li { margin: 6px 0; }
 
-    /* ── Model color bars ── */
-    .model-bar { display:flex; align-items:center; gap:10px; margin:6px 0; font-size:13px; }
-    .model-bar .bar { flex:1; height:10px; border-radius:999px; background:#eeeff8; overflow:hidden; }
-    .model-bar .fill { height:100%; border-radius:999px; }
-    .fill-sonnet { background:linear-gradient(90deg,#a890ff,#7c6ff7); }
-    .fill-opus   { background:linear-gradient(90deg,#ff90b8,#e0608a); }
-    .fill-codex  { background:linear-gradient(90deg,#6fe8c0,#3ab88a); }
-    .fill-haiku  { background:linear-gradient(90deg,#ffd088,#f5a623); }
+    .progress-row { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+    .progress-row .label { width: 280px; color: var(--text); font-weight: 500; font-size: 13px; }
+    .progress-row .track { flex: 1; height: 6px; border-radius: 3px; background: #f0f0f0; overflow: hidden; }
+    .progress-row .fill { height: 100%; background: var(--green); border-radius: 3px; }
+    .progress-row .pct { width: 42px; text-align: right; color: var(--secondary); font-size: 12px; }
 
-    .progress-row { display:flex; align-items:center; gap:10px; margin:10px 0; }
-    .progress-row .label { width:280px; color:var(--text); font-weight:600; font-size:13px; }
-    .progress-row .track { flex:1; height:10px; border-radius:999px; background:#ece9e4; overflow:hidden; }
-    .progress-row .fill { height:100%; background:linear-gradient(90deg,#7ea18f,#4a8f70); }
-    .progress-row .pct { width:48px; text-align:right; color:var(--muted); font-size:12px; }
+    /* ── Calendar ── */
+    .cal-grid {
+      display: grid;
+      grid-template-columns: 60px repeat(7, 1fr);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      font-size: 12px;
+    }
+    .cal-header {
+      background: var(--hover);
+      padding: 8px 6px;
+      font-weight: 600;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+    .cal-time {
+      padding: 4px 6px;
+      font-size: 11px;
+      color: var(--secondary);
+      text-align: right;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid #f8f8f8;
+      height: 48px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+    .cal-cell {
+      border-right: 1px solid #f8f8f8;
+      border-bottom: 1px solid #f8f8f8;
+      padding: 2px;
+      height: 48px;
+      position: relative;
+    }
+    .cal-cell:last-child { border-right: none; }
+    .cal-event {
+      font-size: 10px;
+      padding: 3px 5px;
+      border-radius: 3px;
+      margin: 1px 0;
+      line-height: 1.3;
+      background: white;
+      border: 1px solid var(--border);
+    }
+    .cal-event.sonnet { border-left: 3px solid var(--sonnet-accent); }
+    .cal-event.codex { border-left: 3px solid var(--codex-accent); }
+    .cal-event-name { font-weight: 600; }
+    .cal-event-meta { color: var(--secondary); font-size: 9px; }
 
-    /* ── SVG diagrams ── */
-    .diagram { width:100%; border:1.5px solid var(--border); border-radius:14px; background:white; display:block; }
+    /* ── Diagram ── */
+    .diagram { width: 100%; border: 1px solid var(--border); border-radius: 4px; background: white; display: block; }
   </style>
 </head>
 <body>
 <header>
-  <div class="hrow">
-    <div>
-      <h1>✦ April OS — OpenClaw Dashboard</h1>
-      <div class="htag">Nick's AI operating environment · Mac Mini MMM4 · build 2026.3.12-r17</div>
+  <div class="header-inner">
+    <div class="header-top">
+      <div>
+        <h1>&#10022; Claw OS</h1>
+        <div class="htag">Nick's AI operating environment &middot; Mac Mini MMM4 &middot; v26.12</div>
+      </div>
+      <nav class="tabs" id="tabs"></nav>
     </div>
-    <nav class="tabs" id="tabs"></nav>
   </div>
 </header>
+<div class="subtitle-bar" id="subtitle-bar">System snapshot &mdash; models, channels, quick links</div>
 <main>
 
-<!-- ══════════════════════ OVERVIEW ══════════════════════ -->
+<!-- ══════════════════════ TAB 1: OVERVIEW ══════════════════════ -->
 <section class="view active" data-view="overview">
   <div class="grid">
     <article class="card span-3">
-      <div class="card-title">🧠 Orchestrator</div>
-      <div class="kpi" style="color:var(--opus)">Opus</div>
-      <div class="kpi-sub">claude-opus-4-6 · routing &amp; decisions</div>
+      <div class="card-title">Orchestrator</div>
+      <div class="kpi" style="color:var(--opus-accent)">Opus</div>
+      <div class="kpi-sub">claude-opus-4-6 &middot; Anthropic</div>
     </article>
     <article class="card span-3">
-      <div class="card-title">⚙️ Workhorse (default sub-agent)</div>
-      <div class="kpi" style="color:var(--codex)">Codex</div>
-      <div class="kpi-sub">gpt-5.3-codex · heavy lifting</div>
+      <div class="card-title">Workhorse</div>
+      <div class="kpi" style="color:var(--codex-accent)">Codex</div>
+      <div class="kpi-sub">gpt-5.3-codex &middot; OpenAI</div>
     </article>
     <article class="card span-3">
-      <div class="card-title">💡 Mid-tier</div>
-      <div class="kpi" style="color:var(--sonnet)">Sonnet</div>
-      <div class="kpi-sub">claude-sonnet-4-6 · balanced tasks</div>
+      <div class="card-title">Mid-tier</div>
+      <div class="kpi" style="color:var(--sonnet-accent)">Sonnet</div>
+      <div class="kpi-sub">claude-sonnet-4-6 &middot; Anthropic</div>
     </article>
     <article class="card span-3">
-      <div class="card-title">💨 Lightweight</div>
-      <div class="kpi" style="color:var(--haiku)">Haiku</div>
-      <div class="kpi-sub">claude-haiku-3-5 · cheap/fast tasks</div>
+      <div class="card-title">Lightweight</div>
+      <div class="kpi" style="color:var(--haiku-accent)">Haiku</div>
+      <div class="kpi-sub">claude-haiku-3-5 &middot; Anthropic</div>
     </article>
 
     <article class="card span-12">
-      <div class="card-title">Overview intent</div>
-      <p class="section-intro" style="margin-bottom:0">This page is now strictly system snapshot (model posture, architecture context, and channel posture). Operational queueing, blockers, and agent execution state live only in <strong>Control Tower</strong>.</p>
-    </article>
-
-    <article class="card span-12">
-      <div class="card-title">🧮 Model Allocation Policy — Who Uses What</div>
+      <div class="card-title">Model Allocation Policy</div>
       <table>
-        <thead><tr><th style="width:15%">Model</th><th style="width:10%">Provider</th><th style="width:12%">Cost Tier</th><th style="width:15%">Role</th><th>Used For</th><th style="width:18%">Usage Goal</th></tr></thead>
+        <thead><tr><th style="width:14%">Model</th><th style="width:10%">Provider</th><th style="width:10%">Cost</th><th style="width:14%">Role</th><th>Used For</th><th style="width:16%">Usage Goal</th></tr></thead>
         <tbody>
           <tr>
             <td><span class="tag opus">Opus 4-6</span></td>
-            <td>Anthropic</td>
-            <td>💰💰💰 High</td>
+            <td>Anthropic</td><td>High</td>
             <td><strong>Orchestrator</strong></td>
             <td>User replies, routing decisions, approval gates. Never spawned as sub-agent.</td>
-            <td>Minimal — keep lean</td>
+            <td>Minimal</td>
           </tr>
           <tr>
             <td><span class="tag sonnet">Sonnet 4-6</span></td>
-            <td>Anthropic</td>
-            <td>💰💰 Mid</td>
-            <td>Balanced sub-agent</td>
+            <td>Anthropic</td><td>Mid</td>
+            <td>Balanced</td>
             <td>Nuanced writing, complex reasoning needing Anthropic quality but not Opus cost.</td>
-            <td>Moderate — when Codex isn't ideal</td>
+            <td>Moderate</td>
           </tr>
           <tr>
             <td><span class="tag codex">Codex 5.3</span></td>
-            <td>OpenAI</td>
-            <td>💰💰 Mid</td>
+            <td>OpenAI</td><td>Mid</td>
             <td><strong>Default workhorse</strong></td>
             <td>Research, coding, multi-step analysis, tool-heavy tasks. Relieves Anthropic rate pressure.</td>
-            <td>Heavy — default sub-agent</td>
+            <td>Heavy</td>
           </tr>
           <tr>
             <td><span class="tag haiku">Haiku 3.5</span></td>
-            <td>Anthropic</td>
-            <td>💰 Low</td>
+            <td>Anthropic</td><td>Low</td>
             <td>Cheap/fast</td>
             <td>Summaries, formatting, status checks, simple cron jobs, telemetry, hygiene.</td>
-            <td>Heavy — prefer for simple tasks</td>
+            <td>Heavy</td>
           </tr>
         </tbody>
       </table>
-      <p class="note">Plans: Anthropic Max ($200/mo) · OpenAI Plus ($20/mo). Primary constraint: never hit API rate limits. Opus/Sonnet/Haiku share Anthropic pool — spread load to Codex (OpenAI) to reduce 429 risk.</p>
+      <p class="note">Plans: Anthropic Max ($200/mo) &middot; OpenAI Plus ($20/mo). Primary constraint: never hit API rate limits.</p>
     </article>
 
     <article class="card span-8">
       <div class="card-title">What is this setup?</div>
-      <p class="section-intro">This is a personal AI operating system running on your Mac Mini (<strong>MMM4</strong>). OpenClaw is the runtime layer: it receives messages, applies policy, routes to the right session, calls tools, and sends responses back to you.</p>
-      <p class="section-intro" style="margin-top:0">At a systems level: <strong>Input channels → Gateway → Main session → Sub-agents/tools → Memory + external systems (Notion/GitHub) → Output channels</strong>. Your laptop can SSH into MMM4 and operate the same runtime from anywhere.</p>
-      <p class="section-intro" style="margin-top:0">Model policy: <strong>Opus orchestrator</strong> makes routing decisions and delegates work. <strong>Codex</strong> is the default workhorse for sub-agents (research, coding, heavy tasks). <strong>Sonnet</strong> for balanced Anthropic tasks when Codex isn't ideal. <strong>Haiku</strong> for cheap/fast background jobs. Opus usage is minimized — it decides, delegates, and stays lean. Plans: Anthropic Max ($200/mo), OpenAI Plus ($20/mo).</p>
-      <p class="section-intro" style="margin-top:0">Memory is split into two layers: session context (temporary) and durable memory files (<code>MEMORY.md</code>, <code>memory/*.md</code>). Notion is your external objective system; writes are manual-only by your explicit command.</p>
-      <p class="section-intro" style="margin-top:0">First-principles dashboard objective: show <strong>state</strong> (what is true now), <strong>control</strong> (what you can change), <strong>risk</strong> (what can break), and <strong>next actions</strong> (what to do next). If a panel doesn't help one of those four, it should be removed.</p>
+      <p class="section-intro">A personal AI operating system on a Mac Mini (<strong>MMM4</strong>). OpenClaw receives messages, applies policy, routes to the right session, calls tools, and replies. <strong>Opus</strong> orchestrates, <strong>Codex</strong> does heavy lifting, <strong>Sonnet</strong> for balanced Anthropic tasks, <strong>Haiku</strong> for cheap/fast jobs.</p>
+      <p class="section-intro">Flow: Input channels &rarr; Gateway &rarr; Main session &rarr; Sub-agents/tools &rarr; Memory + external systems &rarr; Output channels. Memory: session context (temporary) + durable files (<code>MEMORY.md</code>, <code>memory/*.md</code>). Notion is the external objective system; writes are manual-only.</p>
     </article>
 
     <article class="card span-4">
-      <div class="card-title">Channels (on/off)</div>
+      <div class="card-title">Channels</div>
       <table>
         <tr><td><span class="dot dot-ok"></span>Webchat</td><td><span class="tag ok">on</span></td></tr>
         <tr><td><span class="dot dot-ok"></span>Slack</td><td><span class="tag ok">on</span></td></tr>
-        <tr><td><span class="dot dot-ok"></span>Telegram</td><td><span class="tag ok">on</span></td></tr>
-        <tr><td><span class="dot dot-ok"></span>Discord</td><td><span class="tag ok">on</span></td></tr>
-        <tr><td><span class="dot dot-warn"></span>iMessage</td><td><span class="tag warn">off</span></td></tr>
-        <tr><td><span class="dot dot-warn"></span>WhatsApp</td><td><span class="tag warn">off</span></td></tr>
+        <tr><td><span class="dot dot-warn"></span>Telegram</td><td><span class="tag plain">off</span></td></tr>
+        <tr><td><span class="dot dot-warn"></span>Discord</td><td><span class="tag plain">off</span></td></tr>
+        <tr><td><span class="dot dot-warn"></span>iMessage</td><td><span class="tag plain">off</span></td></tr>
+        <tr><td><span class="dot dot-warn"></span>WhatsApp</td><td><span class="tag plain">off</span></td></tr>
       </table>
     </article>
 
-    <!-- Topline removed: replaced by Control Tower as single operating view -->
-  </div>
-</section>
-
-<!-- ══════════════════════ CONTROL TOWER ══════════════════════ -->
-<section class="view" data-view="control-tower">
-  <div class="grid">
     <article class="card span-12">
-      <div class="card-title">Control Tower — single operating view</div>
-      <p class="section-intro">Use this page as your default cockpit: what is running, what is blocked by Nick, and what matters most now.</p>
+      <div class="card-title">Slack Channels</div>
+      <table>
+        <thead><tr><th style="width:16%">Channel</th><th style="width:20%">Channel ID</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><strong>#general</strong></td><td><code>C0AKD18KN2G</code></td><td>Daily driver working channel</td></tr>
+          <tr><td><strong>#alerts</strong></td><td><code>C0AKD1VH8CU</code></td><td>Urgent/time-sensitive notifications (failures, 429s, blocked tasks, security)</td></tr>
+          <tr><td><strong>#dashboard</strong></td><td><code>C0AK32JBKTM</code></td><td>Dashboard building, UI changes, automated telemetry feed</td></tr>
+          <tr><td><strong>#april-journal</strong></td><td><code>C0AL3MWCR40</code></td><td>Journal prompts (6AM + 6PM), objective check-ins</td></tr>
+          <tr><td><strong>#obj-95</strong></td><td><code>C0AL3MQV41W</code></td><td>Mindfulness content engine, tweet/thread drafts from Waking Up corpus</td></tr>
+          <tr><td><strong>#obj-106</strong></td><td><code>C0AJTUZED2B</code></td><td>Stablecoin/PayPal/Ethereum research, wedge selection, Arbitrum L2</td></tr>
+        </tbody>
+      </table>
     </article>
 
     <article class="card span-12">
-      <div class="card-title">Ongoing Projects (live scorecard)</div>
+      <div class="card-title">Active Objectives</div>
+      <table>
+        <thead><tr><th>Objective</th><th>Status</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Baddies (dating)</td><td><span class="tag ok">Active</span></td><td>Personal life objective</td></tr>
+          <tr><td>Mindfulness content pipeline</td><td><span class="tag ok">Active</span></td><td>Waking Up transcript corpus &rarr; tweets/threads/essays/newsletter</td></tr>
+          <tr><td>Stablecoin expertise</td><td><span class="tag ok">Active</span></td><td>PayPal BCDC work, Arbitrum L2 wedge &middot; deadline April 20</td></tr>
+          <tr><td>Sell Manhattan co-op</td><td><span class="tag warn">Recovering</span></td><td>Material financial objective</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Source: Notion Objectives DB (37 objectives tracked). Read-first; writes only on explicit command.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════ TAB 2: CONTROL TOWER ══════════════════════ -->
+<section class="view" data-view="control-tower">
+  <div class="grid">
+    <article class="card span-12">
+      <div class="card-title">Ongoing Projects</div>
       <div id="ct-projects">
         <div class="progress-row"><div class="label">Launch Twitter account for AI + mindfulness content</div><div class="track"><div class="fill" style="width:18%"></div></div><div class="pct">18%</div></div>
         <div class="progress-row"><div class="label">Stablecoin expertise content pipeline</div><div class="track"><div class="fill" style="width:12%"></div></div><div class="pct">12%</div></div>
         <div class="progress-row"><div class="label">Autonomous background ops (low-cost)</div><div class="track"><div class="fill" style="width:40%"></div></div><div class="pct">40%</div></div>
       </div>
-      <p class="note" id="ct-updated">Scoring rule: 0-100 based on concrete milestones completed, not vibes. I’ll ask for progress check-ins on a cadence and update this honestly.</p>
+      <p class="note" id="ct-updated">Scoring rule: 0-100 based on concrete milestones completed.</p>
     </article>
 
     <article class="card span-7">
-      <div class="card-title">Agent Activity (live plan)</div>
+      <div class="card-title">Agent Activity</div>
       <table>
-        <thead><tr><th>Agent</th><th>Status</th><th>Workstream</th><th>Cadence / next run</th></tr></thead>
+        <thead><tr><th>Agent</th><th>Status</th><th>Workstream</th><th>Cadence</th></tr></thead>
         <tbody id="ct-agents">
-          <tr><td>Main (April)</td><td><span class="tag plain">On-demand</span></td><td>Orchestration, approvals, reverse prompting</td><td>Runs when Nick messages</td></tr>
+          <tr><td>Main (Claw)</td><td><span class="tag plain">On-demand</span></td><td>Orchestration, approvals, reverse prompting</td><td>Runs when Nick messages</td></tr>
         </tbody>
       </table>
-      <p class="note">Mode: Planned/manual reporting for reliability. Upgrade to live telemetry after stability is proven.</p>
     </article>
 
     <article class="card span-5">
-      <div class="card-title">Nick-blocked queue (priority ranked)</div>
+      <div class="card-title">Blockers (Nick-owned)</div>
       <table>
         <thead><tr><th>Blocker</th><th>Score</th><th>Owner</th><th>Next action</th></tr></thead>
         <tbody id="ct-blockers">
-          <tr><td>Grant Full Disk Access for Things DB read</td><td><span class="tag warn">10.0</span></td><td>Nick</td><td>Enable access for OpenClaw runtime; rerun <code>things today --limit 5 --format json</code></td></tr>
+          <tr><td colspan="4">Loading&hellip;</td></tr>
         </tbody>
       </table>
-      <p class="note">Scoring method: Value ÷ Effort (higher = do first).</p>
+      <p class="note">Score = Value &divide; Effort (higher = do first).</p>
     </article>
 
     <article class="card span-12">
-      <div class="card-title">Top priorities (next actions)</div>
+      <div class="card-title">Top Priorities</div>
       <table>
-        <thead><tr><th>Priority</th><th>Task</th><th>Ball</th><th>Scheduled agent</th><th>Next action</th></tr></thead>
+        <thead><tr><th>Priority</th><th>Task</th><th>Ball</th><th>Agent</th><th>Next action</th></tr></thead>
         <tbody id="ct-priorities">
-          <tr><td>P1</td><td>Unblock Things ingestion</td><td>Nick</td><td>Main (April)</td><td>Grant disk permissions and confirm with one probe command</td></tr>
+          <tr><td colspan="5">Loading&hellip;</td></tr>
         </tbody>
       </table>
     </article>
 
     <article class="card span-12">
-      <div class="card-title">Active projects overview (what April is working on)</div>
+      <div class="card-title">Tasks (ownership queue)</div>
       <table>
-        <thead><tr><th>Project</th><th>Progress</th><th>Current focus</th><th>Next milestone</th></tr></thead>
-        <tbody id="ct-project-overview">
-          <tr><td>Launch Twitter account for AI + mindfulness content</td><td>18%</td><td>Define publishing cadence + first content batch</td><td>Publish first 3 posts</td></tr>
+        <thead><tr><th>Task</th><th>Status</th><th>Ball</th><th>Next step</th><th>Agent</th></tr></thead>
+        <tbody>
+          <tr><td>Rebuild dashboard to reflect latest system state</td><td><span class="tag ok">In progress</span></td><td>Claw</td><td>Ship v26.12</td><td>Coding Agent (Codex)</td></tr>
+          <tr><td>Stablecoin wedge matrix research</td><td><span class="tag ok">Active</span></td><td>Claw</td><td>PayPal BCDC + Arbitrum L2 wedge analysis &middot; deadline April 20</td><td>Research Agent</td></tr>
+          <tr><td>Mindfulness tweet pipeline</td><td><span class="tag ok">Active</span></td><td>Claw</td><td>Waking Up transcript &rarr; tweets/threads/essays/newsletter</td><td>Coding Agent (Codex)</td></tr>
         </tbody>
       </table>
-      <p class="note">This section is generated from live control-tower telemetry and priorities, so you can see where execution time is going.</p>
+      <p class="note">Ball = whose court it is. Agent assignment: planned/manual for reliability.</p>
     </article>
   </div>
 </section>
 
-<!-- ══════════════════════ SYSTEM HEALTH ══════════════════════ -->
+<!-- ══════════════════════ TAB 3: SYSTEM HEALTH ══════════════════════ -->
 <section class="view" data-view="system-health">
   <div class="grid">
-    <article class="card span-12">
-      <div class="card-title">System Health</div>
-      <p class="section-intro">Operational telemetry snapshot for core services and recent errors.</p>
-    </article>
-
     <article class="card span-3">
       <div class="card-title">Overall</div>
-      <div class="kpi" id="sh-overall">—</div>
-      <div class="kpi-sub" id="sh-updated">Awaiting telemetry…</div>
+      <div class="kpi" id="sh-overall">&mdash;</div>
+      <div class="kpi-sub" id="sh-updated">Awaiting telemetry&hellip;</div>
     </article>
-
     <article class="card span-3">
-      <div class="card-title">Services Healthy</div>
+      <div class="card-title">Enabled Jobs</div>
       <div class="kpi" id="sh-services-healthy">0</div>
-      <div class="kpi-sub">Services currently passing checks</div>
+      <div class="kpi-sub">Services currently passing</div>
     </article>
-
     <article class="card span-3">
-      <div class="card-title">Services Total</div>
+      <div class="card-title">Total Monitored</div>
       <div class="kpi" id="sh-services-total">0</div>
-      <div class="kpi-sub">Total services monitored</div>
+      <div class="kpi-sub">Total services</div>
     </article>
-
     <article class="card span-3">
       <div class="card-title">Open Errors</div>
       <div class="kpi" id="sh-errors-open">0</div>
       <div class="kpi-sub">Unresolved incidents</div>
+    </article>
+
+    <article class="card span-12">
+      <div class="card-title">Cron Jobs</div>
+      <table>
+        <thead><tr><th>Name</th><th>Schedule</th><th>Model</th><th>Last Run</th><th>Status</th><th>Next Run</th></tr></thead>
+        <tbody>
+          <tr><td>journal-prompt</td><td>6:00 AM daily</td><td><span class="tag sonnet">Sonnet</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Tomorrow 6:00 AM</td></tr>
+          <tr><td>daily-obsidian-note</td><td>6:05 AM daily</td><td><span class="tag sonnet">Sonnet</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Tomorrow 6:05 AM</td></tr>
+          <tr><td>research-tasks-daily-refresh</td><td>7:35 AM daily</td><td><span class="tag codex">Codex</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Tomorrow 7:35 AM</td></tr>
+          <tr><td>obj-95-daily-tweet-draft</td><td>8:00 AM daily</td><td><span class="tag sonnet">Sonnet</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Tomorrow 8:00 AM</td></tr>
+          <tr><td>obj-106-stablecoin-research</td><td>9:00 AM Tue/Thu/Sat</td><td><span class="tag sonnet">Sonnet</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Tue 9:00 AM</td></tr>
+          <tr><td>journal-prompt-evening</td><td>6:00 PM daily</td><td><span class="tag sonnet">Sonnet</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Today 6:00 PM</td></tr>
+          <tr><td>healthcheck:context-monitor</td><td>Every 1h</td><td><span class="tag codex">Codex</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Next hour</td></tr>
+          <tr><td>dashboard-system-health-refresh</td><td>Every 1h</td><td><span class="tag codex">Codex</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Next hour</td></tr>
+          <tr><td>control-tower-telemetry-refresh</td><td>Every 2h</td><td><span class="tag codex">Codex</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Next 2h</td></tr>
+          <tr><td>readwise-weekly-groom</td><td>Sun 10:00 AM</td><td><span class="tag codex">Codex</span></td><td>&mdash;</td><td><span class="dot dot-warn"></span>idle</td><td>Sun 10:00 AM</td></tr>
+        </tbody>
+      </table>
     </article>
 
     <article class="card span-12">
@@ -361,28 +443,32 @@
   </div>
 </section>
 
-<!-- ══════════════════════ RESEARCH TASKS ══════════════════════ -->
-<section class="view" data-view="research-tasks">
+<!-- ══════════════════════ TAB 4: CRON CALENDAR ══════════════════════ -->
+<section class="view" data-view="cron-calendar">
   <div class="grid">
     <article class="card span-12">
-      <div class="card-title">Research Tasks</div>
-      <p class="section-intro">Daily research telemetry for special projects. This includes news-driven probability tracking for PayPal acquisition outcomes.</p>
+      <div class="card-title">Weekly Cron Schedule</div>
+      <div class="cal-grid" id="cron-calendar"></div>
+      <p class="note" style="margin-top:12px">All times Central (America/Chicago). Hourly jobs (healthcheck, dashboard-refresh, control-tower-refresh) run continuously and are shown in the first available slot. Durations are estimates.</p>
     </article>
+  </div>
+</section>
 
+<!-- ══════════════════════ TAB 5: RESEARCH ══════════════════════ -->
+<section class="view" data-view="research">
+  <div class="grid">
     <article class="card span-4">
-      <div class="card-title">PayPal acquisition probability</div>
-      <div class="kpi" id="rt-paypal-prob">—</div>
-      <div class="kpi-sub" id="rt-paypal-updated">Awaiting daily refresh…</div>
+      <div class="card-title">PayPal Acquisition Probability</div>
+      <div class="kpi" id="rt-paypal-prob">&mdash;</div>
+      <div class="kpi-sub" id="rt-paypal-updated">Awaiting daily refresh&hellip;</div>
     </article>
-
     <article class="card span-8">
-      <div class="card-title">Current thesis (why)</div>
+      <div class="card-title">Current Thesis</div>
       <p class="section-intro" id="rt-paypal-thesis">No thesis loaded yet.</p>
-      <p class="note" id="rt-paypal-method">Method: weighted signal from credible reporting, deal-rumor quality, and strategic fit indicators. Updated once per day.</p>
+      <p class="note" id="rt-paypal-method">Method: weighted signal from credible reporting, deal-rumor quality, and strategic fit indicators. Updated daily.</p>
     </article>
-
     <article class="card span-12">
-      <div class="card-title">Evidence log (latest signals)</div>
+      <div class="card-title">Evidence Log</div>
       <table>
         <thead><tr><th>Date</th><th>Signal</th><th>Direction</th><th>Strength</th><th>Source</th></tr></thead>
         <tbody id="rt-evidence">
@@ -393,600 +479,278 @@
   </div>
 </section>
 
-<!-- ══════════════════════ SLACK ══════════════════════ -->
-<section class="view" data-view="slack">
-  <div class="grid">
-    <article class="card span-12">
-      <div class="card-title">Slack Channels (active with Claw)</div>
-      <table>
-        <thead><tr><th style="width:18%">Channel</th><th style="width:22%">Channel ID</th><th>Purpose</th></tr></thead>
-        <tbody>
-          <tr><td><strong>#hq</strong></td><td><code>C0AKD18KN2G</code></td><td>Daily driver working channel</td></tr>
-          <tr><td><strong>#alerts</strong></td><td><code>C0AKD1VH8CU</code></td><td>Urgent/time-sensitive notifications (failures, 429s, blocked tasks, security)</td></tr>
-          <tr><td><strong>#dashboard</strong></td><td><code>C0AK32JBKTM</code></td><td>Dashboard building, UI changes, automated telemetry feed</td></tr>
-          <tr><td><strong>#april-journal</strong></td><td><code>C0AL3MWCR40</code></td><td>Journal prompts (6AM + 6PM), objective check-ins</td></tr>
-          <tr><td><strong>#obj-95</strong></td><td><code>C0AL3MQV41W</code></td><td>Mindfulness content engine, tweet/thread drafts from Waking Up corpus</td></tr>
-          <tr><td><strong>#obj-106</strong></td><td><code>C0AJTUZED2B</code></td><td>Stablecoin/PayPal/Ethereum research, wedge selection, Arbitrum L2</td></tr>
-        </tbody>
-      </table>
-    </article>
-  </div>
-</section>
-
-<!-- ══════════════════════ ARCHITECTURE ══════════════════════ -->
+<!-- ══════════════════════ TAB 6: ARCHITECTURE ══════════════════════ -->
 <section class="view" data-view="architecture">
   <div class="grid">
     <article class="card span-12">
-      <div class="card-title">Full System Architecture — How Claw Works</div>
-      <svg class="diagram" viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" font-family="Inter,ui-sans-serif,sans-serif">
+      <div class="card-title">System Architecture</div>
+      <svg class="diagram" viewBox="0 0 1200 650" xmlns="http://www.w3.org/2000/svg" font-family="Inter,ui-sans-serif,sans-serif">
         <defs>
           <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M0 0L10 5L0 10z" fill="#9080e0"/>
+            <path d="M0 0L10 5L0 10z" fill="#999"/>
           </marker>
           <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-            <path d="M0 0L10 5L0 10z" fill="#b0b8d8"/>
+            <path d="M0 0L10 5L0 10z" fill="#ccc"/>
           </marker>
-          <!-- subtle gradient bg zones -->
-          <linearGradient id="grad-you" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#fef0f8"/><stop offset="100%" stop-color="#ffe8f6"/>
-          </linearGradient>
-          <linearGradient id="grad-hw" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#f0f4ff"/><stop offset="100%" stop-color="#e8eeff"/>
-          </linearGradient>
-          <linearGradient id="grad-gw" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#f5f0ff"/><stop offset="100%" stop-color="#ede8ff"/>
-          </linearGradient>
-          <linearGradient id="grad-ext" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#f0fff8"/><stop offset="100%" stop-color="#e4f8ee"/>
-          </linearGradient>
         </defs>
 
         <!-- ── ZONE: YOU ── -->
-        <rect x="10" y="10" width="340" height="110" rx="14" fill="url(#grad-you)" stroke="#f0b8d8" stroke-width="1.5"/>
-        <text x="25" y="34" fill="#c03060" font-size="11" font-weight="700" letter-spacing=".06em">YOU</text>
+        <rect x="10" y="10" width="200" height="110" rx="4" fill="white" stroke="#eee" stroke-width="1.5"/>
+        <text x="25" y="32" fill="#999" font-size="11" font-weight="700" letter-spacing=".06em">YOU</text>
+        <rect x="30" y="45" width="70" height="50" rx="4" fill="white" stroke="#eee"/>
+        <text x="65" y="67" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Slack</text>
+        <text x="65" y="82" fill="#999" text-anchor="middle" font-size="9">Socket Mode</text>
+        <rect x="115" y="45" width="75" height="50" rx="4" fill="white" stroke="#eee"/>
+        <text x="152" y="67" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Webchat</text>
+        <text x="152" y="82" fill="#999" text-anchor="middle" font-size="9">browser</text>
 
-        <rect x="30" y="45" width="90" height="50" rx="10" fill="white" stroke="#f0b0d0"/>
-        <text x="75" y="67" fill="#c03060" text-anchor="middle" font-size="12" font-weight="600">Slack</text>
-        <text x="75" y="84" fill="#d080a0" text-anchor="middle" font-size="10">Socket Mode</text>
+        <!-- ── ZONE: MAC MINI ── -->
+        <rect x="240" y="10" width="560" height="630" rx="4" fill="white" stroke="#ddd" stroke-width="2"/>
+        <text x="260" y="32" fill="#555" font-size="11" font-weight="700" letter-spacing=".06em">MAC MINI &mdash; MMM4 (always-on)</text>
 
-        <rect x="135" y="45" width="90" height="50" rx="10" fill="white" stroke="#f0b0d0"/>
-        <text x="180" y="67" fill="#c03060" text-anchor="middle" font-size="12" font-weight="600">Telegram</text>
-        <text x="180" y="84" fill="#d080a0" text-anchor="middle" font-size="10">mobile / web</text>
+        <!-- Gateway -->
+        <rect x="260" y="50" width="520" height="140" rx="4" fill="#fafafa" stroke="#eee" stroke-width="1.5"/>
+        <text x="520" y="72" fill="#555" text-anchor="middle" font-size="13" font-weight="700">OpenClaw Gateway :18789</text>
+        <text x="520" y="88" fill="#999" text-anchor="middle" font-size="11">Node.js daemon &middot; v2026.3.13 &middot; loopback bind</text>
 
-        <rect x="240" y="45" width="90" height="50" rx="10" fill="white" stroke="#f0b0d0"/>
-        <text x="285" y="67" fill="#c03060" text-anchor="middle" font-size="12" font-weight="600">Discord</text>
-        <text x="285" y="84" fill="#d080a0" text-anchor="middle" font-size="10">any device</text>
+        <rect x="278" y="100" width="110" height="32" rx="4" fill="white" stroke="#eee"/>
+        <text x="333" y="120" fill="#555" text-anchor="middle" font-size="11" font-weight="600">Session Mgr</text>
+        <rect x="398" y="100" width="110" height="32" rx="4" fill="white" stroke="#eee"/>
+        <text x="453" y="120" fill="#555" text-anchor="middle" font-size="11" font-weight="600">Channel Router</text>
+        <rect x="518" y="100" width="110" height="32" rx="4" fill="white" stroke="#eee"/>
+        <text x="573" y="120" fill="#555" text-anchor="middle" font-size="11" font-weight="600">Memory Hooks</text>
+        <rect x="638" y="100" width="110" height="32" rx="4" fill="white" stroke="#eee"/>
+        <text x="693" y="120" fill="#555" text-anchor="middle" font-size="11" font-weight="600">Cron Engine</text>
+        <text x="520" y="172" fill="#999" text-anchor="middle" font-size="10">Tools: exec &middot; read/write &middot; browser &middot; cron &middot; nodes &middot; message</text>
 
+        <!-- Main Agent -->
+        <rect x="260" y="210" width="520" height="60" rx="4" fill="white" stroke="var(--opus-accent)" stroke-width="1.5"/>
+        <text x="520" y="237" fill="#555" text-anchor="middle" font-size="14" font-weight="700">Claw &mdash; Main Agent (Orchestrator)</text>
+        <text x="520" y="257" fill="#999" text-anchor="middle" font-size="11">Model: Opus 4-6 &middot; minimal usage &middot; delegates to sub-agents</text>
 
-        <!-- ── ZONE: MAC MINI (HARDWARE) ── -->
-        <rect x="370" y="10" width="460" height="680" rx="14" fill="url(#grad-hw)" stroke="#c0c8f0" stroke-width="2"/>
-        <text x="390" y="34" fill="#4050b0" font-size="11" font-weight="700" letter-spacing=".06em">MAC MINI — MMM4 (always-on server)</text>
+        <!-- Sub-agents -->
+        <text x="520" y="300" fill="#999" text-anchor="middle" font-size="11" font-weight="600">Sub-agents (spawned on-demand &middot; max 5 main / 2 sub)</text>
 
-        <!-- OpenClaw Gateway box -->
-        <rect x="390" y="50" width="420" height="160" rx="12" fill="url(#grad-gw)" stroke="#a090e8" stroke-width="1.5"/>
-        <text x="600" y="74" fill="#5b4ecc" text-anchor="middle" font-size="13" font-weight="700">OpenClaw Gateway :18789</text>
-        <text x="600" y="92" fill="#8070c0" text-anchor="middle" font-size="11">Node.js daemon · SIGUSR1 restart · loopback bind</text>
+        <rect x="265" y="315" width="168" height="75" rx="4" fill="white" stroke="var(--codex-accent)" stroke-width="1"/>
+        <text x="349" y="337" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Coding Agent</text>
+        <text x="349" y="353" fill="#999" text-anchor="middle" font-size="10">Codex 5.3</text>
+        <text x="349" y="368" fill="#999" text-anchor="middle" font-size="10">file edits, scaffolds, tests</text>
 
-        <rect x="408" y="102" width="110" height="36" rx="8" fill="white" stroke="#d0c8f8"/>
-        <text x="463" y="117" fill="#6050c0" text-anchor="middle" font-size="11" font-weight="600">Session Mgr</text>
-        <text x="463" y="132" fill="#9080d0" text-anchor="middle" font-size="10">main · sub · isolated</text>
+        <rect x="445" y="315" width="168" height="75" rx="4" fill="white" stroke="var(--codex-accent)" stroke-width="1"/>
+        <text x="529" y="337" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Research Agent</text>
+        <text x="529" y="353" fill="#999" text-anchor="middle" font-size="10">Codex 5.3</text>
+        <text x="529" y="368" fill="#999" text-anchor="middle" font-size="10">web_search, cited findings</text>
 
-        <rect x="530" y="102" width="110" height="36" rx="8" fill="white" stroke="#d0c8f8"/>
-        <text x="585" y="117" fill="#6050c0" text-anchor="middle" font-size="11" font-weight="600">Channel Router</text>
-        <text x="585" y="132" fill="#9080d0" text-anchor="middle" font-size="10">Slack/Telegram/Discord</text>
+        <rect x="625" y="315" width="148" height="75" rx="4" fill="white" stroke="var(--haiku-accent)" stroke-width="1"/>
+        <text x="699" y="337" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Cheap Agent</text>
+        <text x="699" y="353" fill="#999" text-anchor="middle" font-size="10">Haiku 3.5</text>
+        <text x="699" y="368" fill="#999" text-anchor="middle" font-size="10">summaries, formatting</text>
 
-        <rect x="652" y="102" width="110" height="36" rx="8" fill="white" stroke="#d0c8f8"/>
-        <text x="707" y="117" fill="#6050c0" text-anchor="middle" font-size="11" font-weight="600">Memory Hooks</text>
-        <text x="707" y="132" fill="#9080d0" text-anchor="middle" font-size="10">memory.md · daily</text>
+        <!-- Workspace -->
+        <rect x="260" y="410" width="520" height="70" rx="4" fill="white" stroke="#eee" stroke-width="1.5"/>
+        <text x="520" y="437" fill="#555" text-anchor="middle" font-size="12" font-weight="700">Workspace: ~/.openclaw/workspace</text>
+        <text x="520" y="455" fill="#999" text-anchor="middle" font-size="10">memory.md &middot; memory/*.md &middot; dashboard-ui/ &middot; skills/ &middot; SOUL.md &middot; USER.md</text>
+        <text x="520" y="471" fill="#999" text-anchor="middle" font-size="10">GitHub: paradoxofacceptance.xyz/april-dashboard</text>
 
-        <rect x="775" y="102" width="26" height="36" rx="8" fill="white" stroke="#d0c8f8"/>
-        <text x="788" y="125" fill="#9080d0" text-anchor="middle" font-size="10">…</text>
+        <!-- Cron zone -->
+        <rect x="260" y="500" width="520" height="60" rx="4" fill="white" stroke="#eee" stroke-width="1.5"/>
+        <text x="520" y="522" fill="#555" text-anchor="middle" font-size="12" font-weight="700">Cron Scheduler (10 jobs)</text>
+        <text x="520" y="540" fill="#999" text-anchor="middle" font-size="10">journal &middot; obsidian &middot; research &middot; tweets &middot; stablecoin &middot; healthcheck &middot; dashboard &middot; control-tower &middot; readwise</text>
 
-        <text x="600" y="192" fill="#8070c0" text-anchor="middle" font-size="10">Tools: exec · read/write · browser · cron · nodes · message</text>
+        <!-- ── ZONE: EXTERNAL ── -->
+        <rect x="830" y="10" width="360" height="630" rx="4" fill="white" stroke="#eee" stroke-width="1.5"/>
+        <text x="850" y="32" fill="#999" font-size="11" font-weight="700" letter-spacing=".06em">EXTERNAL SERVICES</text>
 
-        <!-- Claw Agent boxes -->
-        <rect x="390" y="230" width="420" height="70" rx="12" fill="#fff0f8" stroke="#f0a0c8" stroke-width="1.5"/>
-        <text x="600" y="255" fill="#c03060" text-anchor="middle" font-size="14" font-weight="700">Claw — Main Agent Session (Orchestrator)</text>
-        <text x="600" y="273" fill="#d06090" text-anchor="middle" font-size="11">Model: Opus 4-6 · minimal usage · delegates heavy work to sub-agents</text>
-        <text x="600" y="291" fill="#d06090" text-anchor="middle" font-size="10">Reads SOUL.md · USER.md · memory.md on every session start</text>
+        <rect x="850" y="50" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
+        <text x="1010" y="72" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Notion</text>
+        <text x="1010" y="87" fill="#999" text-anchor="middle" font-size="10">Objectives DB &middot; read-first &middot; manual writes</text>
 
-        <!-- Sub-agent row -->
-        <text x="600" y="328" fill="#5b4ecc" text-anchor="middle" font-size="11" font-weight="600">Sub-agents (spawned on-demand · max 2 concurrent)</text>
+        <rect x="850" y="110" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
+        <text x="1010" y="132" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Anthropic API</text>
+        <text x="1010" y="147" fill="#999" text-anchor="middle" font-size="10">Opus &middot; Sonnet &middot; Haiku</text>
 
-        <rect x="393" y="338" width="195" height="90" rx="10" fill="#fff8e8" stroke="#f8d888" stroke-width="1.5"/>
-        <text x="490" y="361" fill="#a06010" text-anchor="middle" font-size="12" font-weight="600">Deep Think Agent</text>
-        <text x="490" y="379" fill="#c08030" text-anchor="middle" font-size="10">Model: Opus 4.6</text>
-        <text x="490" y="394" fill="#c08030" text-anchor="middle" font-size="10">Complex reasoning, strategy</text>
-        <text x="490" y="409" fill="#c08030" text-anchor="middle" font-size="10">tradeoffs, hard analysis</text>
+        <rect x="850" y="170" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
+        <text x="1010" y="192" fill="#555" text-anchor="middle" font-size="12" font-weight="600">OpenAI API</text>
+        <text x="1010" y="207" fill="#999" text-anchor="middle" font-size="10">Codex 5.3 &middot; OAuth mode</text>
 
-        <rect x="602" y="338" width="205" height="90" rx="10" fill="#e8fff4" stroke="#88e8b8" stroke-width="1.5"/>
-        <text x="705" y="361" fill="#1d7a5a" text-anchor="middle" font-size="12" font-weight="600">Coding Agent</text>
-        <text x="705" y="379" fill="#2a9070" text-anchor="middle" font-size="10">Model: Codex 5.3</text>
-        <text x="705" y="394" fill="#2a9070" text-anchor="middle" font-size="10">File edits, scaffolds</text>
-        <text x="705" y="409" fill="#2a9070" text-anchor="middle" font-size="10">tests, code review</text>
+        <rect x="850" y="230" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
+        <text x="1010" y="252" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Brave Search API</text>
+        <text x="1010" y="267" fill="#999" text-anchor="middle" font-size="10">web_search tool</text>
 
-        <rect x="393" y="442" width="195" height="90" rx="10" fill="#edf0ff" stroke="#c0c8f8" stroke-width="1.5"/>
-        <text x="490" y="465" fill="#4050b0" text-anchor="middle" font-size="12" font-weight="600">Research Agent</text>
-        <text x="490" y="483" fill="#6070c0" text-anchor="middle" font-size="10">Model: Codex 5.3 (default)</text>
-        <text x="490" y="498" fill="#6070c0" text-anchor="middle" font-size="10">web_search + fetch</text>
-        <text x="490" y="513" fill="#6070c0" text-anchor="middle" font-size="10">cited findings</text>
+        <rect x="850" y="290" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
+        <text x="1010" y="312" fill="#555" text-anchor="middle" font-size="12" font-weight="600">GitHub</text>
+        <text x="1010" y="327" fill="#999" text-anchor="middle" font-size="10">gh CLI &middot; nickxma &middot; Pages deploy</text>
 
-        <rect x="602" y="442" width="205" height="90" rx="10" fill="#fff8ee" stroke="#f8d8a8" stroke-width="1.5"/>
-        <text x="705" y="465" fill="#a06010" text-anchor="middle" font-size="12" font-weight="600">Cheap / Menial Agent</text>
-        <text x="705" y="483" fill="#c08030" text-anchor="middle" font-size="10">Model: Haiku 3.5</text>
-        <text x="705" y="498" fill="#c08030" text-anchor="middle" font-size="10">Summaries, tweet reading</text>
-        <text x="705" y="513" fill="#c08030" text-anchor="middle" font-size="10">simple lookups, formatting</text>
+        <rect x="850" y="350" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
+        <text x="1010" y="372" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Tailscale</text>
+        <text x="1010" y="387" fill="#999" text-anchor="middle" font-size="10">mmm4 &middot; 100.74.228.112 &middot; SSH pending</text>
 
-        <!-- Workspace box -->
-        <rect x="390" y="548" width="420" height="80" rx="12" fill="white" stroke="#d0d8f0" stroke-width="1.5"/>
-        <text x="600" y="571" fill="#4050b0" text-anchor="middle" font-size="12" font-weight="700">Workspace: ~/.openclaw/workspace</text>
-        <text x="600" y="589" fill="#8090c0" text-anchor="middle" font-size="10">memory.md · memory/YYYY-MM-DD.md · dashboard-ui/ · skills/</text>
-        <text x="600" y="607" fill="#8090c0" text-anchor="middle" font-size="10">SOUL.md · USER.md · AGENTS.md · MEMORY.md · HEARTBEAT.md</text>
-        <text x="600" y="625" fill="#a0a8d0" text-anchor="middle" font-size="10">GitHub repo: nickxma/april-dashboard (dashboard mirror)</text>
-
-        <!-- ── ZONE: EXTERNAL SERVICES ── -->
-        <rect x="850" y="10" width="340" height="680" rx="14" fill="url(#grad-ext)" stroke="#88d8b0" stroke-width="1.5"/>
-        <text x="870" y="34" fill="#1a7050" font-size="11" font-weight="700" letter-spacing=".06em">EXTERNAL SERVICES</text>
-
-        <rect x="870" y="50" width="300" height="60" rx="10" fill="white" stroke="#b0e8d0"/>
-        <text x="1020" y="76" fill="#1d7a5a" text-anchor="middle" font-size="13" font-weight="600">Notion</text>
-        <text x="1020" y="93" fill="#4a9a78" text-anchor="middle" font-size="10">Objectives DB · read-first · manual writes</text>
-
-        <rect x="870" y="125" width="300" height="60" rx="10" fill="white" stroke="#b0e8d0"/>
-        <text x="1020" y="151" fill="#1d7a5a" text-anchor="middle" font-size="13" font-weight="600">Anthropic API</text>
-        <text x="1020" y="168" fill="#4a9a78" text-anchor="middle" font-size="10">Sonnet · Opus · Haiku · sk-ant…</text>
-
-        <rect x="870" y="200" width="300" height="60" rx="10" fill="white" stroke="#b0e8d0"/>
-        <text x="1020" y="226" fill="#1d7a5a" text-anchor="middle" font-size="13" font-weight="600">OpenAI API</text>
-        <text x="1020" y="243" fill="#4a9a78" text-anchor="middle" font-size="10">Codex 5.3 · OAuth mode</text>
-
-        <rect x="870" y="275" width="300" height="60" rx="10" fill="white" stroke="#b0e8d0"/>
-        <text x="1020" y="301" fill="#1d7a5a" text-anchor="middle" font-size="13" font-weight="600">Brave Search API</text>
-        <text x="1020" y="318" fill="#4a9a78" text-anchor="middle" font-size="10">web_search tool · key configured</text>
-
-        <rect x="870" y="350" width="300" height="60" rx="10" fill="white" stroke="#b0e8d0"/>
-        <text x="1020" y="376" fill="#1d7a5a" text-anchor="middle" font-size="13" font-weight="600">GitHub</text>
-        <text x="1020" y="393" fill="#4a9a78" text-anchor="middle" font-size="10">gh CLI · nickxma · april-dashboard pages</text>
-
-        <rect x="870" y="425" width="300" height="60" rx="10" fill="white" stroke="#b0e8d0"/>
-        <text x="1020" y="451" fill="#1d7a5a" text-anchor="middle" font-size="13" font-weight="600">Tailscale</text>
-        <text x="1020" y="468" fill="#4a9a78" text-anchor="middle" font-size="10">mmm4 · 100.74.228.112 · SSH pending</text>
-
-        <rect x="870" y="500" width="300" height="60" rx="10" fill="white" stroke="#b0e8d0"/>
-        <text x="1020" y="526" fill="#1d7a5a" text-anchor="middle" font-size="13" font-weight="600">Telegram Bot</text>
-        <text x="1020" y="543" fill="#4a9a78" text-anchor="middle" font-size="10">DM pairing · group allowlist</text>
-
-        <!-- ── FLOW ARROWS ── -->
-        <!-- You → Gateway -->
-        <line x1="350" y1="70" x2="388" y2="100" stroke="#e090c0" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
-        <text x="358" y="88" fill="#c060a0" font-size="9">msg in</text>
-
-        <!-- Gateway → Main Agent -->
-        <line x1="600" y1="210" x2="600" y2="228" stroke="#9080e0" stroke-width="2" marker-end="url(#arr)"/>
-
-        <!-- Main Agent → Sub-agents -->
-        <line x1="490" y1="300" x2="490" y2="336" stroke="#d0a0c0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
-        <line x1="600" y1="300" x2="600" y2="336" stroke="#d0a0c0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
-        <line x1="705" y1="300" x2="705" y2="336" stroke="#d0a0c0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
-
-        <!-- Sub-agent row 2 -->
-        <line x1="490" y1="428" x2="490" y2="440" stroke="#d0a0c0" stroke-width="1.5" stroke-dasharray="4,3"/>
-        <line x1="705" y1="428" x2="705" y2="440" stroke="#d0a0c0" stroke-width="1.5" stroke-dasharray="4,3"/>
-
-        <!-- Workspace arrows -->
-        <line x1="490" y1="532" x2="490" y2="546" stroke="#b0b8e0" stroke-width="1.5" marker-end="url(#arr2)"/>
-        <line x1="705" y1="532" x2="705" y2="546" stroke="#b0b8e0" stroke-width="1.5" marker-end="url(#arr2)"/>
-
-        <!-- Gateway → External -->
-        <line x1="812" y1="130" x2="868" y2="80" stroke="#88d8b0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
-        <line x1="812" y1="150" x2="868" y2="155" stroke="#88d8b0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
-        <line x1="812" y1="160" x2="868" y2="230" stroke="#88d8b0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
-        <line x1="812" y1="160" x2="868" y2="305" stroke="#88d8b0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
-        <line x1="812" y1="160" x2="868" y2="380" stroke="#88d8b0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
-        <line x1="812" y1="160" x2="868" y2="455" stroke="#88d8b0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
-        <line x1="812" y1="160" x2="868" y2="530" stroke="#88d8b0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <!-- ── ARROWS ── -->
+        <line x1="210" y1="70" x2="258" y2="100" stroke="#ccc" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+        <text x="222" y="88" fill="#999" font-size="9">msg in</text>
+        <line x1="520" y1="190" x2="520" y2="208" stroke="#999" stroke-width="1.5" marker-end="url(#arr)"/>
+        <line x1="349" y1="270" x2="349" y2="313" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+        <line x1="529" y1="270" x2="529" y2="313" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+        <line x1="699" y1="270" x2="699" y2="313" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+        <line x1="520" y1="390" x2="520" y2="408" stroke="#ccc" stroke-width="1" marker-end="url(#arr2)"/>
+        <line x1="782" y1="120" x2="848" y2="74" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="782" y1="130" x2="848" y2="134" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="782" y1="140" x2="848" y2="194" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="782" y1="150" x2="848" y2="254" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="782" y1="155" x2="848" y2="314" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="782" y1="160" x2="848" y2="374" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
       </svg>
     </article>
 
     <article class="card span-6">
-      <div class="card-title">How a message flows</div>
+      <div class="card-title">Message Flow</div>
       <ol>
-        <li>You send a message on Slack / Telegram / Discord / Webchat</li>
-        <li>OpenClaw gateway receives it and routes to main session</li>
-        <li>Claw (Opus) reads context + memory and decides what to do</li>
-        <li>If complex → spawns a sub-agent with the right model tier</li>
+        <li>Message arrives via Slack or Webchat</li>
+        <li>Gateway routes to main session</li>
+        <li>Claw (Opus) reads context + memory, decides action</li>
+        <li>Complex work &rarr; sub-agent with appropriate model tier</li>
         <li>Sub-agent runs, returns structured output</li>
-        <li>Claw synthesizes and replies to you</li>
-        <li>Durable decisions written to memory.md</li>
+        <li>Claw synthesizes and replies; durable decisions &rarr; memory.md</li>
       </ol>
     </article>
     <article class="card span-6">
-      <div class="card-title">Physical setup</div>
+      <div class="card-title">Physical Setup</div>
       <table>
         <thead><tr><th>Layer</th><th>What</th><th>Notes</th></tr></thead>
         <tbody>
-          <tr><td>Hardware</td><td>Mac Mini MMM4</td><td>Always-on · arm64 · macOS 26.3</td></tr>
-          <tr><td>Network</td><td>Tailscale</td><td>100.74.228.112 · SSH pending</td></tr>
-          <tr><td>Gateway</td><td>OpenClaw 2026.3.7</td><td>Port 18789 · local mode</td></tr>
+          <tr><td>Hardware</td><td>Mac Mini MMM4</td><td>Always-on &middot; arm64 &middot; macOS 26.3</td></tr>
+          <tr><td>Network</td><td>Tailscale</td><td>100.74.228.112 &middot; SSH pending</td></tr>
+          <tr><td>Gateway</td><td>OpenClaw 2026.3.13</td><td>Port 18789 &middot; local mode</td></tr>
           <tr><td>Your laptop</td><td>SSH into MMM4</td><td>Via Tailscale tailnet</td></tr>
-          <tr><td>Remote dashboard</td><td>GitHub Pages</td><td>nickxma.github.io/april-dashboard</td></tr>
-        </tbody>
-      </table>
-    </article>
-  </div>
-</section>
-
-<!-- ══════════════════════ AGENTS ══════════════════════ -->
-<section class="view" data-view="agents">
-  <div class="grid">
-    <article class="card span-12">
-      <div class="card-title">4-Tier Model Hierarchy</div>
-      <table>
-        <thead><tr><th>Tier</th><th>Model</th><th>Alias</th><th>When Used</th><th>Relative Cost</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><span class="tag opus">Orchestrator</span></td>
-            <td><code>claude-opus-4-6</code></td>
-            <td><code>/model opus</code></td>
-            <td>All conversations, routing, coordination, decisions</td>
-            <td>
-              <div class="model-bar"><div class="bar"><div class="fill fill-opus" style="width:90%"></div></div><span>High</span></div>
-            </td>
-          </tr>
-          <tr>
-            <td><span class="tag opus">Deep Think</span></td>
-            <td><code>claude-opus-4-6</code></td>
-            <td><code>/model opus</code></td>
-            <td>Complex strategy, hard tradeoffs, analysis</td>
-            <td>
-              <div class="model-bar"><div class="bar"><div class="fill fill-opus" style="width:90%"></div></div><span>High</span></div>
-            </td>
-          </tr>
-          <tr>
-            <td><span class="tag codex">Coding</span></td>
-            <td><code>gpt-5.3-codex</code></td>
-            <td><code>/model codex</code></td>
-            <td>File edits, scaffolds, tests, code review</td>
-            <td>
-              <div class="model-bar"><div class="bar"><div class="fill fill-codex" style="width:55%"></div></div><span>Medium</span></div>
-            </td>
-          </tr>
-          <tr>
-            <td><span class="tag haiku">Cheap</span></td>
-            <td><code>claude-haiku-3-5</code></td>
-            <td><code>/model haiku</code></td>
-            <td>Summaries, simple lookups, tweet reading, formatting</td>
-            <td>
-              <div class="model-bar"><div class="bar"><div class="fill fill-haiku" style="width:12%"></div></div><span>Very Low</span></div>
-            </td>
-          </tr>
+          <tr><td>Dashboard</td><td>GitHub Pages</td><td>paradoxofacceptance.xyz/april-dashboard</td></tr>
         </tbody>
       </table>
     </article>
 
-    <article class="card span-6">
-      <div class="card-title">Concurrency Rules</div>
-      <table>
-        <thead><tr><th>Setting</th><th>Limit</th><th>Reason</th></tr></thead>
-        <tbody>
-          <tr><td>Main sessions</td><td><strong>1</strong></td><td>No parallel main instances</td></tr>
-          <tr><td>Sub-agents</td><td><strong>2</strong></td><td>Rate-limit safe ceiling</td></tr>
-          <tr><td>GO PARALLEL</td><td>opt-in</td><td>Only when you explicitly say so</td></tr>
-        </tbody>
-      </table>
-    </article>
-    <article class="card span-6">
-      <div class="card-title">Sub-agent Default Model</div>
-      <p class="note">Sub-agents default to <strong>Codex 5.3</strong> (gpt-5.3-codex) unless overridden at spawn time. Claw will use Sonnet for balanced Anthropic tasks and Haiku for cheap/fast jobs.</p>
-    </article>
-  </div>
-</section>
-
-<!-- ══════════════════════ SESSIONS ══════════════════════ -->
-<section class="view" data-view="sessions">
-  <div class="grid">
     <article class="card span-12">
       <div class="card-title">Session Types</div>
       <table>
         <thead><tr><th>Type</th><th>Key</th><th>Model</th><th>Lifetime</th><th>Who talks to it</th></tr></thead>
         <tbody>
           <tr><td><span class="tag opus">Main</span></td><td><code>agent:main:main</code></td><td>Opus 4-6</td><td>Ongoing conversation</td><td>You directly</td></tr>
-          <tr><td><span class="tag plain">Sub-agent</span></td><td><code>agent:main:sub-XXXX</code></td><td>Varies (Opus/Codex/Haiku)</td><td>Single task → auto-cleanup</td><td>Main agent only</td></tr>
+          <tr><td><span class="tag plain">Sub-agent</span></td><td><code>agent:main:sub-XXXX</code></td><td>Varies</td><td>Single task &rarr; auto-cleanup</td><td>Main agent only</td></tr>
           <tr><td><span class="tag ok">Isolated/Cron</span></td><td><code>agent:isolated:XXXX</code></td><td>Configurable</td><td>Scheduled / timed</td><td>Nobody (async)</td></tr>
         </tbody>
       </table>
     </article>
-    <article class="card span-6">
-      <div class="card-title">Context Window vs Memory</div>
-      <table>
-        <thead><tr><th>Storage</th><th>Scope</th><th>Survives restart?</th></tr></thead>
-        <tbody>
-          <tr><td>Session context</td><td>Current conversation</td><td>No</td></tr>
-          <tr><td>memory.md</td><td>Durable facts/decisions</td><td>✅ Yes</td></tr>
-          <tr><td>memory/YYYY-MM-DD.md</td><td>Daily notes</td><td>✅ Yes</td></tr>
-          <tr><td>Notion DB</td><td>Objectives/projects</td><td>✅ Yes (external)</td></tr>
-        </tbody>
-      </table>
-    </article>
-    <article class="card span-6">
-      <div class="card-title">Session Lifecycle</div>
-      <ol>
-        <li>You send message → gateway routes to a channel session</li>
-        <li>Main agent handles directly, or spawns sub-agent</li>
-        <li>Sub-agent runs isolated task, reports back</li>
-        <li>Main synthesizes → sends reply to same channel/session</li>
-        <li>Durable facts → memory.md</li>
-      </ol>
-    </article>
 
-    <article class="card span-12">
-      <div class="card-title">Channel ↔ Session Map (vernacular)</div>
-      <table>
-        <thead><tr><th>Term</th><th>What it actually means</th><th>Example</th><th>Context sharing?</th></tr></thead>
-        <tbody>
-          <tr><td>Gateway</td><td>Router/runtime process on MMM4</td><td><code>openclaw-gateway :18789</code></td><td>N/A</td></tr>
-          <tr><td>Main session</td><td>Your direct conversation thread with Claw</td><td><code>agent:main:main</code></td><td>Own context window</td></tr>
-          <tr><td>Channel session</td><td>Per-channel/per-thread conversation state</td><td>Telegram DM vs Discord channel</td><td>Separate by default</td></tr>
-          <tr><td>Sub-agent</td><td>Temporary worker session spawned by main</td><td><code>agent:main:sub-*</code></td><td>No direct user chat; reports back</td></tr>
-          <tr><td>Isolated session</td><td>Background/cron worker session</td><td><code>agent:isolated:*</code></td><td>Separate</td></tr>
-        </tbody>
-      </table>
-      <p class="note">If you have 10 Telegram channels, each channel/thread can accumulate its own context. They are not 10 sub-agents. Sub-agents are spawned workers for tasks, not channels.</p>
-    </article>
-  </div>
-</section>
-
-<!-- ══════════════════════ TOOLS ══════════════════════ -->
-<section class="view" data-view="tools">
-  <div class="grid">
-    <article class="card span-12">
-      <div class="card-title">Tools & Capabilities</div>
-      <table>
-        <thead><tr><th>Tool</th><th>What it does</th><th>Status</th><th>Notes</th></tr></thead>
-        <tbody>
-          <tr><td><code>web_search</code></td><td>Search the web (Brave)</td><td><span class="tag ok">active</span></td><td>API key configured</td></tr>
-          <tr><td><code>web_fetch</code></td><td>Fetch + extract page content</td><td><span class="tag ok">active</span></td><td></td></tr>
-          <tr><td><code>exec</code></td><td>Run shell commands on MMM4</td><td><span class="tag ok">active</span></td><td>Elevated mode available</td></tr>
-          <tr><td><code>Read / Write / Edit</code></td><td>File system</td><td><span class="tag ok">active</span></td><td>~/.openclaw/workspace</td></tr>
-          <tr><td><code>browser</code></td><td>Browser automation</td><td><span class="tag warn">intermittent</span></td><td>Use API-first</td></tr>
-          <tr><td><code>notion</code> skill</td><td>Read/write Notion databases</td><td><span class="tag ok">active</span></td><td>Read-first; write on explicit cmd</td></tr>
-          <tr><td><code>github / gh</code></td><td>Issues, PRs, CI</td><td><span class="tag ok">active</span></td><td>Authed as nickxma</td></tr>
-          <tr><td><code>cron</code></td><td>Scheduled jobs + reminders</td><td><span class="tag ok">active</span></td><td></td></tr>
-          <tr><td><code>sessions_spawn</code></td><td>Spawn sub-agents</td><td><span class="tag ok">active</span></td><td>Max 2 concurrent</td></tr>
-          <tr><td><code>memory_search</code></td><td>Semantic search over memory</td><td><span class="tag ok">active</span></td><td></td></tr>
-          <tr><td><code>pdf</code></td><td>Analyze PDF documents</td><td><span class="tag ok">active</span></td><td></td></tr>
-          <tr><td><code>gog</code></td><td>Google Workspace (Gmail/Cal/Drive/Sheets/Docs)</td><td><span class="tag ok">active</span></td><td>Authed via gog CLI</td></tr>
-          <tr><td><code>tts</code></td><td>Text-to-speech</td><td><span class="tag ok">active</span></td><td></td></tr>
-          <tr><td><code>image</code></td><td>Vision model</td><td><span class="tag ok">active</span></td><td></td></tr>
-          <tr><td><code>nodes</code></td><td>Paired device control</td><td><span class="tag ok">active</span></td><td>Camera/screen blocked by policy</td></tr>
-        </tbody>
-      </table>
-    </article>
     <article class="card span-6">
-      <div class="card-title">Blocked by Policy</div>
-      <ul>
-        <li>camera.snap / camera.clip / screen.record</li>
-        <li>calendar.add / contacts.add / reminders.add</li>
-        <li>Infra/config changes without explicit <strong>GO</strong></li>
-        <li>Notion writes without explicit command</li>
-        <li>Parallel execution without <strong>GO PARALLEL</strong></li>
-      </ul>
-    </article>
-    <article class="card span-6">
-      <div class="card-title">Skills Installed</div>
-      <table>
-        <thead><tr><th>Skill</th><th>Purpose</th></tr></thead>
-        <tbody>
-          <tr><td>notion</td><td>Read Notion DBs; manual writes</td></tr>
-          <tr><td>github</td><td>gh CLI — PRs, issues, CI</td></tr>
-          <tr><td>coding-agent</td><td>Delegate complex coding tasks</td></tr>
-          <tr><td>slack</td><td>Slack messaging (Socket Mode)</td></tr>
-          <tr><td>gog</td><td>Google Workspace — Gmail/Cal/Drive/Sheets/Docs</td></tr>
-          <tr><td>obsidian</td><td>Obsidian vault read/write</td></tr>
-          <tr><td>things-mac</td><td>Things 3 task ingestion</td></tr>
-          <tr><td>weather</td><td>Weather lookups (no key needed)</td></tr>
-          <tr><td>tmux</td><td>Terminal session management</td></tr>
-          <tr><td>openai-whisper</td><td>Audio transcription</td></tr>
-          <tr><td>video-frames</td><td>Video frame extraction + analysis</td></tr>
-          <tr><td>1password</td><td>Credential lookups (1Password CLI)</td></tr>
-          <tr><td>gemini</td><td>Google Gemini model access</td></tr>
-          <tr><td>clawhub</td><td>Install/update skills from clawhub.com</td></tr>
-          <tr><td>healthcheck</td><td>Security / host audits</td></tr>
-        </tbody>
-      </table>
-    </article>
-  </div>
-</section>
-
-<!-- ══════════════════════ CONFIG ══════════════════════ -->
-<section class="view" data-view="config">
-  <div class="grid">
-    <article class="card span-6">
-      <div class="card-title">Active Config Snapshot</div>
+      <div class="card-title">Config Snapshot</div>
       <table>
         <thead><tr><th>Setting</th><th>Value</th></tr></thead>
         <tbody>
           <tr><td>Main model</td><td><span class="tag opus">claude-opus-4-6</span></td></tr>
           <tr><td>Sub-agent default</td><td><span class="tag codex">gpt-5.3-codex</span></td></tr>
-          <tr><td>Deep think</td><td><span class="tag opus">claude-opus-4-6</span></td></tr>
           <tr><td>Coding</td><td><span class="tag codex">gpt-5.3-codex</span></td></tr>
           <tr><td>Cheap/menial</td><td><span class="tag haiku">claude-haiku-3-5</span></td></tr>
-          <tr><td>Max concurrent sessions</td><td>1</td></tr>
+          <tr><td>Max concurrent (main)</td><td>5</td></tr>
           <tr><td>Max sub-agents</td><td>2</td></tr>
           <tr><td>Compaction mode</td><td>safeguard</td></tr>
-          <tr><td>Workspace</td><td><code>~/.openclaw/workspace</code></td></tr>
           <tr><td>Gateway port</td><td>18789 (loopback)</td></tr>
-          <tr><td>Tailscale SSH</td><td><span class="tag warn">off — enable: sudo tailscale set --ssh=true</span></td></tr>
         </tbody>
       </table>
-    </article>
-    <article class="card span-6">
-      <div class="card-title">Model Switching Cheatsheet</div>
-      <table>
-        <thead><tr><th>Command</th><th>Switches to</th><th>Use for</th></tr></thead>
-        <tbody>
-          <tr><td><code>/model opus</code></td><td>Opus 4.6</td><td>Default — orchestrator for all conversations</td></tr>
-          <tr><td><code>/model codex</code></td><td>Codex 5.3</td><td>Default sub-agent workhorse</td></tr>
-          <tr><td><code>/model sonnet</code></td><td>Sonnet 4.6</td><td>Balanced Anthropic tasks when Codex isn't ideal</td></tr>
-          <tr><td><code>/model haiku</code></td><td>Haiku 3.5</td><td>Quick/cheap tasks</td></tr>
-        </tbody>
-      </table>
-      <div class="card-title" style="margin-top:16px;">How to Change Config Safely</div>
-      <ol>
-        <li>Tell Claw what you want changed</li>
-        <li>Claw proposes exact change + waits for <strong>GO</strong></li>
-        <li>Applied via <code>config.patch</code> (safe merge)</li>
-        <li>Gateway restarts, pings you when back</li>
-      </ol>
     </article>
 
     <article class="card span-6">
-      <div class="card-title">Memory — What Gets Stored</div>
-      <ul>
-        <li>Decisions and preferences</li>
-        <li>Constraints and guardrails</li>
-        <li>Active projects and deadlines</li>
-        <li>Open loops and commitments</li>
-        <li>Names, recurring routines</li>
-      </ul>
-      <p class="note" style="margin-top:10px;">Secrets are <strong>not</strong> stored unless explicitly requested.</p>
-    </article>
-    <article class="card span-6">
-      <div class="card-title">Memory — Key Constraints</div>
-      <ul>
-        <li>Parallel blocked by default → <code>GO PARALLEL</code> to unlock</li>
-        <li>System changes need explicit approval</li>
-        <li>Rate-limit guardrails on concurrency</li>
-        <li>Notion writes manual-only</li>
-        <li>First-install artifacts archived (2026-02-19)</li>
-      </ul>
-    </article>
-    <article class="card span-12">
-      <div class="card-title">Open Loops</div>
+      <div class="card-title">Tools &amp; Skills</div>
       <table>
-        <thead><tr><th>Loop</th><th>Status</th><th>Next Action</th></tr></thead>
+        <thead><tr><th>Tool/Skill</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td>Dashboard rebuild as objectives homepage</td><td><span class="tag ok">In progress</span></td><td>This task — update all stale data, ship r16</td></tr>
-          <tr><td>Research tasks JSON stale</td><td><span class="tag warn">Stale</span></td><td>Last updated Feb 24 — needs daily refresh fix</td></tr>
+          <tr><td>web_search (Brave)</td><td><span class="dot dot-ok"></span>active</td></tr>
+          <tr><td>web_fetch</td><td><span class="dot dot-ok"></span>active</td></tr>
+          <tr><td>exec (shell)</td><td><span class="dot dot-ok"></span>active</td></tr>
+          <tr><td>Read/Write/Edit</td><td><span class="dot dot-ok"></span>active</td></tr>
+          <tr><td>browser</td><td><span class="dot dot-warn"></span>intermittent</td></tr>
+          <tr><td>cron</td><td><span class="dot dot-ok"></span>active</td></tr>
+          <tr><td>notion, github, slack, gog</td><td><span class="dot dot-ok"></span>active</td></tr>
+          <tr><td>obsidian, things-mac, weather</td><td><span class="dot dot-ok"></span>active</td></tr>
+          <tr><td>1password, gemini, tmux</td><td><span class="dot dot-ok"></span>active</td></tr>
+          <tr><td>healthcheck, clawhub</td><td><span class="dot dot-ok"></span>active</td></tr>
         </tbody>
       </table>
     </article>
   </div>
 </section>
-
-<!-- ══════════════════════ OBJECTIVES ══════════════════════ -->
-<section class="view" data-view="objectives">
-  <div class="grid">
-    <article class="card span-4">
-      <div class="card-title">Source</div>
-      <p class="note"><span class="dot dot-ok"></span><strong>Notion — Objectives DB</strong><br>37 objectives tracked.<br><br>Read-first. Writes only on explicit command.</p>
-      <p class="note" style="margin-top:12px;">Type: <em>"read my objectives from Notion"</em> to pull a live list.</p>
-    </article>
-    <article class="card span-8">
-      <div class="card-title">Highlighted Objectives</div>
-      <table>
-        <thead><tr><th>Objective</th><th>Status</th><th>Notes</th></tr></thead>
-        <tbody>
-          <tr><td>Baddies (dating)</td><td><span class="tag ok">Active</span></td><td>Personal life objective</td></tr>
-          <tr><td>Mindfulness content pipeline</td><td><span class="tag ok">Active</span></td><td>Waking Up transcript corpus → tweets/threads/essays/newsletter</td></tr>
-          <tr><td>Stablecoin expertise</td><td><span class="tag ok">Active</span></td><td>PayPal BCDC work, Arbitrum L2 wedge · deadline April 20</td></tr>
-          <tr><td>Sell Manhattan co-op</td><td><span class="tag warn">Recovering</span></td><td>Material financial objective</td></tr>
-        </tbody>
-      </table>
-    </article>
-  </div>
-</section>
-
-
-<!-- ══════════════════════ TODOS ══════════════════════ -->
-<section class="view" data-view="todos">
-  <div class="grid">
-    <article class="card span-12">
-      <div class="card-title">Tasks (Clear Ownership Queue)</div>
-      <table>
-        <thead><tr><th>Task</th><th>Status</th><th>Ball</th><th>Next step</th><th>Scheduled agent</th></tr></thead>
-        <tbody>
-          <tr><td>Rebuild dashboard to reflect latest system state</td><td><span class="tag ok">In progress</span></td><td>Claw</td><td>Update all stale data, ship build r16</td><td>Coding Agent (Codex)</td></tr>
-          <tr><td>Stablecoin wedge matrix research</td><td><span class="tag ok">Active</span></td><td>Claw</td><td>PayPal BCDC + Arbitrum L2 wedge analysis · deadline April 20</td><td>Research Agent</td></tr>
-          <tr><td>Mindfulness tweet pipeline</td><td><span class="tag ok">Active</span></td><td>Claw</td><td>Waking Up transcript → tweets/threads/essays/newsletter</td><td>Coding Agent (Codex)</td></tr>
-        </tbody>
-      </table>
-      <p class="note">Status values: <strong>Ready</strong>, <strong>In progress</strong>, <strong>Waiting</strong>, <strong>Blocked</strong>, <strong>Done</strong>. Ball = whose court it is right now. Agent assignment mode: <strong>Planned (manual)</strong> for reliability (no noisy live polling/rate-limit risk).</p>
-    </article>
-  </div>
-</section>
-
 
 </main>
 <script>
-  const TABS=[
-    ["overview","Overview"],["control-tower","Control Tower"],["system-health","System Health"],["research-tasks","Research Tasks"],["todos","To-Dos"],["objectives","Objectives"],
-    ["slack","Slack"],["sessions","Sessions"],["architecture","Architecture"],["tools","Tools"],
-    ["config","Config"]
+  const TABS = [
+    ["overview",       "Overview",       "System snapshot \u2014 models, channels, quick links"],
+    ["control-tower",  "Control Tower",  "Live operations \u2014 projects, agents, blockers, priorities"],
+    ["system-health",  "System Health",  "Service status, cron jobs, recent errors"],
+    ["cron-calendar",  "Cron Calendar",  "Weekly schedule view \u2014 see what runs when"],
+    ["research",       "Research",       "PayPal acquisition tracker, evidence log"],
+    ["architecture",   "Architecture",   "System design, sessions, config, tools"]
   ];
-  const tabsEl=document.getElementById("tabs");
-  const views=[...document.querySelectorAll(".view")];
-  function setView(id){
-    views.forEach(v=>v.classList.toggle("active",v.dataset.view===id));
-    [...tabsEl.querySelectorAll(".tab")].forEach(t=>t.classList.toggle("active",t.dataset.view===id));
-    history.replaceState({},"","#"+id);
+
+  const tabsEl = document.getElementById("tabs");
+  const subtitleEl = document.getElementById("subtitle-bar");
+  const views = [...document.querySelectorAll(".view")];
+
+  function setView(id) {
+    views.forEach(v => v.classList.toggle("active", v.dataset.view === id));
+    [...tabsEl.querySelectorAll(".tab")].forEach(t => t.classList.toggle("active", t.dataset.view === id));
+    const tab = TABS.find(([tid]) => tid === id);
+    if (tab && subtitleEl) subtitleEl.textContent = tab[2];
+    history.replaceState({}, "", "#" + id);
   }
-  window.setView=setView;
-  TABS.forEach(([id,label])=>{
-    const b=document.createElement("button");
-    b.className="tab";b.dataset.view=id;b.textContent=label;
-    b.onclick=()=>setView(id);
+  window.setView = setView;
+
+  TABS.forEach(([id, label]) => {
+    const b = document.createElement("button");
+    b.className = "tab"; b.dataset.view = id; b.textContent = label;
+    b.onclick = () => setView(id);
     tabsEl.appendChild(b);
   });
 
-  const esc=(s)=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
-  function tagClass(status){
-    const x=String(status||"").toLowerCase();
-    if(["ok","active","scheduled","in progress","done","on-demand","resolved","healthy"].includes(x)) return "ok";
-    if(["blocked","critical","warn","warning","error","degraded","open"].includes(x)) return "warn";
+  // ── Utility ──
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+  function tagClass(status) {
+    const x = String(status || "").toLowerCase();
+    if (["ok","active","scheduled","in progress","done","on-demand","resolved","healthy"].includes(x)) return "ok";
+    if (["blocked","critical","warn","warning","error","degraded","open"].includes(x)) return "warn";
     return "plain";
   }
-  function renderControlTower(data){
-    if(!data) return;
-    const pEl=document.getElementById('ct-projects');
-    const aEl=document.getElementById('ct-agents');
-    const bEl=document.getElementById('ct-blockers');
-    const rEl=document.getElementById('ct-priorities');
-    const oEl=document.getElementById('ct-project-overview');
-    const uEl=document.getElementById('ct-updated');
 
-    if(pEl && Array.isArray(data.projects)) pEl.innerHTML = data.projects.map(p=>`<div class="progress-row"><div class="label">${esc(p.name)}</div><div class="track"><div class="fill" style="width:${Math.max(0,Math.min(100,Number(p.percent)||0))}%"></div></div><div class="pct">${Math.max(0,Math.min(100,Number(p.percent)||0))}%</div></div>`).join('');
-    if(aEl && Array.isArray(data.agents)) aEl.innerHTML = data.agents.map(a=>`<tr><td>${esc(a.name)}</td><td><span class="tag ${tagClass(a.status)}">${esc(a.status)}</span></td><td>${esc(a.workstream)}</td><td>${esc(a.cadence)}</td></tr>`).join('');
-    if(bEl && Array.isArray(data.blockers)) bEl.innerHTML = data.blockers.map(b=>`<tr><td>${esc(b.item)}</td><td><span class="tag ${tagClass(b.score>=8?"critical":"plain")}">${esc(b.score)}</span></td><td>${esc(b.owner)}</td><td>${esc(b.next)}</td></tr>`).join('');
-    if(rEl && Array.isArray(data.priorities)) rEl.innerHTML = data.priorities.map(x=>`<tr><td>${esc(x.rank)}</td><td>${esc(x.task)}</td><td>${esc(x.ball)}</td><td>${esc(x.agent)}</td><td>${esc(x.next)}</td></tr>`).join('');
-    if(oEl && Array.isArray(data.projects)) {
-      const nextByProject = Array.isArray(data.priorities) ? data.priorities : [];
-      oEl.innerHTML = data.projects.map((p, idx) => {
-        const linked = nextByProject[idx] || {};
-        return `<tr><td>${esc(p.name)}</td><td>${esc((Number(p.percent)||0) + '%')}</td><td>${esc(linked.task || 'Maintain progress and resolve blockers')}</td><td>${esc(linked.next || 'Define next concrete milestone')}</td></tr>`;
-      }).join('');
-    }
-    if(uEl && data.updatedAt) uEl.textContent = `Live telemetry refreshed: ${data.updatedAt}`;
+  // ── Control Tower renderer ──
+  function renderControlTower(data) {
+    if (!data) return;
+    const pEl = document.getElementById('ct-projects');
+    const aEl = document.getElementById('ct-agents');
+    const bEl = document.getElementById('ct-blockers');
+    const rEl = document.getElementById('ct-priorities');
+    const uEl = document.getElementById('ct-updated');
+
+    if (pEl && Array.isArray(data.projects)) pEl.innerHTML = data.projects.map(p => `<div class="progress-row"><div class="label">${esc(p.name)}</div><div class="track"><div class="fill" style="width:${Math.max(0,Math.min(100,Number(p.percent)||0))}%"></div></div><div class="pct">${Math.max(0,Math.min(100,Number(p.percent)||0))}%</div></div>`).join('');
+    if (aEl && Array.isArray(data.agents)) aEl.innerHTML = data.agents.map(a => `<tr><td>${esc(a.name)}</td><td><span class="tag ${tagClass(a.status)}">${esc(a.status)}</span></td><td>${esc(a.workstream)}</td><td>${esc(a.cadence)}</td></tr>`).join('');
+    if (bEl && Array.isArray(data.blockers)) bEl.innerHTML = data.blockers.length ? data.blockers.map(b => `<tr><td>${esc(b.item)}</td><td><span class="tag ${b.score >= 8 ? "warn" : "plain"}">${esc(b.score)}</span></td><td>${esc(b.owner)}</td><td>${esc(b.next)}</td></tr>`).join('') : '<tr><td colspan="4">No blockers.</td></tr>';
+    if (rEl && Array.isArray(data.priorities)) rEl.innerHTML = data.priorities.length ? data.priorities.map(x => `<tr><td>${esc(x.rank)}</td><td>${esc(x.task)}</td><td>${esc(x.ball)}</td><td>${esc(x.agent)}</td><td>${esc(x.next)}</td></tr>`).join('') : '<tr><td colspan="5">No priorities.</td></tr>';
+    if (uEl && data.updatedAt) uEl.textContent = `Live telemetry refreshed: ${data.updatedAt}`;
   }
 
-  async function loadControlTower(){
+  async function loadControlTower() {
     try {
-      const res = await fetch(`./live/control-tower.json?t=${Date.now()}`,{cache:'no-store'});
-      if(!res.ok) return;
-      const data = await res.json();
-      renderControlTower(data);
+      const res = await fetch(`./live/control-tower.json?t=${Date.now()}`, {cache:'no-store'});
+      if (!res.ok) return;
+      renderControlTower(await res.json());
     } catch {}
   }
 
-  function renderSystemHealth(data){
-    if(!data || !data.summary) return;
-    const s=data.summary;
-    const overallEl=document.getElementById('sh-overall');
-    const updatedEl=document.getElementById('sh-updated');
-    const healthyEl=document.getElementById('sh-services-healthy');
-    const totalEl=document.getElementById('sh-services-total');
-    const openEl=document.getElementById('sh-errors-open');
-    const errorsEl=document.getElementById('sh-errors');
+  // ── System Health renderer ──
+  function renderSystemHealth(data) {
+    if (!data || !data.summary) return;
+    const s = data.summary;
+    const overallEl = document.getElementById('sh-overall');
+    const updatedEl = document.getElementById('sh-updated');
+    const healthyEl = document.getElementById('sh-services-healthy');
+    const totalEl = document.getElementById('sh-services-total');
+    const openEl = document.getElementById('sh-errors-open');
+    const errorsEl = document.getElementById('sh-errors');
 
     const overall = s.overallStatus ?? s.overall ?? 'Unknown';
     const total = Number(s.servicesTotal ?? s.enabledJobs ?? 0) || 0;
@@ -994,72 +758,121 @@
     const healthy = Number(s.servicesHealthy ?? Math.max(0, total - failing)) || 0;
     const open = Number(s.errorsOpen ?? s.openErrors ?? 0) || 0;
 
-    if(overallEl) {
+    if (overallEl) {
       overallEl.textContent = esc(overall);
-      overallEl.style.color = ['ok','healthy','green'].includes(String(overall||'').toLowerCase()) ? 'var(--ok)' : 'var(--warn)';
+      overallEl.style.color = ['ok','healthy','green'].includes(String(overall||'').toLowerCase()) ? 'var(--green)' : 'var(--amber)';
     }
-    if(updatedEl && data.updatedAt) updatedEl.textContent = `Updated: ${data.updatedAt}`;
-    if(healthyEl) healthyEl.textContent = esc(healthy);
-    if(totalEl) totalEl.textContent = esc(total);
-    if(openEl) openEl.textContent = esc(open);
+    if (updatedEl && data.updatedAt) updatedEl.textContent = `Updated: ${data.updatedAt}`;
+    if (healthyEl) healthyEl.textContent = esc(healthy);
+    if (totalEl) totalEl.textContent = esc(total);
+    if (openEl) openEl.textContent = esc(open);
 
-    if(errorsEl && Array.isArray(data.errors)) {
+    if (errorsEl && Array.isArray(data.errors)) {
       errorsEl.innerHTML = data.errors.length
-        ? data.errors.map(e=>`<tr><td>${esc(e.time || e.at || '')}</td><td>${esc(e.service || e.component || '')}</td><td><span class="tag ${tagClass(e.severity || 'warn')}">${esc(e.severity || 'warn')}</span></td><td><span class="tag ${tagClass(e.status || 'open')}">${esc(e.status || 'open')}</span></td><td>${esc(e.message || e.error || '')}</td><td>${esc(e.nextAction || e.suggestedFix || '')}</td></tr>`).join('')
+        ? data.errors.map(e => `<tr><td>${esc(e.time || e.at || '')}</td><td>${esc(e.service || e.component || '')}</td><td><span class="tag ${tagClass(e.severity || 'warn')}">${esc(e.severity || 'warn')}</span></td><td><span class="tag ${tagClass(e.status || 'open')}">${esc(e.status || 'open')}</span></td><td>${esc(e.message || e.error || '')}</td><td>${esc(e.nextAction || e.suggestedFix || '')}</td></tr>`).join('')
         : '<tr><td colspan="6">No active errors.</td></tr>';
     }
   }
 
-  async function loadSystemHealth(){
+  async function loadSystemHealth() {
     try {
-      const res = await fetch(`./live/system-health.json?t=${Date.now()}`,{cache:'no-store'});
-      if(!res.ok) return;
-      const data = await res.json();
-      renderSystemHealth(data);
+      const res = await fetch(`./live/system-health.json?t=${Date.now()}`, {cache:'no-store'});
+      if (!res.ok) return;
+      renderSystemHealth(await res.json());
     } catch {}
   }
 
-
-  function renderResearchTasks(data){
-    if(!data) return;
-    const probEl=document.getElementById('rt-paypal-prob');
-    const updEl=document.getElementById('rt-paypal-updated');
-    const thesisEl=document.getElementById('rt-paypal-thesis');
-    const methodEl=document.getElementById('rt-paypal-method');
-    const evEl=document.getElementById('rt-evidence');
+  // ── Research renderer ──
+  function renderResearchTasks(data) {
+    if (!data) return;
+    const probEl = document.getElementById('rt-paypal-prob');
+    const updEl = document.getElementById('rt-paypal-updated');
+    const thesisEl = document.getElementById('rt-paypal-thesis');
+    const methodEl = document.getElementById('rt-paypal-method');
+    const evEl = document.getElementById('rt-evidence');
 
     const p = Number(data.paypalAcquisitionProbabilityPct ?? 0);
-    if(probEl) {
+    if (probEl) {
       probEl.textContent = `${Math.max(0,Math.min(100,p))}%`;
-      probEl.style.color = p >= 45 ? 'var(--warn)' : 'var(--ok)';
+      probEl.style.color = p >= 45 ? 'var(--amber)' : 'var(--green)';
     }
-    if(updEl) updEl.textContent = `Updated: ${data.updatedAt || 'unknown'}`;
-    if(thesisEl) thesisEl.textContent = data.thesis || 'No thesis loaded yet.';
-    if(methodEl && data.method) methodEl.textContent = `Method: ${data.method}`;
+    if (updEl) updEl.textContent = `Updated: ${data.updatedAt || 'unknown'}`;
+    if (thesisEl) thesisEl.textContent = data.thesis || 'No thesis loaded yet.';
+    if (methodEl && data.method) methodEl.textContent = `Method: ${data.method}`;
 
-    if(evEl && Array.isArray(data.evidence)) {
+    if (evEl && Array.isArray(data.evidence)) {
       evEl.innerHTML = data.evidence.length ? data.evidence.map(e =>
-        `<tr><td>${esc(e.date||'')}</td><td>${esc(e.signal||'')}</td><td><span class="tag ${tagClass(e.direction||'plain')}">${esc(e.direction||'')}</span></td><td>${esc(e.strength||'')}</td><td>${e.url ? `<a class="link-btn" href="${esc(e.url)}" target="_blank" rel="noopener">source</a>` : ''}</td></tr>`
+        `<tr><td>${esc(e.date||'')}</td><td>${esc(e.signal||'')}</td><td><span class="tag ${e.direction==='up'?'ok':e.direction==='down'?'warn':'plain'}">${esc(e.direction||'')}</span></td><td>${esc(e.strength||'')}</td><td>${e.url ? `<a class="link-btn" href="${esc(e.url)}" target="_blank" rel="noopener">source</a>` : ''}</td></tr>`
       ).join('') : '<tr><td colspan="5">No evidence loaded.</td></tr>';
     }
   }
 
-  async function loadResearchTasks(){
+  async function loadResearchTasks() {
     try {
       const res = await fetch(`./live/research-tasks.json?t=${Date.now()}`, {cache:'no-store'});
-      if(!res.ok) return;
-      const data = await res.json();
-      renderResearchTasks(data);
+      if (!res.ok) return;
+      renderResearchTasks(await res.json());
     } catch {}
   }
 
-  const init=(location.hash||"#overview").slice(1);
-  setView(TABS.some(([id])=>id===init)?init:"overview");
+  // ── Cron Calendar builder ──
+  function buildCronCalendar() {
+    const cal = document.getElementById('cron-calendar');
+    if (!cal) return;
+
+    const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    const hours = [];
+    for (let h = 5; h <= 22; h++) hours.push(h);
+
+    // Jobs definition: [name, model, hour, minute, duration_min, days[]]
+    const allDays = [0,1,2,3,4,5,6]; // Mon=0..Sun=6
+    const jobs = [
+      ['journal-prompt',                'sonnet', 6,  0,  2, allDays],
+      ['daily-obsidian-note',           'sonnet', 6,  5,  2, allDays],
+      ['research-tasks-daily-refresh',  'codex',  7,  35, 3, allDays],
+      ['obj-95-daily-tweet-draft',      'sonnet', 8,  0,  3, allDays],
+      ['obj-106-stablecoin-research',   'sonnet', 9,  0,  3, [1,3,5]], // Tue/Thu/Sat
+      ['journal-prompt-evening',        'sonnet', 18, 0,  2, allDays],
+      ['healthcheck:context-monitor',   'codex',  6,  30, 1, allDays],  // every 1h, show at representative slots
+      ['dashboard-system-health',       'codex',  7,  0,  2, allDays],
+      ['control-tower-telemetry',       'codex',  8,  30, 2, allDays],
+      ['readwise-weekly-groom',         'codex',  10, 0,  5, [6]], // Sunday only
+    ];
+
+    // Build grid
+    let html = '<div class="cal-header"></div>';
+    days.forEach(d => { html += `<div class="cal-header">${d}</div>`; });
+
+    hours.forEach(h => {
+      const label = h <= 12 ? `${h}AM` : `${h-12}PM`;
+      html += `<div class="cal-time">${h === 12 ? '12PM' : label}</div>`;
+      for (let d = 0; d < 7; d++) {
+        const eventsHere = jobs.filter(j => j[2] === h && j[5].includes(d));
+        let cellHtml = '';
+        eventsHere.forEach(j => {
+          cellHtml += `<div class="cal-event ${j[1]}"><span class="cal-event-name">${j[0]}</span><br><span class="cal-event-meta">${j[1]} &middot; ~${j[4]}m</span></div>`;
+        });
+        html += `<div class="cal-cell">${cellHtml}</div>`;
+      }
+    });
+
+    cal.innerHTML = html;
+  }
+
+  // ── Init ──
+  const init = (location.hash || "#overview").slice(1);
+  setView(TABS.some(([id]) => id === init) ? init : "overview");
   loadControlTower();
   loadSystemHealth();
   loadResearchTasks();
-  setInterval(()=>{ loadControlTower(); loadSystemHealth();
-  loadResearchTasks(); }, 60000);
+  buildCronCalendar();
+  setInterval(() => { loadControlTower(); loadSystemHealth(); loadResearchTasks(); }, 60000);
+
+  // Hash routing
+  window.addEventListener('hashchange', () => {
+    const h = (location.hash || "#overview").slice(1);
+    if (TABS.some(([id]) => id === h)) setView(h);
+  });
 </script>
 </body>
 </html>

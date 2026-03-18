@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-12 17:19 CDT",
+  "updatedAt": "2026-03-17 19:30 CDT",
   "projects": [
     {
       "name": "Launch Twitter account for AI + mindfulness content",
@@ -16,7 +16,7 @@
   ],
   "agents": [
     {
-      "name": "Main (April)",
+      "name": "Main (Claw)",
       "status": "On-demand",
       "workstream": "Orchestration, approvals, reverse prompting",
       "cadence": "Runs when Nick messages"
@@ -29,7 +29,7 @@
     },
     {
       "name": "control-tower-telemetry-refresh",
-      "status": "running",
+      "status": "ok",
       "workstream": "Refreshes live/control-tower.json",
       "cadence": "Every 2h"
     },
@@ -40,22 +40,46 @@
       "cadence": "Every 1h"
     },
     {
+      "name": "healthcheck:context-monitor",
+      "status": "ok",
+      "workstream": "Context health monitoring",
+      "cadence": "Every 1h"
+    },
+    {
+      "name": "daily-obsidian-note",
+      "status": "ok",
+      "workstream": "Morning Obsidian daily note automation",
+      "cadence": "06:05 America/Chicago daily"
+    },
+    {
       "name": "journal-prompt + journal-prompt-evening",
       "status": "ok",
       "workstream": "Morning/evening journal prompts",
-      "cadence": "06:00 and 18:00 America/Chicago (exact)"
+      "cadence": "06:00 and 18:00 America/Chicago daily"
     },
     {
       "name": "research-tasks-daily-refresh",
-      "status": "error",
-      "workstream": "Daily research task refresh",
+      "status": "ok",
+      "workstream": "Daily research task refresh (PayPal acquisition probability)",
       "cadence": "07:35 America/Chicago daily"
     },
     {
-      "name": "obj-95-daily-tweet-draft + obj-106-stablecoin-research",
-      "status": "error",
-      "workstream": "Objective-specific output/research refresh",
-      "cadence": "Obj-95: 08:00 daily (exact); Obj-106: 09:00 Tue/Thu/Sat America/Chicago"
+      "name": "obj-95-daily-tweet-draft",
+      "status": "ok",
+      "workstream": "Daily tweet draft for @quiet_drift",
+      "cadence": "08:00 America/Chicago daily"
+    },
+    {
+      "name": "obj-106-stablecoin-research",
+      "status": "ok",
+      "workstream": "Stablecoin research drops (PYUSD/Arbitrum)",
+      "cadence": "09:00 America/Chicago Tue/Thu/Sat"
+    },
+    {
+      "name": "readwise-weekly-groom",
+      "status": "ok",
+      "workstream": "Weekly Readwise library triage",
+      "cadence": "10:00 America/Chicago Sundays"
     }
   ],
   "blockers": [

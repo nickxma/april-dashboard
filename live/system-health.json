@@ -1,39 +1,11 @@
 {
-  "updatedAt": "2026-03-12 18:36 CDT",
+  "updatedAt": "2026-03-17 18:45 CDT",
   "summary": {
-    "overall": "critical",
-    "enabledJobs": 7,
-    "failingJobs": 3,
+    "overall": "healthy",
+    "enabledJobs": 10,
+    "failingJobs": 0,
     "staleJobs": 0,
-    "openErrors": 3
+    "openErrors": 0
   },
-  "errors": [
-    {
-      "time": "2026-03-12 07:44 CDT",
-      "component": "research-tasks-daily-refresh",
-      "severity": "critical",
-      "status": "open",
-      "error": "cron: job execution timed out",
-      "meaning": "The daily research refresh exceeded its execution window and did not complete, so telemetry may be outdated.",
-      "suggestedFix": "Increase timeoutSeconds for this job and cap source collection to 3 high-credibility links per run."
-    },
-    {
-      "time": "2026-03-12 08:15 CDT",
-      "component": "obj-95-daily-tweet-draft",
-      "severity": "critical",
-      "status": "open",
-      "error": "cron: job execution timed out",
-      "meaning": "The tweet draft workflow ran too long and failed before delivering a result.",
-      "suggestedFix": "Split the workflow into two steps (draft generation first, posting only on GO) and lower per-run workload."
-    },
-    {
-      "time": "2026-03-12 09:13 CDT",
-      "component": "obj-106-stablecoin-research",
-      "severity": "critical",
-      "status": "open",
-      "error": "cron: job execution timed out",
-      "meaning": "The stablecoin research job did not finish in time, leaving the latest research log potentially incomplete.",
-      "suggestedFix": "Reduce scope to 3 fresh signals per run and raise timeoutSeconds to match expected research duration."
-    }
-  ]
+  "errors": []
 }
