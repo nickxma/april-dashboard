@@ -304,23 +304,23 @@
           <tr><td><strong>#dashboard</strong></td><td><code>C0AK32JBKTM</code></td><td>Dashboard building, UI changes, automated telemetry feed</td></tr>
           <tr><td><strong>#april-journal</strong></td><td><code>C0AL3MWCR40</code></td><td>Journal prompts (6AM + 6PM), objective check-ins</td></tr>
           <tr><td><strong>#obj-95</strong></td><td><code>C0AL3MQV41W</code></td><td>Mindfulness content engine, tweet/thread drafts from Waking Up corpus</td></tr>
+          <tr><td><strong>#obj-95b</strong></td><td><code>C0AK3RYHE0P</code></td><td>Paradox of Acceptance content + DevOps (interactive tools, essays, site infra)</td></tr>
           <tr><td><strong>#obj-106</strong></td><td><code>C0AJTUZED2B</code></td><td>Stablecoin/PayPal/Ethereum research, wedge selection, Arbitrum L2</td></tr>
+          <tr><td><strong>#newswise</strong></td><td><code>C0ALU5M9NH1</code></td><td>Readwise/Reader library triage, highlights, reading list management</td></tr>
         </tbody>
       </table>
+      <p class="note" id="channels-note">Auto-discovered from OpenClaw config. Refreshed weekly.</p>
     </article>
 
     <article class="card span-12">
       <div class="card-title">Active Objectives</div>
       <table>
-        <thead><tr><th>Objective</th><th>Status</th><th>Notes</th></tr></thead>
-        <tbody>
-          <tr><td>Baddies (dating)</td><td><span class="tag ok">Active</span></td><td>Personal life objective</td></tr>
-          <tr><td>Mindfulness content pipeline</td><td><span class="tag ok">Active</span></td><td>Waking Up transcript corpus &rarr; tweets/threads/essays/newsletter</td></tr>
-          <tr><td>Stablecoin expertise</td><td><span class="tag ok">Active</span></td><td>PayPal BCDC work, Arbitrum L2 wedge &middot; deadline April 20</td></tr>
-          <tr><td>Sell Manhattan co-op</td><td><span class="tag warn">Recovering</span></td><td>Material financial objective</td></tr>
+        <thead><tr><th>Objective</th><th>Status</th><th>Latest</th></tr></thead>
+        <tbody id="objectives-body">
+          <tr><td colspan="3" style="color:var(--secondary)">Loading&hellip;</td></tr>
         </tbody>
       </table>
-      <p class="note">Source: Notion Objectives DB (37 objectives tracked). Read-first; writes only on explicit command.</p>
+      <p class="note" id="objectives-note">Source: #april-journal channel. Refreshed weekly.</p>
     </article>
   </div>
 </section>
@@ -855,14 +855,41 @@
     cal.innerHTML = html;
   }
 
+  // ── Objectives renderer ──
+  function renderObjectives(data) {
+    const body = document.getElementById('objectives-body');
+    const note = document.getElementById('objectives-note');
+    if (!body || !data || !Array.isArray(data.objectives)) return;
+    const statusClass = s => {
+      const l = (s||'').toLowerCase();
+      if (['active','on track','green'].includes(l)) return 'ok';
+      if (['stalled','blocked','red'].includes(l)) return 'warn';
+      if (['recovering','amber','paused'].includes(l)) return 'warn';
+      return 'plain';
+    };
+    body.innerHTML = data.objectives.map(o =>
+      `<tr><td>${esc(o.name||'')}</td><td><span class="tag ${statusClass(o.status)}">${esc(o.status||'Unknown')}</span></td><td>${esc(o.latest||'')}</td></tr>`
+    ).join('') || '<tr><td colspan="3">No objectives loaded.</td></tr>';
+    if (note && data.updatedAt) note.textContent = `Source: #april-journal. Updated: ${data.updatedAt}`;
+  }
+
+  async function loadObjectives() {
+    try {
+      const res = await fetch(`./live/objectives.json?t=${Date.now()}`, {cache:'no-store'});
+      if (!res.ok) return;
+      renderObjectives(await res.json());
+    } catch {}
+  }
+
   // ── Init ──
   const init = (location.hash || "#overview").slice(1);
   setView(TABS.some(([id]) => id === init) ? init : "overview");
   loadControlTower();
   loadSystemHealth();
   loadResearchTasks();
+  loadObjectives();
   buildCronCalendar();
-  setInterval(() => { loadControlTower(); loadSystemHealth(); loadResearchTasks(); }, 60000);
+  setInterval(() => { loadControlTower(); loadSystemHealth(); loadResearchTasks(); loadObjectives(); }, 60000);
 
   // Hash routing
   window.addEventListener('hashchange', () => {
