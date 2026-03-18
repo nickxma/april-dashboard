@@ -188,15 +188,14 @@
     .cal-cell.has-events { display: flex; flex-wrap: wrap; gap: 2px; align-items: flex-start; align-content: flex-start; }
     .cal-event {
       font-size: 10px;
-      padding: 3px 6px;
+      padding: 3px 5px;
       border-radius: 3px;
       line-height: 1.3;
       background: white;
       border: 1px solid var(--border);
-      white-space: nowrap;
       overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100%;
+      width: 100%;
+      box-sizing: border-box;
     }
     .cal-cell.has-events.split { flex-direction: column; }
     .cal-event.sonnet { border-left: 3px solid var(--sonnet-accent); }
@@ -883,8 +882,7 @@
         const split = eventsHere.length > 1;
         let cellHtml = '';
         eventsHere.forEach(j => {
-          const timeStr = `${j[2]}:${String(j[3]).padStart(2,'0')}`;
-          cellHtml += `<div class="cal-event ${j[1]}"><span class="cal-event-name">${j[0]}</span> <span class="cal-event-meta">${timeStr} · ${j[1]} · ~${j[4]}m</span></div>`;
+          cellHtml += `<div class="cal-event ${j[1]}"><span class="cal-event-name">${j[0]}</span><br><span class="cal-event-meta">${j[1]} · ~${j[4]}m</span></div>`;
         });
         html += `<div class="cal-cell${hasEv ? ' has-events' : ''}${split ? ' split' : ''}">${cellHtml}</div>`;
       }
