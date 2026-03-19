@@ -1,29 +1,29 @@
 {
-  "updatedAt": "2026-03-17T12:35:00Z",
-  "paypalAcquisitionProbabilityPct": 35,
-  "thesis": "A PayPal acquisition in 2026 is plausible but still unlikely because reported buyer interest appears preliminary and there is no clear indication PayPal is actively pursuing a sale.",
-  "method": "Estimated probability from one search-result sample by weighting recency and credibility of top-tier financial outlets and balancing pro-deal interest signals against sale-readiness uncertainty.",
+  "updatedAt": "2026-03-19T13:36:00Z",
+  "paypalAcquisitionProbabilityPct": 25,
+  "thesis": "Stripe has expressed preliminary interest in acquiring PayPal or its assets, but PayPal's board is not actively seeking a sale, making a 2026 deal unlikely without a significant premium.",
+  "method": "Assessed acquisition probability from search snippets covering Bloomberg/Reuters reports, PayPal board stance, and analyst commentary.",
   "evidence": [
     {
       "date": "2026-02-24",
-      "signal": "Bloomberg reports Stripe is considering acquiring all or parts of PayPal, citing people familiar with the matter.",
-      "direction": "up",
+      "signal": "Bloomberg reports Stripe considering acquisition of all or parts of PayPal; stock surged 7%",
+      "direction": "bullish",
       "strength": "high",
       "url": "https://www.bloomberg.com/news/articles/2026-02-24/payments-processor-stripe-expresses-interest-in-paypal"
     },
     {
-      "date": "2026-02-24",
-      "signal": "Reuters relays Bloomberg that Stripe expressed preliminary interest in acquiring PayPal or assets, suggesting early-stage exploration rather than a formal process.",
-      "direction": "up",
+      "date": "2026-02-27",
+      "signal": "Semafor reports PayPal may not be actively seeking a sale; board not looking to sell",
+      "direction": "bearish",
       "strength": "medium",
-      "url": "https://www.reuters.com/business/stripe-is-considering-acquisition-all-or-parts-paypal-bloomberg-news-reports-2026-02-24/"
+      "url": "https://www.indexbox.io/blog/paypal-acquisition-interest-reported-amid-ceo-transition/"
     },
     {
-      "date": "2026-02-24",
-      "signal": "CNBC reports PayPal shares rose nearly 7% on the acquisition report, indicating market credibility but still rumor-driven dynamics.",
-      "direction": "up",
+      "date": "2026-03-02",
+      "signal": "Motley Fool analyst: PayPal's destiny is acquisition but likely not in 2026; would require significant overpay",
+      "direction": "bearish",
       "strength": "medium",
-      "url": "https://www.cnbc.com/2026/02/24/paypal-stock-stripe-acquisition-report.html"
+      "url": "https://www.fool.com/investing/2026/03/02/paypal-buyout-rumors/"
     }
   ]
 }

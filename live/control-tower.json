@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-18 15:30 CDT",
+  "updatedAt": "2026-03-19 01:30 CDT",
   "projects": [
     {
       "name": "Launch Twitter account for AI + mindfulness content",
@@ -80,6 +80,12 @@
       "status": "ok (not yet run)",
       "workstream": "Weekly Readwise library triage",
       "cadence": "10:00 America/Chicago Sundays"
+    },
+    {
+      "name": "dashboard-objectives-weekly",
+      "status": "ok (not yet run)",
+      "workstream": "Weekly objectives refresh + channel auto-discovery",
+      "cadence": "07:00 America/Chicago Mondays"
     }
   ],
   "blockers": [
