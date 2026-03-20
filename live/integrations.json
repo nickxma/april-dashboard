@@ -47,23 +47,15 @@
       "status": "connected",
       "description": "op CLI installed at /opt/homebrew/bin/op.",
       "lastVerified": "2026-03-20T11:46:00Z"
-    }
-  ],
-  "attention": [
+    },
     {
       "name": "Google Workspace",
-      "status": "partial",
-      "description": "gog credentials exist for nickxma@gmail.com but config.json missing. OAuth auth only, no service account.",
+      "status": "connected",
+      "description": "gog OAuth credentials valid for nickxma@gmail.com. Gmail, Calendar, Docs, Sheets, Drive all functional.",
       "lastVerified": "2026-03-20T11:46:00Z"
     }
   ],
-  "available": [
-    {
-      "name": "Brave Search",
-      "status": "available",
-      "description": "web_search tool available via OpenClaw. No local config file found but tool is functional.",
-      "lastVerified": "2026-03-20T11:46:00Z"
-    }
-  ],
-  "updatedAt": "2026-03-20T11:46:00Z"
+  "updatedAt": "2026-03-20T14:15:00Z",
+  "attention": [],
+  "available": []
 }
