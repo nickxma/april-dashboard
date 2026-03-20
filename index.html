@@ -215,7 +215,7 @@
     <div class="header-top">
       <div>
         <h1>&#10022; Claw OS</h1>
-        <div class="htag">Nick's AI operating environment &middot; Mac Mini MMM4 &middot; v26.12.8</div>
+        <div class="htag">Nick's AI operating environment &middot; Mac Mini MMM4 &middot; v26.12.9</div>
       </div>
       <nav class="tabs" id="tabs"></nav>
     </div>
@@ -386,7 +386,7 @@
       <table>
         <thead><tr><th>Task</th><th>Status</th><th>Ball</th><th>Next step</th><th>Agent</th></tr></thead>
         <tbody>
-          <tr><td>Rebuild dashboard to reflect latest system state</td><td><span class="tag ok">In progress</span></td><td>Claw</td><td>Ship v26.12.8</td><td>Coding Agent (Codex)</td></tr>
+          <tr><td>Rebuild dashboard to reflect latest system state</td><td><span class="tag ok">In progress</span></td><td>Claw</td><td>Ship v26.12.9</td><td>Coding Agent (Codex)</td></tr>
           <tr><td>Stablecoin wedge matrix research</td><td><span class="tag ok">Active</span></td><td>Claw</td><td>PayPal BCDC + Arbitrum L2 wedge analysis &middot; deadline April 20</td><td>Research Agent</td></tr>
           <tr><td>Mindfulness tweet pipeline</td><td><span class="tag ok">Active</span></td><td>Claw</td><td>Waking Up transcript &rarr; tweets/threads/essays/newsletter</td><td>Coding Agent (Codex)</td></tr>
         </tbody>
@@ -488,6 +488,121 @@
 </section>
 
 <!-- ══════════════════════ TAB 6: ARCHITECTURE ══════════════════════ -->
+<section class="view" data-view="identity">
+  <div class="grid">
+    <article class="card span-12">
+      <div class="card-title">How Claw Works</div>
+      <p class="section-intro">
+        Claw is a persistent AI operator running on OpenClaw. Same underlying model (Claude Opus), but shaped by a set of identity files that define personality, memory, and behavior. These files are injected into every session — they're what make Claw "Claw" instead of generic Claude.
+      </p>
+    </article>
+
+    <article class="card span-6">
+      <div class="card-title">🧠 Auto-Loaded (Every Session)</div>
+      <p class="section-intro">These files are injected before Claw generates a single token. They define who Claw is at boot.</p>
+      <table>
+        <thead><tr><th>File</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>SOUL.md</code></td>
+            <td><strong>Personality &amp; behavioral rules.</strong> Tone, operating principles, self-reference style, how to handle vague requests. The "who I am" file. Any behavioral correction or calibration from Nick goes here.</td>
+          </tr>
+          <tr>
+            <td><code>USER.md</code></td>
+            <td><strong>Who Nick is.</strong> Name, timezone, communication preferences (direct, blunt, practical). Tells Claw how to talk to its human.</td>
+          </tr>
+          <tr>
+            <td><code>MEMORY.md</code></td>
+            <td><strong>Operational state.</strong> Runtime facts — channels, cron jobs, people names, project status, config, formatting rules. The working index. Kept lean; deep context lives in Obsidian.</td>
+          </tr>
+          <tr>
+            <td><code>AGENTS.md</code></td>
+            <td><strong>Startup routine &amp; execution rules.</strong> What to read on boot, model allocation policy, reliability rules, fallback ladders, sub-agent wiring.</td>
+          </tr>
+          <tr>
+            <td><code>IDENTITY.md</code></td>
+            <td><strong>Quick ID card.</strong> Name (Claw), creature type, vibe, emoji (🦞). One-liner version of SOUL.md.</td>
+          </tr>
+          <tr>
+            <td><code>HEARTBEAT.md</code></td>
+            <td><strong>Check-in rules.</strong> Defines what to do during periodic heartbeat polls — scan for open loops, propose improvements, or stay silent.</td>
+          </tr>
+          <tr>
+            <td><code>memory/*.md</code></td>
+            <td><strong>Daily memory files.</strong> Short-term memory per day. What happened, what was discussed. Read on startup for recent context.</td>
+          </tr>
+        </tbody>
+      </table>
+    </article>
+
+    <article class="card span-6">
+      <div class="card-title">📎 Support Files</div>
+      <p class="section-intro">Wiring and reference files. Low maintenance, rarely change.</p>
+      <table>
+        <thead><tr><th>File</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>CLAUDE.md</code></td>
+            <td><strong>Sub-agent pointer.</strong> Auto-generated. Tells Claude Code sub-agents to read SOUL.md + AGENTS.md on startup.</td>
+          </tr>
+          <tr>
+            <td><code>CODEX.md</code></td>
+            <td><strong>Sub-agent pointer.</strong> Same as CLAUDE.md but for Codex sub-agents.</td>
+          </tr>
+          <tr>
+            <td><code>TOOLS.md</code></td>
+            <td><strong>Environment-specific notes.</strong> Camera names, SSH hosts, device nicknames. Your cheat sheet for hardware specifics. Mostly empty right now.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="card-title" style="margin-top: 24px;">📂 Obsidian Vault (On-Demand)</div>
+      <p class="section-intro">Not auto-loaded — Claw reads these when the conversation needs them. Obsidian is the canonical knowledge store.</p>
+      <table>
+        <thead><tr><th>Path</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>01_Daily/</code></td>
+            <td>Daily notes with journal entries, MITs, open loops. Claw appends to these during conversations.</td>
+          </tr>
+          <tr>
+            <td><code>02_Objectives/</code></td>
+            <td>Objective tracker, people files (Baddies, Work, Co-op). The living record of Nick's goals.</td>
+          </tr>
+          <tr>
+            <td><code>00_System/context/</code></td>
+            <td>MASTER.md — full life + work context. Loaded only when conversation requires it.</td>
+          </tr>
+          <tr>
+            <td><code>05_OpenClaw/</code></td>
+            <td>Deliverables, snapshots, dashboard source. User-facing output from Claw.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="card-title" style="margin-top: 24px;">🔑 Key Principle</div>
+      <p class="section-intro">
+        <strong>Dual-write policy:</strong> MEMORY.md is the working index (boot context, pointers). Obsidian is the canonical rich store (people, decisions, everything). Both get written to freely. If they ever conflict, Obsidian wins.
+      </p>
+    </article>
+
+    <article class="card span-12">
+      <div class="card-title">What Makes Claw Different From Claude</div>
+      <table>
+        <thead><tr><th>Layer</th><th>Claude (claude.ai)</th><th>Claw (OpenClaw)</th></tr></thead>
+        <tbody>
+          <tr><td>Model</td><td>Claude Opus</td><td>Same Claude Opus</td></tr>
+          <tr><td>System prompt</td><td>Anthropic default</td><td>SOUL.md + USER.md + MEMORY.md + AGENTS.md (~5,000 words of context)</td></tr>
+          <tr><td>Memory</td><td>Limited project context</td><td>Persistent across sessions — knows your name, objectives, people, preferences</td></tr>
+          <tr><td>Tools</td><td>Web search, artifacts</td><td>File read/write, shell, browser, Obsidian, GitHub, Slack, cron, sub-agents, Google Workspace</td></tr>
+          <tr><td>Identity</td><td>Generic assistant</td><td>"Claw" — concise, systems-oriented, no fluff, proactive follow-ups</td></tr>
+          <tr><td>Continuity</td><td>Conversation-scoped</td><td>Persistent via files — identity survives across sessions, days, model swaps</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </div>
+</section>
+
 <section class="view" data-view="architecture">
   <div class="grid">
     <article class="card span-12">
@@ -693,6 +808,7 @@
     ["system-health",  "System Health",  "Service status, cron jobs, recent errors"],
     ["cron-calendar",  "Cron Calendar",  "Weekly schedule view \u2014 see what runs when"],
     ["research",       "Research",       "PayPal acquisition tracker, evidence log"],
+    ["identity",       "Identity",       "How Claw works — files, memory, what makes it different from Claude"],
     ["architecture",   "Architecture",   "System design, sessions, config, tools"]
   ];
 
