@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-20 08:57 CDT",
+  "updatedAt": "2026-03-20 10:57 CDT",
   "projects": [
     {
       "name": "Launch Twitter account for AI + mindfulness content",
@@ -88,10 +88,10 @@
       "cadence": "07:35 America/Chicago daily"
     },
     {
-      "name": "obj-95-daily-tweet-draft",
+      "name": "obj-95-mindfulness-tweet-drafts",
       "status": "ok",
-      "workstream": "Daily tweet draft for @quiet_drift",
-      "cadence": "08:00 America/Chicago daily"
+      "workstream": "Tweet drafts for @quiet_drift (Mon/Wed/Fri)",
+      "cadence": "08:00 America/Chicago Mon/Wed/Fri"
     },
     {
       "name": "obj-106-stablecoin-research",
@@ -113,7 +113,7 @@
     },
     {
       "name": "infrastructure-weekly-scorecard",
-      "status": "ok (not yet run)",
+      "status": "ok",
       "workstream": "Weekly infrastructure progress scorecard",
       "cadence": "08:00 America/Chicago Mondays"
     }
