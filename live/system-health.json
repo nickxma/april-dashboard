@@ -1,21 +1,11 @@
 {
-  "updatedAt": "2026-03-19 02:45 CDT",
+  "updatedAt": "2026-03-19 22:59 CDT",
   "summary": {
-    "overall": "degraded",
-    "enabledJobs": 12,
-    "failingJobs": 1,
+    "overall": "healthy",
+    "enabledJobs": 14,
+    "failingJobs": 0,
     "staleJobs": 0,
-    "openErrors": 1
+    "openErrors": 0
   },
-  "errors": [
-    {
-      "time": "2026-03-19 07:35 CDT",
-      "component": "research-tasks-daily-refresh",
-      "severity": "warn",
-      "status": "open",
-      "error": "The AI service is temporarily overloaded. Please try again in a moment.",
-      "meaning": "Anthropic API returned overloaded error instead of routing to configured Codex model — likely model resolution fell back to Opus which was rate-limited.",
-      "suggestedFix": "Verify the job's model field resolves to Codex (OpenAI) and not Anthropic; re-run manually or wait for next scheduled run at 07:35 CDT."
-    }
-  ]
+  "errors": []
 }

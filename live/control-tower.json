@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-19 01:30 CDT",
+  "updatedAt": "2026-03-19 22:57 CDT",
   "projects": [
     {
       "name": "Launch Twitter account for AI + mindfulness content",
@@ -46,6 +46,18 @@
       "cadence": "Every 1h"
     },
     {
+      "name": "paperclip-activity-feed",
+      "status": "ok",
+      "workstream": "Paperclip task update summaries to #paperclip",
+      "cadence": "Every 30m"
+    },
+    {
+      "name": "infrastructure-daily-scan",
+      "status": "ok (not yet run)",
+      "workstream": "Daily infra tooling intel for #infrastructure",
+      "cadence": "08:00 America/Chicago daily"
+    },
+    {
       "name": "daily-obsidian-note",
       "status": "ok",
       "workstream": "Morning Obsidian daily note automation",
@@ -58,8 +70,14 @@
       "cadence": "06:00 and 18:00 America/Chicago daily"
     },
     {
+      "name": "journal-to-paperclip-sync",
+      "status": "ok",
+      "workstream": "Syncs journal entries to Paperclip tickets",
+      "cadence": "22:00 America/Chicago daily"
+    },
+    {
       "name": "research-tasks-daily-refresh",
-      "status": "error (1 consecutive)",
+      "status": "ok",
       "workstream": "Daily research task refresh (PayPal acquisition probability)",
       "cadence": "07:35 America/Chicago daily"
     },
