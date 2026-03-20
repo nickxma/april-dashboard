@@ -4,58 +4,64 @@
       "name": "Slack",
       "status": "connected",
       "description": "Bot and app tokens valid. groupPolicy=open (security warning noted).",
-      "lastVerified": "2026-03-20T11:46:00Z"
+      "lastVerified": "2026-03-20T14:15:00Z"
     },
     {
       "name": "GitHub",
       "status": "connected",
       "description": "Logged in as nickxma via keyring. Scopes: admin:public_key, gist, read:org, repo.",
-      "lastVerified": "2026-03-20T11:46:00Z"
+      "lastVerified": "2026-03-20T14:15:00Z"
     },
     {
       "name": "Obsidian",
       "status": "connected",
       "description": "obsidian-cli installed. Vault at ~/Obsidian with 5+ top-level folders.",
-      "lastVerified": "2026-03-20T11:46:00Z"
+      "lastVerified": "2026-03-20T14:15:00Z"
     },
     {
       "name": "Google Calendar",
       "status": "connected",
       "description": "OAuth credentials present for nickxma@gmail.com. Calendar listing works.",
-      "lastVerified": "2026-03-20T11:46:00Z"
+      "lastVerified": "2026-03-20T14:15:00Z"
+    },
+    {
+      "name": "Google Workspace",
+      "status": "connected",
+      "description": "OAuth active for nickxma@gmail.com. Gmail, Docs, Sheets, Drive all functional.",
+      "lastVerified": "2026-03-20T14:15:00Z"
+    },
+    {
+      "name": "Brave Search",
+      "status": "connected",
+      "description": "Built-in OpenClaw tool. Functional — used by research crons and ad-hoc queries.",
+      "lastVerified": "2026-03-20T14:15:00Z"
     },
     {
       "name": "Tailscale",
       "status": "connected",
       "description": "Active on mmm4. 8 nodes in tailnet (3 online: mmm4, iphone181, n1, n2).",
-      "lastVerified": "2026-03-20T11:46:00Z"
+      "lastVerified": "2026-03-20T14:15:00Z"
     },
     {
       "name": "Paperclip",
       "status": "connected",
       "description": "Running v2026.318.0. Local trusted deployment, auth ready.",
-      "lastVerified": "2026-03-20T11:46:00Z"
+      "lastVerified": "2026-03-20T14:15:00Z"
     },
     {
       "name": "Things 3",
       "status": "connected",
       "description": "things CLI installed at /opt/homebrew/bin/things.",
-      "lastVerified": "2026-03-20T11:46:00Z"
+      "lastVerified": "2026-03-20T14:15:00Z"
     },
     {
       "name": "1Password",
       "status": "connected",
       "description": "op CLI installed at /opt/homebrew/bin/op.",
-      "lastVerified": "2026-03-20T11:46:00Z"
-    },
-    {
-      "name": "Google Workspace",
-      "status": "connected",
-      "description": "gog OAuth credentials valid for nickxma@gmail.com. Gmail, Calendar, Docs, Sheets, Drive all functional.",
-      "lastVerified": "2026-03-20T11:46:00Z"
+      "lastVerified": "2026-03-20T14:15:00Z"
     }
   ],
-  "updatedAt": "2026-03-20T14:15:00Z",
   "attention": [],
-  "available": []
+  "available": [],
+  "updatedAt": "2026-03-20T14:15:00Z"
 }

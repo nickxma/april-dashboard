@@ -1,10 +1,45 @@
 {
   "loops": [
-    {"item": "Smitha pitch outline — stablecoin wedge", "daysOpen": 4, "owner": "Nick"},
-    {"item": "Google Calendar OAuth re-auth (gog auth)", "daysOpen": 1, "owner": "Nick"},
-    {"item": "Formula backup employee search", "daysOpen": 3, "owner": "Nick"},
-    {"item": "Co-op: sell now vs wait for fall — decision at March 25 meeting", "daysOpen": 0, "owner": "Nick"},
-    {"item": "quiet_drift Twitter not linked to teacher-debates site", "daysOpen": 2, "owner": "Claw"}
+    {
+      "item": "Smitha pitch outline — stablecoin wedge",
+      "nextAction": "Draft 1-page pitch deck for Smitha meeting",
+      "daysOpen": 4,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": null
+    },
+    {
+      "item": "Formula backup employee search",
+      "nextAction": "Decide: post on Upwork or ask network for referrals?",
+      "daysOpen": 3,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": null
+    },
+    {
+      "item": "Co-op: sell now vs wait for fall",
+      "nextAction": "Decision at March 25 meeting with Matylda",
+      "daysOpen": 5,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": "2026-03-25"
+    },
+    {
+      "item": "Link @quiet_drift to teacher-debates site footer",
+      "nextAction": "Add Twitter link to footer HTML and deploy",
+      "daysOpen": 2,
+      "owner": "Claw",
+      "status": "actionable",
+      "deadline": null
+    },
+    {
+      "item": "Google Calendar OAuth re-auth",
+      "nextAction": null,
+      "daysOpen": 1,
+      "owner": "Nick",
+      "status": "resolved",
+      "deadline": null
+    }
   ],
-  "updatedAt": "2026-03-20T00:40:00-05:00"
+  "updatedAt": "2026-03-20T09:15:00-05:00"
 }
