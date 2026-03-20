@@ -306,12 +306,12 @@
     }
     .loop-group-label.blocked { color: var(--amber); }
     .loop-group-label.actionable { color: var(--accent-cyan); }
-    .loop-table { width: 100%; border-collapse: collapse; font-size: 11px; }
-    .loop-table td { padding: 3px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .loop-table { width: auto; border-collapse: collapse; font-size: 11px; }
+    .loop-table td { padding: 3px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; white-space: nowrap; }
     .loop-table tr:last-child td { border-bottom: none; }
     .loop-table tr:hover td { background: var(--hover); }
-    .loop-table .lt-item { color: var(--text); font-weight: 500; max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .loop-table .lt-next { color: var(--secondary); font-size: 10px; max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .loop-table .lt-item { color: var(--text); font-weight: 500; }
+    .loop-table .lt-next { color: var(--secondary); font-size: 10px; }
     .loop-table .lt-next::before { content: "→ "; color: var(--accent-cyan); }
     .loop-table .lt-owner {
       font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
@@ -580,7 +580,7 @@
     <div class="header-top">
       <div class="header-left">
         <h1>&#10022; April</h1>
-        <span class="version-badge" id="version-badge">v26.12.19</span>
+        <span class="version-badge" id="version-badge">v26.12.20</span>
         <span style="font-size:10px;color:var(--secondary);letter-spacing:0.04em;">MMM4</span>
       </div>
       <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
