@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en">
+<script>if(localStorage.getItem('theme')!=='light')document.documentElement.setAttribute('data-theme','dark');</script>
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>April — Dashboard</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -10,31 +11,56 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:            #0a0e17;
-      --surface:       #0d1421;
-      --surface2:      #111827;
-      --text:          #c8d6e5;
-      --muted:         #7a9ab8;
-      --secondary:     #4a6a82;
-      --border:        rgba(0, 212, 255, 0.12);
-      --border-strong: rgba(0, 212, 255, 0.25);
-      --hover:         rgba(0, 212, 255, 0.05);
-      --accent-cyan:   #00d4ff;
-      --accent-magenta:#ff2d8a;
-      --green:         #00e5a0;
-      --amber:         #f5c842;
-      --red:           #ff4466;
-      --green-bg:      rgba(0, 229, 160, 0.08);
-      --amber-bg:      rgba(245, 200, 66, 0.08);
-      --gray-bg:       rgba(13, 20, 33, 0.6);
-      --opus-accent:   #ff2d8a;
-      --codex-accent:  #00d4ff;
-      --sonnet-accent: #9b6dff;
-      --haiku-accent:  #f5c842;
-      --glow-cyan:     0 0 8px rgba(0, 212, 255, 0.35);
-      --glow-magenta:  0 0 8px rgba(255, 45, 138, 0.35);
+      --bg: #FFFFFF;
+      --surface: #F8F9FA;
+      --surface2: #F0F1F3;
+      --text: #1a1a2e;
+      --muted: #555555;
+      --secondary: #777777;
+      --border: rgba(0, 0, 0, 0.08);
+      --border-strong: rgba(0, 0, 0, 0.15);
+      --hover: rgba(0, 0, 0, 0.03);
+      --accent-cyan: #0077B6;
+      --accent-magenta: #D63384;
+      --green: #198754;
+      --amber: #CC8800;
+      --red: #DC3545;
+      --green-bg: rgba(25, 135, 84, 0.08);
+      --amber-bg: rgba(204, 136, 0, 0.08);
+      --gray-bg: rgba(248, 249, 250, 0.6);
+      --opus-accent: #D63384;
+      --codex-accent: #0077B6;
+      --sonnet-accent: #7C3AED;
+      --haiku-accent: #CC8800;
+      --glow-cyan: 0 0 8px rgba(0, 119, 182, 0.2);
+      --glow-magenta: 0 0 8px rgba(214, 51, 132, 0.2);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    [data-theme="dark"] {
+      --bg: #0a0e17;
+      --surface: #0d1421;
+      --surface2: #111827;
+      --text: #c8d6e5;
+      --muted: #7a9ab8;
+      --secondary: #4a6a82;
+      --border: rgba(0, 212, 255, 0.12);
+      --border-strong: rgba(0, 212, 255, 0.25);
+      --hover: rgba(0, 212, 255, 0.05);
+      --accent-cyan: #00d4ff;
+      --accent-magenta: #ff2d8a;
+      --green: #00e5a0;
+      --amber: #f5c842;
+      --red: #ff4466;
+      --green-bg: rgba(0, 229, 160, 0.08);
+      --amber-bg: rgba(245, 200, 66, 0.08);
+      --gray-bg: rgba(13, 20, 33, 0.6);
+      --opus-accent: #ff2d8a;
+      --codex-accent: #00d4ff;
+      --sonnet-accent: #9b6dff;
+      --haiku-accent: #f5c842;
+      --glow-cyan: 0 0 8px rgba(0, 212, 255, 0.35);
+      --glow-magenta: 0 0 8px rgba(255, 45, 138, 0.35);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
     /* ── Scanline / CRT overlay ── */
     body::after {
@@ -64,6 +90,7 @@
       min-height: 100vh;
       font-size: 14px;
       line-height: 1.5;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     }
 
     /* ── Header ── */
@@ -96,7 +123,8 @@
     }
 
     /* ── Tabs ── */
-    .tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 10px 0 0; }
+    .tabs { display: flex; flex-wrap: nowrap; gap: 4px; padding: 10px 0 0; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .tabs::-webkit-scrollbar { display: none; }
     .tab {
       border: 1px solid var(--border);
       background: transparent;
@@ -436,7 +464,7 @@
     .file-item-desc { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.5; }
 
     /* ── Diagram ── */
-    .diagram { width: 100%; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); display: block; }
+    .diagram { width: 100%; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); display: block; }
 
     /* ── Refresh indicator ── */
     .refresh-bar {
@@ -472,6 +500,48 @@
       box-shadow: 0 0 6px rgba(255, 45, 138, 0.2);
     }
     .section-header-row .updated.unknown { color: var(--secondary); }
+
+    /* ── Theme Toggle ── */
+    .theme-toggle { background: none; border: none; cursor: pointer; padding: 2px; display: flex; align-items: center; gap: 6px; -webkit-tap-highlight-color: transparent; }
+    .toggle-track { width: 40px; height: 22px; background: #555555; border-radius: 11px; position: relative; transition: background 0.25s; display: block; flex-shrink: 0; }
+    html:not([data-theme="dark"]) .toggle-track { background: #DDDDDD; }
+    .toggle-knob { width: 16px; height: 16px; background: #EEEEEE; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: transform 0.25s; box-shadow: 0 1px 3px rgba(0,0,0,0.25); transform: translateX(18px); }
+    html:not([data-theme="dark"]) .toggle-knob { transform: translateX(0); background: #FFFFFF; }
+    .moon-icon { color: #DDDDDD; flex-shrink: 0; transition: color 0.25s; display: block; }
+    html:not([data-theme="dark"]) .moon-icon { color: #CCCCCC; }
+
+    /* ── Light mode overrides ── */
+    html:not([data-theme="dark"]) body::after { opacity: 0; }
+    html:not([data-theme="dark"]) header { background: rgba(255,255,255,0.92); box-shadow: 0 1px 0 0 rgba(0,0,0,0.05), 0 4px 24px rgba(0,0,0,0.08); }
+    html:not([data-theme="dark"]) body { background-image: none; }
+    html:not([data-theme="dark"]) .card { background: rgba(255,255,255,0.8); box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    html:not([data-theme="dark"]) .obj-card { background: rgba(255,255,255,0.7); }
+    html:not([data-theme="dark"]) .loop-item { background: rgba(255,255,255,0.6); }
+    html:not([data-theme="dark"]) .stat-item { background: rgba(255,255,255,0.6); }
+    html:not([data-theme="dark"]) .int-card { background: rgba(255,255,255,0.6); }
+    html:not([data-theme="dark"]) .cal-event { background: rgba(255,255,255,0.7); }
+    html:not([data-theme="dark"]) .cal-time { background: rgba(248,249,250,0.6); }
+    html:not([data-theme="dark"]) .file-item { background: rgba(255,255,255,0.6); }
+    html:not([data-theme="dark"]) .tag { background: rgba(248,249,250,0.7); }
+    html:not([data-theme="dark"]) code { background: rgba(0,119,182,0.06); border-color: rgba(0,119,182,0.1); }
+    html:not([data-theme="dark"]) .cal-header { background: rgba(0,119,182,0.04); }
+    html:not([data-theme="dark"]) h1 { text-shadow: none; }
+    html:not([data-theme="dark"]) .card-title { text-shadow: none; }
+
+    /* ── Integration Groupings ── */
+    .int-group { margin-bottom: 12px; }
+    .int-group:last-child { margin-bottom: 0; }
+    .int-group-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--secondary); margin-bottom: 6px; font-family: 'Rajdhani', sans-serif; }
+
+    /* ── Mobile ── */
+    @media(max-width: 600px) {
+      .header-inner { padding: 12px; }
+      .tab { min-height: 44px; }
+      main { padding: 12px; }
+      .two-col { grid-template-columns: 1fr; }
+      .obj-grid { grid-template-columns: 1fr; }
+      .cal-wrap { overflow-x: auto; }
+    }
   </style>
 </head>
 <body>
@@ -481,6 +551,10 @@
     <div class="header-top">
       <h1>&#10022; April</h1>
       <span class="version-badge" id="version-badge">v26.12.16 &middot; MMM4</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+        <span class="toggle-track"><span class="toggle-knob"></span></span>
+        <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
     </div>
     <nav class="tabs" id="tabs"></nav>
     <div class="view-subtitle" id="subtitle-bar">Morning check-in</div>
@@ -518,7 +592,7 @@
     <h3>Integration Health</h3>
     <span class="updated" id="int-strip-updated"></span>
   </div>
-  <div class="pill-strip" id="int-strip">
+  <div id="int-strip">
     <!-- filled by JS -->
   </div>
 
@@ -977,19 +1051,54 @@ const DEFAULT_INTEGRATIONS = {
 
 let cachedIntegrations = null;
 
+const INT_CATEGORIES = [
+  { label: "Communication", match: ["Slack"] },
+  { label: "Knowledge & Notes", match: ["Obsidian", "Readwise", "Notion"] },
+  { label: "Google Workspace", match: ["Google", "Gmail"] },
+  { label: "Development", match: ["GitHub"] },
+  { label: "Infrastructure", match: ["Tailscale", "Paperclip"] },
+  { label: "Productivity", match: ["Things", "OmniFocus"] },
+];
+
+function categorizeIntegration(name) {
+  for (const cat of INT_CATEGORIES) {
+    if (cat.match.some(m => name.includes(m))) return cat.label;
+  }
+  return "Other";
+}
+
 function renderIntegrationStrip(data) {
   const strip = document.getElementById("int-strip");
   const updEl = document.getElementById("int-strip-updated");
-  const d     = data || DEFAULT_INTEGRATIONS;
+  const d = data || DEFAULT_INTEGRATIONS;
   setUpdatedBadge(updEl, d.updatedAt);
-  const pills = [
+
+  const allItems = [
     ...(d.connected || []).map(i => ({ ...i, tier: "connected" })),
     ...(d.attention || []).map(i => ({ ...i, tier: "attention" })),
     ...(d.available || []).map(i => ({ ...i, tier: "available" }))
   ];
-  strip.innerHTML = pills.map(i =>
-    `<span class="int-pill ${i.tier}"><span class="int-dot ${i.tier}"></span>${esc(i.name)}</span>`
-  ).join("");
+
+  const groups = {};
+  allItems.forEach(i => {
+    const cat = categorizeIntegration(i.name);
+    if (!groups[cat]) groups[cat] = [];
+    groups[cat].push(i);
+  });
+
+  const orderedLabels = INT_CATEGORIES.map(c => c.label).concat(["Other"]);
+  let html = "";
+  orderedLabels.forEach(label => {
+    const items = groups[label];
+    if (!items || items.length === 0) return;
+    html += '<div class="int-group">';
+    html += '<div class="int-group-label">' + esc(label) + '</div>';
+    html += '<div class="pill-strip">';
+    html += items.map(i => '<span class="int-pill ' + i.tier + '"><span class="int-dot ' + i.tier + '"></span>' + esc(i.name) + '</span>').join("");
+    html += '</div></div>';
+  });
+
+  strip.innerHTML = html;
 }
 
 async function loadIntegrations() {
@@ -1076,6 +1185,18 @@ function refreshAll() {
   loadLoops();
   loadIntegrations();
 }
+
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  if (isDark) {
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'light');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+  }
+}
+document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
 
 init();
 setInterval(refreshAll, 60000);
