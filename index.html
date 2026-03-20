@@ -3,34 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claw OS — Dashboard</title>
+  <title>April — Dashboard</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #FFFFFF;
-      --surface: #FAFAFA;
-      --text: #111111;
-      --muted: #555555;
-      --secondary: #999999;
-      --border: #EEEEEE;
-      --hover: #F5F5F5;
-      --green: #22C55E;
-      --amber: #F59E0B;
-      --red: #EF4444;
-      --green-bg: #F0FDF4;
-      --amber-bg: #FFFBEB;
-      --gray-bg: #F9FAFB;
-      --opus-accent: #c7778f;
-      --codex-accent: #4a8f70;
-      --sonnet-accent: #5c7ea8;
-      --haiku-accent: #c48a45;
+      --bg:            #0a0e17;
+      --surface:       #0d1421;
+      --surface2:      #111827;
+      --text:          #c8d6e5;
+      --muted:         #7a9ab8;
+      --secondary:     #4a6a82;
+      --border:        rgba(0, 212, 255, 0.12);
+      --border-strong: rgba(0, 212, 255, 0.25);
+      --hover:         rgba(0, 212, 255, 0.05);
+      --accent-cyan:   #00d4ff;
+      --accent-magenta:#ff2d8a;
+      --green:         #00e5a0;
+      --amber:         #f5c842;
+      --red:           #ff4466;
+      --green-bg:      rgba(0, 229, 160, 0.08);
+      --amber-bg:      rgba(245, 200, 66, 0.08);
+      --gray-bg:       rgba(13, 20, 33, 0.6);
+      --opus-accent:   #ff2d8a;
+      --codex-accent:  #00d4ff;
+      --sonnet-accent: #9b6dff;
+      --haiku-accent:  #f5c842;
+      --glow-cyan:     0 0 8px rgba(0, 212, 255, 0.35);
+      --glow-magenta:  0 0 8px rgba(255, 45, 138, 0.35);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Scanline / CRT overlay ── */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0, 0, 0, 0.06) 3px,
+        rgba(0, 0, 0, 0.06) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 1;
+    }
+
     body {
       background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 80% 60% at 20% 0%, rgba(0, 212, 255, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(255, 45, 138, 0.04) 0%, transparent 60%);
       color: var(--text);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100vh;
@@ -41,10 +69,11 @@
     /* ── Header ── */
     header {
       position: sticky; top: 0; z-index: 20;
-      background: rgba(255,255,255,.94);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(10, 14, 23, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-strong);
+      box-shadow: 0 1px 0 0 rgba(0, 212, 255, 0.08), 0 4px 24px rgba(0, 0, 0, 0.4);
     }
     .header-inner {
       max-width: 1280px; margin: 0 auto;
@@ -55,36 +84,48 @@
       justify-content: space-between; gap: 16px; flex-wrap: wrap;
     }
     h1 {
-      font-family: 'Newsreader', Georgia, serif;
-      font-size: 20px; font-weight: 600; color: var(--text);
-      letter-spacing: -0.02em;
+      font-family: 'Rajdhani', 'Inter', sans-serif;
+      font-size: 22px; font-weight: 700; color: var(--accent-cyan);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      text-shadow: 0 0 20px rgba(0, 212, 255, 0.5), 0 0 40px rgba(0, 212, 255, 0.2);
     }
     .version-badge {
-      font-size: 12px; color: var(--secondary);
+      font-size: 11px; color: var(--secondary);
       font-family: 'Inter', sans-serif; font-weight: 400;
+      letter-spacing: 0.04em;
     }
 
     /* ── Tabs ── */
     .tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 10px 0 0; }
     .tab {
       border: 1px solid var(--border);
-      background: var(--bg);
-      color: var(--muted);
-      border-radius: 4px;
+      background: transparent;
+      color: var(--secondary);
+      border-radius: 3px;
       padding: 6px 16px;
-      font-size: 12px; font-weight: 600;
-      font-family: 'Inter', sans-serif;
+      font-size: 11px; font-weight: 600;
+      font-family: 'Rajdhani', 'Inter', sans-serif;
+      letter-spacing: 0.08em; text-transform: uppercase;
       cursor: pointer;
-      transition: all .12s;
-      letter-spacing: .01em;
+      transition: all .15s;
     }
-    .tab:hover { color: var(--text); background: var(--hover); }
-    .tab.active { background: var(--text); color: white; border-color: var(--text); }
+    .tab:hover {
+      color: var(--accent-cyan);
+      border-color: rgba(0, 212, 255, 0.3);
+      background: rgba(0, 212, 255, 0.05);
+    }
+    .tab.active {
+      background: rgba(0, 212, 255, 0.1);
+      color: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+      box-shadow: var(--glow-cyan);
+    }
 
     /* ── Subtitle ── */
     .view-subtitle {
-      font-size: 12px; color: var(--secondary);
+      font-size: 11px; color: var(--secondary);
       padding: 6px 0 8px; border-top: 1px solid var(--border); margin-top: 8px;
+      letter-spacing: 0.03em;
     }
 
     /* ── Layout ── */
@@ -105,18 +146,23 @@
 
     /* ── Cards ── */
     .card {
-      background: white;
+      background: rgba(13, 20, 33, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 18px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(0, 212, 255, 0.06);
     }
     .card-title {
-      font-size: 11px; text-transform: uppercase; letter-spacing: .08em;
-      color: var(--secondary); font-weight: 700; margin-bottom: 12px;
+      font-size: 10px; text-transform: uppercase; letter-spacing: .1em;
+      color: var(--accent-cyan); font-weight: 700; margin-bottom: 12px;
+      font-family: 'Rajdhani', sans-serif;
+      text-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
     }
 
     /* ── KPI ── */
-    .kpi { font-size: 28px; font-weight: 700; line-height: 1; margin: 4px 0 4px; }
+    .kpi { font-size: 28px; font-weight: 700; line-height: 1; margin: 4px 0 4px; color: var(--text); }
     .kpi-sub { font-size: 12px; color: var(--muted); }
 
     /* ── Objectives cards ── */
@@ -127,30 +173,35 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 14px 16px;
-      background: white;
+      background: rgba(13, 20, 33, 0.6);
+      backdrop-filter: blur(8px);
+      transition: border-color .2s, box-shadow .2s;
     }
-    .obj-card.status-active   { border-left: 3px solid var(--green); }
-    .obj-card.status-paused   { border-left: 3px solid var(--amber); }
-    .obj-card.status-blocked  { border-left: 3px solid var(--red); }
-    .obj-card.status-unknown  { border-left: 3px solid var(--border); }
-    .obj-name { font-weight: 600; font-size: 13px; margin-bottom: 6px; }
+    .obj-card:hover { border-color: var(--border-strong); }
+    .obj-card.status-active  { border-left: 3px solid var(--green); box-shadow: -4px 0 12px rgba(0, 229, 160, 0.15); }
+    .obj-card.status-paused  { border-left: 3px solid var(--amber); box-shadow: -4px 0 12px rgba(245, 200, 66, 0.15); }
+    .obj-card.status-blocked { border-left: 3px solid var(--red);   box-shadow: -4px 0 12px rgba(255, 44, 68, 0.15); }
+    .obj-card.status-unknown { border-left: 3px solid var(--secondary); }
+    .obj-name { font-weight: 600; font-size: 13px; margin-bottom: 6px; color: var(--text); }
     .obj-status { font-size: 11px; margin-bottom: 8px; }
     .obj-latest { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
     /* ── Tags/pills ── */
     .tag {
-      display: inline-block; border-radius: 4px;
+      display: inline-block; border-radius: 3px;
       padding: 2px 8px; font-size: 11px; font-weight: 600;
-      border: 1px solid var(--border); color: var(--muted);
-      background: white;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: rgba(13, 20, 33, 0.5);
+      letter-spacing: 0.03em;
     }
-    .tag.opus   { border-left: 3px solid var(--opus-accent); }
-    .tag.codex  { border-left: 3px solid var(--codex-accent); }
-    .tag.sonnet { border-left: 3px solid var(--sonnet-accent); }
-    .tag.haiku  { border-left: 3px solid var(--haiku-accent); }
-    .tag.ok     { color: var(--green); border-color: var(--green); background: var(--green-bg); }
-    .tag.warn   { color: var(--amber); border-color: var(--amber); background: var(--amber-bg); }
-    .tag.bad    { color: var(--red); border-color: var(--red); background: #fef2f2; }
+    .tag.opus   { border-left: 3px solid var(--opus-accent);   color: var(--opus-accent); }
+    .tag.codex  { border-left: 3px solid var(--codex-accent);  color: var(--codex-accent); }
+    .tag.sonnet { border-left: 3px solid var(--sonnet-accent); color: var(--sonnet-accent); }
+    .tag.haiku  { border-left: 3px solid var(--haiku-accent);  color: var(--haiku-accent); }
+    .tag.ok     { color: var(--green);  border-color: rgba(0, 229, 160, 0.4);  background: var(--green-bg); }
+    .tag.warn   { color: var(--amber);  border-color: rgba(245, 200, 66, 0.4); background: var(--amber-bg); }
+    .tag.bad    { color: var(--red);    border-color: rgba(255, 44, 68, 0.4);  background: rgba(255, 44, 68, 0.08); }
     .tag.plain  { color: var(--muted); }
 
     /* ── Integration pill strip ── */
@@ -160,13 +211,25 @@
       padding: 4px 12px 4px 8px; border-radius: 20px;
       font-size: 12px; font-weight: 500; border: 1px solid;
     }
-    .int-pill.connected { background: var(--green-bg); border-color: #86efac; color: #16a34a; }
-    .int-pill.attention { background: var(--amber-bg); border-color: #fcd34d; color: #b45309; }
-    .int-pill.available { background: var(--gray-bg); border-color: var(--border); color: var(--muted); }
+    .int-pill.connected {
+      background: rgba(0, 229, 160, 0.07);
+      border-color: rgba(0, 229, 160, 0.3);
+      color: var(--green);
+    }
+    .int-pill.attention {
+      background: rgba(245, 200, 66, 0.07);
+      border-color: rgba(245, 200, 66, 0.3);
+      color: var(--amber);
+    }
+    .int-pill.available {
+      background: rgba(74, 106, 130, 0.1);
+      border-color: var(--border);
+      color: var(--secondary);
+    }
     .int-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-    .int-dot.connected { background: var(--green); }
-    .int-dot.attention { background: var(--amber); }
-    .int-dot.available { background: #d1d5db; }
+    .int-dot.connected { background: var(--green);    box-shadow: 0 0 6px rgba(0, 229, 160, 0.6); }
+    .int-dot.attention { background: var(--amber);    box-shadow: 0 0 6px rgba(245, 200, 66, 0.6); }
+    .int-dot.available { background: var(--secondary); }
 
     /* ── Quick stats ── */
     .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
@@ -176,8 +239,9 @@
       border-radius: 6px;
       padding: 14px 16px;
       display: flex; flex-direction: column; gap: 4px;
+      background: rgba(13, 20, 33, 0.5);
     }
-    .stat-num { font-size: 24px; font-weight: 700; }
+    .stat-num { font-size: 24px; font-weight: 700; color: var(--accent-cyan); }
     .stat-label { font-size: 12px; color: var(--muted); }
 
     /* ── Open loops ── */
@@ -187,57 +251,90 @@
       padding: 8px 12px;
       border: 1px solid var(--border);
       border-radius: 4px;
+      background: rgba(13, 20, 33, 0.4);
       gap: 12px;
+      transition: border-color .15s;
     }
-    .loop-text { font-size: 13px; flex: 1; }
+    .loop-item:hover { border-color: var(--border-strong); }
+    .loop-text { font-size: 13px; flex: 1; color: var(--text); }
     .loop-meta { font-size: 11px; color: var(--secondary); white-space: nowrap; }
     .loop-days {
       font-size: 11px; font-weight: 600;
       padding: 1px 6px; border-radius: 10px;
-      background: var(--amber-bg); color: #b45309; border: 1px solid #fcd34d;
+      background: rgba(245, 200, 66, 0.1);
+      color: var(--amber);
+      border: 1px solid rgba(245, 200, 66, 0.3);
     }
-    .loop-days.fresh { background: var(--green-bg); color: #15803d; border-color: #86efac; }
+    .loop-days.fresh {
+      background: var(--green-bg);
+      color: var(--green);
+      border-color: rgba(0, 229, 160, 0.3);
+    }
 
     /* ── Tables ── */
     table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    th, td { text-align: left; border-bottom: 1px solid var(--border); padding: 8px 8px; vertical-align: top; }
-    th { color: var(--secondary); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+    th, td {
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      padding: 8px 8px;
+      vertical-align: top;
+    }
+    th {
+      color: var(--accent-cyan);
+      font-weight: 600; font-size: 10px;
+      text-transform: uppercase; letter-spacing: .08em;
+      font-family: 'Rajdhani', sans-serif;
+    }
     tr:last-child td { border-bottom: none; }
     tr:hover td { background: var(--hover); }
 
     /* ── Misc ── */
     .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; vertical-align: middle; }
-    .dot-ok   { background: var(--green); }
-    .dot-warn { background: var(--amber); }
-    .dot-bad  { background: var(--red); }
-    .dot-gray { background: #d1d5db; }
-    code { color: var(--muted); font-size: 12px; background: #f5f5f5; padding: 1px 5px; border-radius: 3px; font-family: ui-monospace, 'SF Mono', monospace; }
+    .dot-ok   { background: var(--green);    box-shadow: 0 0 5px rgba(0, 229, 160, 0.5); }
+    .dot-warn { background: var(--amber);    box-shadow: 0 0 5px rgba(245, 200, 66, 0.5); }
+    .dot-bad  { background: var(--red);      box-shadow: 0 0 5px rgba(255, 44, 68, 0.5); }
+    .dot-gray { background: var(--secondary); }
+    code {
+      color: var(--accent-cyan);
+      font-size: 12px;
+      background: rgba(0, 212, 255, 0.07);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-family: ui-monospace, 'SF Mono', monospace;
+      border: 1px solid rgba(0, 212, 255, 0.1);
+    }
     .note { color: var(--secondary); font-size: 12px; line-height: 1.7; margin-top: 10px; }
     .section-intro { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
-    .section-title { font-size: 13px; font-weight: 600; color: var(--text); margin: 16px 0 8px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .section-title {
+      font-size: 13px; font-weight: 600; color: var(--text);
+      margin: 16px 0 8px; padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
     .section-title:first-child { margin-top: 0; border-top: none; padding-top: 0; }
 
     /* ── Integration cards ── */
     .int-section { margin-bottom: 24px; }
     .int-section:last-child { margin-bottom: 0; }
     .int-section-header {
-      font-size: 11px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: .08em; margin-bottom: 10px; padding-bottom: 6px;
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .1em; margin-bottom: 10px; padding-bottom: 6px;
       border-bottom: 1px solid var(--border);
+      font-family: 'Rajdhani', sans-serif;
     }
-    .int-section-header.connected { color: #16a34a; }
-    .int-section-header.attention { color: #b45309; }
+    .int-section-header.connected { color: var(--green); }
+    .int-section-header.attention { color: var(--amber); }
     .int-section-header.available { color: var(--secondary); }
     .int-card {
       display: flex; align-items: flex-start; justify-content: space-between;
       gap: 12px; padding: 12px 14px; border: 1px solid var(--border);
-      border-radius: 6px; margin-bottom: 8px; background: white;
+      border-radius: 6px; margin-bottom: 8px;
+      background: rgba(13, 20, 33, 0.5);
     }
     .int-card.connected { border-left: 3px solid var(--green); }
     .int-card.attention { border-left: 3px solid var(--amber); }
-    .int-card.available { border-left: 3px solid #d1d5db; }
+    .int-card.available { border-left: 3px solid var(--secondary); }
     .int-card-body { flex: 1; }
-    .int-card-name { font-weight: 600; font-size: 13px; margin-bottom: 2px; }
+    .int-card-name { font-weight: 600; font-size: 13px; margin-bottom: 2px; color: var(--text); }
     .int-card-desc { font-size: 12px; color: var(--muted); }
     .int-card-meta { text-align: right; flex-shrink: 0; }
     .int-card-verified { font-size: 11px; color: var(--secondary); margin-top: 4px; }
@@ -254,26 +351,27 @@
       min-width: 700px;
     }
     .cal-header {
-      background: var(--surface);
+      background: rgba(0, 212, 255, 0.05);
       padding: 8px 6px;
-      font-weight: 700; font-size: 11px; text-transform: uppercase;
-      letter-spacing: .06em;
+      font-weight: 700; font-size: 10px; text-transform: uppercase;
+      letter-spacing: .08em;
       text-align: center;
-      border-bottom: 2px solid var(--border);
-      color: var(--muted);
+      border-bottom: 1px solid var(--border-strong);
+      color: var(--accent-cyan);
+      font-family: 'Rajdhani', sans-serif;
     }
     .cal-time {
       padding: 4px 8px 4px 4px;
-      font-size: 11px; color: var(--secondary);
+      font-size: 10px; color: var(--secondary);
       text-align: right;
       border-right: 1px solid var(--border);
-      border-bottom: 1px solid #f0f0f0;
-      background: var(--surface);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.06);
+      background: rgba(13, 20, 33, 0.4);
       display: flex; align-items: flex-start; justify-content: flex-end;
     }
     .cal-cell {
-      border-right: 1px solid #f0f0f0;
-      border-bottom: 1px solid #f0f0f0;
+      border-right: 1px solid rgba(0, 212, 255, 0.06);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.06);
       padding: 2px;
       min-height: 28px;
     }
@@ -287,23 +385,17 @@
       border-radius: 3px;
       line-height: 1.3;
       border: 1px solid var(--border);
-      background: white;
+      background: rgba(13, 20, 33, 0.7);
       width: 100%;
       box-sizing: border-box;
       margin-bottom: 2px;
       display: block;
     }
-    .cal-event.sonnet { border-left: 3px solid var(--sonnet-accent); background: #f0f5fa; }
-    .cal-event.codex  { border-left: 3px solid var(--codex-accent); background: #f0f7f3; }
-    .cal-event.haiku  { border-left: 3px solid var(--haiku-accent); background: #fdf7f0; }
-    .cal-event.opus   { border-left: 3px solid var(--opus-accent); background: #fdf3f5; }
-    .cal-event-thin { display: none; /* disabled — too noisy */
-      height: 4px; border-radius: 2px; width: 100%;
-      margin-bottom: 2px; border: none; padding: 0;
-      opacity: 0.4;
-    }
-    .cal-event-thin.codex  { background: var(--codex-accent); }
-    .cal-event-name { font-weight: 600; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .cal-event.sonnet { border-left: 3px solid var(--sonnet-accent); background: rgba(155, 109, 255, 0.07); }
+    .cal-event.codex  { border-left: 3px solid var(--codex-accent);  background: rgba(0, 212, 255, 0.07); }
+    .cal-event.haiku  { border-left: 3px solid var(--haiku-accent);  background: rgba(245, 200, 66, 0.07); }
+    .cal-event.opus   { border-left: 3px solid var(--opus-accent);   background: rgba(255, 45, 138, 0.07); }
+    .cal-event-name { font-weight: 600; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); }
     .cal-event-meta { color: var(--secondary); font-size: 9px; white-space: nowrap; }
     .cal-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px; }
     .cal-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
@@ -317,29 +409,47 @@
       padding: 9px 12px;
       border: 1px solid var(--border);
       border-radius: 4px;
-      background: var(--surface);
+      background: rgba(13, 20, 33, 0.4);
     }
-    .file-item code { background: transparent; padding: 0; color: var(--text); font-weight: 600; }
+    .file-item code { background: transparent; padding: 0; border: none; color: var(--accent-cyan); font-weight: 600; }
     .file-item-desc { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.5; }
 
     /* ── Diagram ── */
-    .diagram { width: 100%; border: 1px solid var(--border); border-radius: 6px; background: white; display: block; }
+    .diagram { width: 100%; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); display: block; }
 
     /* ── Refresh indicator ── */
     .refresh-bar {
       display: flex; align-items: center; justify-content: space-between;
       font-size: 11px; color: var(--secondary); margin-bottom: 16px;
     }
-    .refresh-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); margin-right: 5px; }
+    .refresh-dot {
+      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green); margin-right: 5px;
+      box-shadow: 0 0 6px rgba(0, 229, 160, 0.7);
+    }
 
     /* ── Section header row ── */
     .section-header-row {
       display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px;
     }
-    .section-header-row h3 { font-size: 13px; font-weight: 700; color: var(--text); }
-    .section-header-row .updated { font-size: 11px; font-weight: 600; padding: 2px 6px; border-radius: 4px; }
-    .section-header-row .updated.fresh { color: #2e7d32; background: #e8f5e9; }
-    .section-header-row .updated.stale { color: #c62828; background: #ffebee; }
+    .section-header-row h3 {
+      font-size: 12px; font-weight: 700; color: var(--text);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      font-family: 'Rajdhani', sans-serif;
+    }
+    .section-header-row .updated { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 3px; }
+    .section-header-row .updated.fresh {
+      color: var(--green);
+      background: var(--green-bg);
+      border: 1px solid rgba(0, 229, 160, 0.25);
+      box-shadow: 0 0 6px rgba(0, 229, 160, 0.2);
+    }
+    .section-header-row .updated.stale {
+      color: var(--accent-magenta);
+      background: rgba(255, 45, 138, 0.08);
+      border: 1px solid rgba(255, 45, 138, 0.25);
+      box-shadow: 0 0 6px rgba(255, 45, 138, 0.2);
+    }
     .section-header-row .updated.unknown { color: var(--secondary); }
   </style>
 </head>
@@ -348,8 +458,8 @@
 <header>
   <div class="header-inner">
     <div class="header-top">
-      <h1>&#10022; Claw OS</h1>
-      <span class="version-badge" id="version-badge">v26.12.14 &middot; MMM4</span>
+      <h1>&#10022; April</h1>
+      <span class="version-badge" id="version-badge">v26.12.15 &middot; MMM4</span>
     </div>
     <nav class="tabs" id="tabs"></nav>
     <div class="view-subtitle" id="subtitle-bar">Morning check-in</div>
@@ -466,128 +576,128 @@
       <svg class="diagram" viewBox="0 0 1200 650" xmlns="http://www.w3.org/2000/svg" font-family="Inter,ui-sans-serif,sans-serif">
         <defs>
           <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M0 0L10 5L0 10z" fill="#999"/>
+            <path d="M0 0L10 5L0 10z" fill="#00d4ff"/>
           </marker>
           <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-            <path d="M0 0L10 5L0 10z" fill="#ccc"/>
+            <path d="M0 0L10 5L0 10z" fill="rgba(0,212,255,0.5)"/>
           </marker>
         </defs>
 
         <!-- YOU zone -->
-        <rect x="10" y="10" width="200" height="110" rx="4" fill="white" stroke="#eee" stroke-width="1.5"/>
-        <text x="25" y="32" fill="#999" font-size="11" font-weight="700" letter-spacing=".06em">YOU</text>
-        <rect x="30" y="45" width="70" height="50" rx="4" fill="white" stroke="#eee"/>
-        <text x="65" y="67" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Slack</text>
-        <text x="65" y="82" fill="#999" text-anchor="middle" font-size="9">Socket Mode</text>
-        <rect x="115" y="45" width="75" height="50" rx="4" fill="white" stroke="#eee"/>
-        <text x="152" y="67" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Webchat</text>
-        <text x="152" y="82" fill="#999" text-anchor="middle" font-size="9">browser</text>
+        <rect x="10" y="10" width="200" height="110" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.2)" stroke-width="1.5"/>
+        <text x="25" y="32" fill="#4a6a82" font-size="11" font-weight="700" letter-spacing=".06em">YOU</text>
+        <rect x="30" y="45" width="70" height="50" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.2)"/>
+        <text x="65" y="67" fill="#c8d6e5" text-anchor="middle" font-size="12" font-weight="600">Slack</text>
+        <text x="65" y="82" fill="#4a6a82" text-anchor="middle" font-size="9">Socket Mode</text>
+        <rect x="115" y="45" width="75" height="50" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.2)"/>
+        <text x="152" y="67" fill="#c8d6e5" text-anchor="middle" font-size="12" font-weight="600">Webchat</text>
+        <text x="152" y="82" fill="#4a6a82" text-anchor="middle" font-size="9">browser</text>
 
         <!-- MAC MINI zone -->
-        <rect x="240" y="10" width="560" height="630" rx="4" fill="white" stroke="#ddd" stroke-width="2"/>
-        <text x="260" y="32" fill="#555" font-size="11" font-weight="700" letter-spacing=".06em">MAC MINI — MMM4 (always-on)</text>
+        <rect x="240" y="10" width="560" height="630" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.18)" stroke-width="1.5"/>
+        <text x="260" y="32" fill="#7a9ab8" font-size="11" font-weight="700" letter-spacing=".06em">MAC MINI — MMM4 (always-on)</text>
 
         <!-- Gateway -->
-        <rect x="260" y="50" width="520" height="140" rx="4" fill="#fafafa" stroke="#eee" stroke-width="1.5"/>
-        <text x="520" y="72" fill="#555" text-anchor="middle" font-size="13" font-weight="700">OpenClaw Gateway :18789</text>
-        <text x="520" y="88" fill="#999" text-anchor="middle" font-size="11">Node.js daemon · loopback bind</text>
-        <rect x="278" y="100" width="110" height="32" rx="4" fill="white" stroke="#eee"/>
-        <text x="333" y="120" fill="#555" text-anchor="middle" font-size="11" font-weight="600">Session Mgr</text>
-        <rect x="398" y="100" width="110" height="32" rx="4" fill="white" stroke="#eee"/>
-        <text x="453" y="120" fill="#555" text-anchor="middle" font-size="11" font-weight="600">Channel Router</text>
-        <rect x="518" y="100" width="110" height="32" rx="4" fill="white" stroke="#eee"/>
-        <text x="573" y="120" fill="#555" text-anchor="middle" font-size="11" font-weight="600">Memory Hooks</text>
-        <rect x="638" y="100" width="110" height="32" rx="4" fill="white" stroke="#eee"/>
-        <text x="693" y="120" fill="#555" text-anchor="middle" font-size="11" font-weight="600">Cron Engine</text>
-        <text x="520" y="172" fill="#999" text-anchor="middle" font-size="10">Tools: exec · read/write · browser · cron · nodes · message</text>
+        <rect x="260" y="50" width="520" height="140" rx="4" fill="rgba(0,212,255,0.03)" stroke="rgba(0,212,255,0.15)" stroke-width="1.5"/>
+        <text x="520" y="72" fill="#c8d6e5" text-anchor="middle" font-size="13" font-weight="700">OpenClaw Gateway :18789</text>
+        <text x="520" y="88" fill="#4a6a82" text-anchor="middle" font-size="11">Node.js daemon · loopback bind</text>
+        <rect x="278" y="100" width="110" height="32" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.15)"/>
+        <text x="333" y="120" fill="#c8d6e5" text-anchor="middle" font-size="11" font-weight="600">Session Mgr</text>
+        <rect x="398" y="100" width="110" height="32" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.15)"/>
+        <text x="453" y="120" fill="#c8d6e5" text-anchor="middle" font-size="11" font-weight="600">Channel Router</text>
+        <rect x="518" y="100" width="110" height="32" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.15)"/>
+        <text x="573" y="120" fill="#c8d6e5" text-anchor="middle" font-size="11" font-weight="600">Memory Hooks</text>
+        <rect x="638" y="100" width="110" height="32" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.15)"/>
+        <text x="693" y="120" fill="#c8d6e5" text-anchor="middle" font-size="11" font-weight="600">Cron Engine</text>
+        <text x="520" y="172" fill="#4a6a82" text-anchor="middle" font-size="10">Tools: exec · read/write · browser · cron · nodes · message</text>
 
         <!-- Main Agent -->
-        <rect x="260" y="210" width="520" height="60" rx="4" fill="white" stroke="#c7778f" stroke-width="1.5"/>
-        <text x="520" y="237" fill="#555" text-anchor="middle" font-size="14" font-weight="700">Claw — Main Agent (Orchestrator)</text>
-        <text x="520" y="257" fill="#999" text-anchor="middle" font-size="11">Model: Opus 4-6 · minimal usage · delegates to sub-agents</text>
+        <rect x="260" y="210" width="520" height="60" rx="4" fill="#0d1421" stroke="#ff2d8a" stroke-width="1.5"/>
+        <text x="520" y="237" fill="#c8d6e5" text-anchor="middle" font-size="14" font-weight="700">Claw — Main Agent (Orchestrator)</text>
+        <text x="520" y="257" fill="#4a6a82" text-anchor="middle" font-size="11">Model: Opus 4-6 · minimal usage · delegates to sub-agents</text>
 
         <!-- Sub-agents label -->
-        <text x="520" y="300" fill="#999" text-anchor="middle" font-size="11" font-weight="600">Sub-agents (spawned on-demand · max 5 main / 2 sub)</text>
+        <text x="520" y="300" fill="#4a6a82" text-anchor="middle" font-size="11" font-weight="600">Sub-agents (spawned on-demand · max 5 main / 2 sub)</text>
 
         <!-- Sub-agent boxes -->
-        <rect x="265" y="315" width="168" height="75" rx="4" fill="white" stroke="#4a8f70" stroke-width="1"/>
-        <text x="349" y="337" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Coding Agent</text>
-        <text x="349" y="353" fill="#999" text-anchor="middle" font-size="10">Codex 5.3</text>
-        <text x="349" y="368" fill="#999" text-anchor="middle" font-size="10">file edits, scaffolds, tests</text>
+        <rect x="265" y="315" width="168" height="75" rx="4" fill="#0d1421" stroke="#00d4ff" stroke-width="1"/>
+        <text x="349" y="337" fill="#c8d6e5" text-anchor="middle" font-size="12" font-weight="600">Coding Agent</text>
+        <text x="349" y="353" fill="#4a6a82" text-anchor="middle" font-size="10">Codex 5.3</text>
+        <text x="349" y="368" fill="#4a6a82" text-anchor="middle" font-size="10">file edits, scaffolds, tests</text>
 
-        <rect x="445" y="315" width="168" height="75" rx="4" fill="white" stroke="#4a8f70" stroke-width="1"/>
-        <text x="529" y="337" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Research Agent</text>
-        <text x="529" y="353" fill="#999" text-anchor="middle" font-size="10">Codex 5.3</text>
-        <text x="529" y="368" fill="#999" text-anchor="middle" font-size="10">web_search, cited findings</text>
+        <rect x="445" y="315" width="168" height="75" rx="4" fill="#0d1421" stroke="#00d4ff" stroke-width="1"/>
+        <text x="529" y="337" fill="#c8d6e5" text-anchor="middle" font-size="12" font-weight="600">Research Agent</text>
+        <text x="529" y="353" fill="#4a6a82" text-anchor="middle" font-size="10">Codex 5.3</text>
+        <text x="529" y="368" fill="#4a6a82" text-anchor="middle" font-size="10">web_search, cited findings</text>
 
-        <rect x="625" y="315" width="148" height="75" rx="4" fill="white" stroke="#c48a45" stroke-width="1"/>
-        <text x="699" y="337" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Cheap Agent</text>
-        <text x="699" y="353" fill="#999" text-anchor="middle" font-size="10">Haiku 3.5</text>
-        <text x="699" y="368" fill="#999" text-anchor="middle" font-size="10">summaries, formatting</text>
+        <rect x="625" y="315" width="148" height="75" rx="4" fill="#0d1421" stroke="#f5c842" stroke-width="1"/>
+        <text x="699" y="337" fill="#c8d6e5" text-anchor="middle" font-size="12" font-weight="600">Cheap Agent</text>
+        <text x="699" y="353" fill="#4a6a82" text-anchor="middle" font-size="10">Haiku 3.5</text>
+        <text x="699" y="368" fill="#4a6a82" text-anchor="middle" font-size="10">summaries, formatting</text>
 
         <!-- Workspace -->
-        <rect x="260" y="410" width="520" height="70" rx="4" fill="white" stroke="#eee" stroke-width="1.5"/>
-        <text x="520" y="437" fill="#555" text-anchor="middle" font-size="12" font-weight="700">Workspace: ~/.openclaw/workspace</text>
-        <text x="520" y="455" fill="#999" text-anchor="middle" font-size="10">memory.md · memory/*.md · dashboard-ui/ · skills/ · SOUL.md · USER.md</text>
-        <text x="520" y="471" fill="#999" text-anchor="middle" font-size="10">GitHub: paradoxofacceptance.xyz/april-dashboard</text>
+        <rect x="260" y="410" width="520" height="70" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.15)" stroke-width="1.5"/>
+        <text x="520" y="437" fill="#c8d6e5" text-anchor="middle" font-size="12" font-weight="700">Workspace: ~/.openclaw/workspace</text>
+        <text x="520" y="455" fill="#4a6a82" text-anchor="middle" font-size="10">memory.md · memory/*.md · dashboard-ui/ · skills/ · SOUL.md · USER.md</text>
+        <text x="520" y="471" fill="#4a6a82" text-anchor="middle" font-size="10">GitHub: paradoxofacceptance.xyz/april-dashboard</text>
 
         <!-- Cron -->
-        <rect x="260" y="500" width="520" height="60" rx="4" fill="white" stroke="#eee" stroke-width="1.5"/>
-        <text x="520" y="522" fill="#555" text-anchor="middle" font-size="12" font-weight="700">Cron Scheduler (8 jobs)</text>
-        <text x="520" y="540" fill="#999" text-anchor="middle" font-size="10">journal · research · tweets · stablecoin · dashboard-health · telemetry · objectives · research-refresh</text>
+        <rect x="260" y="500" width="520" height="60" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.15)" stroke-width="1.5"/>
+        <text x="520" y="522" fill="#c8d6e5" text-anchor="middle" font-size="12" font-weight="700">Cron Scheduler (8 jobs)</text>
+        <text x="520" y="540" fill="#4a6a82" text-anchor="middle" font-size="10">journal · research · tweets · stablecoin · dashboard-health · telemetry · objectives · research-refresh</text>
 
         <!-- EXTERNAL SERVICES zone -->
-        <rect x="830" y="10" width="360" height="630" rx="4" fill="white" stroke="#eee" stroke-width="1.5"/>
-        <text x="850" y="32" fill="#999" font-size="11" font-weight="700" letter-spacing=".06em">EXTERNAL SERVICES</text>
+        <rect x="830" y="10" width="360" height="630" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.12)" stroke-width="1.5"/>
+        <text x="850" y="32" fill="#4a6a82" font-size="11" font-weight="700" letter-spacing=".06em">EXTERNAL SERVICES</text>
 
-        <rect x="850" y="50"  width="320" height="48" rx="4" fill="white" stroke="#eee"/>
-        <text x="1010" y="72"  fill="#555" text-anchor="middle" font-size="12" font-weight="600">Anthropic API</text>
-        <text x="1010" y="87"  fill="#999" text-anchor="middle" font-size="10">Opus · Sonnet · Haiku</text>
+        <rect x="850" y="50"  width="320" height="48" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.15)"/>
+        <text x="1010" y="72"  fill="#c8d6e5" text-anchor="middle" font-size="12" font-weight="600">Anthropic API</text>
+        <text x="1010" y="87"  fill="#4a6a82" text-anchor="middle" font-size="10">Opus · Sonnet · Haiku</text>
 
-        <rect x="850" y="110" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
-        <text x="1010" y="132" fill="#555" text-anchor="middle" font-size="12" font-weight="600">OpenAI API</text>
-        <text x="1010" y="147" fill="#999" text-anchor="middle" font-size="10">Codex 5.3 · OAuth mode</text>
+        <rect x="850" y="110" width="320" height="48" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.15)"/>
+        <text x="1010" y="132" fill="#c8d6e5" text-anchor="middle" font-size="12" font-weight="600">OpenAI API</text>
+        <text x="1010" y="147" fill="#4a6a82" text-anchor="middle" font-size="10">Codex 5.3 · OAuth mode</text>
 
-        <rect x="850" y="170" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
-        <text x="1010" y="192" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Slack</text>
-        <text x="1010" y="207" fill="#999" text-anchor="middle" font-size="10">Socket Mode · 10 channels</text>
+        <rect x="850" y="170" width="320" height="48" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.15)"/>
+        <text x="1010" y="192" fill="#c8d6e5" text-anchor="middle" font-size="12" font-weight="600">Slack</text>
+        <text x="1010" y="207" fill="#4a6a82" text-anchor="middle" font-size="10">Socket Mode · 10 channels</text>
 
-        <rect x="850" y="230" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
-        <text x="1010" y="252" fill="#555" text-anchor="middle" font-size="12" font-weight="600">GitHub</text>
-        <text x="1010" y="267" fill="#999" text-anchor="middle" font-size="10">gh CLI · nickxma · Pages deploy</text>
+        <rect x="850" y="230" width="320" height="48" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.15)"/>
+        <text x="1010" y="252" fill="#c8d6e5" text-anchor="middle" font-size="12" font-weight="600">GitHub</text>
+        <text x="1010" y="267" fill="#4a6a82" text-anchor="middle" font-size="10">gh CLI · nickxma · Pages deploy</text>
 
-        <rect x="850" y="290" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
-        <text x="1010" y="312" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Brave Search API</text>
-        <text x="1010" y="327" fill="#999" text-anchor="middle" font-size="10">web_search tool</text>
+        <rect x="850" y="290" width="320" height="48" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.15)"/>
+        <text x="1010" y="312" fill="#c8d6e5" text-anchor="middle" font-size="12" font-weight="600">Brave Search API</text>
+        <text x="1010" y="327" fill="#4a6a82" text-anchor="middle" font-size="10">web_search tool</text>
 
-        <rect x="850" y="350" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
-        <text x="1010" y="372" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Google Workspace</text>
-        <text x="1010" y="387" fill="#999" text-anchor="middle" font-size="10">gog CLI · Gmail · Calendar · Drive</text>
+        <rect x="850" y="350" width="320" height="48" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.15)"/>
+        <text x="1010" y="372" fill="#c8d6e5" text-anchor="middle" font-size="12" font-weight="600">Google Workspace</text>
+        <text x="1010" y="387" fill="#4a6a82" text-anchor="middle" font-size="10">gog CLI · Gmail · Calendar · Drive</text>
 
-        <rect x="850" y="410" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
-        <text x="1010" y="432" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Tailscale</text>
-        <text x="1010" y="447" fill="#999" text-anchor="middle" font-size="10">mmm4 · 100.74.228.112</text>
+        <rect x="850" y="410" width="320" height="48" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.15)"/>
+        <text x="1010" y="432" fill="#c8d6e5" text-anchor="middle" font-size="12" font-weight="600">Tailscale</text>
+        <text x="1010" y="447" fill="#4a6a82" text-anchor="middle" font-size="10">mmm4 · 100.74.228.112</text>
 
-        <rect x="850" y="470" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
-        <text x="1010" y="492" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Obsidian Vault</text>
-        <text x="1010" y="507" fill="#999" text-anchor="middle" font-size="10">~/Obsidian · read/write · canonical store</text>
+        <rect x="850" y="470" width="320" height="48" rx="4" fill="#0d1421" stroke="rgba(0,212,255,0.15)"/>
+        <text x="1010" y="492" fill="#c8d6e5" text-anchor="middle" font-size="12" font-weight="600">Obsidian Vault</text>
+        <text x="1010" y="507" fill="#4a6a82" text-anchor="middle" font-size="10">~/Obsidian · read/write · canonical store</text>
 
         <!-- Arrows -->
-        <line x1="210" y1="70" x2="258" y2="100" stroke="#ccc" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
-        <text x="218" y="88" fill="#999" font-size="9">msg in</text>
-        <line x1="520" y1="190" x2="520" y2="208" stroke="#999" stroke-width="1.5" marker-end="url(#arr)"/>
-        <line x1="349" y1="270" x2="349" y2="313" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
-        <line x1="529" y1="270" x2="529" y2="313" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
-        <line x1="699" y1="270" x2="699" y2="313" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
-        <line x1="520" y1="390" x2="520" y2="408" stroke="#ccc" stroke-width="1" marker-end="url(#arr2)"/>
-        <line x1="782" y1="120" x2="848" y2="74"  stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
-        <line x1="782" y1="130" x2="848" y2="134" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
-        <line x1="782" y1="140" x2="848" y2="194" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
-        <line x1="782" y1="148" x2="848" y2="254" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
-        <line x1="782" y1="155" x2="848" y2="314" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
-        <line x1="782" y1="162" x2="848" y2="374" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
-        <line x1="782" y1="168" x2="848" y2="434" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
-        <line x1="782" y1="174" x2="848" y2="494" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="210" y1="70" x2="258" y2="100" stroke="rgba(0,212,255,0.4)" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+        <text x="218" y="88" fill="#4a6a82" font-size="9">msg in</text>
+        <line x1="520" y1="190" x2="520" y2="208" stroke="#00d4ff" stroke-width="1.5" marker-end="url(#arr)"/>
+        <line x1="349" y1="270" x2="349" y2="313" stroke="rgba(0,212,255,0.4)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+        <line x1="529" y1="270" x2="529" y2="313" stroke="rgba(0,212,255,0.4)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+        <line x1="699" y1="270" x2="699" y2="313" stroke="rgba(0,212,255,0.4)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+        <line x1="520" y1="390" x2="520" y2="408" stroke="rgba(0,212,255,0.4)" stroke-width="1" marker-end="url(#arr2)"/>
+        <line x1="782" y1="120" x2="848" y2="74"  stroke="rgba(0,212,255,0.25)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="782" y1="130" x2="848" y2="134" stroke="rgba(0,212,255,0.25)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="782" y1="140" x2="848" y2="194" stroke="rgba(0,212,255,0.25)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="782" y1="148" x2="848" y2="254" stroke="rgba(0,212,255,0.25)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="782" y1="155" x2="848" y2="314" stroke="rgba(0,212,255,0.25)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="782" y1="162" x2="848" y2="374" stroke="rgba(0,212,255,0.25)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="782" y1="168" x2="848" y2="434" stroke="rgba(0,212,255,0.25)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="782" y1="174" x2="848" y2="494" stroke="rgba(0,212,255,0.25)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
       </svg>
     </article>
 

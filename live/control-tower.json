@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-19 22:57 CDT",
+  "updatedAt": "2026-03-20 00:57 CDT",
   "projects": [
     {
       "name": "Launch Twitter account for AI + mindfulness content",
@@ -52,8 +52,14 @@
       "cadence": "Every 30m"
     },
     {
-      "name": "infrastructure-daily-scan",
+      "name": "dashboard-integrations-refresh",
       "status": "ok (not yet run)",
+      "workstream": "Integration status checks (Slack, GitHub, Obsidian, etc.)",
+      "cadence": "Every 6h"
+    },
+    {
+      "name": "infrastructure-daily-scan",
+      "status": "ok",
       "workstream": "Daily infra tooling intel for #infrastructure",
       "cadence": "08:00 America/Chicago daily"
     },
@@ -95,15 +101,21 @@
     },
     {
       "name": "readwise-weekly-groom",
-      "status": "ok (not yet run)",
+      "status": "ok",
       "workstream": "Weekly Readwise library triage",
       "cadence": "10:00 America/Chicago Sundays"
     },
     {
       "name": "dashboard-objectives-weekly",
-      "status": "ok (not yet run)",
+      "status": "ok",
       "workstream": "Weekly objectives refresh + channel auto-discovery",
       "cadence": "07:00 America/Chicago Mondays"
+    },
+    {
+      "name": "infrastructure-weekly-scorecard",
+      "status": "ok (not yet run)",
+      "workstream": "Weekly infrastructure progress scorecard",
+      "cadence": "08:00 America/Chicago Mondays"
     }
   ],
   "blockers": [
