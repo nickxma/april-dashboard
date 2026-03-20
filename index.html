@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claw OS — OpenClaw Dashboard</title>
+  <title>Claw OS — Dashboard</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,14 +11,18 @@
   <style>
     :root {
       --bg: #FFFFFF;
+      --surface: #FAFAFA;
       --text: #111111;
       --muted: #555555;
       --secondary: #999999;
       --border: #EEEEEE;
-      --hover: #FAFAFA;
+      --hover: #F5F5F5;
       --green: #22C55E;
       --amber: #F59E0B;
       --red: #EF4444;
+      --green-bg: #F0FDF4;
+      --amber-bg: #FFFBEB;
+      --gray-bg: #F9FAFB;
       --opus-accent: #c7778f;
       --codex-accent: #4a8f70;
       --sonnet-accent: #5c7ea8;
@@ -37,45 +41,50 @@
     /* ── Header ── */
     header {
       position: sticky; top: 0; z-index: 20;
-      background: rgba(255,255,255,.92);
+      background: rgba(255,255,255,.94);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
     .header-inner {
       max-width: 1280px; margin: 0 auto;
-      padding: 10px 24px 0;
+      padding: 12px 24px 0;
     }
-    .header-top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .header-top {
+      display: flex; align-items: baseline;
+      justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
     h1 {
       font-family: 'Newsreader', Georgia, serif;
-      font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -0.02em;
+      font-size: 20px; font-weight: 600; color: var(--text);
+      letter-spacing: -0.02em;
     }
-    .htag { font-size: 12px; color: var(--secondary); }
+    .version-badge {
+      font-size: 12px; color: var(--secondary);
+      font-family: 'Inter', sans-serif; font-weight: 400;
+    }
 
     /* ── Tabs ── */
-    .tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 8px 0 0; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 10px 0 0; }
     .tab {
       border: 1px solid var(--border);
       background: var(--bg);
       color: var(--muted);
       border-radius: 4px;
-      padding: 6px 14px;
+      padding: 6px 16px;
       font-size: 12px; font-weight: 600;
       font-family: 'Inter', sans-serif;
       cursor: pointer;
       transition: all .12s;
+      letter-spacing: .01em;
     }
     .tab:hover { color: var(--text); background: var(--hover); }
     .tab.active { background: var(--text); color: white; border-color: var(--text); }
 
-    /* ── Subtitle bar ── */
-    .view-desc {
-      font-size: 13px;
-      color: var(--secondary);
-      padding: 6px 0 8px;
-      border-top: 1px solid var(--border);
-      margin-top: 8px;
+    /* ── Subtitle ── */
+    .view-subtitle {
+      font-size: 12px; color: var(--secondary);
+      padding: 6px 0 8px; border-top: 1px solid var(--border); margin-top: 8px;
     }
 
     /* ── Layout ── */
@@ -84,24 +93,49 @@
     .view.active { display: block; }
     .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
     @media(max-width: 900px) { [class*="span-"] { grid-column: span 12 !important; } }
-    .span-3 { grid-column: span 3 } .span-4 { grid-column: span 4 }
-    .span-5 { grid-column: span 5 } .span-6 { grid-column: span 6 }
-    .span-7 { grid-column: span 7 } .span-8 { grid-column: span 8 }
-    .span-9 { grid-column: span 9 } .span-12 { grid-column: span 12 }
+    .span-2  { grid-column: span 2 }
+    .span-3  { grid-column: span 3 }
+    .span-4  { grid-column: span 4 }
+    .span-5  { grid-column: span 5 }
+    .span-6  { grid-column: span 6 }
+    .span-7  { grid-column: span 7 }
+    .span-8  { grid-column: span 8 }
+    .span-9  { grid-column: span 9 }
+    .span-12 { grid-column: span 12 }
 
     /* ── Cards ── */
     .card {
       background: white;
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 6px;
       padding: 18px;
     }
     .card-title {
       font-size: 11px; text-transform: uppercase; letter-spacing: .08em;
       color: var(--secondary); font-weight: 700; margin-bottom: 12px;
     }
-    .kpi { font-size: 28px; font-weight: 700; line-height: 1; margin: 6px 0 4px; }
+
+    /* ── KPI ── */
+    .kpi { font-size: 28px; font-weight: 700; line-height: 1; margin: 4px 0 4px; }
     .kpi-sub { font-size: 12px; color: var(--muted); }
+
+    /* ── Objectives cards ── */
+    .obj-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    @media(max-width: 900px) { .obj-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width: 500px) { .obj-grid { grid-template-columns: 1fr; } }
+    .obj-card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      background: white;
+    }
+    .obj-card.status-active   { border-left: 3px solid var(--green); }
+    .obj-card.status-paused   { border-left: 3px solid var(--amber); }
+    .obj-card.status-blocked  { border-left: 3px solid var(--red); }
+    .obj-card.status-unknown  { border-left: 3px solid var(--border); }
+    .obj-name { font-weight: 600; font-size: 13px; margin-bottom: 6px; }
+    .obj-status { font-size: 11px; margin-bottom: 8px; }
+    .obj-latest { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
     /* ── Tags/pills ── */
     .tag {
@@ -114,10 +148,55 @@
     .tag.codex  { border-left: 3px solid var(--codex-accent); }
     .tag.sonnet { border-left: 3px solid var(--sonnet-accent); }
     .tag.haiku  { border-left: 3px solid var(--haiku-accent); }
-    .tag.ok     { color: var(--green); border-color: var(--green); background: #f0fdf4; }
-    .tag.warn   { color: var(--amber); border-color: var(--amber); background: #fffbeb; }
+    .tag.ok     { color: var(--green); border-color: var(--green); background: var(--green-bg); }
+    .tag.warn   { color: var(--amber); border-color: var(--amber); background: var(--amber-bg); }
     .tag.bad    { color: var(--red); border-color: var(--red); background: #fef2f2; }
     .tag.plain  { color: var(--muted); }
+
+    /* ── Integration pill strip ── */
+    .pill-strip { display: flex; flex-wrap: wrap; gap: 8px; }
+    .int-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px 4px 8px; border-radius: 20px;
+      font-size: 12px; font-weight: 500; border: 1px solid;
+    }
+    .int-pill.connected { background: var(--green-bg); border-color: #86efac; color: #16a34a; }
+    .int-pill.attention { background: var(--amber-bg); border-color: #fcd34d; color: #b45309; }
+    .int-pill.available { background: var(--gray-bg); border-color: var(--border); color: var(--muted); }
+    .int-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .int-dot.connected { background: var(--green); }
+    .int-dot.attention { background: var(--amber); }
+    .int-dot.available { background: #d1d5db; }
+
+    /* ── Quick stats ── */
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    @media(max-width:600px) { .stats-row { grid-template-columns: 1fr; } }
+    .stat-item {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .stat-num { font-size: 24px; font-weight: 700; }
+    .stat-label { font-size: 12px; color: var(--muted); }
+
+    /* ── Open loops ── */
+    .loop-list { display: flex; flex-direction: column; gap: 6px; }
+    .loop-item {
+      display: flex; align-items: baseline; justify-content: space-between;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      gap: 12px;
+    }
+    .loop-text { font-size: 13px; flex: 1; }
+    .loop-meta { font-size: 11px; color: var(--secondary); white-space: nowrap; }
+    .loop-days {
+      font-size: 11px; font-weight: 600;
+      padding: 1px 6px; border-radius: 10px;
+      background: var(--amber-bg); color: #b45309; border: 1px solid #fcd34d;
+    }
+    .loop-days.fresh { background: var(--green-bg); color: #15803d; border-color: #86efac; }
 
     /* ── Tables ── */
     table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -128,468 +207,369 @@
 
     /* ── Misc ── */
     .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; vertical-align: middle; }
-    .dot-ok { background: var(--green); } .dot-warn { background: var(--amber); } .dot-bad { background: var(--red); }
-    code { color: var(--muted); font-size: 12px; background: #f5f5f5; padding: 1px 5px; border-radius: 3px; }
-    .note { color: var(--secondary); font-size: 12px; line-height: 1.7; margin-top: 8px; }
+    .dot-ok   { background: var(--green); }
+    .dot-warn { background: var(--amber); }
+    .dot-bad  { background: var(--red); }
+    .dot-gray { background: #d1d5db; }
+    code { color: var(--muted); font-size: 12px; background: #f5f5f5; padding: 1px 5px; border-radius: 3px; font-family: ui-monospace, 'SF Mono', monospace; }
+    .note { color: var(--secondary); font-size: 12px; line-height: 1.7; margin-top: 10px; }
     .section-intro { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
-    .link-btn {
-      display: inline-block; margin: 2px 4px 2px 0; font-size: 12px;
-      color: var(--muted); text-decoration: none; border: 1px solid var(--border);
-      padding: 4px 10px; border-radius: 4px; background: white; font-weight: 500;
-    }
-    .link-btn:hover { background: var(--hover); color: var(--text); }
-    ul { padding-left: 18px; } li { margin: 4px 0; }
-    ol { padding-left: 20px; } ol li { margin: 6px 0; }
+    .section-title { font-size: 13px; font-weight: 600; color: var(--text); margin: 16px 0 8px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .section-title:first-child { margin-top: 0; border-top: none; padding-top: 0; }
 
-    .progress-row { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
-    .progress-row .label { width: 280px; color: var(--text); font-weight: 500; font-size: 13px; }
-    .progress-row .track { flex: 1; height: 6px; border-radius: 3px; background: #f0f0f0; overflow: hidden; }
-    .progress-row .fill { height: 100%; background: var(--green); border-radius: 3px; }
-    .progress-row .pct { width: 42px; text-align: right; color: var(--secondary); font-size: 12px; }
+    /* ── Integration cards ── */
+    .int-section { margin-bottom: 24px; }
+    .int-section:last-child { margin-bottom: 0; }
+    .int-section-header {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; margin-bottom: 10px; padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+    .int-section-header.connected { color: #16a34a; }
+    .int-section-header.attention { color: #b45309; }
+    .int-section-header.available { color: var(--secondary); }
+    .int-card {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 12px; padding: 12px 14px; border: 1px solid var(--border);
+      border-radius: 6px; margin-bottom: 8px; background: white;
+    }
+    .int-card.connected { border-left: 3px solid var(--green); }
+    .int-card.attention { border-left: 3px solid var(--amber); }
+    .int-card.available { border-left: 3px solid #d1d5db; }
+    .int-card-body { flex: 1; }
+    .int-card-name { font-weight: 600; font-size: 13px; margin-bottom: 2px; }
+    .int-card-desc { font-size: 12px; color: var(--muted); }
+    .int-card-meta { text-align: right; flex-shrink: 0; }
+    .int-card-verified { font-size: 11px; color: var(--secondary); margin-top: 4px; }
 
     /* ── Calendar ── */
+    .cal-wrap { overflow-x: auto; }
     .cal-grid {
       display: grid;
-      grid-template-columns: 52px repeat(7, 1fr);
+      grid-template-columns: 52px repeat(7, minmax(100px, 1fr));
       border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow-x: auto;
+      border-radius: 6px;
+      overflow: hidden;
       font-size: 11px;
-      min-width: 0;
+      min-width: 700px;
     }
     .cal-header {
-      background: var(--hover);
+      background: var(--surface);
       padding: 8px 6px;
-      font-weight: 600;
+      font-weight: 700; font-size: 11px; text-transform: uppercase;
+      letter-spacing: .06em;
       text-align: center;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 2px solid var(--border);
       color: var(--muted);
-      font-size: 11px;
-      text-transform: uppercase;
     }
     .cal-time {
-      padding: 4px 6px;
-      font-size: 11px;
-      color: var(--secondary);
+      padding: 4px 8px 4px 4px;
+      font-size: 11px; color: var(--secondary);
       text-align: right;
       border-right: 1px solid var(--border);
-      border-bottom: 1px solid #f8f8f8;
-      min-height: 36px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-end;
+      border-bottom: 1px solid #f0f0f0;
+      background: var(--surface);
+      display: flex; align-items: flex-start; justify-content: flex-end;
     }
     .cal-cell {
-      border-right: 1px solid #f8f8f8;
-      border-bottom: 1px solid #f8f8f8;
+      border-right: 1px solid #f0f0f0;
+      border-bottom: 1px solid #f0f0f0;
       padding: 2px;
       min-height: 36px;
     }
     .cal-cell:last-child { border-right: none; }
-    .cal-cell.has-events { display: flex; flex-wrap: wrap; gap: 2px; align-items: flex-start; align-content: flex-start; }
+    .cal-row-last .cal-time,
+    .cal-row-last .cal-cell { border-bottom: none; }
     .cal-event {
       font-size: 10px;
       padding: 3px 5px;
       border-radius: 3px;
       line-height: 1.3;
-      background: white;
       border: 1px solid var(--border);
-      overflow: hidden;
+      background: white;
       width: 100%;
       box-sizing: border-box;
+      margin-bottom: 2px;
+      display: block;
     }
-    .cal-cell.has-events.split { flex-direction: column; }
-    .cal-event.sonnet { border-left: 3px solid var(--sonnet-accent); }
-    .cal-event.codex { border-left: 3px solid var(--codex-accent); }
-    .cal-event.haiku { border-left: 3px solid var(--haiku-accent); }
-    .cal-event-name { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+    .cal-event.sonnet { border-left: 3px solid var(--sonnet-accent); background: #f0f5fa; }
+    .cal-event.codex  { border-left: 3px solid var(--codex-accent); background: #f0f7f3; }
+    .cal-event.haiku  { border-left: 3px solid var(--haiku-accent); background: #fdf7f0; }
+    .cal-event.opus   { border-left: 3px solid var(--opus-accent); background: #fdf3f5; }
+    .cal-event-thin { /* hourly markers */
+      height: 4px; border-radius: 2px; width: 100%;
+      margin-bottom: 2px; border: none; padding: 0;
+      opacity: 0.4;
+    }
+    .cal-event-thin.codex  { background: var(--codex-accent); }
+    .cal-event-name { font-weight: 600; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .cal-event-meta { color: var(--secondary); font-size: 9px; white-space: nowrap; }
+    .cal-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px; }
+    .cal-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+    .cal-legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+
+    /* ── Identity / System layout ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media(max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+    .file-list { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+    .file-item {
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--surface);
+    }
+    .file-item code { background: transparent; padding: 0; color: var(--text); font-weight: 600; }
+    .file-item-desc { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.5; }
 
     /* ── Diagram ── */
-    .diagram { width: 100%; border: 1px solid var(--border); border-radius: 4px; background: white; display: block; }
+    .diagram { width: 100%; border: 1px solid var(--border); border-radius: 6px; background: white; display: block; }
+
+    /* ── Refresh indicator ── */
+    .refresh-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 11px; color: var(--secondary); margin-bottom: 16px;
+    }
+    .refresh-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); margin-right: 5px; }
+
+    /* ── Section header row ── */
+    .section-header-row {
+      display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px;
+    }
+    .section-header-row h3 { font-size: 13px; font-weight: 700; color: var(--text); }
+    .section-header-row .updated { font-size: 11px; color: var(--secondary); }
   </style>
 </head>
 <body>
+
 <header>
   <div class="header-inner">
     <div class="header-top">
-      <div>
-        <h1>&#10022; Claw OS</h1>
-        <div class="htag">Nick's AI operating environment &middot; Mac Mini MMM4 &middot; v26.12.9</div>
-      </div>
-      <nav class="tabs" id="tabs"></nav>
+      <h1>&#10022; Claw OS</h1>
+      <span class="version-badge" id="version-badge">v26.12.10 &middot; MMM4</span>
     </div>
-    <div class="view-desc" id="subtitle-bar">System snapshot — models, channels, quick links</div>
+    <nav class="tabs" id="tabs"></nav>
+    <div class="view-subtitle" id="subtitle-bar">Morning check-in</div>
   </div>
 </header>
+
 <main>
 
 <!-- ══════════════════════ TAB 1: OVERVIEW ══════════════════════ -->
 <section class="view active" data-view="overview">
-  <div class="grid">
-    <article class="card span-3">
-      <div class="card-title">Orchestrator</div>
-      <div class="kpi" style="color:var(--opus-accent)">Opus</div>
-      <div class="kpi-sub">claude-opus-4-6 &middot; Anthropic</div>
-    </article>
-    <article class="card span-3">
-      <div class="card-title">Workhorse</div>
-      <div class="kpi" style="color:var(--codex-accent)">Codex</div>
-      <div class="kpi-sub">gpt-5.3-codex &middot; OpenAI</div>
-    </article>
-    <article class="card span-3">
-      <div class="card-title">Mid-tier</div>
-      <div class="kpi" style="color:var(--sonnet-accent)">Sonnet</div>
-      <div class="kpi-sub">claude-sonnet-4-6 &middot; Anthropic</div>
-    </article>
-    <article class="card span-3">
-      <div class="card-title">Lightweight</div>
-      <div class="kpi" style="color:var(--haiku-accent)">Haiku</div>
-      <div class="kpi-sub">claude-haiku-3-5 &middot; Anthropic</div>
-    </article>
 
-    <article class="card span-12">
-      <div class="card-title">Model Allocation Policy</div>
-      <table>
-        <thead><tr><th style="width:14%">Model</th><th style="width:10%">Provider</th><th style="width:10%">Cost</th><th style="width:14%">Role</th><th>Used For</th><th style="width:16%">Usage Goal</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><span class="tag opus">Opus 4-6</span></td>
-            <td>Anthropic</td><td>High</td>
-            <td><strong>Orchestrator</strong></td>
-            <td>User replies, routing decisions, approval gates. Never spawned as sub-agent.</td>
-            <td>Minimal</td>
-          </tr>
-          <tr>
-            <td><span class="tag sonnet">Sonnet 4-6</span></td>
-            <td>Anthropic</td><td>Mid</td>
-            <td>Balanced</td>
-            <td>Nuanced writing, complex reasoning needing Anthropic quality but not Opus cost.</td>
-            <td>Moderate</td>
-          </tr>
-          <tr>
-            <td><span class="tag codex">Codex 5.3</span></td>
-            <td>OpenAI</td><td>Mid</td>
-            <td><strong>Default workhorse</strong></td>
-            <td>Research, coding, multi-step analysis, tool-heavy tasks. Relieves Anthropic rate pressure.</td>
-            <td>Heavy</td>
-          </tr>
-          <tr>
-            <td><span class="tag haiku">Haiku 3.5</span></td>
-            <td>Anthropic</td><td>Low</td>
-            <td>Cheap/fast</td>
-            <td>Summaries, formatting, status checks, simple cron jobs, telemetry, hygiene.</td>
-            <td>Heavy</td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="note">Plans: Anthropic Max ($200/mo) &middot; OpenAI Plus ($20/mo). Primary constraint: never hit API rate limits.</p>
-    </article>
-
-    <article class="card span-8">
-      <div class="card-title">What is this setup?</div>
-      <p class="section-intro">A personal AI operating system on a Mac Mini (<strong>MMM4</strong>). OpenClaw receives messages, applies policy, routes to the right session, calls tools, and replies. <strong>Opus</strong> orchestrates, <strong>Codex</strong> does heavy lifting, <strong>Sonnet</strong> for balanced Anthropic tasks, <strong>Haiku</strong> for cheap/fast jobs.</p>
-      <p class="section-intro">Flow: Input channels &rarr; Gateway &rarr; Main session &rarr; Sub-agents/tools &rarr; Memory + external systems &rarr; Output channels. Memory: session context (temporary) + durable files (<code>MEMORY.md</code>, <code>memory/*.md</code>). Notion is the external objective system; writes are manual-only.</p>
-    </article>
-
-    <article class="card span-4">
-      <div class="card-title">Channels</div>
-      <table>
-        <tr><td><span class="dot dot-ok"></span>Webchat</td><td><span class="tag ok">on</span></td></tr>
-        <tr><td><span class="dot dot-ok"></span>Slack</td><td><span class="tag ok">on</span></td></tr>
-        <tr><td><span class="dot dot-warn"></span>Telegram</td><td><span class="tag plain">off</span></td></tr>
-        <tr><td><span class="dot dot-warn"></span>Discord</td><td><span class="tag plain">off</span></td></tr>
-        <tr><td><span class="dot dot-warn"></span>iMessage</td><td><span class="tag plain">off</span></td></tr>
-        <tr><td><span class="dot dot-warn"></span>WhatsApp</td><td><span class="tag plain">off</span></td></tr>
-      </table>
-    </article>
-
-    <article class="card span-12">
-      <div class="card-title">Slack Channels</div>
-      <table>
-        <thead><tr><th style="width:16%">Channel</th><th style="width:20%">Channel ID</th><th>Purpose</th></tr></thead>
-        <tbody>
-          <tr><td><strong>#general</strong></td><td><code>C0AKD18KN2G</code></td><td>Daily driver working channel</td></tr>
-          <tr><td><strong>#alerts</strong></td><td><code>C0AKD1VH8CU</code></td><td>Urgent/time-sensitive notifications (failures, 429s, blocked tasks, security)</td></tr>
-          <tr><td><strong>#dashboard</strong></td><td><code>C0AK32JBKTM</code></td><td>Dashboard building, UI changes, automated telemetry feed</td></tr>
-          <tr><td><strong>#april-journal</strong></td><td><code>C0AL3MWCR40</code></td><td>Journal prompts (6AM + 6PM), objective check-ins</td></tr>
-          <tr><td><strong>#obj-95</strong></td><td><code>C0AL3MQV41W</code></td><td>Mindfulness content engine, tweet/thread drafts from Waking Up corpus</td></tr>
-          <tr><td><strong>#obj-95b</strong></td><td><code>C0AK3RYHE0P</code></td><td>Paradox of Acceptance content + DevOps (interactive tools, essays, site infra)</td></tr>
-          <tr><td><strong>#obj-106</strong></td><td><code>C0AJTUZED2B</code></td><td>Stablecoin/PayPal/Ethereum research, wedge selection, Arbitrum L2</td></tr>
-          <tr><td><strong>#readwise</strong></td><td><code>C0ALU5M9NH1</code></td><td>Readwise/Reader library triage, highlights, reading list management</td></tr>
-          <tr><td><strong>#paperclip</strong></td><td><code>C0AN38F223B</code></td><td>Agent activity feed — task completions, blockers, notable assignments</td></tr>
-          <tr><td><strong>#infrastructure</strong></td><td><code>C0ANLFZD1TJ</code></td><td>Ecosystem intelligence — OpenClaw releases, MCP updates, AI tooling shifts</td></tr>
-        </tbody>
-      </table>
-      <p class="note" id="channels-note">Auto-discovered from OpenClaw config. Refreshed weekly.</p>
-    </article>
-
-    <article class="card span-12">
-      <div class="card-title">Active Objectives</div>
-      <table>
-        <thead><tr><th>Objective</th><th>Status</th><th>Latest</th></tr></thead>
-        <tbody id="objectives-body">
-          <tr><td colspan="3" style="color:var(--secondary)">Loading&hellip;</td></tr>
-        </tbody>
-      </table>
-      <p class="note" id="objectives-note">Source: #april-journal channel. Refreshed weekly.</p>
-    </article>
+  <!-- Objectives -->
+  <div class="section-header-row" style="margin-top:0">
+    <h3>Objectives</h3>
+    <span class="updated" id="obj-updated"></span>
   </div>
-</section>
+  <div class="obj-grid" id="obj-grid">
+    <div class="obj-card status-unknown"><div class="obj-name">Baddies</div><div class="obj-status"><span class="tag plain">Loading…</span></div><div class="obj-latest"></div></div>
+    <div class="obj-card status-unknown"><div class="obj-name">Mindfulness Content</div><div class="obj-status"><span class="tag plain">Loading…</span></div><div class="obj-latest"></div></div>
+    <div class="obj-card status-unknown"><div class="obj-name">Stablecoin Expertise</div><div class="obj-status"><span class="tag plain">Loading…</span></div><div class="obj-latest"></div></div>
+    <div class="obj-card status-unknown"><div class="obj-name">Selling Co-op</div><div class="obj-status"><span class="tag plain">Loading…</span></div><div class="obj-latest"></div></div>
+  </div>
 
-<!-- ══════════════════════ TAB 2: CONTROL TOWER ══════════════════════ -->
-<section class="view" data-view="control-tower">
-  <div class="grid">
-    <article class="card span-12">
-      <div class="card-title">Ongoing Projects</div>
-      <div id="ct-projects">
-        <div class="progress-row"><div class="label">Launch Twitter account for AI + mindfulness content</div><div class="track"><div class="fill" style="width:18%"></div></div><div class="pct">18%</div></div>
-        <div class="progress-row"><div class="label">Stablecoin expertise content pipeline</div><div class="track"><div class="fill" style="width:12%"></div></div><div class="pct">12%</div></div>
-        <div class="progress-row"><div class="label">Autonomous background ops (low-cost)</div><div class="track"><div class="fill" style="width:40%"></div></div><div class="pct">40%</div></div>
+  <!-- Open Loops -->
+  <div class="section-header-row" style="margin-top:24px">
+    <h3>Open Loops</h3>
+    <span class="updated" id="loops-updated"></span>
+  </div>
+  <div class="loop-list" id="loop-list">
+    <div class="loop-item" style="color:var(--secondary); font-size:13px;">Loading open loops…</div>
+  </div>
+
+  <!-- Integration Health Strip -->
+  <div class="section-header-row" style="margin-top:24px">
+    <h3>Integration Health</h3>
+    <span class="updated" id="int-strip-updated"></span>
+  </div>
+  <div class="pill-strip" id="int-strip">
+    <!-- filled by JS -->
+  </div>
+
+  <!-- Quick Stats -->
+  <div style="margin-top:24px">
+    <div class="section-header-row">
+      <h3>Quick Stats</h3>
+      <span class="updated" id="stats-updated"></span>
+    </div>
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-num" style="color:var(--codex-accent)">8</div>
+        <div class="stat-label">Cron jobs scheduled</div>
       </div>
-      <p class="note" id="ct-updated">Scoring rule: 0-100 based on concrete milestones completed.</p>
-    </article>
-
-    <article class="card span-7">
-      <div class="card-title">Agent Activity</div>
-      <table>
-        <thead><tr><th>Agent</th><th>Status</th><th>Workstream</th><th>Cadence</th></tr></thead>
-        <tbody id="ct-agents">
-          <tr><td>Main (Claw)</td><td><span class="tag plain">On-demand</span></td><td>Orchestration, approvals, reverse prompting</td><td>Runs when Nick messages</td></tr>
-        </tbody>
-      </table>
-    </article>
-
-    <article class="card span-5">
-      <div class="card-title">Blockers (Nick-owned)</div>
-      <table>
-        <thead><tr><th>Blocker</th><th>Score</th><th>Owner</th><th>Next action</th></tr></thead>
-        <tbody id="ct-blockers">
-          <tr><td colspan="4">Loading&hellip;</td></tr>
-        </tbody>
-      </table>
-      <p class="note">Score = Value &divide; Effort (higher = do first).</p>
-    </article>
-
-    <article class="card span-12">
-      <div class="card-title">Top Priorities</div>
-      <table>
-        <thead><tr><th>Priority</th><th>Task</th><th>Ball</th><th>Agent</th><th>Next action</th></tr></thead>
-        <tbody id="ct-priorities">
-          <tr><td colspan="5">Loading&hellip;</td></tr>
-        </tbody>
-      </table>
-    </article>
-
-    <article class="card span-12">
-      <div class="card-title">Tasks (ownership queue)</div>
-      <table>
-        <thead><tr><th>Task</th><th>Status</th><th>Ball</th><th>Next step</th><th>Agent</th></tr></thead>
-        <tbody>
-          <tr><td>Rebuild dashboard to reflect latest system state</td><td><span class="tag ok">In progress</span></td><td>Claw</td><td>Ship v26.12.9</td><td>Coding Agent (Codex)</td></tr>
-          <tr><td>Stablecoin wedge matrix research</td><td><span class="tag ok">Active</span></td><td>Claw</td><td>PayPal BCDC + Arbitrum L2 wedge analysis &middot; deadline April 20</td><td>Research Agent</td></tr>
-          <tr><td>Mindfulness tweet pipeline</td><td><span class="tag ok">Active</span></td><td>Claw</td><td>Waking Up transcript &rarr; tweets/threads/essays/newsletter</td><td>Coding Agent (Codex)</td></tr>
-        </tbody>
-      </table>
-      <p class="note">Ball = whose court it is. Agent assignment: planned/manual for reliability.</p>
-    </article>
+      <div class="stat-item">
+        <div class="stat-num" id="stat-sessions" style="color:var(--sonnet-accent)">—</div>
+        <div class="stat-label">Sessions today</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" id="stat-memory" style="color:var(--haiku-accent)">—</div>
+        <div class="stat-label">Memory files</div>
+      </div>
+    </div>
   </div>
+
 </section>
 
-<!-- ══════════════════════ TAB 3: SYSTEM HEALTH ══════════════════════ -->
-<section class="view" data-view="system-health">
-  <div class="grid">
-    <article class="card span-3">
-      <div class="card-title">Overall</div>
-      <div class="kpi" id="sh-overall">&mdash;</div>
-      <div class="kpi-sub" id="sh-updated">Awaiting telemetry&hellip;</div>
-    </article>
-    <article class="card span-3">
-      <div class="card-title">Enabled Jobs</div>
-      <div class="kpi" id="sh-services-healthy">0</div>
-      <div class="kpi-sub">Services currently passing</div>
-    </article>
-    <article class="card span-3">
-      <div class="card-title">Total Monitored</div>
-      <div class="kpi" id="sh-services-total">0</div>
-      <div class="kpi-sub">Total services</div>
-    </article>
-    <article class="card span-3">
-      <div class="card-title">Open Errors</div>
-      <div class="kpi" id="sh-errors-open">0</div>
-      <div class="kpi-sub">Unresolved incidents</div>
-    </article>
-
-    <article class="card span-12">
-      <div class="card-title">Cron Jobs</div>
-      <table>
-        <thead><tr><th>Name</th><th>Schedule</th><th>Model</th><th>Last Run</th><th>Status</th><th>Next Run</th></tr></thead>
-        <tbody>
-          <tr><td>journal-prompt</td><td>6:00 AM daily</td><td><span class="tag sonnet">Sonnet</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Tomorrow 6:00 AM</td></tr>
-          <tr><td>daily-obsidian-note</td><td>6:05 AM daily</td><td><span class="tag sonnet">Sonnet</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Tomorrow 6:05 AM</td></tr>
-          <tr><td>research-tasks-daily-refresh</td><td>7:35 AM daily</td><td><span class="tag codex">Codex</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Tomorrow 7:35 AM</td></tr>
-          <tr><td>obj-95-daily-tweet-draft</td><td>8:00 AM daily</td><td><span class="tag sonnet">Sonnet</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Tomorrow 8:00 AM</td></tr>
-          <tr><td>obj-106-stablecoin-research</td><td>9:00 AM Tue/Thu/Sat</td><td><span class="tag sonnet">Sonnet</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Tue 9:00 AM</td></tr>
-          <tr><td>journal-prompt-evening</td><td>6:00 PM daily</td><td><span class="tag sonnet">Sonnet</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Today 6:00 PM</td></tr>
-          <tr><td>healthcheck:context-monitor</td><td>Every 1h</td><td><span class="tag codex">Codex</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Next hour</td></tr>
-          <tr><td>dashboard-system-health-refresh</td><td>Every 1h</td><td><span class="tag codex">Codex</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Next hour</td></tr>
-          <tr><td>control-tower-telemetry-refresh</td><td>Every 2h</td><td><span class="tag codex">Codex</span></td><td>&mdash;</td><td><span class="dot dot-ok"></span>ok</td><td>Next 2h</td></tr>
-          <tr><td>readwise-weekly-groom</td><td>Sun 10:00 AM</td><td><span class="tag codex">Codex</span></td><td>&mdash;</td><td><span class="dot dot-warn"></span>idle</td><td>Sun 10:00 AM</td></tr>
-        </tbody>
-      </table>
-    </article>
-
-    <article class="card span-12">
-      <div class="card-title">Recent Errors</div>
-      <table>
-        <thead><tr><th>Time</th><th>Service</th><th>Severity</th><th>Status</th><th>Error</th><th>Next action</th></tr></thead>
-        <tbody id="sh-errors">
-          <tr><td colspan="6">No telemetry loaded.</td></tr>
-        </tbody>
-      </table>
-    </article>
-  </div>
-</section>
-
-<!-- ══════════════════════ TAB 4: CRON CALENDAR ══════════════════════ -->
+<!-- ══════════════════════ TAB 2: CRON CALENDAR ══════════════════════ -->
 <section class="view" data-view="cron-calendar">
-  <div class="grid">
-    <article class="card span-12">
-      <div class="card-title">Weekly Cron Schedule</div>
+  <div class="card" style="padding:20px">
+    <div class="card-title">Weekly Cron Schedule — All times Central (America/Chicago)</div>
+    <div class="cal-wrap">
       <div class="cal-grid" id="cron-calendar"></div>
-      <p class="note" style="margin-top:12px">All times Central (America/Chicago). Hourly jobs (healthcheck, dashboard-refresh, control-tower-refresh) run continuously and are shown in the first available slot. Durations are estimates.</p>
-    </article>
+    </div>
+    <div class="cal-legend">
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--sonnet-accent)"></div>Sonnet</div>
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--codex-accent)"></div>Codex</div>
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--haiku-accent)"></div>Haiku</div>
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--opus-accent)"></div>Opus</div>
+      <div class="cal-legend-item"><div style="width:30px;height:4px;border-radius:2px;background:var(--codex-accent);opacity:.5"></div>Hourly (thin = high-frequency)</div>
+    </div>
+    <p class="note">Hourly jobs (dashboard-system-health-refresh, control-tower-telemetry-refresh) shown as thin color bars. All other jobs shown as full blocks.</p>
   </div>
 </section>
 
-<!-- ══════════════════════ TAB 5: RESEARCH ══════════════════════ -->
-<section class="view" data-view="research">
+<!-- ══════════════════════ TAB 3: INTEGRATIONS ══════════════════════ -->
+<section class="view" data-view="integrations">
   <div class="grid">
-    <article class="card span-4">
-      <div class="card-title">PayPal Acquisition Probability</div>
-      <div class="kpi" id="rt-paypal-prob">&mdash;</div>
-      <div class="kpi-sub" id="rt-paypal-updated">Awaiting daily refresh&hellip;</div>
-    </article>
-    <article class="card span-8">
-      <div class="card-title">Current Thesis</div>
-      <p class="section-intro" id="rt-paypal-thesis">No thesis loaded yet.</p>
-      <p class="note" id="rt-paypal-method">Method: weighted signal from credible reporting, deal-rumor quality, and strategic fit indicators. Updated daily.</p>
-    </article>
     <article class="card span-12">
-      <div class="card-title">Evidence Log</div>
-      <table>
-        <thead><tr><th>Date</th><th>Signal</th><th>Direction</th><th>Strength</th><th>Source</th></tr></thead>
-        <tbody id="rt-evidence">
-          <tr><td colspan="5">No evidence loaded.</td></tr>
-        </tbody>
-      </table>
+      <div class="card-title">Connected Services</div>
+      <p class="section-intro">Source: <code>./live/integrations.json</code>. Falls back to hardcoded defaults if unavailable.</p>
+
+      <div class="int-section">
+        <div class="int-section-header connected">&#9679; Connected</div>
+        <div id="int-connected"><!-- filled by JS --></div>
+      </div>
+
+      <div class="int-section">
+        <div class="int-section-header attention">&#9650; Needs Attention</div>
+        <div id="int-attention"><!-- filled by JS --></div>
+      </div>
+
+      <div class="int-section">
+        <div class="int-section-header available">&#9675; Available</div>
+        <div id="int-available"><!-- filled by JS --></div>
+      </div>
+
+      <p class="note" id="int-page-updated"></p>
     </article>
   </div>
 </section>
 
-<!-- ══════════════════════ TAB 6: ARCHITECTURE ══════════════════════ -->
+<!-- ══════════════════════ TAB 4: IDENTITY & SYSTEM ══════════════════════ -->
 <section class="view" data-view="identity">
   <div class="grid">
+
+    <!-- How Claw Works -->
     <article class="card span-12">
       <div class="card-title">How Claw Works</div>
       <p class="section-intro">
-        Claw is a persistent AI operator running on OpenClaw. Same underlying model (Claude Opus), but shaped by a set of identity files that define personality, memory, and behavior. These files are injected into every session — they're what make Claw "Claw" instead of generic Claude.
+        Claw is a persistent AI operator running on <strong>OpenClaw</strong> on a Mac Mini (MMM4). It uses the same underlying Claude models as claude.ai — but it's shaped by a set of identity files injected before every session. These files define personality (<code>SOUL.md</code>), memory (<code>MEMORY.md</code>), the user (<code>USER.md</code>), and execution rules (<code>AGENTS.md</code>). That stack is what makes Claw "Claw" instead of generic Claude. Claw has persistent memory across sessions via files, full tool access (shell, browser, Obsidian, GitHub, Slack, cron), and a sub-agent architecture for delegating heavy work.
       </p>
     </article>
 
-    <article class="card span-6">
-      <div class="card-title">🧠 Auto-Loaded (Every Session)</div>
-      <p class="section-intro">These files are injected before Claw generates a single token. They define who Claw is at boot.</p>
-      <table>
-        <thead><tr><th>File</th><th>Purpose</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><code>SOUL.md</code></td>
-            <td><strong>Personality &amp; behavioral rules.</strong> Tone, operating principles, self-reference style, how to handle vague requests. The "who I am" file. Any behavioral correction or calibration from Nick goes here.</td>
-          </tr>
-          <tr>
-            <td><code>USER.md</code></td>
-            <td><strong>Who Nick is.</strong> Name, timezone, communication preferences (direct, blunt, practical). Tells Claw how to talk to its human.</td>
-          </tr>
-          <tr>
-            <td><code>MEMORY.md</code></td>
-            <td><strong>Operational state.</strong> Runtime facts — channels, cron jobs, people names, project status, config, formatting rules. The working index. Kept lean; deep context lives in Obsidian.</td>
-          </tr>
-          <tr>
-            <td><code>AGENTS.md</code></td>
-            <td><strong>Startup routine &amp; execution rules.</strong> What to read on boot, model allocation policy, reliability rules, fallback ladders, sub-agent wiring.</td>
-          </tr>
-          <tr>
-            <td><code>IDENTITY.md</code></td>
-            <td><strong>Quick ID card.</strong> Name (Claw), creature type, vibe, emoji (🦞). One-liner version of SOUL.md.</td>
-          </tr>
-          <tr>
-            <td><code>HEARTBEAT.md</code></td>
-            <td><strong>Check-in rules.</strong> Defines what to do during periodic heartbeat polls — scan for open loops, propose improvements, or stay silent.</td>
-          </tr>
-          <tr>
-            <td><code>memory/*.md</code></td>
-            <td><strong>Daily memory files.</strong> Short-term memory per day. What happened, what was discussed. Read on startup for recent context.</td>
-          </tr>
-        </tbody>
-      </table>
-    </article>
+    <!-- Two-column: Auto-Loaded + Support Files / Obsidian -->
+    <div class="span-12">
+      <div class="two-col">
 
-    <article class="card span-6">
-      <div class="card-title">📎 Support Files</div>
-      <p class="section-intro">Wiring and reference files. Low maintenance, rarely change.</p>
-      <table>
-        <thead><tr><th>File</th><th>Purpose</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><code>CLAUDE.md</code></td>
-            <td><strong>Sub-agent pointer.</strong> Auto-generated. Tells Claude Code sub-agents to read SOUL.md + AGENTS.md on startup.</td>
-          </tr>
-          <tr>
-            <td><code>CODEX.md</code></td>
-            <td><strong>Sub-agent pointer.</strong> Same as CLAUDE.md but for Codex sub-agents.</td>
-          </tr>
-          <tr>
-            <td><code>TOOLS.md</code></td>
-            <td><strong>Environment-specific notes.</strong> Camera names, SSH hosts, device nicknames. Your cheat sheet for hardware specifics. Mostly empty right now.</td>
-          </tr>
-        </tbody>
-      </table>
+        <!-- Left: Auto-Loaded -->
+        <article class="card">
+          <div class="card-title">🧠 Auto-Loaded (Every Session)</div>
+          <p class="section-intro">Injected before Claw generates a single token. Defines who Claw is at boot.</p>
+          <div class="file-list">
+            <div class="file-item">
+              <code>SOUL.md</code>
+              <div class="file-item-desc"><strong>Personality &amp; behavioral rules.</strong> Tone, operating principles, self-reference style, how to handle vague requests. Any behavioral correction from Nick goes here.</div>
+            </div>
+            <div class="file-item">
+              <code>USER.md</code>
+              <div class="file-item-desc"><strong>Who Nick is.</strong> Name, timezone, communication preferences. Tells Claw how to talk to its human.</div>
+            </div>
+            <div class="file-item">
+              <code>MEMORY.md</code>
+              <div class="file-item-desc"><strong>Operational state.</strong> Runtime facts — channels, cron jobs, people, project status, config. The working index. Deep context lives in Obsidian.</div>
+            </div>
+            <div class="file-item">
+              <code>AGENTS.md</code>
+              <div class="file-item-desc"><strong>Startup routine &amp; execution rules.</strong> What to read on boot, model allocation policy, reliability rules, fallback ladders, sub-agent wiring.</div>
+            </div>
+            <div class="file-item">
+              <code>IDENTITY.md</code>
+              <div class="file-item-desc"><strong>Quick ID card.</strong> Name (Claw), creature type, vibe, emoji (🦞). One-liner version of SOUL.md.</div>
+            </div>
+            <div class="file-item">
+              <code>HEARTBEAT.md</code>
+              <div class="file-item-desc"><strong>Check-in rules.</strong> Defines what to do during periodic heartbeat polls — scan for open loops, propose improvements, or stay silent.</div>
+            </div>
+            <div class="file-item">
+              <code>memory/*.md</code>
+              <div class="file-item-desc"><strong>Daily memory files.</strong> Short-term memory per day. What happened, what was discussed. Read on startup for recent context.</div>
+            </div>
+          </div>
+        </article>
 
-      <div class="card-title" style="margin-top: 24px;">📂 Obsidian Vault (On-Demand)</div>
-      <p class="section-intro">Not auto-loaded — Claw reads these when the conversation needs them. Obsidian is the canonical knowledge store.</p>
-      <table>
-        <thead><tr><th>Path</th><th>Purpose</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><code>01_Daily/</code></td>
-            <td>Daily notes with journal entries, MITs, open loops. Claw appends to these during conversations.</td>
-          </tr>
-          <tr>
-            <td><code>02_Objectives/</code></td>
-            <td>Objective tracker, people files (Baddies, Work, Co-op). The living record of Nick's goals.</td>
-          </tr>
-          <tr>
-            <td><code>00_System/context/</code></td>
-            <td>MASTER.md — full life + work context. Loaded only when conversation requires it.</td>
-          </tr>
-          <tr>
-            <td><code>05_OpenClaw/</code></td>
-            <td>Deliverables, snapshots, dashboard source. User-facing output from Claw.</td>
-          </tr>
-        </tbody>
-      </table>
+        <!-- Right: Support Files + Obsidian + Key Principle -->
+        <div>
+          <article class="card">
+            <div class="card-title">📎 Support Files</div>
+            <p class="section-intro">Wiring and reference files. Low maintenance, rarely change.</p>
+            <div class="file-list">
+              <div class="file-item">
+                <code>CLAUDE.md</code>
+                <div class="file-item-desc"><strong>Sub-agent pointer for Claude Code.</strong> Auto-generated. Tells Claude Code sub-agents to read SOUL.md + AGENTS.md on startup.</div>
+              </div>
+              <div class="file-item">
+                <code>CODEX.md</code>
+                <div class="file-item-desc"><strong>Sub-agent pointer for Codex.</strong> Same as CLAUDE.md but for Codex sub-agents.</div>
+              </div>
+              <div class="file-item">
+                <code>TOOLS.md</code>
+                <div class="file-item-desc"><strong>Environment-specific notes.</strong> Camera names, SSH hosts, device nicknames. Your cheat sheet for hardware specifics.</div>
+              </div>
+            </div>
+          </article>
 
-      <div class="card-title" style="margin-top: 24px;">🔑 Key Principle</div>
-      <p class="section-intro">
-        <strong>Dual-write policy:</strong> MEMORY.md is the working index (boot context, pointers). Obsidian is the canonical rich store (people, decisions, everything). Both get written to freely. If they ever conflict, Obsidian wins.
-      </p>
-    </article>
+          <article class="card" style="margin-top:16px">
+            <div class="card-title">📂 Obsidian Vault (On-Demand)</div>
+            <p class="section-intro">Not auto-loaded. Claw reads these when the conversation needs them. Obsidian is the canonical knowledge store.</p>
+            <div class="file-list">
+              <div class="file-item">
+                <code>01_Daily/</code>
+                <div class="file-item-desc">Daily notes, journal entries, MITs, open loops. Claw appends to these during conversations.</div>
+              </div>
+              <div class="file-item">
+                <code>02_Objectives/</code>
+                <div class="file-item-desc">Objective tracker, people files (Baddies, Work, Co-op). Living record of Nick's goals.</div>
+              </div>
+              <div class="file-item">
+                <code>00_System/context/</code>
+                <div class="file-item-desc"><code>MASTER.md</code> — full life + work context. Loaded only when the conversation requires it.</div>
+              </div>
+              <div class="file-item">
+                <code>05_OpenClaw/</code>
+                <div class="file-item-desc">Deliverables, snapshots, dashboard source. User-facing output from Claw.</div>
+              </div>
+            </div>
+          </article>
 
+          <article class="card" style="margin-top:16px">
+            <div class="card-title">🔑 Key Principle</div>
+            <p class="section-intro">
+              <strong>Dual-write policy:</strong> <code>MEMORY.md</code> is the working index (boot context, pointers). Obsidian is the canonical rich store (people, decisions, everything). Both get written to freely. If they ever conflict, Obsidian wins.
+            </p>
+          </article>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Claw vs Claude -->
     <article class="card span-12">
       <div class="card-title">What Makes Claw Different From Claude</div>
       <table>
-        <thead><tr><th>Layer</th><th>Claude (claude.ai)</th><th>Claw (OpenClaw)</th></tr></thead>
+        <thead>
+          <tr><th>Layer</th><th>Claude (claude.ai)</th><th>Claw (OpenClaw)</th></tr>
+        </thead>
         <tbody>
           <tr><td>Model</td><td>Claude Opus</td><td>Same Claude Opus</td></tr>
           <tr><td>System prompt</td><td>Anthropic default</td><td>SOUL.md + USER.md + MEMORY.md + AGENTS.md (~5,000 words of context)</td></tr>
@@ -600,11 +580,8 @@
         </tbody>
       </table>
     </article>
-  </div>
-</section>
 
-<section class="view" data-view="architecture">
-  <div class="grid">
+    <!-- Architecture SVG -->
     <article class="card span-12">
       <div class="card-title">System Architecture</div>
       <svg class="diagram" viewBox="0 0 1200 650" xmlns="http://www.w3.org/2000/svg" font-family="Inter,ui-sans-serif,sans-serif">
@@ -617,7 +594,7 @@
           </marker>
         </defs>
 
-        <!-- ── ZONE: YOU ── -->
+        <!-- YOU zone -->
         <rect x="10" y="10" width="200" height="110" rx="4" fill="white" stroke="#eee" stroke-width="1.5"/>
         <text x="25" y="32" fill="#999" font-size="11" font-weight="700" letter-spacing=".06em">YOU</text>
         <rect x="30" y="45" width="70" height="50" rx="4" fill="white" stroke="#eee"/>
@@ -627,15 +604,14 @@
         <text x="152" y="67" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Webchat</text>
         <text x="152" y="82" fill="#999" text-anchor="middle" font-size="9">browser</text>
 
-        <!-- ── ZONE: MAC MINI ── -->
+        <!-- MAC MINI zone -->
         <rect x="240" y="10" width="560" height="630" rx="4" fill="white" stroke="#ddd" stroke-width="2"/>
-        <text x="260" y="32" fill="#555" font-size="11" font-weight="700" letter-spacing=".06em">MAC MINI &mdash; MMM4 (always-on)</text>
+        <text x="260" y="32" fill="#555" font-size="11" font-weight="700" letter-spacing=".06em">MAC MINI — MMM4 (always-on)</text>
 
         <!-- Gateway -->
         <rect x="260" y="50" width="520" height="140" rx="4" fill="#fafafa" stroke="#eee" stroke-width="1.5"/>
         <text x="520" y="72" fill="#555" text-anchor="middle" font-size="13" font-weight="700">OpenClaw Gateway :18789</text>
-        <text x="520" y="88" fill="#999" text-anchor="middle" font-size="11">Node.js daemon &middot; v2026.3.13 &middot; loopback bind</text>
-
+        <text x="520" y="88" fill="#999" text-anchor="middle" font-size="11">Node.js daemon · loopback bind</text>
         <rect x="278" y="100" width="110" height="32" rx="4" fill="white" stroke="#eee"/>
         <text x="333" y="120" fill="#555" text-anchor="middle" font-size="11" font-weight="600">Session Mgr</text>
         <rect x="398" y="100" width="110" height="32" rx="4" fill="white" stroke="#eee"/>
@@ -644,27 +620,28 @@
         <text x="573" y="120" fill="#555" text-anchor="middle" font-size="11" font-weight="600">Memory Hooks</text>
         <rect x="638" y="100" width="110" height="32" rx="4" fill="white" stroke="#eee"/>
         <text x="693" y="120" fill="#555" text-anchor="middle" font-size="11" font-weight="600">Cron Engine</text>
-        <text x="520" y="172" fill="#999" text-anchor="middle" font-size="10">Tools: exec &middot; read/write &middot; browser &middot; cron &middot; nodes &middot; message</text>
+        <text x="520" y="172" fill="#999" text-anchor="middle" font-size="10">Tools: exec · read/write · browser · cron · nodes · message</text>
 
         <!-- Main Agent -->
-        <rect x="260" y="210" width="520" height="60" rx="4" fill="white" stroke="var(--opus-accent)" stroke-width="1.5"/>
-        <text x="520" y="237" fill="#555" text-anchor="middle" font-size="14" font-weight="700">Claw &mdash; Main Agent (Orchestrator)</text>
-        <text x="520" y="257" fill="#999" text-anchor="middle" font-size="11">Model: Opus 4-6 &middot; minimal usage &middot; delegates to sub-agents</text>
+        <rect x="260" y="210" width="520" height="60" rx="4" fill="white" stroke="#c7778f" stroke-width="1.5"/>
+        <text x="520" y="237" fill="#555" text-anchor="middle" font-size="14" font-weight="700">Claw — Main Agent (Orchestrator)</text>
+        <text x="520" y="257" fill="#999" text-anchor="middle" font-size="11">Model: Opus 4-6 · minimal usage · delegates to sub-agents</text>
 
-        <!-- Sub-agents -->
-        <text x="520" y="300" fill="#999" text-anchor="middle" font-size="11" font-weight="600">Sub-agents (spawned on-demand &middot; max 5 main / 2 sub)</text>
+        <!-- Sub-agents label -->
+        <text x="520" y="300" fill="#999" text-anchor="middle" font-size="11" font-weight="600">Sub-agents (spawned on-demand · max 5 main / 2 sub)</text>
 
-        <rect x="265" y="315" width="168" height="75" rx="4" fill="white" stroke="var(--codex-accent)" stroke-width="1"/>
+        <!-- Sub-agent boxes -->
+        <rect x="265" y="315" width="168" height="75" rx="4" fill="white" stroke="#4a8f70" stroke-width="1"/>
         <text x="349" y="337" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Coding Agent</text>
         <text x="349" y="353" fill="#999" text-anchor="middle" font-size="10">Codex 5.3</text>
         <text x="349" y="368" fill="#999" text-anchor="middle" font-size="10">file edits, scaffolds, tests</text>
 
-        <rect x="445" y="315" width="168" height="75" rx="4" fill="white" stroke="var(--codex-accent)" stroke-width="1"/>
+        <rect x="445" y="315" width="168" height="75" rx="4" fill="white" stroke="#4a8f70" stroke-width="1"/>
         <text x="529" y="337" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Research Agent</text>
         <text x="529" y="353" fill="#999" text-anchor="middle" font-size="10">Codex 5.3</text>
         <text x="529" y="368" fill="#999" text-anchor="middle" font-size="10">web_search, cited findings</text>
 
-        <rect x="625" y="315" width="148" height="75" rx="4" fill="white" stroke="var(--haiku-accent)" stroke-width="1"/>
+        <rect x="625" y="315" width="148" height="75" rx="4" fill="white" stroke="#c48a45" stroke-width="1"/>
         <text x="699" y="337" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Cheap Agent</text>
         <text x="699" y="353" fill="#999" text-anchor="middle" font-size="10">Haiku 3.5</text>
         <text x="699" y="368" fill="#999" text-anchor="middle" font-size="10">summaries, formatting</text>
@@ -672,96 +649,97 @@
         <!-- Workspace -->
         <rect x="260" y="410" width="520" height="70" rx="4" fill="white" stroke="#eee" stroke-width="1.5"/>
         <text x="520" y="437" fill="#555" text-anchor="middle" font-size="12" font-weight="700">Workspace: ~/.openclaw/workspace</text>
-        <text x="520" y="455" fill="#999" text-anchor="middle" font-size="10">memory.md &middot; memory/*.md &middot; dashboard-ui/ &middot; skills/ &middot; SOUL.md &middot; USER.md</text>
+        <text x="520" y="455" fill="#999" text-anchor="middle" font-size="10">memory.md · memory/*.md · dashboard-ui/ · skills/ · SOUL.md · USER.md</text>
         <text x="520" y="471" fill="#999" text-anchor="middle" font-size="10">GitHub: paradoxofacceptance.xyz/april-dashboard</text>
 
-        <!-- Cron zone -->
+        <!-- Cron -->
         <rect x="260" y="500" width="520" height="60" rx="4" fill="white" stroke="#eee" stroke-width="1.5"/>
-        <text x="520" y="522" fill="#555" text-anchor="middle" font-size="12" font-weight="700">Cron Scheduler (10 jobs)</text>
-        <text x="520" y="540" fill="#999" text-anchor="middle" font-size="10">journal &middot; obsidian &middot; research &middot; tweets &middot; stablecoin &middot; healthcheck &middot; dashboard &middot; control-tower &middot; readwise</text>
+        <text x="520" y="522" fill="#555" text-anchor="middle" font-size="12" font-weight="700">Cron Scheduler (8 jobs)</text>
+        <text x="520" y="540" fill="#999" text-anchor="middle" font-size="10">journal · research · tweets · stablecoin · dashboard-health · telemetry · objectives · research-refresh</text>
 
-        <!-- ── ZONE: EXTERNAL ── -->
+        <!-- EXTERNAL SERVICES zone -->
         <rect x="830" y="10" width="360" height="630" rx="4" fill="white" stroke="#eee" stroke-width="1.5"/>
         <text x="850" y="32" fill="#999" font-size="11" font-weight="700" letter-spacing=".06em">EXTERNAL SERVICES</text>
 
-        <rect x="850" y="50" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
-        <text x="1010" y="72" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Notion</text>
-        <text x="1010" y="87" fill="#999" text-anchor="middle" font-size="10">Objectives DB &middot; read-first &middot; manual writes</text>
+        <rect x="850" y="50"  width="320" height="48" rx="4" fill="white" stroke="#eee"/>
+        <text x="1010" y="72"  fill="#555" text-anchor="middle" font-size="12" font-weight="600">Anthropic API</text>
+        <text x="1010" y="87"  fill="#999" text-anchor="middle" font-size="10">Opus · Sonnet · Haiku</text>
 
         <rect x="850" y="110" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
-        <text x="1010" y="132" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Anthropic API</text>
-        <text x="1010" y="147" fill="#999" text-anchor="middle" font-size="10">Opus &middot; Sonnet &middot; Haiku</text>
+        <text x="1010" y="132" fill="#555" text-anchor="middle" font-size="12" font-weight="600">OpenAI API</text>
+        <text x="1010" y="147" fill="#999" text-anchor="middle" font-size="10">Codex 5.3 · OAuth mode</text>
 
         <rect x="850" y="170" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
-        <text x="1010" y="192" fill="#555" text-anchor="middle" font-size="12" font-weight="600">OpenAI API</text>
-        <text x="1010" y="207" fill="#999" text-anchor="middle" font-size="10">Codex 5.3 &middot; OAuth mode</text>
+        <text x="1010" y="192" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Slack</text>
+        <text x="1010" y="207" fill="#999" text-anchor="middle" font-size="10">Socket Mode · 10 channels</text>
 
         <rect x="850" y="230" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
-        <text x="1010" y="252" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Brave Search API</text>
-        <text x="1010" y="267" fill="#999" text-anchor="middle" font-size="10">web_search tool</text>
+        <text x="1010" y="252" fill="#555" text-anchor="middle" font-size="12" font-weight="600">GitHub</text>
+        <text x="1010" y="267" fill="#999" text-anchor="middle" font-size="10">gh CLI · nickxma · Pages deploy</text>
 
         <rect x="850" y="290" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
-        <text x="1010" y="312" fill="#555" text-anchor="middle" font-size="12" font-weight="600">GitHub</text>
-        <text x="1010" y="327" fill="#999" text-anchor="middle" font-size="10">gh CLI &middot; nickxma &middot; Pages deploy</text>
+        <text x="1010" y="312" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Brave Search API</text>
+        <text x="1010" y="327" fill="#999" text-anchor="middle" font-size="10">web_search tool</text>
 
         <rect x="850" y="350" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
-        <text x="1010" y="372" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Tailscale</text>
-        <text x="1010" y="387" fill="#999" text-anchor="middle" font-size="10">mmm4 &middot; 100.74.228.112 &middot; SSH pending</text>
+        <text x="1010" y="372" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Google Workspace</text>
+        <text x="1010" y="387" fill="#999" text-anchor="middle" font-size="10">gog CLI · Gmail · Calendar · Drive</text>
 
-        <!-- ── ARROWS ── -->
+        <rect x="850" y="410" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
+        <text x="1010" y="432" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Tailscale</text>
+        <text x="1010" y="447" fill="#999" text-anchor="middle" font-size="10">mmm4 · 100.74.228.112</text>
+
+        <rect x="850" y="470" width="320" height="48" rx="4" fill="white" stroke="#eee"/>
+        <text x="1010" y="492" fill="#555" text-anchor="middle" font-size="12" font-weight="600">Obsidian Vault</text>
+        <text x="1010" y="507" fill="#999" text-anchor="middle" font-size="10">~/Obsidian · read/write · canonical store</text>
+
+        <!-- Arrows -->
         <line x1="210" y1="70" x2="258" y2="100" stroke="#ccc" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
-        <text x="222" y="88" fill="#999" font-size="9">msg in</text>
+        <text x="218" y="88" fill="#999" font-size="9">msg in</text>
         <line x1="520" y1="190" x2="520" y2="208" stroke="#999" stroke-width="1.5" marker-end="url(#arr)"/>
         <line x1="349" y1="270" x2="349" y2="313" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
         <line x1="529" y1="270" x2="529" y2="313" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
         <line x1="699" y1="270" x2="699" y2="313" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
         <line x1="520" y1="390" x2="520" y2="408" stroke="#ccc" stroke-width="1" marker-end="url(#arr2)"/>
-        <line x1="782" y1="120" x2="848" y2="74" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="782" y1="120" x2="848" y2="74"  stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
         <line x1="782" y1="130" x2="848" y2="134" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
         <line x1="782" y1="140" x2="848" y2="194" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
-        <line x1="782" y1="150" x2="848" y2="254" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="782" y1="148" x2="848" y2="254" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
         <line x1="782" y1="155" x2="848" y2="314" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
-        <line x1="782" y1="160" x2="848" y2="374" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="782" y1="162" x2="848" y2="374" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="782" y1="168" x2="848" y2="434" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+        <line x1="782" y1="174" x2="848" y2="494" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
       </svg>
     </article>
 
-    <article class="card span-6">
-      <div class="card-title">Message Flow</div>
-      <ol>
-        <li>Message arrives via Slack or Webchat</li>
-        <li>Gateway routes to main session</li>
-        <li>Claw (Opus) reads context + memory, decides action</li>
-        <li>Complex work &rarr; sub-agent with appropriate model tier</li>
-        <li>Sub-agent runs, returns structured output</li>
-        <li>Claw synthesizes and replies; durable decisions &rarr; memory.md</li>
-      </ol>
-    </article>
+    <!-- Physical Setup -->
     <article class="card span-6">
       <div class="card-title">Physical Setup</div>
       <table>
         <thead><tr><th>Layer</th><th>What</th><th>Notes</th></tr></thead>
         <tbody>
-          <tr><td>Hardware</td><td>Mac Mini MMM4</td><td>Always-on &middot; arm64 &middot; macOS 26.3</td></tr>
-          <tr><td>Network</td><td>Tailscale</td><td>100.74.228.112 &middot; SSH pending</td></tr>
-          <tr><td>Gateway</td><td>OpenClaw 2026.3.13</td><td>Port 18789 &middot; local mode</td></tr>
-          <tr><td>Your laptop</td><td>SSH into MMM4</td><td>Via Tailscale tailnet</td></tr>
+          <tr><td>Hardware</td><td>Mac Mini MMM4</td><td>Always-on · arm64 · macOS 25.3</td></tr>
+          <tr><td>Network</td><td>Tailscale</td><td>100.74.228.112 · SSH via tailnet</td></tr>
+          <tr><td>Gateway</td><td>OpenClaw daemon</td><td>Port 18789 · local mode</td></tr>
           <tr><td>Dashboard</td><td>GitHub Pages</td><td>paradoxofacceptance.xyz/april-dashboard</td></tr>
         </tbody>
       </table>
     </article>
 
-    <article class="card span-12">
+    <!-- Session Types -->
+    <article class="card span-6">
       <div class="card-title">Session Types</div>
       <table>
         <thead><tr><th>Type</th><th>Key</th><th>Model</th><th>Lifetime</th><th>Who talks to it</th></tr></thead>
         <tbody>
           <tr><td><span class="tag opus">Main</span></td><td><code>agent:main:main</code></td><td>Opus 4-6</td><td>Ongoing conversation</td><td>You directly</td></tr>
-          <tr><td><span class="tag plain">Sub-agent</span></td><td><code>agent:main:sub-XXXX</code></td><td>Varies</td><td>Single task &rarr; auto-cleanup</td><td>Main agent only</td></tr>
+          <tr><td><span class="tag plain">Sub-agent</span></td><td><code>agent:main:sub-XXXX</code></td><td>Varies</td><td>Single task → auto-cleanup</td><td>Main agent only</td></tr>
           <tr><td><span class="tag ok">Isolated/Cron</span></td><td><code>agent:isolated:XXXX</code></td><td>Configurable</td><td>Scheduled / timed</td><td>Nobody (async)</td></tr>
         </tbody>
       </table>
     </article>
 
+    <!-- Config Snapshot -->
     <article class="card span-6">
       <div class="card-title">Config Snapshot</div>
       <table>
@@ -770,287 +748,337 @@
           <tr><td>Main model</td><td><span class="tag opus">claude-opus-4-6</span></td></tr>
           <tr><td>Sub-agent default</td><td><span class="tag codex">gpt-5.3-codex</span></td></tr>
           <tr><td>Coding</td><td><span class="tag codex">gpt-5.3-codex</span></td></tr>
+          <tr><td>Mid-tier</td><td><span class="tag sonnet">claude-sonnet-4-6</span></td></tr>
           <tr><td>Cheap/menial</td><td><span class="tag haiku">claude-haiku-3-5</span></td></tr>
           <tr><td>Max concurrent (main)</td><td>5</td></tr>
           <tr><td>Max sub-agents</td><td>2</td></tr>
-          <tr><td>Compaction mode</td><td>safeguard</td></tr>
           <tr><td>Gateway port</td><td>18789 (loopback)</td></tr>
         </tbody>
       </table>
     </article>
 
+    <!-- Tools & Skills -->
     <article class="card span-6">
       <div class="card-title">Tools &amp; Skills</div>
       <table>
-        <thead><tr><th>Tool/Skill</th><th>Status</th></tr></thead>
+        <thead><tr><th>Tool / Skill</th><th>Status</th></tr></thead>
         <tbody>
           <tr><td>web_search (Brave)</td><td><span class="dot dot-ok"></span>active</td></tr>
           <tr><td>web_fetch</td><td><span class="dot dot-ok"></span>active</td></tr>
           <tr><td>exec (shell)</td><td><span class="dot dot-ok"></span>active</td></tr>
-          <tr><td>Read/Write/Edit</td><td><span class="dot dot-ok"></span>active</td></tr>
+          <tr><td>Read / Write / Edit</td><td><span class="dot dot-ok"></span>active</td></tr>
           <tr><td>browser</td><td><span class="dot dot-warn"></span>intermittent</td></tr>
           <tr><td>cron</td><td><span class="dot dot-ok"></span>active</td></tr>
-          <tr><td>notion, github, slack, gog</td><td><span class="dot dot-ok"></span>active</td></tr>
+          <tr><td>github, slack, gog</td><td><span class="dot dot-ok"></span>active</td></tr>
           <tr><td>obsidian, things-mac, weather</td><td><span class="dot dot-ok"></span>active</td></tr>
           <tr><td>1password, gemini, tmux</td><td><span class="dot dot-ok"></span>active</td></tr>
-          <tr><td>healthcheck, clawhub</td><td><span class="dot dot-ok"></span>active</td></tr>
+          <tr><td>healthcheck, clawhub, paperclip</td><td><span class="dot dot-ok"></span>active</td></tr>
         </tbody>
       </table>
     </article>
+
   </div>
 </section>
 
 </main>
+
 <script>
-  const TABS = [
-    ["overview",       "Overview",       "System snapshot \u2014 models, channels, quick links"],
-    ["control-tower",  "Control Tower",  "Live operations \u2014 projects, agents, blockers, priorities"],
-    ["system-health",  "System Health",  "Service status, cron jobs, recent errors"],
-    ["cron-calendar",  "Cron Calendar",  "Weekly schedule view \u2014 see what runs when"],
-    ["research",       "Research",       "PayPal acquisition tracker, evidence log"],
-    ["identity",       "Identity",       "How Claw works — files, memory, what makes it different from Claude"],
-    ["architecture",   "Architecture",   "System design, sessions, config, tools"]
+// ── Tab config ──
+const TABS = [
+  ["overview",      "Overview",         "Morning check-in — objectives, open loops, integrations, quick stats"],
+  ["cron-calendar", "Cron Calendar",    "Weekly schedule — all hours 5AM–11PM, colored by model"],
+  ["integrations",  "Integrations",     "Connected services status — connected, attention, available"],
+  ["identity",      "Identity & System","How Claw works — files, architecture, comparison, config"]
+];
+
+const tabsEl    = document.getElementById("tabs");
+const subtitleEl = document.getElementById("subtitle-bar");
+const views     = [...document.querySelectorAll(".view")];
+
+function setView(id) {
+  views.forEach(v => v.classList.toggle("active", v.dataset.view === id));
+  [...tabsEl.querySelectorAll(".tab")].forEach(t => t.classList.toggle("active", t.dataset.view === id));
+  const tab = TABS.find(([tid]) => tid === id);
+  if (tab && subtitleEl) subtitleEl.textContent = tab[2];
+  history.replaceState({}, "", "#" + id);
+}
+window.setView = setView;
+
+TABS.forEach(([id, label]) => {
+  const b = document.createElement("button");
+  b.className = "tab"; b.dataset.view = id; b.textContent = label;
+  b.onclick = () => setView(id);
+  tabsEl.appendChild(b);
+});
+
+// ── Escape ──
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c =>
+  ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+
+// ── Status → CSS class ──
+function objStatusClass(s) {
+  const l = (s || "").toLowerCase();
+  if (["active","on track","green","healthy"].includes(l)) return "status-active";
+  if (["paused","amber","recovering"].includes(l)) return "status-paused";
+  if (["blocked","stalled","red"].includes(l)) return "status-blocked";
+  return "status-unknown";
+}
+function objTagClass(s) {
+  const l = (s || "").toLowerCase();
+  if (["active","on track","green","healthy"].includes(l)) return "ok";
+  if (["paused","amber","recovering","blocked","stalled","red"].includes(l)) return "warn";
+  return "plain";
+}
+
+// ── OBJECTIVES ──
+const DEFAULT_OBJECTIVES = [
+  { name: "Baddies",             status: "Unknown", latest: "" },
+  { name: "Mindfulness Content", status: "Unknown", latest: "" },
+  { name: "Stablecoin Expertise",status: "Unknown", latest: "" },
+  { name: "Selling Co-op",       status: "Unknown", latest: "" }
+];
+
+function renderObjectives(data) {
+  const grid   = document.getElementById("obj-grid");
+  const updEl  = document.getElementById("obj-updated");
+  const objs   = (data && Array.isArray(data.objectives)) ? data.objectives : DEFAULT_OBJECTIVES;
+  if (updEl && data && data.updatedAt) updEl.textContent = "Updated: " + data.updatedAt;
+  grid.innerHTML = objs.map(o => `
+    <div class="obj-card ${objStatusClass(o.status)}">
+      <div class="obj-name">${esc(o.name)}</div>
+      <div class="obj-status"><span class="tag ${objTagClass(o.status)}">${esc(o.status || "Unknown")}</span></div>
+      <div class="obj-latest">${esc(o.latest || "")}</div>
+    </div>`).join("");
+}
+
+async function loadObjectives() {
+  try {
+    const r = await fetch(`./live/objectives.json?t=${Date.now()}`, {cache:"no-store"});
+    if (!r.ok) { renderObjectives(null); return; }
+    renderObjectives(await r.json());
+  } catch { renderObjectives(null); }
+}
+
+// ── OPEN LOOPS ──
+function renderLoops(data) {
+  const list  = document.getElementById("loop-list");
+  const updEl = document.getElementById("loops-updated");
+  if (!data || !Array.isArray(data.loops) || data.loops.length === 0) {
+    list.innerHTML = '<div class="loop-item" style="color:var(--secondary);font-size:13px;">No open loops — or loops.json not found.</div>';
+    return;
+  }
+  if (updEl && data.updatedAt) updEl.textContent = "Updated: " + data.updatedAt;
+  list.innerHTML = data.loops.map(l => {
+    const days = Number(l.daysOpen) || 0;
+    const fresh = days <= 2;
+    return `<div class="loop-item">
+      <span class="loop-text">${esc(l.item)}</span>
+      <span class="loop-meta">${esc(l.owner || "")}</span>
+      <span class="loop-days ${fresh ? "fresh" : ""}">${days}d</span>
+    </div>`;
+  }).join("");
+}
+
+async function loadLoops() {
+  try {
+    const r = await fetch(`./live/open-loops.json?t=${Date.now()}`, {cache:"no-store"});
+    if (!r.ok) { renderLoops(null); return; }
+    renderLoops(await r.json());
+  } catch { renderLoops(null); }
+}
+
+// ── INTEGRATIONS (shared data, used by both Overview strip + Integrations tab) ──
+const DEFAULT_INTEGRATIONS = {
+  connected: [
+    { name: "Slack",            status: "connected", description: "Socket Mode — 10 channels",   lastVerified: "—" },
+    { name: "GitHub",           status: "connected", description: "gh CLI · nickxma",             lastVerified: "—" },
+    { name: "Obsidian",         status: "connected", description: "vault read/write",             lastVerified: "—" },
+    { name: "Brave Search",     status: "connected", description: "web_search tool",              lastVerified: "—" },
+    { name: "Google Workspace", status: "connected", description: "gog CLI — Gmail, Drive, Docs", lastVerified: "—" },
+    { name: "Paperclip",        status: "connected", description: "localhost:3100",               lastVerified: "—" },
+    { name: "Tailscale",        status: "connected", description: "mmm4 node",                   lastVerified: "—" }
+  ],
+  attention: [
+    { name: "Google Calendar",  status: "attention", description: "OAuth expired",               lastVerified: "—" }
+  ],
+  available: [
+    { name: "Things 3",         status: "available", description: "MCP available",               lastVerified: "—" },
+    { name: "1Password",        status: "available", description: "CLI ready",                   lastVerified: "—" }
+  ],
+  updatedAt: null
+};
+
+let cachedIntegrations = null;
+
+function renderIntegrationStrip(data) {
+  const strip = document.getElementById("int-strip");
+  const updEl = document.getElementById("int-strip-updated");
+  const d     = data || DEFAULT_INTEGRATIONS;
+  if (updEl && d.updatedAt) updEl.textContent = "Updated: " + d.updatedAt;
+  const pills = [
+    ...(d.connected || []).map(i => ({ ...i, tier: "connected" })),
+    ...(d.attention || []).map(i => ({ ...i, tier: "attention" })),
+    ...(d.available || []).map(i => ({ ...i, tier: "available" }))
+  ];
+  strip.innerHTML = pills.map(i =>
+    `<span class="int-pill ${i.tier}"><span class="int-dot ${i.tier}"></span>${esc(i.name)}</span>`
+  ).join("");
+}
+
+function renderIntegrationsPage(data) {
+  const d = data || DEFAULT_INTEGRATIONS;
+  const updEl = document.getElementById("int-page-updated");
+  if (updEl) updEl.textContent = d.updatedAt ? "Last updated: " + d.updatedAt : "Source: hardcoded defaults (integrations.json not found)";
+
+  function renderSection(elId, items, tier) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    if (!items || items.length === 0) {
+      el.innerHTML = `<div class="int-card ${tier}"><div class="int-card-body"><div class="int-card-name" style="color:var(--secondary)">None</div></div></div>`;
+      return;
+    }
+    el.innerHTML = items.map(i => `
+      <div class="int-card ${tier}">
+        <div class="int-card-body">
+          <div class="int-card-name">${esc(i.name)}</div>
+          <div class="int-card-desc">${esc(i.description || "")}</div>
+        </div>
+        <div class="int-card-meta">
+          <span class="tag ${tier === "connected" ? "ok" : tier === "attention" ? "warn" : "plain"}">${esc(i.status || tier)}</span>
+          ${i.lastVerified && i.lastVerified !== "—" ? `<div class="int-card-verified">${esc(i.lastVerified)}</div>` : ""}
+        </div>
+      </div>`).join("");
+  }
+
+  renderSection("int-connected", d.connected, "connected");
+  renderSection("int-attention", d.attention, "attention");
+  renderSection("int-available", d.available, "available");
+}
+
+async function loadIntegrations() {
+  let data = null;
+  try {
+    const r = await fetch(`./live/integrations.json?t=${Date.now()}`, {cache:"no-store"});
+    if (r.ok) data = await r.json();
+  } catch {}
+  cachedIntegrations = data;
+  renderIntegrationStrip(data);
+  renderIntegrationsPage(data);
+}
+
+// ── QUICK STATS ──
+async function loadStats() {
+  // Memory file count
+  try {
+    const r = await fetch(`./live/state.json?t=${Date.now()}`, {cache:"no-store"});
+    if (r.ok) {
+      const d = await r.json();
+      const memEl = document.getElementById("stat-memory");
+      const sessEl = document.getElementById("stat-sessions");
+      if (memEl && d.memoryFileCount != null) memEl.textContent = d.memoryFileCount;
+      if (sessEl && d.sessionsToday  != null) sessEl.textContent = d.sessionsToday;
+      const updEl = document.getElementById("stats-updated");
+      if (updEl && d.updatedAt) updEl.textContent = "Updated: " + d.updatedAt;
+    }
+  } catch {}
+}
+
+// ── CRON CALENDAR ──
+function buildCronCalendar() {
+  const cal = document.getElementById("cron-calendar");
+  if (!cal) return;
+
+  const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+
+  // Jobs: [id, model, hour, minute, days[0-6 where 0=Mon]]
+  const allDays = [0,1,2,3,4,5,6];
+  const jobs = [
+    // [label, model, hour, minute, daysArray, thin]
+    ["journal-prompt",                   "sonnet", 6,  0,  allDays,                 false],
+    ["journal-prompt-evening",           "sonnet", 18, 0,  allDays,                 false],
+    ["mindfulness-tweet-drafts",         "sonnet", 8,  0,  [6,0,2,4],               false], // Sun=6,Mon=0,Wed=2,Fri=4
+    ["stablecoin-research",              "sonnet", 9,  0,  [1,3,5],                 false], // Tue=1,Thu=3,Sat=5
+    ["research-tasks-daily-refresh",     "codex",  7,  35, allDays,                 false],
+    ["dashboard-objectives-weekly",      "codex",  7,  0,  [0],                     false], // Mon=0 only
+    ["dashboard-system-health-refresh",  "codex",  0,  0,  allDays,                 true],  // every hour — thin
+    ["control-tower-telemetry-refresh",  "codex",  0,  0,  allDays,                 true],  // every 2h — thin
   ];
 
-  const tabsEl = document.getElementById("tabs");
-  const subtitleEl = document.getElementById("subtitle-bar");
-  const views = [...document.querySelectorAll(".view")];
+  // Hours 5 through 23 (5AM – 11PM)
+  const hours = [];
+  for (let h = 5; h <= 23; h++) hours.push(h);
 
-  function setView(id) {
-    views.forEach(v => v.classList.toggle("active", v.dataset.view === id));
-    [...tabsEl.querySelectorAll(".tab")].forEach(t => t.classList.toggle("active", t.dataset.view === id));
-    const tab = TABS.find(([tid]) => tid === id);
-    if (tab && subtitleEl) subtitleEl.textContent = tab[2];
-    history.replaceState({}, "", "#" + id);
-  }
-  window.setView = setView;
+  // Build header
+  let html = '<div class="cal-header"></div>';
+  days.forEach(d => { html += `<div class="cal-header">${d}</div>`; });
 
-  TABS.forEach(([id, label]) => {
-    const b = document.createElement("button");
-    b.className = "tab"; b.dataset.view = id; b.textContent = label;
-    b.onclick = () => setView(id);
-    tabsEl.appendChild(b);
+  // For each hour row, render time + 7 cells
+  hours.forEach((h, hi) => {
+    const isLast = hi === hours.length - 1;
+    const rowClass = isLast ? " cal-row-last" : "";
+
+    const hLabel = h === 0 ? "12AM" : h < 12 ? `${h}AM` : h === 12 ? "12PM" : `${h-12}PM`;
+    html += `<div class="cal-time${rowClass}">${hLabel}</div>`;
+
+    for (let d = 0; d < 7; d++) {
+      // Normal (non-thin) events at this hour
+      const normalEvents = jobs.filter(j => !j[5] && j[2] === h && j[4].includes(d));
+      // Thin hourly markers — show for every hour if that day
+      const thinHourly = jobs.filter(j => j[5] && j[4].includes(d));
+      // For hourly marker: dashboard-system-health every hour; control-tower every 2h (even hours only)
+      const thinEvents = thinHourly.filter(j => {
+        if (j[0] === "dashboard-system-health-refresh") return true; // every hour
+        if (j[0] === "control-tower-telemetry-refresh") return h % 2 === 0; // every 2h
+        return false;
+      });
+
+      const allEvents = [...normalEvents, ...thinEvents];
+      const hasEv = allEvents.length > 0;
+
+      let cellHtml = "";
+      normalEvents.forEach(j => {
+        cellHtml += `<div class="cal-event ${j[1]}">
+          <span class="cal-event-name">${esc(j[0])}</span>
+          <span class="cal-event-meta">${j[1]} · ${j[3] > 0 ? h + ":" + String(j[3]).padStart(2,"0") : h + ":00"}</span>
+        </div>`;
+      });
+      thinEvents.forEach(j => {
+        cellHtml += `<div class="cal-event cal-event-thin ${j[1]}" title="${esc(j[0])}"></div>`;
+      });
+
+      html += `<div class="cal-cell${hasEv ? " has-events" : ""}${rowClass}">${cellHtml}</div>`;
+    }
   });
 
-  // ── Utility ──
-  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
-  function tagClass(status) {
-    const x = String(status || "").toLowerCase();
-    if (["ok","active","scheduled","in progress","done","on-demand","resolved","healthy"].includes(x)) return "ok";
-    if (["blocked","critical","warn","warning","error","degraded","open"].includes(x)) return "warn";
-    return "plain";
-  }
+  cal.innerHTML = html;
+}
 
-  // ── Control Tower renderer ──
-  function renderControlTower(data) {
-    if (!data) return;
-    const pEl = document.getElementById('ct-projects');
-    const aEl = document.getElementById('ct-agents');
-    const bEl = document.getElementById('ct-blockers');
-    const rEl = document.getElementById('ct-priorities');
-    const uEl = document.getElementById('ct-updated');
-
-    if (pEl && Array.isArray(data.projects)) pEl.innerHTML = data.projects.map(p => `<div class="progress-row"><div class="label">${esc(p.name)}</div><div class="track"><div class="fill" style="width:${Math.max(0,Math.min(100,Number(p.percent)||0))}%"></div></div><div class="pct">${Math.max(0,Math.min(100,Number(p.percent)||0))}%</div></div>`).join('');
-    if (aEl && Array.isArray(data.agents)) aEl.innerHTML = data.agents.map(a => `<tr><td>${esc(a.name)}</td><td><span class="tag ${tagClass(a.status)}">${esc(a.status)}</span></td><td>${esc(a.workstream)}</td><td>${esc(a.cadence)}</td></tr>`).join('');
-    if (bEl && Array.isArray(data.blockers)) bEl.innerHTML = data.blockers.length ? data.blockers.map(b => `<tr><td>${esc(b.item)}</td><td><span class="tag ${b.score >= 8 ? "warn" : "plain"}">${esc(b.score)}</span></td><td>${esc(b.owner)}</td><td>${esc(b.next)}</td></tr>`).join('') : '<tr><td colspan="4">No blockers.</td></tr>';
-    if (rEl && Array.isArray(data.priorities)) rEl.innerHTML = data.priorities.length ? data.priorities.map(x => `<tr><td>${esc(x.rank)}</td><td>${esc(x.task)}</td><td>${esc(x.ball)}</td><td>${esc(x.agent)}</td><td>${esc(x.next)}</td></tr>`).join('') : '<tr><td colspan="5">No priorities.</td></tr>';
-    if (uEl && data.updatedAt) uEl.textContent = `Live telemetry refreshed: ${data.updatedAt}`;
-  }
-
-  async function loadControlTower() {
-    try {
-      const res = await fetch(`./live/control-tower.json?t=${Date.now()}`, {cache:'no-store'});
-      if (!res.ok) return;
-      renderControlTower(await res.json());
-    } catch {}
-  }
-
-  // ── System Health renderer ──
-  function renderSystemHealth(data) {
-    if (!data || !data.summary) return;
-    const s = data.summary;
-    const overallEl = document.getElementById('sh-overall');
-    const updatedEl = document.getElementById('sh-updated');
-    const healthyEl = document.getElementById('sh-services-healthy');
-    const totalEl = document.getElementById('sh-services-total');
-    const openEl = document.getElementById('sh-errors-open');
-    const errorsEl = document.getElementById('sh-errors');
-
-    const overall = s.overallStatus ?? s.overall ?? 'Unknown';
-    const total = Number(s.servicesTotal ?? s.enabledJobs ?? 0) || 0;
-    const failing = Number(s.failingJobs ?? 0) || 0;
-    const healthy = Number(s.servicesHealthy ?? Math.max(0, total - failing)) || 0;
-    const open = Number(s.errorsOpen ?? s.openErrors ?? 0) || 0;
-
-    if (overallEl) {
-      overallEl.textContent = esc(overall);
-      overallEl.style.color = ['ok','healthy','green'].includes(String(overall||'').toLowerCase()) ? 'var(--green)' : 'var(--amber)';
-    }
-    if (updatedEl && data.updatedAt) updatedEl.textContent = `Updated: ${data.updatedAt}`;
-    if (healthyEl) healthyEl.textContent = esc(healthy);
-    if (totalEl) totalEl.textContent = esc(total);
-    if (openEl) openEl.textContent = esc(open);
-
-    if (errorsEl && Array.isArray(data.errors)) {
-      errorsEl.innerHTML = data.errors.length
-        ? data.errors.map(e => `<tr><td>${esc(e.time || e.at || '')}</td><td>${esc(e.service || e.component || '')}</td><td><span class="tag ${tagClass(e.severity || 'warn')}">${esc(e.severity || 'warn')}</span></td><td><span class="tag ${tagClass(e.status || 'open')}">${esc(e.status || 'open')}</span></td><td>${esc(e.message || e.error || '')}</td><td>${esc(e.nextAction || e.suggestedFix || '')}</td></tr>`).join('')
-        : '<tr><td colspan="6">No active errors.</td></tr>';
-    }
-  }
-
-  async function loadSystemHealth() {
-    try {
-      const res = await fetch(`./live/system-health.json?t=${Date.now()}`, {cache:'no-store'});
-      if (!res.ok) return;
-      renderSystemHealth(await res.json());
-    } catch {}
-  }
-
-  // ── Research renderer ──
-  function renderResearchTasks(data) {
-    if (!data) return;
-    const probEl = document.getElementById('rt-paypal-prob');
-    const updEl = document.getElementById('rt-paypal-updated');
-    const thesisEl = document.getElementById('rt-paypal-thesis');
-    const methodEl = document.getElementById('rt-paypal-method');
-    const evEl = document.getElementById('rt-evidence');
-
-    const p = Number(data.paypalAcquisitionProbabilityPct ?? 0);
-    if (probEl) {
-      probEl.textContent = `${Math.max(0,Math.min(100,p))}%`;
-      probEl.style.color = p >= 45 ? 'var(--amber)' : 'var(--green)';
-    }
-    if (updEl) updEl.textContent = `Updated: ${data.updatedAt || 'unknown'}`;
-    if (thesisEl) thesisEl.textContent = data.thesis || 'No thesis loaded yet.';
-    if (methodEl && data.method) methodEl.textContent = `Method: ${data.method}`;
-
-    if (evEl && Array.isArray(data.evidence)) {
-      evEl.innerHTML = data.evidence.length ? data.evidence.map(e =>
-        `<tr><td>${esc(e.date||'')}</td><td>${esc(e.signal||'')}</td><td><span class="tag ${e.direction==='up'?'ok':e.direction==='down'?'warn':'plain'}">${esc(e.direction||'')}</span></td><td>${esc(e.strength||'')}</td><td>${e.url ? `<a class="link-btn" href="${esc(e.url)}" target="_blank" rel="noopener">source</a>` : ''}</td></tr>`
-      ).join('') : '<tr><td colspan="5">No evidence loaded.</td></tr>';
-    }
-  }
-
-  async function loadResearchTasks() {
-    try {
-      const res = await fetch(`./live/research-tasks.json?t=${Date.now()}`, {cache:'no-store'});
-      if (!res.ok) return;
-      renderResearchTasks(await res.json());
-    } catch {}
-  }
-
-  // ── Cron Calendar builder ──
-  function buildCronCalendar() {
-    const cal = document.getElementById('cron-calendar');
-    if (!cal) return;
-
-    const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-
-    // Jobs: [name, model, hour, minute, duration_min, days[]]
-    const allDays = [0,1,2,3,4,5,6];
-    const jobs = [
-      ['journal-prompt',                'sonnet', 6,  0,  2, allDays],
-      ['daily-obsidian-note',           'sonnet', 6,  5,  2, allDays],
-      ['healthcheck',                   'codex',  6,  30, 1, allDays],
-      ['dashboard-system-health',       'codex',  7,  0,  2, allDays],
-      ['research-tasks-daily-refresh',  'codex',  7,  35, 3, allDays],
-      ['obj-95-daily-tweet-draft',      'sonnet', 8,  0,  3, allDays],
-      ['control-tower-telemetry',       'codex',  8,  30, 2, allDays],
-      ['obj-106-stablecoin-research',   'sonnet', 9,  0,  3, [1,3,5]],
-      ['readwise-weekly-groom',         'codex',  10, 0,  5, [6]],
-      ['dashboard-objectives-weekly',   'codex',  7,  0,  3, [0]],
-      ['journal-prompt-evening',        'sonnet', 18, 0,  2, allDays],
-    ];
-
-    // Use 30-min slots; only include slots that have at least one event
-    const allSlots = [];
-    for (let h = 5; h <= 19; h++) {
-      allSlots.push([h, 0]);
-      allSlots.push([h, 30]);
-    }
-    // Filter to slots that contain events (plus keep :00 for context when :30 has events)
-    const slotHasEvent = (sh, sm) => jobs.some(j => {
-      if (sm === 0) return j[2] === sh && j[3] < 30 && j[5].some(d => allDays.includes(d));
-      return j[2] === sh && j[3] >= 30 && j[5].some(d => allDays.includes(d));
-    });
-    const slots = allSlots.filter(([h, m]) => {
-      if (slotHasEvent(h, m)) return true;
-      // keep the :00 slot if :30 of same hour has events (for visual context)
-      if (m === 0 && slotHasEvent(h, 30)) return true;
-      // keep :00 of the hour after the last event hour for spacing
-      return false;
-    });
-
-    // Build grid
-    let html = '<div class="cal-header"></div>';
-    days.forEach(d => { html += `<div class="cal-header">${d}</div>`; });
-
-    slots.forEach(([h, m]) => {
-      const hLabel = h === 12 ? '12' : h > 12 ? (h - 12) : h;
-      const ampm = h >= 12 ? 'PM' : 'AM';
-      const label = m === 0 ? `${hLabel}${ampm}` : `${hLabel}:30`;
-      html += `<div class="cal-time"><span style="opacity:${m===0?1:.5}">${label}</span></div>`;
-      for (let d = 0; d < 7; d++) {
-        const eventsHere = jobs.filter(j => {
-          if (!j[5].includes(d)) return false;
-          // Match job to this 30-min slot
-          if (m === 0) return j[2] === h && j[3] < 30;
-          return j[2] === h && j[3] >= 30;
-        });
-        const hasEv = eventsHere.length > 0;
-        const split = eventsHere.length > 1;
-        let cellHtml = '';
-        eventsHere.forEach(j => {
-          cellHtml += `<div class="cal-event ${j[1]}"><span class="cal-event-name">${j[0]}</span><br><span class="cal-event-meta">${j[1]} · ~${j[4]}m</span></div>`;
-        });
-        html += `<div class="cal-cell${hasEv ? ' has-events' : ''}${split ? ' split' : ''}">${cellHtml}</div>`;
-      }
-    });
-
-    cal.innerHTML = html;
-  }
-
-  // ── Objectives renderer ──
-  function renderObjectives(data) {
-    const body = document.getElementById('objectives-body');
-    const note = document.getElementById('objectives-note');
-    if (!body || !data || !Array.isArray(data.objectives)) return;
-    const statusClass = s => {
-      const l = (s||'').toLowerCase();
-      if (['active','on track','green'].includes(l)) return 'ok';
-      if (['stalled','blocked','red'].includes(l)) return 'warn';
-      if (['recovering','amber','paused'].includes(l)) return 'warn';
-      return 'plain';
-    };
-    body.innerHTML = data.objectives.map(o =>
-      `<tr><td>${esc(o.name||'')}</td><td><span class="tag ${statusClass(o.status)}">${esc(o.status||'Unknown')}</span></td><td>${esc(o.latest||'')}</td></tr>`
-    ).join('') || '<tr><td colspan="3">No objectives loaded.</td></tr>';
-    if (note && data.updatedAt) note.textContent = `Source: #april-journal. Updated: ${data.updatedAt}`;
-  }
-
-  async function loadObjectives() {
-    try {
-      const res = await fetch(`./live/objectives.json?t=${Date.now()}`, {cache:'no-store'});
-      if (!res.ok) return;
-      renderObjectives(await res.json());
-    } catch {}
-  }
-
-  // ── Init ──
-  const init = (location.hash || "#overview").slice(1);
-  setView(TABS.some(([id]) => id === init) ? init : "overview");
-  loadControlTower();
-  loadSystemHealth();
-  loadResearchTasks();
+// ── Init ──
+function init() {
+  const hash = (location.hash || "#overview").slice(1);
+  const validTab = TABS.some(([id]) => id === hash) ? hash : "overview";
+  setView(validTab);
   loadObjectives();
+  loadLoops();
+  loadIntegrations();
+  loadStats();
   buildCronCalendar();
-  setInterval(() => { loadControlTower(); loadSystemHealth(); loadResearchTasks(); loadObjectives(); }, 60000);
+}
 
-  // Hash routing
-  window.addEventListener('hashchange', () => {
-    const h = (location.hash || "#overview").slice(1);
-    if (TABS.some(([id]) => id === h)) setView(h);
-  });
+function refreshAll() {
+  loadObjectives();
+  loadLoops();
+  loadIntegrations();
+  loadStats();
+}
+
+init();
+setInterval(refreshAll, 60000);
+
+window.addEventListener("hashchange", () => {
+  const h = (location.hash || "#overview").slice(1);
+  if (TABS.some(([id]) => id === h)) setView(h);
+});
 </script>
 </body>
 </html>
