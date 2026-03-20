@@ -275,8 +275,9 @@
       border-right: 1px solid #f0f0f0;
       border-bottom: 1px solid #f0f0f0;
       padding: 2px;
-      min-height: 36px;
+      min-height: 28px;
     }
+    .cal-cell.has-events { min-height: 44px; }
     .cal-cell:last-child { border-right: none; }
     .cal-row-last .cal-time,
     .cal-row-last .cal-cell { border-bottom: none; }
@@ -296,7 +297,7 @@
     .cal-event.codex  { border-left: 3px solid var(--codex-accent); background: #f0f7f3; }
     .cal-event.haiku  { border-left: 3px solid var(--haiku-accent); background: #fdf7f0; }
     .cal-event.opus   { border-left: 3px solid var(--opus-accent); background: #fdf3f5; }
-    .cal-event-thin { /* hourly markers */
+    .cal-event-thin { display: none; /* disabled — too noisy */
       height: 4px; border-radius: 2px; width: 100%;
       margin-bottom: 2px; border: none; padding: 0;
       opacity: 0.4;
@@ -345,7 +346,7 @@
   <div class="header-inner">
     <div class="header-top">
       <h1>&#10022; Claw OS</h1>
-      <span class="version-badge" id="version-badge">v26.12.10 &middot; MMM4</span>
+      <span class="version-badge" id="version-badge">v26.12.11 &middot; MMM4</span>
     </div>
     <nav class="tabs" id="tabs"></nav>
     <div class="view-subtitle" id="subtitle-bar">Morning check-in</div>
@@ -423,9 +424,8 @@
       <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--codex-accent)"></div>Codex</div>
       <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--haiku-accent)"></div>Haiku</div>
       <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--opus-accent)"></div>Opus</div>
-      <div class="cal-legend-item"><div style="width:30px;height:4px;border-radius:2px;background:var(--codex-accent);opacity:.5"></div>Hourly (thin = high-frequency)</div>
     </div>
-    <p class="note">Hourly jobs (dashboard-system-health-refresh, control-tower-telemetry-refresh) shown as thin color bars. All other jobs shown as full blocks.</p>
+    <p class="note">Recurring hourly jobs not shown: dashboard-system-health-refresh (every hour, codex) and control-tower-telemetry-refresh (every 2h, codex).</p>
   </div>
 </section>
 
@@ -1000,8 +1000,7 @@ function buildCronCalendar() {
     ["stablecoin-research",              "sonnet", 9,  0,  [1,3,5],                 false], // Tue=1,Thu=3,Sat=5
     ["research-tasks-daily-refresh",     "codex",  7,  35, allDays,                 false],
     ["dashboard-objectives-weekly",      "codex",  7,  0,  [0],                     false], // Mon=0 only
-    ["dashboard-system-health-refresh",  "codex",  0,  0,  allDays,                 true],  // every hour — thin
-    ["control-tower-telemetry-refresh",  "codex",  0,  0,  allDays,                 true],  // every 2h — thin
+    // Hourly jobs not shown on calendar (too noisy). Noted in legend instead.
   ];
 
   // Hours 5 through 23 (5AM – 11PM)
@@ -1021,29 +1020,15 @@ function buildCronCalendar() {
     html += `<div class="cal-time${rowClass}">${hLabel}</div>`;
 
     for (let d = 0; d < 7; d++) {
-      // Normal (non-thin) events at this hour
-      const normalEvents = jobs.filter(j => !j[5] && j[2] === h && j[4].includes(d));
-      // Thin hourly markers — show for every hour if that day
-      const thinHourly = jobs.filter(j => j[5] && j[4].includes(d));
-      // For hourly marker: dashboard-system-health every hour; control-tower every 2h (even hours only)
-      const thinEvents = thinHourly.filter(j => {
-        if (j[0] === "dashboard-system-health-refresh") return true; // every hour
-        if (j[0] === "control-tower-telemetry-refresh") return h % 2 === 0; // every 2h
-        return false;
-      });
-
-      const allEvents = [...normalEvents, ...thinEvents];
-      const hasEv = allEvents.length > 0;
+      const events = jobs.filter(j => j[2] === h && j[4].includes(d));
+      const hasEv = events.length > 0;
 
       let cellHtml = "";
-      normalEvents.forEach(j => {
+      events.forEach(j => {
         cellHtml += `<div class="cal-event ${j[1]}">
           <span class="cal-event-name">${esc(j[0])}</span>
           <span class="cal-event-meta">${j[1]} · ${j[3] > 0 ? h + ":" + String(j[3]).padStart(2,"0") : h + ":00"}</span>
         </div>`;
-      });
-      thinEvents.forEach(j => {
-        cellHtml += `<div class="cal-event cal-event-thin ${j[1]}" title="${esc(j[0])}"></div>`;
       });
 
       html += `<div class="cal-cell${hasEv ? " has-events" : ""}${rowClass}">${cellHtml}</div>`;

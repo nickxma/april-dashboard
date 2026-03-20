@@ -1,0 +1,19 @@
+{
+  "connected": [
+    {"name": "Slack", "status": "connected", "description": "Socket Mode · #general, #journal, #alerts + 6 more channels", "lastVerified": "2026-03-20T00:30:00-05:00"},
+    {"name": "GitHub", "status": "connected", "description": "gh CLI · nickxma · GitHub Pages deploys", "lastVerified": "2026-03-20T00:28:00-05:00"},
+    {"name": "Obsidian", "status": "connected", "description": "Vault read/write · ~/Obsidian · obsidian-cli v1.12.4", "lastVerified": "2026-03-20T00:30:00-05:00"},
+    {"name": "Brave Search", "status": "connected", "description": "web_search tool · API key active", "lastVerified": "2026-03-20T00:30:00-05:00"},
+    {"name": "Google Workspace", "status": "connected", "description": "gog CLI · Gmail + Drive + Docs + Sheets", "lastVerified": "2026-03-19T22:00:00-05:00"},
+    {"name": "Paperclip", "status": "connected", "description": "localhost:3100 · Tailscale Funnel · OLU Solutions", "lastVerified": "2026-03-20T00:30:00-05:00"},
+    {"name": "Tailscale", "status": "connected", "description": "mmm4 · 100.74.228.112 · Funnel on 443 + 8443", "lastVerified": "2026-03-20T00:30:00-05:00"}
+  ],
+  "attention": [
+    {"name": "Google Calendar", "status": "expired", "description": "OAuth token expired · needs gog auth re-auth", "lastVerified": "2026-03-19T12:00:00-05:00"}
+  ],
+  "available": [
+    {"name": "Things 3", "status": "available", "description": "MCP skill installed · not configured yet"},
+    {"name": "1Password", "status": "available", "description": "CLI skill installed · desktop integration not set up"}
+  ],
+  "updatedAt": "2026-03-20T00:40:00-05:00"
+}
