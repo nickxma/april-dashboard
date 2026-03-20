@@ -1,11 +1,21 @@
 {
-  "updatedAt": "2026-03-20 16:59 CDT",
+  "updatedAt": "2026-03-20 17:59 CDT",
   "summary": {
-    "overall": "healthy",
+    "overall": "degraded",
     "enabledJobs": 18,
-    "failingJobs": 0,
-    "staleJobs": 3,
-    "openErrors": 0
+    "failingJobs": 1,
+    "staleJobs": 0,
+    "openErrors": 1
   },
-  "errors": []
+  "errors": [
+    {
+      "time": "2026-03-20 06:17 CDT",
+      "component": "daily-brief",
+      "severity": "warn",
+      "status": "open",
+      "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
+      "meaning": "The daily-brief job ran successfully but failed to post to Slack because the delivery channel is configured as 'slack:c0amse2tw2x' — an invalid format. The channel ID needs to be bare (no 'slack:' prefix).",
+      "suggestedFix": "Update the daily-brief cron job delivery channel from 'slack:c0amse2tw2x' to 'C0AMSE2TW2X' (bare channel ID, no prefix)."
+    }
+  ]
 }
