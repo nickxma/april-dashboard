@@ -346,7 +346,7 @@
   <div class="header-inner">
     <div class="header-top">
       <h1>&#10022; Claw OS</h1>
-      <span class="version-badge" id="version-badge">v26.12.11 &middot; MMM4</span>
+      <span class="version-badge" id="version-badge">v26.12.12 &middot; MMM4</span>
     </div>
     <nav class="tabs" id="tabs"></nav>
     <div class="view-subtitle" id="subtitle-bar">Morning check-in</div>
@@ -429,154 +429,50 @@
   </div>
 </section>
 
-<!-- ══════════════════════ TAB 3: INTEGRATIONS ══════════════════════ -->
-<section class="view" data-view="integrations">
-  <div class="grid">
-    <article class="card span-12">
-      <div class="card-title">Connected Services</div>
-      <p class="section-intro">Source: <code>./live/integrations.json</code>. Falls back to hardcoded defaults if unavailable.</p>
-
-      <div class="int-section">
-        <div class="int-section-header connected">&#9679; Connected</div>
-        <div id="int-connected"><!-- filled by JS --></div>
-      </div>
-
-      <div class="int-section">
-        <div class="int-section-header attention">&#9650; Needs Attention</div>
-        <div id="int-attention"><!-- filled by JS --></div>
-      </div>
-
-      <div class="int-section">
-        <div class="int-section-header available">&#9675; Available</div>
-        <div id="int-available"><!-- filled by JS --></div>
-      </div>
-
-      <p class="note" id="int-page-updated"></p>
-    </article>
-  </div>
-</section>
-
-<!-- ══════════════════════ TAB 4: IDENTITY & SYSTEM ══════════════════════ -->
+<!-- ══════════════════════ TAB 3: IDENTITY & SYSTEM ══════════════════════ -->
 <section class="view" data-view="identity">
   <div class="grid">
 
-    <!-- How Claw Works -->
-    <article class="card span-12">
-      <div class="card-title">How Claw Works</div>
-      <p class="section-intro">
-        Claw is a persistent AI operator running on <strong>OpenClaw</strong> on a Mac Mini (MMM4). It uses the same underlying Claude models as claude.ai — but it's shaped by a set of identity files injected before every session. These files define personality (<code>SOUL.md</code>), memory (<code>MEMORY.md</code>), the user (<code>USER.md</code>), and execution rules (<code>AGENTS.md</code>). That stack is what makes Claw "Claw" instead of generic Claude. Claw has persistent memory across sessions via files, full tool access (shell, browser, Obsidian, GitHub, Slack, cron), and a sub-agent architecture for delegating heavy work.
-      </p>
+    <!-- Identity Files — compact -->
+    <article class="card span-6">
+      <div class="card-title">🧠 Identity Files (auto-loaded every session)</div>
+      <table>
+        <thead><tr><th>File</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td><code>SOUL.md</code></td><td>Personality, tone, behavioral rules. The "who I am" file.</td></tr>
+          <tr><td><code>USER.md</code></td><td>Nick's name, timezone, communication style.</td></tr>
+          <tr><td><code>MEMORY.md</code></td><td>Operational state — channels, cron, people, config. Working index.</td></tr>
+          <tr><td><code>AGENTS.md</code></td><td>Boot routine, model allocation, reliability rules, sub-agent wiring.</td></tr>
+          <tr><td><code>IDENTITY.md</code></td><td>Quick ID card — name, emoji (🦞), vibe.</td></tr>
+          <tr><td><code>HEARTBEAT.md</code></td><td>Check-in rules for periodic heartbeat polls.</td></tr>
+          <tr><td><code>memory/*.md</code></td><td>Daily memory files — short-term per-day context.</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Support files: <code>CLAUDE.md</code> + <code>CODEX.md</code> (sub-agent pointers), <code>TOOLS.md</code> (env-specific notes).</p>
     </article>
 
-    <!-- Two-column: Auto-Loaded + Support Files / Obsidian -->
-    <div class="span-12">
-      <div class="two-col">
-
-        <!-- Left: Auto-Loaded -->
-        <article class="card">
-          <div class="card-title">🧠 Auto-Loaded (Every Session)</div>
-          <p class="section-intro">Injected before Claw generates a single token. Defines who Claw is at boot.</p>
-          <div class="file-list">
-            <div class="file-item">
-              <code>SOUL.md</code>
-              <div class="file-item-desc"><strong>Personality &amp; behavioral rules.</strong> Tone, operating principles, self-reference style, how to handle vague requests. Any behavioral correction from Nick goes here.</div>
-            </div>
-            <div class="file-item">
-              <code>USER.md</code>
-              <div class="file-item-desc"><strong>Who Nick is.</strong> Name, timezone, communication preferences. Tells Claw how to talk to its human.</div>
-            </div>
-            <div class="file-item">
-              <code>MEMORY.md</code>
-              <div class="file-item-desc"><strong>Operational state.</strong> Runtime facts — channels, cron jobs, people, project status, config. The working index. Deep context lives in Obsidian.</div>
-            </div>
-            <div class="file-item">
-              <code>AGENTS.md</code>
-              <div class="file-item-desc"><strong>Startup routine &amp; execution rules.</strong> What to read on boot, model allocation policy, reliability rules, fallback ladders, sub-agent wiring.</div>
-            </div>
-            <div class="file-item">
-              <code>IDENTITY.md</code>
-              <div class="file-item-desc"><strong>Quick ID card.</strong> Name (Claw), creature type, vibe, emoji (🦞). One-liner version of SOUL.md.</div>
-            </div>
-            <div class="file-item">
-              <code>HEARTBEAT.md</code>
-              <div class="file-item-desc"><strong>Check-in rules.</strong> Defines what to do during periodic heartbeat polls — scan for open loops, propose improvements, or stay silent.</div>
-            </div>
-            <div class="file-item">
-              <code>memory/*.md</code>
-              <div class="file-item-desc"><strong>Daily memory files.</strong> Short-term memory per day. What happened, what was discussed. Read on startup for recent context.</div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Right: Support Files + Obsidian + Key Principle -->
-        <div>
-          <article class="card">
-            <div class="card-title">📎 Support Files</div>
-            <p class="section-intro">Wiring and reference files. Low maintenance, rarely change.</p>
-            <div class="file-list">
-              <div class="file-item">
-                <code>CLAUDE.md</code>
-                <div class="file-item-desc"><strong>Sub-agent pointer for Claude Code.</strong> Auto-generated. Tells Claude Code sub-agents to read SOUL.md + AGENTS.md on startup.</div>
-              </div>
-              <div class="file-item">
-                <code>CODEX.md</code>
-                <div class="file-item-desc"><strong>Sub-agent pointer for Codex.</strong> Same as CLAUDE.md but for Codex sub-agents.</div>
-              </div>
-              <div class="file-item">
-                <code>TOOLS.md</code>
-                <div class="file-item-desc"><strong>Environment-specific notes.</strong> Camera names, SSH hosts, device nicknames. Your cheat sheet for hardware specifics.</div>
-              </div>
-            </div>
-          </article>
-
-          <article class="card" style="margin-top:16px">
-            <div class="card-title">📂 Obsidian Vault (On-Demand)</div>
-            <p class="section-intro">Not auto-loaded. Claw reads these when the conversation needs them. Obsidian is the canonical knowledge store.</p>
-            <div class="file-list">
-              <div class="file-item">
-                <code>01_Daily/</code>
-                <div class="file-item-desc">Daily notes, journal entries, MITs, open loops. Claw appends to these during conversations.</div>
-              </div>
-              <div class="file-item">
-                <code>02_Objectives/</code>
-                <div class="file-item-desc">Objective tracker, people files (Baddies, Work, Co-op). Living record of Nick's goals.</div>
-              </div>
-              <div class="file-item">
-                <code>00_System/context/</code>
-                <div class="file-item-desc"><code>MASTER.md</code> — full life + work context. Loaded only when the conversation requires it.</div>
-              </div>
-              <div class="file-item">
-                <code>05_OpenClaw/</code>
-                <div class="file-item-desc">Deliverables, snapshots, dashboard source. User-facing output from Claw.</div>
-              </div>
-            </div>
-          </article>
-
-          <article class="card" style="margin-top:16px">
-            <div class="card-title">🔑 Key Principle</div>
-            <p class="section-intro">
-              <strong>Dual-write policy:</strong> <code>MEMORY.md</code> is the working index (boot context, pointers). Obsidian is the canonical rich store (people, decisions, everything). Both get written to freely. If they ever conflict, Obsidian wins.
-            </p>
-          </article>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Claw vs Claude -->
-    <article class="card span-12">
-      <div class="card-title">What Makes Claw Different From Claude</div>
+    <!-- Obsidian + Principles -->
+    <article class="card span-6">
+      <div class="card-title">📂 Obsidian Vault (on-demand — canonical store)</div>
       <table>
-        <thead>
-          <tr><th>Layer</th><th>Claude (claude.ai)</th><th>Claw (OpenClaw)</th></tr>
-        </thead>
+        <thead><tr><th>Path</th><th>Contents</th></tr></thead>
         <tbody>
-          <tr><td>Model</td><td>Claude Opus</td><td>Same Claude Opus</td></tr>
-          <tr><td>System prompt</td><td>Anthropic default</td><td>SOUL.md + USER.md + MEMORY.md + AGENTS.md (~5,000 words of context)</td></tr>
-          <tr><td>Memory</td><td>Limited project context</td><td>Persistent across sessions — knows your name, objectives, people, preferences</td></tr>
-          <tr><td>Tools</td><td>Web search, artifacts</td><td>File read/write, shell, browser, Obsidian, GitHub, Slack, cron, sub-agents, Google Workspace</td></tr>
-          <tr><td>Identity</td><td>Generic assistant</td><td>"Claw" — concise, systems-oriented, no fluff, proactive follow-ups</td></tr>
-          <tr><td>Continuity</td><td>Conversation-scoped</td><td>Persistent via files — identity survives across sessions, days, model swaps</td></tr>
+          <tr><td><code>01_Daily/</code></td><td>Daily notes, journal entries, MITs, open loops</td></tr>
+          <tr><td><code>02_Objectives/</code></td><td>Objective tracker, people files</td></tr>
+          <tr><td><code>00_System/context/</code></td><td>MASTER.md — full life + work context</td></tr>
+          <tr><td><code>05_OpenClaw/</code></td><td>Deliverables, snapshots, dashboard</td></tr>
+        </tbody>
+      </table>
+      <p class="note" style="margin-top:12px"><strong>Dual-write policy:</strong> MEMORY.md = working index. Obsidian = canonical store. If they conflict, Obsidian wins.</p>
+
+      <div class="card-title" style="margin-top:20px">Claw vs Claude</div>
+      <table>
+        <thead><tr><th>Layer</th><th>Claude</th><th>Claw</th></tr></thead>
+        <tbody>
+          <tr><td>System prompt</td><td>Default</td><td>SOUL + USER + MEMORY + AGENTS</td></tr>
+          <tr><td>Memory</td><td>Per-conversation</td><td>Persistent across sessions</td></tr>
+          <tr><td>Tools</td><td>Web search, artifacts</td><td>Shell, browser, GitHub, Slack, cron, Obsidian, sub-agents</td></tr>
+          <tr><td>Identity</td><td>Generic</td><td>Shaped by files — survives model swaps</td></tr>
         </tbody>
       </table>
     </article>
@@ -785,10 +681,9 @@
 <script>
 // ── Tab config ──
 const TABS = [
-  ["overview",      "Overview",         "Morning check-in — objectives, open loops, integrations, quick stats"],
-  ["cron-calendar", "Cron Calendar",    "Weekly schedule — all hours 5AM–11PM, colored by model"],
-  ["integrations",  "Integrations",     "Connected services status — connected, attention, available"],
-  ["identity",      "Identity & System","How Claw works — files, architecture, comparison, config"]
+  ["overview",      "Overview",           "Morning check-in — objectives, open loops, integrations"],
+  ["cron-calendar", "Cron Calendar",      "Weekly schedule — colored by model"],
+  ["identity",      "Identity & System",  "How Claw works — files, architecture, config"]
 ];
 
 const tabsEl    = document.getElementById("tabs");
@@ -925,36 +820,6 @@ function renderIntegrationStrip(data) {
   ).join("");
 }
 
-function renderIntegrationsPage(data) {
-  const d = data || DEFAULT_INTEGRATIONS;
-  const updEl = document.getElementById("int-page-updated");
-  if (updEl) updEl.textContent = d.updatedAt ? "Last updated: " + d.updatedAt : "Source: hardcoded defaults (integrations.json not found)";
-
-  function renderSection(elId, items, tier) {
-    const el = document.getElementById(elId);
-    if (!el) return;
-    if (!items || items.length === 0) {
-      el.innerHTML = `<div class="int-card ${tier}"><div class="int-card-body"><div class="int-card-name" style="color:var(--secondary)">None</div></div></div>`;
-      return;
-    }
-    el.innerHTML = items.map(i => `
-      <div class="int-card ${tier}">
-        <div class="int-card-body">
-          <div class="int-card-name">${esc(i.name)}</div>
-          <div class="int-card-desc">${esc(i.description || "")}</div>
-        </div>
-        <div class="int-card-meta">
-          <span class="tag ${tier === "connected" ? "ok" : tier === "attention" ? "warn" : "plain"}">${esc(i.status || tier)}</span>
-          ${i.lastVerified && i.lastVerified !== "—" ? `<div class="int-card-verified">${esc(i.lastVerified)}</div>` : ""}
-        </div>
-      </div>`).join("");
-  }
-
-  renderSection("int-connected", d.connected, "connected");
-  renderSection("int-attention", d.attention, "attention");
-  renderSection("int-available", d.available, "available");
-}
-
 async function loadIntegrations() {
   let data = null;
   try {
@@ -963,7 +828,6 @@ async function loadIntegrations() {
   } catch {}
   cachedIntegrations = data;
   renderIntegrationStrip(data);
-  renderIntegrationsPage(data);
 }
 
 // ── QUICK STATS ──
