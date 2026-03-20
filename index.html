@@ -346,7 +346,7 @@
   <div class="header-inner">
     <div class="header-top">
       <h1>&#10022; Claw OS</h1>
-      <span class="version-badge" id="version-badge">v26.12.12 &middot; MMM4</span>
+      <span class="version-badge" id="version-badge">v26.12.13 &middot; MMM4</span>
     </div>
     <nav class="tabs" id="tabs"></nav>
     <div class="view-subtitle" id="subtitle-bar">Morning check-in</div>
@@ -388,27 +388,7 @@
     <!-- filled by JS -->
   </div>
 
-  <!-- Quick Stats -->
-  <div style="margin-top:24px">
-    <div class="section-header-row">
-      <h3>Quick Stats</h3>
-      <span class="updated" id="stats-updated"></span>
-    </div>
-    <div class="stats-row">
-      <div class="stat-item">
-        <div class="stat-num" style="color:var(--codex-accent)">8</div>
-        <div class="stat-label">Cron jobs scheduled</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num" id="stat-sessions" style="color:var(--sonnet-accent)">—</div>
-        <div class="stat-label">Sessions today</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num" id="stat-memory" style="color:var(--haiku-accent)">—</div>
-        <div class="stat-label">Memory files</div>
-      </div>
-    </div>
-  </div>
+
 
 </section>
 
@@ -830,23 +810,6 @@ async function loadIntegrations() {
   renderIntegrationStrip(data);
 }
 
-// ── QUICK STATS ──
-async function loadStats() {
-  // Memory file count
-  try {
-    const r = await fetch(`./live/state.json?t=${Date.now()}`, {cache:"no-store"});
-    if (r.ok) {
-      const d = await r.json();
-      const memEl = document.getElementById("stat-memory");
-      const sessEl = document.getElementById("stat-sessions");
-      if (memEl && d.memoryFileCount != null) memEl.textContent = d.memoryFileCount;
-      if (sessEl && d.sessionsToday  != null) sessEl.textContent = d.sessionsToday;
-      const updEl = document.getElementById("stats-updated");
-      if (updEl && d.updatedAt) updEl.textContent = "Updated: " + d.updatedAt;
-    }
-  } catch {}
-}
-
 // ── CRON CALENDAR ──
 function buildCronCalendar() {
   const cal = document.getElementById("cron-calendar");
@@ -910,7 +873,6 @@ function init() {
   loadObjectives();
   loadLoops();
   loadIntegrations();
-  loadStats();
   buildCronCalendar();
 }
 
@@ -918,7 +880,6 @@ function refreshAll() {
   loadObjectives();
   loadLoops();
   loadIntegrations();
-  loadStats();
 }
 
 init();
