@@ -580,7 +580,7 @@
     <div class="header-top">
       <div class="header-left">
         <h1>&#10022; April</h1>
-        <span class="version-badge" id="version-badge">v26.12.20</span>
+        <span class="version-badge" id="version-badge">v26.12.21</span>
         <span style="font-size:10px;color:var(--secondary);letter-spacing:0.04em;">MMM4</span>
       </div>
       <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
@@ -728,7 +728,7 @@
           <table>
             <tbody>
               <tr><td>Main model</td><td><span class="tag opus">claude-opus-4-6</span></td></tr>
-              <tr><td>Sub-agent default</td><td><span class="tag codex">gpt-5.3-codex</span></td></tr>
+              <tr><td>Sub-agent default</td><td><span class="tag sonnet">claude-sonnet-4-6</span></td></tr>
               <tr><td>Mid-tier</td><td><span class="tag sonnet">claude-sonnet-4-6</span></td></tr>
               <tr><td>Cheap</td><td><span class="tag haiku">claude-haiku-3-5</span></td></tr>
               <tr><td>Concurrency</td><td>5 main / 2 sub</td></tr>
@@ -786,15 +786,15 @@
         <text x="368" y="100" text-anchor="middle" style="fill:var(--muted);font-size:9px">Delegates to sub-agents · minimal direct usage</text>
 
         <!-- Sub-agents -->
-        <rect x="168" y="114" width="130" height="30" rx="3" style="fill:var(--surface2);stroke:var(--codex-accent)"/>
+        <rect x="168" y="114" width="130" height="30" rx="3" style="fill:var(--surface2);stroke:var(--sonnet-accent)"/>
         <text x="233" y="129" text-anchor="middle" style="fill:var(--text);font-size:10px;font-weight:600">Coding</text>
-        <text x="233" y="140" text-anchor="middle" style="fill:var(--muted);font-size:8px">Codex 5.3</text>
-        <rect x="303" y="114" width="130" height="30" rx="3" style="fill:var(--surface2);stroke:var(--codex-accent)"/>
+        <text x="233" y="140" text-anchor="middle" style="fill:var(--muted);font-size:8px">Sonnet 4-6</text>
+        <rect x="303" y="114" width="130" height="30" rx="3" style="fill:var(--surface2);stroke:var(--sonnet-accent)"/>
         <text x="368" y="129" text-anchor="middle" style="fill:var(--text);font-size:10px;font-weight:600">Research</text>
-        <text x="368" y="140" text-anchor="middle" style="fill:var(--muted);font-size:8px">Codex 5.3</text>
+        <text x="368" y="140" text-anchor="middle" style="fill:var(--muted);font-size:8px">Sonnet 4-6</text>
         <rect x="438" y="114" width="130" height="30" rx="3" style="fill:var(--surface2);stroke:var(--haiku-accent)"/>
         <text x="503" y="129" text-anchor="middle" style="fill:var(--text);font-size:10px;font-weight:600">Cheap</text>
-        <text x="503" y="140" text-anchor="middle" style="fill:var(--muted);font-size:8px">Haiku 4-5</text>
+        <text x="503" y="140" text-anchor="middle" style="fill:var(--muted);font-size:8px">Haiku 3-5</text>
 
         <!-- Workspace -->
         <rect x="168" y="150" width="400" height="26" rx="3" style="fill:var(--surface2);stroke:var(--border)"/>
@@ -1093,8 +1093,10 @@ function buildCronCalendar() {
     ["dashboard-integrations-refresh",     "sonnet", "every 6h"],
   ];
 
-  const hours = [];
-  for (let h = 5; h <= 23; h++) hours.push(h);
+  // Only show hours that have events
+  const eventHours = new Set();
+  jobs.forEach(j => eventHours.add(j[2]));
+  const hours = [...eventHours].sort((a,b) => a - b);
 
   let html = '<div class="cal-header"></div>';
   days.forEach(d => { html += `<div class="cal-header">${d}</div>`; });

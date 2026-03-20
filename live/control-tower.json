@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-20 10:57 CDT",
+  "updatedAt": "2026-03-20 16:57 CDT",
   "projects": [
     {
       "name": "Launch Twitter account for AI + mindfulness content",
@@ -70,6 +70,12 @@
       "cadence": "06:05 America/Chicago daily"
     },
     {
+      "name": "daily-brief",
+      "status": "ok",
+      "workstream": "Morning brief: calendar, email, Toggl, weather to #daily-brief",
+      "cadence": "06:15 America/Chicago daily"
+    },
+    {
       "name": "journal-prompt + journal-prompt-evening",
       "status": "ok",
       "workstream": "Morning/evening journal prompts",
@@ -98,6 +104,12 @@
       "status": "ok",
       "workstream": "Stablecoin research drops (PYUSD/Arbitrum)",
       "cadence": "09:00 America/Chicago Tue/Thu/Sat"
+    },
+    {
+      "name": "toggl-weekly-summary",
+      "status": "ok",
+      "workstream": "Weekly Toggl time allocation summary",
+      "cadence": "09:00 America/Chicago Sundays"
     },
     {
       "name": "readwise-weekly-groom",
