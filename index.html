@@ -290,53 +290,49 @@
     .stat-num { font-size: 24px; font-weight: 700; color: var(--accent-cyan); }
     .stat-label { font-size: 12px; color: var(--muted); }
 
-    /* ── Open loops ── */
-    .loop-list { display: flex; flex-direction: column; gap: 2px; }
+    /* ── Open loops (table widget) ── */
+    .loop-widget {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: rgba(13, 20, 33, 0.4);
+      overflow: hidden;
+    }
+    .loop-list { display: flex; flex-direction: column; gap: 0; }
     .loop-group-label {
       font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
-      padding: 2px 0 1px; color: var(--secondary);
+      padding: 4px 8px 2px; color: var(--secondary);
+      background: rgba(13, 20, 33, 0.3);
+      border-bottom: 1px solid var(--border);
     }
     .loop-group-label.blocked { color: var(--amber); }
     .loop-group-label.actionable { color: var(--accent-cyan); }
-    .loop-item {
-      display: flex; align-items: center;
-      padding: 5px 10px;
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      background: rgba(13, 20, 33, 0.4);
-      gap: 8px;
-      transition: border-color .15s;
-    }
-    .loop-item:hover { border-color: var(--border-strong); }
-    .loop-item.resolved { opacity: 0.4; }
-    .loop-top { display: flex; align-items: center; flex: 1; gap: 8px; min-width: 0; }
-    .loop-text { font-size: 12px; flex: 1; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .loop-next { font-size: 10px; color: var(--secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 280px; }
-    .loop-next::before { content: "\2192 "; color: var(--accent-cyan); }
-    .loop-meta-row { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-    .loop-owner {
+    .loop-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    .loop-table td { padding: 3px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .loop-table tr:last-child td { border-bottom: none; }
+    .loop-table tr:hover td { background: var(--hover); }
+    .loop-table .lt-item { color: var(--text); font-weight: 500; max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .loop-table .lt-next { color: var(--secondary); font-size: 10px; max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .loop-table .lt-next::before { content: "→ "; color: var(--accent-cyan); }
+    .loop-table .lt-owner {
       font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+      padding: 0px 5px; border-radius: 8px; white-space: nowrap;
+    }
+    .loop-table .lt-owner.nick { background: rgba(138,92,246,0.15); color: #a78bfa; border: 1px solid rgba(138,92,246,0.3); }
+    .loop-table .lt-owner.claw { background: rgba(0,212,255,0.1); color: var(--accent-cyan); border: 1px solid rgba(0,212,255,0.3); }
+    .loop-table .lt-age {
+      font-size: 10px; font-weight: 600; text-align: center; white-space: nowrap;
       padding: 0px 5px; border-radius: 8px;
     }
-    .loop-owner.nick { background: rgba(138,92,246,0.15); color: #a78bfa; border: 1px solid rgba(138,92,246,0.3); }
-    .loop-owner.claw { background: rgba(0,212,255,0.1); color: var(--accent-cyan); border: 1px solid rgba(0,212,255,0.3); }
-    .loop-deadline {
-      font-size: 9px; color: var(--secondary); white-space: nowrap;
-    }
-    .loop-deadline.soon { color: var(--amber); font-weight: 600; }
-    .loop-deadline.overdue { color: var(--red, #f87171); font-weight: 600; }
-    .loop-days {
-      font-size: 10px; font-weight: 600;
-      padding: 0px 5px; border-radius: 8px;
-      background: rgba(245, 200, 66, 0.1);
-      color: var(--amber);
-      border: 1px solid rgba(245, 200, 66, 0.3);
-      flex-shrink: 0;
-    }
-    .loop-days.fresh {
-      background: var(--green-bg);
-      color: var(--green);
-      border-color: rgba(0, 229, 160, 0.3);
+    .loop-table .lt-age.stale { background: rgba(245, 200, 66, 0.1); color: var(--amber); border: 1px solid rgba(245, 200, 66, 0.3); }
+    .loop-table .lt-age.fresh { background: var(--green-bg); color: var(--green); border: 1px solid rgba(0, 229, 160, 0.3); }
+    .loop-table .lt-deadline { font-size: 9px; color: var(--secondary); white-space: nowrap; }
+    .loop-table .lt-deadline.soon { color: var(--amber); font-weight: 600; }
+    .loop-table .lt-deadline.overdue { color: var(--red); font-weight: 600; }
+    .loop-table .lt-resolved { opacity: 0.4; }
+    .loop-table thead th {
+      font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--secondary); padding: 3px 8px; border-bottom: 1px solid var(--border);
+      text-align: left;
     }
 
     /* ── Tables ── */
@@ -546,7 +542,7 @@
     html:not([data-theme="dark"]) body { background-image: none; }
     html:not([data-theme="dark"]) .card { background: rgba(255,255,255,0.8); box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
     html:not([data-theme="dark"]) .obj-card { background: rgba(255,255,255,0.7); }
-    html:not([data-theme="dark"]) .loop-item { background: rgba(255,255,255,0.6); }
+    html:not([data-theme="dark"]) .loop-widget { background: rgba(255,255,255,0.6); }
     html:not([data-theme="dark"]) .stat-item { background: rgba(255,255,255,0.6); }
     html:not([data-theme="dark"]) .int-card { background: rgba(255,255,255,0.6); }
     html:not([data-theme="dark"]) .cal-event { background: rgba(255,255,255,0.7); }
@@ -584,7 +580,7 @@
     <div class="header-top">
       <div class="header-left">
         <h1>&#10022; April</h1>
-        <span class="version-badge" id="version-badge">v26.12.18</span>
+        <span class="version-badge" id="version-badge">v26.12.19</span>
         <span style="font-size:10px;color:var(--secondary);letter-spacing:0.04em;">MMM4</span>
       </div>
       <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
@@ -619,8 +615,10 @@
     <h3>Open Loops</h3>
     <span class="updated" id="loops-updated"></span>
   </div>
-  <div class="loop-list" id="loop-list">
-    <div class="loop-item" style="color:var(--secondary); font-size:13px;">Loading open loops…</div>
+  <div class="loop-widget" id="loop-widget">
+    <div class="loop-list" id="loop-list">
+      <div style="color:var(--secondary); font-size:11px; padding: 6px 8px;">Loading open loops…</div>
+    </div>
   </div>
 
   <!-- Integration Health Strip -->
@@ -945,7 +943,7 @@ function renderLoops(data) {
   const list  = document.getElementById("loop-list");
   const updEl = document.getElementById("loops-updated");
   if (!data || !Array.isArray(data.loops) || data.loops.length === 0) {
-    list.innerHTML = '<div class="loop-item" style="color:var(--secondary);font-size:13px;">No open loops</div>';
+    list.innerHTML = '<div style="color:var(--secondary);font-size:11px;padding:6px 8px;">No open loops</div>';
     return;
   }
   setUpdatedBadge(updEl, data.updatedAt);
@@ -955,10 +953,11 @@ function renderLoops(data) {
   const active = data.loops.filter(l => !l.status || l.status === "active");
   const resolved = data.loops.filter(l => l.status === "resolved");
 
-  function renderLoop(l) {
+  function renderRow(l) {
     const days = Number(l.daysOpen) || 0;
     const fresh = days <= 2;
     const ownerCls = (l.owner || "").toLowerCase() === "claw" ? "claw" : "nick";
+    const ownerLabel = (l.owner || "").toLowerCase() === "claw" ? "Claw" : "Nick";
     const isResolved = l.status === "resolved";
 
     let deadlineHtml = "";
@@ -968,38 +967,36 @@ function renderLoops(data) {
       const daysLeft = Math.ceil((dl - now) / 86400000);
       const cls = daysLeft < 0 ? "overdue" : daysLeft <= 3 ? "soon" : "";
       const label = daysLeft < 0 ? `${Math.abs(daysLeft)}d overdue` : daysLeft === 0 ? "today" : `${daysLeft}d left`;
-      deadlineHtml = `<span class="loop-deadline ${cls}">\u23f0 ${label}</span>`;
+      deadlineHtml = `<span class="lt-deadline ${cls}">${label}</span>`;
     }
 
-    return `<div class="loop-item ${isResolved ? "resolved" : ""}">
-      <div class="loop-top">
-        <span class="loop-text">${isResolved ? "\u2713 " : ""}${esc(l.item)}</span>
-        ${l.nextAction ? `<span class="loop-next">${esc(l.nextAction)}</span>` : ""}
-      </div>
-      <div class="loop-meta-row">
-        <span class="loop-owner ${ownerCls}">${esc(l.owner || "")}</span>
-        ${deadlineHtml}
-        <span class="loop-days ${fresh ? "fresh" : ""}">${days}d</span>
-      </div>
-    </div>`;
+    return `<tr class="${isResolved ? "lt-resolved" : ""}">
+      <td class="lt-item">${isResolved ? "✓ " : ""}${esc(l.item)}</td>
+      <td class="lt-next">${l.nextAction ? esc(l.nextAction) : ""}</td>
+      <td><span class="lt-owner ${ownerCls}">${ownerLabel}</span></td>
+      <td><span class="lt-age ${fresh ? "fresh" : "stale"}">${days}d open</span></td>
+      <td>${deadlineHtml}</td>
+    </tr>`;
+  }
+
+  function renderGroup(label, cssClass, loops) {
+    if (!loops.length) return "";
+    let html = `<div class="loop-group-label ${cssClass}">${label}</div>`;
+    html += `<table class="loop-table"><thead><tr><th>Item</th><th>Next Action</th><th>Owner</th><th>Age</th><th>Deadline</th></tr></thead><tbody>`;
+    html += loops.map(renderRow).join("");
+    html += `</tbody></table>`;
+    return html;
   }
 
   let html = "";
-  if (blocked.length) {
-    html += `<div class="loop-group-label blocked">\u26a0 Needs Nick (${blocked.length})</div>`;
-    html += blocked.map(renderLoop).join("");
-  }
-  if (actionable.length) {
-    html += `<div class="loop-group-label actionable">\u26a1 Claw Can Handle (${actionable.length})</div>`;
-    html += actionable.map(renderLoop).join("");
-  }
+  html += renderGroup("⚠ Needs Nick (" + blocked.length + ")", "blocked", blocked);
+  html += renderGroup("⚡ Claw Can Handle (" + actionable.length + ")", "actionable", actionable);
   if (active.length) {
-    html += active.map(renderLoop).join("");
+    html += `<table class="loop-table"><thead><tr><th>Item</th><th>Next Action</th><th>Owner</th><th>Age</th><th>Deadline</th></tr></thead><tbody>`;
+    html += active.map(renderRow).join("");
+    html += `</tbody></table>`;
   }
-  if (resolved.length) {
-    html += `<div class="loop-group-label">\u2713 Recently Resolved (${resolved.length})</div>`;
-    html += resolved.map(renderLoop).join("");
-  }
+  html += renderGroup("✓ Recently Resolved (" + resolved.length + ")", "", resolved);
   list.innerHTML = html;
 }
 
