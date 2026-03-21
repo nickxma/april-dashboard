@@ -122,9 +122,14 @@ out = {
 }
 import os
 live_dir = os.path.expanduser("~/.openclaw/workspace/dashboard-ui/live")
-with open(os.path.join(live_dir, "cron-jobs.json"), "w") as f:
-    json.dump(out, f, indent=2)
-print(f"Wrote {len(jobs_out)} cron jobs")
+cron_path = os.path.join(live_dir, "cron-jobs.json")
+if jobs_out:
+    with open(cron_path, "w") as f:
+        json.dump(out, f, indent=2)
+    print(f"Wrote {len(jobs_out)} cron jobs")
+else:
+    # openclaw returned empty list (service momentarily busy) — keep last good file
+    print(f"Wrote 0 cron jobs (skipped: kept previous cron-jobs.json)")
 PYEOF
 
 # ─── GATEWAY STATUS ─────────────────────────────────────────────────────────
@@ -347,15 +352,38 @@ log "--- Export complete at $LOCAL_TS ---"
 
 # ─── SYSTEM SUMMARY (flat for stat panels) ────────────────────────────────
 log "Building system summary..."
-python3 - "$LIVE_DIR" <<'PYEOF2'
+python3 - "$LIVE_DIR" "$LOCAL_TS" <<'PYEOF2'
 import json, sys, os
-live = sys.argv[1]
-gw = {}; sh = {}
+live, local_ts = sys.argv[1], sys.argv[2]
+gw = {}; sh = {}; cj = {}
 try: gw = json.load(open(os.path.join(live, "gateway-status.json")))
 except: pass
 try: sh = json.load(open(os.path.join(live, "system-health.json")))
 except: pass
-flat = [{"gateway": gw.get("gateway",{}).get("state","unknown"), "model": gw.get("model","unknown"), "sessions": gw.get("sessions",{}).get("total",0), "slack": gw.get("channels",{}).get("slack","unknown"), "overall": sh.get("summary",{}).get("overall","unknown"), "failingJobs": sh.get("summary",{}).get("failingJobs",0), "enabledJobs": sh.get("summary",{}).get("enabledJobs",0)}]
+try: cj = json.load(open(os.path.join(live, "cron-jobs.json")))
+except: pass
+gw_state = gw.get("gateway",{}).get("state","unknown")
+slack_state = gw.get("channels",{}).get("slack","unknown")
+model_val = gw.get("model","unknown")
+overall_val = sh.get("summary",{}).get("overall","unknown")
+# Compute live job counts directly from cron-jobs.json (fresher than system-health.json)
+cj_jobs = cj.get("jobs", [])
+failing_jobs = len([j for j in cj_jobs if j.get("status") == "error"])
+enabled_jobs = len([j for j in cj_jobs if j.get("enabled", True)])
+flat = [{
+    "gateway": gw_state,
+    "gatewayOk": 1 if gw_state == "running" else 0,
+    "model": model_val,
+    "modelOk": 1 if model_val not in ("unknown", "") else 0,
+    "sessions": gw.get("sessions",{}).get("total",0),
+    "slack": slack_state,
+    "slackOk": 1 if slack_state == "ok" else 0,
+    "overall": overall_val,
+    "statusLevel": 1 if overall_val == "ok" else (0 if overall_val == "degraded" else -1),
+    "failingJobs": failing_jobs,
+    "enabledJobs": enabled_jobs,
+    "updatedAt": cj.get("updatedAt", local_ts),
+}]
 with open(os.path.join(live, "system-summary.json"), "w") as f:
     json.dump({"summary": flat}, f, indent=2)
 print(f"Wrote system-summary.json")

@@ -1874,10 +1874,10 @@
           "global_query_id": "",
           "parser": "backend",
           "refId": "A",
-          "root_selector": "",
+          "root_selector": "summary",
           "source": "url",
           "type": "json",
-          "url": "http://127.0.0.1:3001/cron-jobs.json",
+          "url": "http://127.0.0.1:3001/system-summary.json",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -1890,8 +1890,7 @@
   ],
   "refresh": "5m",
   "schemaVersion": 42,
-  "style": "light",
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 19
+  "version": 20
 }
