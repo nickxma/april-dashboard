@@ -1,25 +1,16 @@
 {
-  "updatedAt": "2026-03-21 13:31 CDT",
-  "updatedAtIso": "2026-03-21T18:31:46Z",
+  "updatedAt": "2026-03-21 18:45 CDT",
+  "updatedAtIso": "2026-03-21T23:45:01Z",
   "total": 3,
   "errors": [
-    {
-      "time": "2026-03-21 11:54 CDT",
-      "component": "paperclip-activity-feed",
-      "severity": "critical",
-      "status": "open",
-      "error": "cron: job execution timed out",
-      "meaning": "Paperclip watchdog consistently times out at 120s \u2014 job is taking longer than its timeout allows, likely due to API latency or heavy Paperclip issue scanning. 3 consecutive errors, alternating between timeout and message delivery failures.",
-      "suggestedFix": "Increase job timeoutSeconds beyond 120 or narrow the Paperclip query scope (fewer issues, limit fields) to reduce runtime."
-    },
     {
       "time": "2026-03-21 06:15 CDT",
       "component": "daily-brief",
       "severity": "warn",
       "status": "open",
       "error": "\u26a0\ufe0f \u2709\ufe0f Message failed",
-      "meaning": "Daily brief ran successfully and produced output but failed to deliver to the #daily-brief Slack channel. Content was generated (flight day summary, Toggl data, weather) but message post failed. 3 consecutive errors.",
-      "suggestedFix": "Verify the Slack channel target in delivery config \u2014 ensure 'channel:C0AMSE2TW2X' is a valid resolvable channel ID and the bot has write access."
+      "meaning": "Daily brief ran successfully and produced output but Slack delivery failed \u2014 the announce channel target (channel:C0AMSE2TW2X) is not resolving correctly. Consecutive errors: 3.",
+      "suggestedFix": "Update job delivery config to use bare channel ID C0AMSE2TW2X (remove 'channel:' prefix) in the 'to' field."
     },
     {
       "time": "2026-03-21 08:00 CDT",
@@ -27,8 +18,17 @@
       "severity": "warn",
       "status": "open",
       "error": "\u26a0\ufe0f \u2709\ufe0f Message failed",
-      "meaning": "Infrastructure scan ran and produced output (version checks, MCP intel) but Slack delivery to #infrastructure failed. Content was delivered via fallback but message tool returned an error. 1 consecutive error.",
-      "suggestedFix": "Check delivery channel config \u2014 'c0anlfzd1tj' target format may need 'channel:' prefix. Align with working job delivery patterns."
+      "meaning": "Infrastructure scan ran and produced output but Slack delivery failed \u2014 the announce channel target format is invalid. Consecutive errors: 1.",
+      "suggestedFix": "Update job delivery config to use bare channel ID C0ANLFZD1TJ (remove 'channel:' prefix from 'to' field or use just channelId in delivery)."
+    },
+    {
+      "time": "2026-03-21 17:00 CDT",
+      "component": "calendar-daily-fill",
+      "severity": "warn",
+      "status": "open",
+      "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
+      "meaning": "Calendar fill job ran and created calendar events correctly but Slack notification failed \u2014 the channel target 'slack:c0an2rabc3w' is using an unsupported format. Consecutive errors: 1.",
+      "suggestedFix": "Update job delivery channel to use bare channel ID C0AN2RABC3W without the 'slack:' prefix."
     }
   ]
 }

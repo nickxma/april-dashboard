@@ -1,21 +1,21 @@
 {
-  "updatedAt": "2026-03-21 13:59 CDT",
+  "updatedAt": "2026-03-21 17:59 CDT",
   "summary": {
     "overall": "degraded",
-    "enabledJobs": 20,
-    "failingJobs": 2,
+    "enabledJobs": 21,
+    "failingJobs": 3,
     "staleJobs": 0,
-    "openErrors": 2
+    "openErrors": 3
   },
   "errors": [
     {
-      "time": "2026-03-21 07:15 CDT",
+      "time": "2026-03-21 06:15 CDT",
       "component": "daily-brief",
       "severity": "warn",
       "status": "open",
       "error": "⚠️ ✉️ Message failed",
-      "meaning": "Daily brief job ran successfully and generated content, but failed to deliver the message to the #daily-brief Slack channel. Job has 3 consecutive errors — all delivery failures.",
-      "suggestedFix": "Check the delivery target config for daily-brief job; the channel ID 'channel:C0AMSE2TW2X' may need to be verified or the Slack bot may need write access to that channel."
+      "meaning": "Daily brief ran successfully and produced output but Slack delivery failed — the announce channel target (channel:C0AMSE2TW2X) is not resolving correctly. Consecutive errors: 3.",
+      "suggestedFix": "Update job delivery config to use bare channel ID C0AMSE2TW2X (remove 'channel:' prefix) in the 'to' field."
     },
     {
       "time": "2026-03-21 08:00 CDT",
@@ -23,8 +23,17 @@
       "severity": "warn",
       "status": "open",
       "error": "⚠️ ✉️ Message failed",
-      "meaning": "Infrastructure daily scan ran and produced content, but failed to deliver to the #infrastructure Slack channel. Job has 1 consecutive error.",
-      "suggestedFix": "Check the delivery channel config for infrastructure-daily-scan; channel 'c0anlfzd1tj' / 'channel:C0ANLFZD1TJ' may need consistent formatting or the Slack bot needs channel write access."
+      "meaning": "Infrastructure scan ran and produced output but Slack delivery failed — the announce channel target format is invalid. Consecutive errors: 1.",
+      "suggestedFix": "Update job delivery config to use bare channel ID C0ANLFZD1TJ (remove 'channel:' prefix from 'to' field or use just channelId in delivery)."
+    },
+    {
+      "time": "2026-03-21 17:00 CDT",
+      "component": "calendar-daily-fill",
+      "severity": "warn",
+      "status": "open",
+      "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
+      "meaning": "Calendar fill job ran and created calendar events correctly but Slack notification failed — the channel target 'slack:c0an2rabc3w' is using an unsupported format. Consecutive errors: 1.",
+      "suggestedFix": "Update job delivery channel to use bare channel ID C0AN2RABC3W without the 'slack:' prefix."
     }
   ]
 }

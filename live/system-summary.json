@@ -2,12 +2,17 @@
   "summary": [
     {
       "gateway": "running",
+      "gatewayOk": 1,
       "model": "main",
-      "sessions": 342,
+      "modelOk": 1,
+      "sessions": 307,
       "slack": "ok",
+      "slackOk": 1,
       "overall": "degraded",
+      "statusLevel": 0,
       "failingJobs": 3,
-      "enabledJobs": 20
+      "enabledJobs": 21,
+      "updatedAt": "2026-03-21 18:43 CDT"
     }
   ]
 }
