@@ -1,26 +1,26 @@
 {
-  "updatedAt": "2026-03-20T04:57:00Z",
-  "source": "#april-journal",
   "objectives": [
     {
       "name": "Baddies",
       "status": "Active",
-      "latest": "Steady momentum, no blockers."
+      "latest": "NYC trip next week — yoga w/ Carly + Diana + summit dinners. Rae off the table. Waiting on confirmations."
     },
     {
       "name": "Mindfulness Content",
       "status": "Active",
-      "latest": "paradoxofacceptance.xyz live with interactive tools. Obsidian-first knowledge architecture adopted. Exploring voice interaction."
+      "latest": "Voice profile done, rewrites done, but paradoxofacceptance.xyz still has zero live content. Tweet 1 draft sitting unapproved in #obj-95 (5+ cycles). Toggl: 27h (5%)."
     },
     {
-      "name": "Stablecoin / Work",
-      "status": "Amber",
-      "latest": "Deliverables done. Smitha pitch not started — 31 days to April 20 deadline."
+      "name": "Stablecoin Expertise",
+      "status": "Paused",
+      "latest": "31 days to April 20 deadline. Deck + one-pagers built. Smitha pitch: zero progress. PYUSD at $4.1B, Arbitrum live. Toggl: <1h tagged — massive gap vs priority. PYUSDx platform launched."
     },
     {
-      "name": "Sell Manhattan Co-op",
-      "status": "Amber",
-      "latest": "NYC visit March 22 — deciding sell-now vs. wait for fall. 2 days out."
+      "name": "Selling Co-op",
+      "status": "Active",
+      "latest": "Matylda Pearson meeting locked Wed Mar 25, 9-10am ET. Apartment prepped. Questions not yet drafted."
     }
-  ]
+  ],
+  "updatedAt": "2026-03-20T22:54:00-05:00",
+  "sources": ["#journal", "#toggl", "#obj-95", "#obj-95b", "#obj-106", "#paperclip"]
 }

@@ -1,45 +1,69 @@
 {
   "loops": [
     {
-      "item": "Smitha pitch outline — stablecoin wedge",
-      "nextAction": "Draft 1-page pitch deck for Smitha meeting",
+      "item": "Smitha pitch — schedule meeting",
+      "nextAction": "Nick: reach out to Smitha to schedule. Deck is ready.",
       "daysOpen": 4,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": "2026-04-20"
+    },
+    {
+      "item": "Tweet 1 draft — pick A/B/C",
+      "nextAction": "Nick: reply in #obj-95 with A, B, or C to approve",
+      "daysOpen": 5,
       "owner": "Nick",
       "status": "blocked",
       "deadline": null
     },
     {
-      "item": "Formula backup employee search",
-      "nextAction": "Decide: post on Upwork or ask network for referrals?",
+      "item": "Matylda Pearson meeting prep",
+      "nextAction": "Claw: draft questions for Nick to review",
+      "daysOpen": 0,
+      "owner": "Claw",
+      "status": "actionable",
+      "deadline": "2026-03-25"
+    },
+    {
+      "item": "paradoxofacceptance.xyz — deploy rewrites",
+      "nextAction": "Nick: read rewrites in Obsidian/02_Objectives/02_Mindfulness/Rewrites/ and approve",
+      "daysOpen": 1,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": null
+    },
+    {
+      "item": "Formula backup employee",
+      "nextAction": "Nick: decide Upwork vs network referrals",
       "daysOpen": 3,
       "owner": "Nick",
       "status": "blocked",
       "deadline": null
     },
     {
-      "item": "Co-op: sell now vs wait for fall",
-      "nextAction": "Decision at March 25 meeting with Matylda",
-      "daysOpen": 5,
+      "item": "Notion API key — 401 unauthorized",
+      "nextAction": "Nick: refresh token at notion.so/my-integrations, share DB with integration",
+      "daysOpen": 0,
       "owner": "Nick",
       "status": "blocked",
-      "deadline": "2026-03-25"
+      "deadline": null
     },
     {
-      "item": "Link @quiet_drift to teacher-debates site footer",
-      "nextAction": "Add Twitter link to footer HTML and deploy",
+      "item": "Fix OpenAI Codex OAuth",
+      "nextAction": "Nick: run openclaw models auth login --provider openai-codex",
+      "daysOpen": 0,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": "2026-03-20"
+    },
+    {
+      "item": "Link @quiet_drift to teacher-debates footer",
+      "nextAction": "Claw: add Twitter link to footer HTML and deploy",
       "daysOpen": 2,
       "owner": "Claw",
       "status": "actionable",
       "deadline": null
-    },
-    {
-      "item": "Google Calendar OAuth re-auth",
-      "nextAction": null,
-      "daysOpen": 1,
-      "owner": "Nick",
-      "status": "resolved",
-      "deadline": null
     }
   ],
-  "updatedAt": "2026-03-20T09:15:00-05:00"
+  "updatedAt": "2026-03-20T22:54:00-05:00"
 }

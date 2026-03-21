@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-20 16:57 CDT",
+  "updatedAt": "2026-03-20 20:57 CDT",
   "projects": [
     {
       "name": "Launch Twitter account for AI + mindfulness content",
@@ -52,6 +52,12 @@
       "cadence": "Every 5m"
     },
     {
+      "name": "gmail-calendar-sync",
+      "status": "ok",
+      "workstream": "Email-to-calendar auto-add for bookings/invites",
+      "cadence": "Every 30m"
+    },
+    {
       "name": "dashboard-integrations-refresh",
       "status": "ok",
       "workstream": "Integration status checks (Slack, GitHub, Obsidian, etc.)",
@@ -71,7 +77,7 @@
     },
     {
       "name": "daily-brief",
-      "status": "ok",
+      "status": "error",
       "workstream": "Morning brief: calendar, email, Toggl, weather to #daily-brief",
       "cadence": "06:15 America/Chicago daily"
     },
@@ -80,6 +86,12 @@
       "status": "ok",
       "workstream": "Morning/evening journal prompts",
       "cadence": "06:00 and 18:00 America/Chicago daily"
+    },
+    {
+      "name": "calendar-daily-fill",
+      "status": "ok",
+      "workstream": "Fills tomorrow's calendar gaps with time blocks",
+      "cadence": "17:00 America/Chicago daily"
     },
     {
       "name": "journal-to-paperclip-sync",
