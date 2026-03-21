@@ -1,21 +1,30 @@
 {
-  "updatedAt": "2026-03-20 22:59 CDT",
+  "updatedAt": "2026-03-20 23:59 CDT",
   "summary": {
     "overall": "degraded",
     "enabledJobs": 20,
     "failingJobs": 1,
     "staleJobs": 0,
-    "openErrors": 1
+    "openErrors": 2
   },
   "errors": [
     {
-      "time": "2026-03-20 06:04 CDT",
+      "time": "2026-03-20 23:03 CDT",
+      "component": "daily-brief",
+      "severity": "warn",
+      "status": "open",
+      "error": "⚠️ ✉️ Message failed",
+      "meaning": "The daily brief ran and generated output but an internal Slack message tool call failed during execution (agent output was still delivered, but the job finished in error state)",
+      "suggestedFix": "Check delivery config for daily-brief — ensure target uses explicit format 'channel:C0AMSE2TW2X'; inspect agent run logs for which message call failed"
+    },
+    {
+      "time": "2026-03-20 17:05 CDT",
       "component": "daily-brief",
       "severity": "warn",
       "status": "open",
       "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
-      "meaning": "The daily-brief job ran successfully but failed to deliver its output to Slack because the delivery channel 'slack:c0an2rabc3w' is not a valid channel ID format.",
-      "suggestedFix": "Update the daily-brief cron job delivery config to use a valid channel ID (e.g. channel:C0AN2RABC3W or the raw channel ID C0AN2RABC3W)."
+      "meaning": "On first run after job creation, the delivery target was not in a valid Slack ID format — the channel was not recognized",
+      "suggestedFix": "Delivery config was missing explicit channel ID prefix; update to 'channel:C0AMSE2TW2X' (already partially fixed in state, but consecutiveErrors persist)"
     }
   ]
 }
