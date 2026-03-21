@@ -2,68 +2,92 @@
   "loops": [
     {
       "item": "Smitha pitch — schedule meeting",
-      "nextAction": "Nick: reach out to Smitha to schedule. Deck is ready.",
-      "daysOpen": 4,
+      "nextAction": "Nick: reach out to Smitha to schedule pitch. Deck + one-pagers are ready.",
+      "daysOpen": 5,
       "owner": "Nick",
       "status": "blocked",
       "deadline": "2026-04-20"
     },
     {
+      "item": "Confirm yoga with Carly + Diana (NYC)",
+      "nextAction": "Nick: text Carly and Diana to confirm yoga sessions before leaving for NYC.",
+      "daysOpen": 1,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": "2026-03-22"
+    },
+    {
       "item": "Tweet 1 draft — pick A/B/C",
-      "nextAction": "Nick: reply in #obj-95 with A, B, or C to approve",
-      "daysOpen": 5,
+      "nextAction": "Nick: reply in #obj-95 with A, B, or C to approve Tweet 1 opener.",
+      "daysOpen": 6,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": null
+    },
+    {
+      "item": "paradoxofacceptance.xyz — deploy content",
+      "nextAction": "Nick: proofread AI-drafted content on Austin→NYC flight, then approve for deployment.",
+      "daysOpen": 2,
       "owner": "Nick",
       "status": "blocked",
       "deadline": null
     },
     {
       "item": "Matylda Pearson meeting prep",
-      "nextAction": "Claw: draft questions for Nick to review",
-      "daysOpen": 0,
+      "nextAction": "Claw: draft questions list for Nick to review before Wed Mar 25.",
+      "daysOpen": 1,
       "owner": "Claw",
       "status": "actionable",
       "deadline": "2026-03-25"
     },
     {
-      "item": "paradoxofacceptance.xyz — deploy rewrites",
-      "nextAction": "Nick: read rewrites in Obsidian/02_Objectives/02_Mindfulness/Rewrites/ and approve",
+      "item": "Formula backup employee",
+      "nextAction": "Nick: decide Upwork vs network referrals, initiate at least one outreach.",
+      "daysOpen": 4,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": null
+    },
+    {
+      "item": "OLU-41 voice profile + OLU-42 content rewrites",
+      "nextAction": "Claw: check Paperclip for OLU-41/OLU-42 task status and surface output when ready.",
+      "daysOpen": 1,
+      "owner": "Claw",
+      "status": "actionable",
+      "deadline": null
+    },
+    {
+      "item": "Link @quiet_drift to teacher-debates footer",
+      "nextAction": "Claw: add Twitter link to footer HTML and deploy to GitHub Pages.",
+      "daysOpen": 3,
+      "owner": "Claw",
+      "status": "actionable",
+      "deadline": null
+    },
+    {
+      "item": "Fix OpenAI Codex OAuth",
+      "nextAction": "Nick: run openclaw models auth login --provider openai-codex (low priority — all crons now on Anthropic).",
       "daysOpen": 1,
       "owner": "Nick",
       "status": "blocked",
       "deadline": null
     },
     {
-      "item": "Formula backup employee",
-      "nextAction": "Nick: decide Upwork vs network referrals",
-      "daysOpen": 3,
-      "owner": "Nick",
-      "status": "blocked",
-      "deadline": null
-    },
-    {
       "item": "Notion API key — 401 unauthorized",
-      "nextAction": "Nick: refresh token at notion.so/my-integrations, share DB with integration",
-      "daysOpen": 0,
+      "nextAction": "Nick: refresh token at notion.so/my-integrations and share DB with integration.",
+      "daysOpen": 1,
       "owner": "Nick",
       "status": "blocked",
       "deadline": null
     },
     {
-      "item": "Fix OpenAI Codex OAuth",
-      "nextAction": "Nick: run openclaw models auth login --provider openai-codex",
-      "daysOpen": 0,
+      "item": "Convergence project scoping (Mindfulness × Crypto × AI)",
+      "nextAction": "Nick: decide vacation dates + MVP scope; Claw can draft V1 plan once dates confirmed.",
+      "daysOpen": 1,
       "owner": "Nick",
       "status": "blocked",
-      "deadline": "2026-03-20"
-    },
-    {
-      "item": "Link @quiet_drift to teacher-debates footer",
-      "nextAction": "Claw: add Twitter link to footer HTML and deploy",
-      "daysOpen": 2,
-      "owner": "Claw",
-      "status": "actionable",
       "deadline": null
     }
   ],
-  "updatedAt": "2026-03-20T22:54:00-05:00"
+  "updatedAt": "2026-03-21T04:08:00Z"
 }

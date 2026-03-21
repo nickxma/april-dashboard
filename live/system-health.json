@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-20 21:59 CDT",
+  "updatedAt": "2026-03-20 22:59 CDT",
   "summary": {
     "overall": "degraded",
     "enabledJobs": 20,
@@ -9,13 +9,13 @@
   },
   "errors": [
     {
-      "time": "2026-03-20 16:39 CDT",
+      "time": "2026-03-20 06:04 CDT",
       "component": "daily-brief",
       "severity": "warn",
       "status": "open",
       "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
-      "meaning": "The daily-brief job ran successfully and generated the brief, but failed to deliver it to Slack because the delivery channel is configured as 'slack:c0amse2tw2x' which is not a valid channel ID format recognized by the delivery system.",
-      "suggestedFix": "Update the daily-brief cron job delivery config: change 'channel: slack:c0amse2tw2x' to 'channel: slack' and 'to: channel:C0AMSE2TW2X' (using the proper channel:ID format)."
+      "meaning": "The daily-brief job ran successfully but failed to deliver its output to Slack because the delivery channel 'slack:c0an2rabc3w' is not a valid channel ID format.",
+      "suggestedFix": "Update the daily-brief cron job delivery config to use a valid channel ID (e.g. channel:C0AN2RABC3W or the raw channel ID C0AN2RABC3W)."
     }
   ]
 }

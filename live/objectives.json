@@ -3,24 +3,29 @@
     {
       "name": "Baddies",
       "status": "Active",
-      "latest": "NYC trip next week — yoga w/ Carly + Diana + summit dinners. Rae off the table. Waiting on confirmations."
+      "latest": "NYC trip next week — yoga w/ Carly + Diana + summit dinners. Rae off the table. No confirmations yet — that's the one open loop before departure."
     },
     {
       "name": "Mindfulness Content",
       "status": "Active",
-      "latest": "Voice profile done, rewrites done, but paradoxofacceptance.xyz still has zero live content. Tweet 1 draft sitting unapproved in #obj-95 (5+ cycles). Toggl: 27h (5%)."
+      "latest": "Engine built, 20 tweets drafted, 1 posted. paradoxofacceptance.xyz still has zero live content. Tweet 1 A/B/C approval sitting in #obj-95 (6+ cycles unanswered). OLU-41 voice profile + OLU-42 rewrites pending; calibration doc deleted and will rebuild from v2 drafts."
     },
     {
       "name": "Stablecoin Expertise",
       "status": "Paused",
-      "latest": "31 days to April 20 deadline. Deck + one-pagers built. Smitha pitch: zero progress. PYUSD at $4.1B, Arbitrum live. Toggl: <1h tagged — massive gap vs priority. PYUSDx platform launched."
+      "latest": "31 days to April 20 deadline. Deck + one-pagers + exec summary built. Smitha pitch: zero progress. NYC eats most of next week — if pitch doesn't start this weekend, window gets critical. PYUSD at $4.1B, Arbitrum live at #4 stablecoin on that chain."
     },
     {
       "name": "Selling Co-op",
       "status": "Active",
-      "latest": "Matylda Pearson meeting locked Wed Mar 25, 9-10am ET. Apartment prepped. Questions not yet drafted."
+      "latest": "Matylda Pearson (Corcoran) meeting locked Wed Mar 25, 9-10am ET. Apartment prepped. Questions not yet drafted — needed before Wednesday."
+    },
+    {
+      "name": "Formula",
+      "status": "Paused",
+      "latest": "Employee came back but unreliable. No backup candidate identified. Single point of failure — keeps getting deprioritized."
     }
   ],
-  "updatedAt": "2026-03-20T22:54:00-05:00",
-  "sources": ["#journal", "#toggl", "#obj-95", "#obj-95b", "#obj-106", "#paperclip"]
+  "updatedAt": "2026-03-21T04:08:00Z",
+  "sources": ["journal-state/2026-03-20.md", "#journal (C0AL3MWCR40)", "#toggl (C0AMWT9JB5Y)", "#obj-95 (C0AL3MQV41W)", "#obj-106 (C0AJTUZED2B)", "#obj-95b (C0AK3RYHE0P)", "#paperclip (C0AN38F223B)", "MEMORY.md", "memory/2026-03-20.md"]
 }
