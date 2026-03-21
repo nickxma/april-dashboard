@@ -1,0 +1,23 @@
+{
+  "updatedAt": "2026-03-21 12:45 CDT",
+  "updatedAtIso": "2026-03-21T17:45:00Z",
+  "gateway": {
+    "state": "unknown",
+    "pid": null,
+    "type": "local"
+  },
+  "sessions": {
+    "total": 0,
+    "active": 0,
+    "recent": []
+  },
+  "channels": {
+    "slack": "unknown"
+  },
+  "memory": {
+    "files": 0,
+    "chunks": 0
+  },
+  "model": "unknown",
+  "rawStatus": ""
+}

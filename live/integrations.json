@@ -3,59 +3,59 @@
     {
       "name": "Slack",
       "status": "connected",
-      "description": "Bot and app tokens verified (xoxb/xapp)",
-      "lastVerified": "2026-03-21T11:46:00Z"
+      "description": "Bot token active (xoxb), app token active (xapp)",
+      "lastVerified": "2026-03-21T17:46:00Z"
     },
     {
       "name": "GitHub",
       "status": "connected",
-      "description": "Logged in as nickxma via keyring (SSH protocol)",
-      "lastVerified": "2026-03-21T11:46:00Z"
+      "description": "Authenticated as nickxma via keyring (ssh protocol)",
+      "lastVerified": "2026-03-21T17:46:00Z"
     },
     {
       "name": "Obsidian",
       "status": "connected",
-      "description": "obsidian-cli found; vault at ~/Obsidian accessible",
-      "lastVerified": "2026-03-21T11:46:00Z"
+      "description": "obsidian-cli found at /opt/homebrew/bin/obsidian-cli; vault ~/Obsidian accessible",
+      "lastVerified": "2026-03-21T17:46:00Z"
     },
     {
       "name": "Google Workspace",
       "status": "connected",
-      "description": "OAuth credentials present (nickxma@gmail.com)",
-      "lastVerified": "2026-03-21T11:46:00Z"
+      "description": "OAuth credentials present for nickxma@gmail.com",
+      "lastVerified": "2026-03-21T17:46:00Z"
     },
     {
       "name": "Google Calendar",
       "status": "connected",
       "description": "Calendar events returned successfully via gog cal list",
-      "lastVerified": "2026-03-21T11:46:00Z"
+      "lastVerified": "2026-03-21T17:46:00Z"
     },
     {
       "name": "Paperclip",
       "status": "connected",
-      "description": "Local server responding at :3100",
-      "lastVerified": "2026-03-21T11:46:00Z"
+      "description": "Local server responding at http://127.0.0.1:3100",
+      "lastVerified": "2026-03-21T17:46:00Z"
     },
     {
       "name": "Tailscale",
       "status": "connected",
-      "description": "Active — mmm4 online; 2 Linux nodes (n1, n2) reachable",
-      "lastVerified": "2026-03-21T11:46:00Z"
+      "description": "Active — mmm4, iphone181, mbm4-1 (relay den), n1, n2 on network",
+      "lastVerified": "2026-03-21T17:46:00Z"
     },
     {
       "name": "Things 3",
       "status": "connected",
       "description": "things CLI found at /opt/homebrew/bin/things",
-      "lastVerified": "2026-03-21T11:46:00Z"
+      "lastVerified": "2026-03-21T17:46:00Z"
     },
     {
       "name": "1Password",
       "status": "connected",
       "description": "op CLI found at /opt/homebrew/bin/op",
-      "lastVerified": "2026-03-21T11:46:00Z"
+      "lastVerified": "2026-03-21T17:46:00Z"
     }
   ],
   "attention": [],
   "available": [],
-  "updatedAt": "2026-03-21T11:46:00Z"
+  "updatedAt": "2026-03-21T17:46:00Z"
 }

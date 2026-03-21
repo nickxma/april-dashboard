@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-21 06:57 CDT",
+  "updatedAt": "2026-03-21 10:57 CDT",
   "projects": [
     {
       "name": "Launch Twitter account for AI + mindfulness content",
@@ -65,7 +65,7 @@
     },
     {
       "name": "infrastructure-daily-scan",
-      "status": "ok",
+      "status": "error",
       "workstream": "Daily infra tooling intel for #infrastructure",
       "cadence": "08:00 America/Chicago daily"
     },

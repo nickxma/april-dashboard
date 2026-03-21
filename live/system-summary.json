@@ -1,0 +1,13 @@
+{
+  "summary": [
+    {
+      "gateway": "unknown",
+      "model": "unknown",
+      "sessions": 0,
+      "slack": "unknown",
+      "overall": "degraded",
+      "failingJobs": 3,
+      "enabledJobs": 20
+    }
+  ]
+}

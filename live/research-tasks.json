@@ -1,28 +1,28 @@
 {
-  "updatedAt": "2026-03-20T12:35:00Z",
-  "paypalAcquisitionProbabilityPct": 30,
-  "thesis": "Stripe has expressed interest in acquiring all or parts of PayPal, but PayPal is not actively seeking a sale, making a deal plausible but far from certain.",
-  "method": "Assessed probability based on credible news reports of buyer interest, seller reluctance, and regulatory/deal complexity for a mega-merger.",
+  "updatedAt": "2026-03-21T12:35:00Z",
+  "paypalAcquisitionProbabilityPct": 22,
+  "thesis": "Stripe has publicly explored acquiring PayPal but PayPal's board is reportedly not seeking a sale, making a near-term deal unlikely but not impossible.",
+  "method": "Probability estimated from reported acquirer interest, board posture signals, and analyst commentary weight.",
   "evidence": [
     {
       "date": "2026-02-24",
-      "signal": "Bloomberg reports Stripe considering acquisition of all or parts of PayPal",
+      "signal": "Bloomberg reported Stripe is considering acquiring all or parts of PayPal; PYPL stock surged ~7%",
       "direction": "bullish",
       "strength": "high",
       "url": "https://www.bloomberg.com/news/articles/2026-02-24/payments-processor-stripe-expresses-interest-in-paypal"
     },
     {
       "date": "2026-02-27",
-      "signal": "Semafor reports PayPal may not be actively seeking a sale",
+      "signal": "Semafor reported PayPal is not actively seeking a sale, tempering acquisition speculation",
       "direction": "bearish",
       "strength": "medium",
       "url": "https://www.indexbox.io/blog/paypal-acquisition-interest-reported-amid-ceo-transition/"
     },
     {
       "date": "2026-03-04",
-      "signal": "Forbes lists 5 potential acquirers, indicating broad market view of PayPal as acquisition target",
-      "direction": "bullish",
-      "strength": "low",
+      "signal": "Forbes analyst commentary says PayPal's destiny is eventual acquisition but unlikely in 2026; board would require significant overpayment",
+      "direction": "bearish",
+      "strength": "medium",
       "url": "https://www.forbes.com/sites/ronshevlin/2026/03/04/who-should-acquire-paypal-5-potential-acquirers-nobodys-talking-about/"
     }
   ]
