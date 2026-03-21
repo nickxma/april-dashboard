@@ -32,16 +32,19 @@ log "--- Export started at $LOCAL_TS ---"
 
 # ─── CRON JOBS ──────────────────────────────────────────────────────────────
 log "Exporting cron jobs..."
-CRON_RAW=$("$OPENCLAW" cron list --json 2>/dev/null || echo '{"jobs":[]}')
+CRON_TMPFILE=$(mktemp /tmp/openclaw-cron-XXXXXX.json)
+"$OPENCLAW" cron list --json 2>/dev/null > "$CRON_TMPFILE" || echo '{"jobs":[]}' > "$CRON_TMPFILE"
 
-python3 - "$CRON_RAW" "$TIMESTAMP" "$LOCAL_TS" <<'PYEOF'
+python3 - "$CRON_TMPFILE" "$TIMESTAMP" "$LOCAL_TS" <<'PYEOF'
 import json, sys, datetime
 
-raw, ts, local_ts = sys.argv[1], sys.argv[2], sys.argv[3]
+cron_file, ts, local_ts = sys.argv[1], sys.argv[2], sys.argv[3]
 try:
-    data = json.loads(raw)
+    with open(cron_file) as f:
+        data = json.load(f)
 except Exception:
     data = {"jobs": []}
+import os; os.unlink(cron_file)
 
 def ms_to_relative(ms):
     if not ms:
