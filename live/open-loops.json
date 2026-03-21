@@ -1,93 +1,125 @@
 {
   "loops": [
     {
-      "item": "Smitha pitch — schedule meeting",
-      "nextAction": "Nick: reach out to Smitha to schedule pitch. Deck + one-pagers are ready.",
-      "daysOpen": 5,
-      "owner": "Nick",
-      "status": "blocked",
-      "deadline": "2026-04-20"
-    },
-    {
-      "item": "Confirm yoga with Carly + Diana (NYC)",
-      "nextAction": "Nick: text Carly and Diana to confirm yoga sessions before leaving for NYC.",
+      "item": "OLU-43 — Smitha pitch outreach (CRITICAL)",
+      "nextAction": "Nick: provide Smitha's contact info or calendar access to unblock Stablecoin PM agent",
       "daysOpen": 1,
       "owner": "Nick",
       "status": "blocked",
-      "deadline": "2026-03-22"
+      "deadline": "2026-03-21"
     },
     {
-      "item": "Tweet 1 draft — pick A/B/C",
-      "nextAction": "Nick: reply in #obj-95 with A, B, or C to approve Tweet 1 opener.",
-      "daysOpen": 6,
+      "item": "OLU-73 — Pinecone account setup (HIGH)",
+      "nextAction": "Nick: create Pinecone account and drop credentials into OLU-73 issue",
+      "daysOpen": 1,
       "owner": "Nick",
       "status": "blocked",
       "deadline": null
     },
     {
-      "item": "paradoxofacceptance.xyz — deploy content",
-      "nextAction": "Nick: proofread AI-drafted content on Austin→NYC flight, then approve for deployment.",
+      "item": "OLU-61 — Deploy skeleton to Vercel (MEDIUM)",
+      "nextAction": "Nick: provide Vercel account access or env var credentials to unblock Founding Eng",
+      "daysOpen": 1,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": null
+    },
+    {
+      "item": "OLU-46 — Convergence MVP parent blocked (HIGH)",
+      "nextAction": "Nick: confirm vacation build-week dates AND make Waking Up content licensing decision",
+      "daysOpen": 1,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": null
+    },
+    {
+      "item": "OLU-38 — Acceptance Pass blocked after code review (MEDIUM)",
+      "nextAction": "Nick: review feat/acceptance-pass PR and merge, or unblock deployment credential",
       "daysOpen": 2,
       "owner": "Nick",
       "status": "blocked",
       "deadline": null
     },
     {
-      "item": "Matylda Pearson meeting prep",
-      "nextAction": "Claw: draft questions list for Nick to review before Wed Mar 25.",
-      "daysOpen": 1,
-      "owner": "Claw",
+      "item": "OLU-9 — Activate 26K email newsletter list",
+      "nextAction": "Nick: pick email platform and give GO on CEO's phased plan (in_review, assigned to Nick)",
+      "daysOpen": 7,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": null
+    },
+    {
+      "item": "OLU-40 — Create first Paradox of Acceptance course",
+      "nextAction": "Nick: approve course plan (3 teachers + Sam Harris) or give revised direction",
+      "daysOpen": 3,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": null
+    },
+    {
+      "item": "Confirm yoga sessions with Carly and Diana for NYC trip",
+      "nextAction": "Nick: follow up on unanswered texts to Carly and Diana before leaving",
+      "daysOpen": 2,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": "2026-03-22"
+    },
+    {
+      "item": "Prep questions for Matylda Pearson (Corcoran) meeting",
+      "nextAction": "Nick: draft sell-now vs. wait-for-fall questions before Wed March 25 9AM ET",
+      "daysOpen": 2,
+      "owner": "Nick",
       "status": "actionable",
       "deadline": "2026-03-25"
     },
     {
-      "item": "Formula backup employee",
-      "nextAction": "Nick: decide Upwork vs network referrals, initiate at least one outreach.",
+      "item": "Tweet 1 variant — awaiting Nick approval (A/B/C)",
+      "nextAction": "Nick: reply A, B, or C (or edits) in #obj-95 to unblock tweet queue",
+      "daysOpen": 1,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": null
+    },
+    {
+      "item": "Post content to paradoxofacceptance.xyz",
+      "nextAction": "Nick: proofread AI-drafted content (planned on Austin→NYC flight) then approve for publishing",
       "daysOpen": 4,
       "owner": "Nick",
       "status": "blocked",
       "deadline": null
     },
     {
-      "item": "OLU-41 voice profile + OLU-42 content rewrites",
-      "nextAction": "Claw: check Paperclip for OLU-41/OLU-42 task status and surface output when ready.",
-      "daysOpen": 1,
+      "item": "Find Formula backup employee candidate",
+      "nextAction": "Claw: draft outreach message and candidate search criteria when Nick deprioritizes NYC week",
+      "daysOpen": 5,
       "owner": "Claw",
       "status": "actionable",
       "deadline": null
     },
     {
-      "item": "Link @quiet_drift to teacher-debates footer",
-      "nextAction": "Claw: add Twitter link to footer HTML and deploy to GitHub Pages.",
-      "daysOpen": 3,
+      "item": "Re-auth Google Calendar (gog auth)",
+      "nextAction": "Nick: run `gog auth` to restore calendar read/write access",
+      "daysOpen": 2,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": null
+    },
+    {
+      "item": "Smitha pitch — start before April 20 Q3 roadmap deadline",
+      "nextAction": "Nick: initiate contact with Smitha (even a Slack message or email) before NYC trip ends",
+      "daysOpen": 6,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": "2026-04-20"
+    },
+    {
+      "item": "Paradox of Acceptance essay voice calibrator rebuild",
+      "nextAction": "Claw: rebuild calibration exercise using OLU-42 v2 rewrites as baseline (blocked on OLU-42 delivery)",
+      "daysOpen": 2,
       "owner": "Claw",
       "status": "actionable",
-      "deadline": null
-    },
-    {
-      "item": "Fix OpenAI Codex OAuth",
-      "nextAction": "Nick: run openclaw models auth login --provider openai-codex (low priority — all crons now on Anthropic).",
-      "daysOpen": 1,
-      "owner": "Nick",
-      "status": "blocked",
-      "deadline": null
-    },
-    {
-      "item": "Notion API key — 401 unauthorized",
-      "nextAction": "Nick: refresh token at notion.so/my-integrations and share DB with integration.",
-      "daysOpen": 1,
-      "owner": "Nick",
-      "status": "blocked",
-      "deadline": null
-    },
-    {
-      "item": "Convergence project scoping (Mindfulness × Crypto × AI)",
-      "nextAction": "Nick: decide vacation dates + MVP scope; Claw can draft V1 plan once dates confirmed.",
-      "daysOpen": 1,
-      "owner": "Nick",
-      "status": "blocked",
       "deadline": null
     }
   ],
-  "updatedAt": "2026-03-21T04:08:00Z"
+  "updatedAt": "2026-03-21T12:00:00.000Z"
 }

@@ -3,29 +3,43 @@
     {
       "name": "Baddies",
       "status": "Active",
-      "latest": "NYC trip next week — yoga w/ Carly + Diana + summit dinners. Rae off the table. No confirmations yet — that's the one open loop before departure."
+      "latest": "NYC trip imminent (DAS March 22) — yoga with Carly + Diana lined up, texts out, no confirmations yet; Rae fully off table"
     },
     {
       "name": "Mindfulness Content",
       "status": "Active",
-      "latest": "Engine built, 20 tweets drafted, 1 posted. paradoxofacceptance.xyz still has zero live content. Tweet 1 A/B/C approval sitting in #obj-95 (6+ cycles unanswered). OLU-41 voice profile + OLU-42 rewrites pending; calibration doc deleted and will rebuild from v2 drafts."
+      "latest": "Engine built (20 tweets, 5 sites, 760 transcripts), Tweet 1 variant A/B/C pending Nick approval, paradoxofacceptance.xyz still empty; flight proofreading window is now"
     },
     {
       "name": "Stablecoin Expertise",
       "status": "Paused",
-      "latest": "31 days to April 20 deadline. Deck + one-pagers + exec summary built. Smitha pitch: zero progress. NYC eats most of next week — if pitch doesn't start this weekend, window gets critical. PYUSD at $4.1B, Arbitrum live at #4 stablecoin on that chain."
+      "latest": "30 days to April 20 — all artifacts built, Smitha pitch CRITICAL/blocked (OLU-43); PYUSD $4.1B, Arbitrum $220M, 70-country expansion noted in latest research"
     },
     {
       "name": "Selling Co-op",
       "status": "Active",
-      "latest": "Matylda Pearson (Corcoran) meeting locked Wed Mar 25, 9-10am ET. Apartment prepped. Questions not yet drafted — needed before Wednesday."
+      "latest": "Matylda Pearson (Corcoran) meeting Wed March 25 9-10AM ET — sell now vs. wait for fall paint job is the decision; questions unprepped"
     },
     {
       "name": "Formula",
       "status": "Paused",
-      "latest": "Employee came back but unreliable. No backup candidate identified. Single point of failure — keeps getting deprioritized."
+      "latest": "Employee back but unreliable, no backup candidate identified — keeps getting deprioritized, single point of failure"
+    },
+    {
+      "name": "Convergence (Mindfulness × Crypto × AI)",
+      "status": "Active",
+      "latest": "Voice memo breakthrough 2026-03-20 — MVP in Paperclip but 4 tasks blocked (OLU-46, OLU-61, OLU-73, OLU-38); needs vacation dates + Waking Up licensing call from Nick"
     }
   ],
-  "updatedAt": "2026-03-21T04:08:00Z",
-  "sources": ["journal-state/2026-03-20.md", "#journal (C0AL3MWCR40)", "#toggl (C0AMWT9JB5Y)", "#obj-95 (C0AL3MQV41W)", "#obj-106 (C0AJTUZED2B)", "#obj-95b (C0AK3RYHE0P)", "#paperclip (C0AN38F223B)", "MEMORY.md", "memory/2026-03-20.md"]
+  "updatedAt": "2026-03-21T12:00:00.000Z",
+  "sources": [
+    "journal-state/2026-03-20.md",
+    "#journal (C0AL3MWCR40) — last 5 messages",
+    "#toggl (C0AMWT9JB5Y) — last 3 messages (no hours data, Notion sync discussion only)",
+    "#obj-95 (C0AL3MQV41W) — last 3 messages",
+    "#obj-106 (C0AJTUZED2B) — last 3 messages",
+    "#obj-95b (C0AK3RYHE0P) — last 3 messages",
+    "#paperclip (C0AN38F223B) — last 3 messages",
+    "MEMORY.md"
+  ]
 }
