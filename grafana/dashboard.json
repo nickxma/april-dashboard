@@ -7,6 +7,7 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "afgnlkc6o06bkb"
       },
+      "description": "Total number of OpenClaw agent sessions since system start.",
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -62,6 +63,7 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "afgnlkc6o06bkb"
       },
+      "description": "Jobs with consecutive errors. Check Errors & Alerts section below for details.",
       "fieldConfig": {
         "defaults": {
           "thresholds": {
@@ -135,6 +137,7 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "afgnlkc6o06bkb"
       },
+      "description": "Total enabled cron jobs currently scheduled.",
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -343,8 +346,8 @@
         "showHeader": true,
         "sortBy": [
           {
-            "desc": false,
-            "displayName": "Status"
+            "desc": true,
+            "displayName": "Errors"
           }
         ]
       },
@@ -354,6 +357,11 @@
             {
               "selector": "name",
               "text": "Name",
+              "type": "string"
+            },
+            {
+              "selector": "status",
+              "text": "Status",
               "type": "string"
             },
             {
@@ -369,11 +377,6 @@
             {
               "selector": "nextRun",
               "text": "Next Run",
-              "type": "string"
-            },
-            {
-              "selector": "status",
-              "text": "Status",
               "type": "string"
             },
             {
@@ -615,44 +618,56 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "afgnlkc6o06bkb"
       },
+      "description": "OpenClaw gateway process status (running/stopped).",
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
           "mappings": [
             {
               "options": {
-                "running": {
-                  "color": "green",
-                  "index": 0,
-                  "text": "running"
-                },
-                "stopped": {
+                "0": {
                   "color": "red",
                   "index": 1,
                   "text": "stopped"
                 },
-                "unknown": {
-                  "color": "dark-grey",
-                  "index": 2,
-                  "text": "unknown"
+                "1": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "running"
                 }
               },
               "type": "value"
             }
-          ]
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
         },
         "overrides": []
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
+        "w": 2,
         "x": 12,
         "y": 0
       },
       "id": 4,
       "options": {
-        "colorMode": "background",
+        "colorMode": "value",
         "graphMode": "none",
-        "justifyMode": "center",
+        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -667,9 +682,9 @@
         {
           "columns": [
             {
-              "selector": "gateway",
+              "selector": "gatewayOk",
               "text": "Gateway",
-              "type": "string"
+              "type": "number"
             }
           ],
           "datasource": {
@@ -699,39 +714,56 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "afgnlkc6o06bkb"
       },
+      "description": "Active AI model tier (main/fallback/unknown).",
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
           "mappings": [
             {
               "options": {
-                "main": {
-                  "color": "blue",
-                  "index": 0,
-                  "text": "main"
-                },
-                "unknown": {
-                  "color": "dark-grey",
+                "0": {
+                  "color": "yellow",
                   "index": 1,
                   "text": "unknown"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "main"
                 }
               },
               "type": "value"
             }
-          ]
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "yellow",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
         },
         "overrides": []
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
-        "x": 15,
+        "w": 2,
+        "x": 14,
         "y": 0
       },
       "id": 5,
       "options": {
-        "colorMode": "background",
+        "colorMode": "value",
         "graphMode": "none",
-        "justifyMode": "center",
+        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -746,9 +778,9 @@
         {
           "columns": [
             {
-              "selector": "model",
+              "selector": "modelOk",
               "text": "Model",
-              "type": "string"
+              "type": "number"
             }
           ],
           "datasource": {
@@ -778,49 +810,65 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "afgnlkc6o06bkb"
       },
+      "description": "Overall system status: ok = all clear, degraded = 1-2 failing jobs, error = critical failure.",
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
           "mappings": [
             {
               "options": {
-                "degraded": {
-                  "color": "orange",
-                  "index": 1,
-                  "text": "degraded"
-                },
-                "error": {
+                "-1": {
                   "color": "red",
                   "index": 2,
                   "text": "error"
                 },
-                "ok": {
+                "0": {
+                  "color": "orange",
+                  "index": 1,
+                  "text": "degraded"
+                },
+                "1": {
                   "color": "green",
                   "index": 0,
                   "text": "ok"
-                },
-                "unknown": {
-                  "color": "dark-grey",
-                  "index": 3,
-                  "text": "unknown"
                 }
               },
               "type": "value"
             }
-          ]
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
         },
         "overrides": []
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
-        "x": 18,
+        "w": 2,
+        "x": 16,
         "y": 0
       },
       "id": 6,
       "options": {
-        "colorMode": "background",
+        "colorMode": "value",
         "graphMode": "none",
-        "justifyMode": "center",
+        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -835,9 +883,9 @@
         {
           "columns": [
             {
-              "selector": "overall",
+              "selector": "statusLevel",
               "text": "Overall",
-              "type": "string"
+              "type": "number"
             }
           ],
           "datasource": {
@@ -867,44 +915,56 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "afgnlkc6o06bkb"
       },
+      "description": "Slack integration status (ok/down).",
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
           "mappings": [
             {
               "options": {
-                "error": {
+                "0": {
                   "color": "red",
                   "index": 1,
-                  "text": "error"
+                  "text": "down"
                 },
-                "ok": {
+                "1": {
                   "color": "green",
                   "index": 0,
                   "text": "ok"
-                },
-                "unknown": {
-                  "color": "dark-grey",
-                  "index": 2,
-                  "text": "unknown"
                 }
               },
               "type": "value"
             }
-          ]
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
         },
         "overrides": []
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
-        "x": 21,
+        "w": 2,
+        "x": 18,
         "y": 0
       },
       "id": 7,
       "options": {
-        "colorMode": "background",
+        "colorMode": "value",
         "graphMode": "none",
-        "justifyMode": "center",
+        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -919,9 +979,9 @@
         {
           "columns": [
             {
-              "selector": "slack",
+              "selector": "slackOk",
               "text": "Slack",
-              "type": "string"
+              "type": "number"
             }
           ],
           "datasource": {
@@ -1750,11 +1810,88 @@
         }
       ],
       "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 20,
+        "y": 0
+      },
+      "id": 8,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/Updated/",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "updatedAt",
+              "text": "Updated",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/cron-jobs.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Data Updated",
+      "type": "stat"
     }
   ],
   "refresh": "5m",
   "schemaVersion": 42,
+  "style": "light",
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 17
+  "version": 19
 }
