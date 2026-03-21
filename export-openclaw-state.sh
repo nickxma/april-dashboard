@@ -3,16 +3,32 @@
 # Exports OpenClaw state to JSON files for the Grafana dashboard
 # Runs via openclaw cron every 5 minutes
 
+# Cron-safe PATH: ensure common tool locations are available
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LIVE_DIR="$HOME/.openclaw/workspace/dashboard-ui/live"
+LOG_FILE="$SCRIPT_DIR/export.log"
 OPENCLAW="/opt/homebrew/bin/openclaw"
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 LOCAL_TS=$(date +"%Y-%m-%d %H:%M %Z")
 
+# Rotate log if > 1MB
+if [[ -f "$LOG_FILE" ]] && [[ $(wc -c < "$LOG_FILE") -gt 1048576 ]]; then
+    mv "$LOG_FILE" "${LOG_FILE}.1"
+fi
+exec >> "$LOG_FILE" 2>&1
+
+# Trap errors and log them with line number
+trap 'log "ERROR: Script failed at line $LINENO (exit code $?)"' ERR
+
 mkdir -p "$LIVE_DIR"
 
-log() { echo "[$(date +%H:%M:%S)] $*" >&2; }
+log() { echo "[$(date +%H:%M:%S)] $*"; }
+
+log "--- Export started at $LOCAL_TS ---"
 
 # ─── CRON JOBS ──────────────────────────────────────────────────────────────
 log "Exporting cron jobs..."
@@ -324,7 +340,7 @@ with open(os.path.join(live_dir, "errors-log.json"), "w") as f:
 print(f"Wrote {len(deduped)} errors")
 PYEOF
 
-log "Export complete at $LOCAL_TS"
+log "--- Export complete at $LOCAL_TS ---"
 
 # ─── SYSTEM SUMMARY (flat for stat panels) ────────────────────────────────
 log "Building system summary..."

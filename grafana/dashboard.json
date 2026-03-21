@@ -1,248 +1,22 @@
 {
-  "annotations": {
-    "list": [
-      {
-        "builtIn": 1,
-        "datasource": {
-          "type": "grafana",
-          "uid": "-- Grafana --"
-        },
-        "enable": true,
-        "hide": true,
-        "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
-        "type": "dashboard"
-      }
-    ]
-  },
   "editable": true,
-  "fiscalYearStartMonth": 0,
-  "graphTooltip": 0,
   "id": 4098924608000000,
-  "links": [],
   "panels": [
     {
-      "collapsed": false,
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
       "gridPos": {
-        "h": 1,
-        "w": 24,
+        "h": 4,
+        "w": 4,
         "x": 0,
         "y": 0
       },
-      "id": 100,
-      "title": "\ud83d\udcca System Health",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "afgnlkc6o06bkb"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "options": {
-                "running": {
-                  "color": "green",
-                  "text": "running"
-                }
-              },
-              "type": "value"
-            },
-            {
-              "options": {
-                "stopped": {
-                  "color": "red",
-                  "text": "stopped"
-                }
-              },
-              "type": "value"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 0,
-        "y": 1
-      },
-      "id": 101,
+      "id": 1,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
-        "justifyMode": "auto",
-        "reduceOptions": {
-          "calcs": [],
-          "fields": "",
-          "values": true
-        },
-        "textMode": "value",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.4.1",
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "gateway",
-              "text": "Gateway",
-              "type": "string"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "afgnlkc6o06bkb"
-          },
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "parser": "backend",
-          "refId": "A",
-          "root_selector": "summary",
-          "source": "url",
-          "type": "json",
-          "url": "http://127.0.0.1:3001/system-summary.json",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "Gateway",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "afgnlkc6o06bkb"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "blue",
-                "value": 0
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 4,
-        "y": 1
-      },
-      "id": 102,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "reduceOptions": {
-          "calcs": [],
-          "fields": "",
-          "values": true
-        },
-        "textMode": "value",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.4.1",
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "model",
-              "text": "Model",
-              "type": "string"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "afgnlkc6o06bkb"
-          },
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "parser": "backend",
-          "refId": "A",
-          "root_selector": "summary",
-          "source": "url",
-          "type": "json",
-          "url": "http://127.0.0.1:3001/system-summary.json",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "Model",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "afgnlkc6o06bkb"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              },
-              {
-                "color": "yellow",
-                "value": 5
-              },
-              {
-                "color": "red",
-                "value": 20
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 8,
-        "y": 1
-      },
-      "id": 103,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -252,7 +26,6 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "12.4.1",
       "targets": [
         {
           "columns": [
@@ -281,7 +54,7 @@
           }
         }
       ],
-      "title": "Active Sessions",
+      "title": "Sessions",
       "type": "stat"
     },
     {
@@ -291,16 +64,12 @@
       },
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
                 "color": "green",
-                "value": 0
+                "value": null
               },
               {
                 "color": "red",
@@ -314,15 +83,13 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 12,
-        "y": 1
+        "x": 4,
+        "y": 0
       },
-      "id": 104,
+      "id": 2,
       "options": {
-        "colorMode": "background",
+        "colorMode": "value",
         "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -332,7 +99,6 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "12.4.1",
       "targets": [
         {
           "columns": [
@@ -361,7 +127,7 @@
           }
         }
       ],
-      "title": "Failing Cron Jobs",
+      "title": "Failing Jobs",
       "type": "stat"
     },
     {
@@ -369,79 +135,32 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "afgnlkc6o06bkb"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "options": {
-                "ok": {
-                  "color": "green",
-                  "text": "ok"
-                }
-              },
-              "type": "value"
-            },
-            {
-              "options": {
-                "degraded": {
-                  "color": "yellow",
-                  "text": "degraded"
-                }
-              },
-              "type": "value"
-            },
-            {
-              "options": {
-                "critical": {
-                  "color": "red",
-                  "text": "critical"
-                }
-              },
-              "type": "value"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 16,
-        "y": 1
+        "x": 8,
+        "y": 0
       },
-      "id": 105,
+      "id": 3,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
-        "justifyMode": "auto",
         "reduceOptions": {
-          "calcs": [],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
-          "values": true
+          "values": false
         },
-        "textMode": "value",
-        "wideLayout": true
+        "textMode": "auto"
       },
-      "pluginVersion": "12.4.1",
       "targets": [
         {
           "columns": [
             {
-              "selector": "overall",
-              "text": "Status",
-              "type": "string"
+              "selector": "enabledJobs",
+              "text": "Total",
+              "type": "number"
             }
           ],
           "datasource": {
@@ -463,7 +182,7 @@
           }
         }
       ],
-      "title": "Overall Status",
+      "title": "Total Jobs",
       "type": "stat"
     },
     {
@@ -472,187 +191,52 @@
         "uid": "afgnlkc6o06bkb"
       },
       "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "options": {
-                "ok": {
-                  "color": "green",
-                  "text": "ok"
-                }
-              },
-              "type": "value"
-            },
-            {
-              "options": {
-                "unknown": {
-                  "color": "gray",
-                  "text": "unknown"
-                }
-              },
-              "type": "value"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 20,
-        "y": 1
-      },
-      "id": 106,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "reduceOptions": {
-          "calcs": [],
-          "fields": "",
-          "values": true
-        },
-        "textMode": "value",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.4.1",
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "slack",
-              "text": "Slack",
-              "type": "string"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "afgnlkc6o06bkb"
-          },
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "parser": "backend",
-          "refId": "A",
-          "root_selector": "summary",
-          "source": "url",
-          "type": "json",
-          "url": "http://127.0.0.1:3001/system-summary.json",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "Slack",
-      "type": "stat"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 5
-      },
-      "id": 200,
-      "title": "\u23f1 Cron Jobs",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "afgnlkc6o06bkb"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "left",
-            "cellOptions": {
-              "type": "color-text"
-            },
-            "filterable": true,
-            "inspect": false,
-            "minWidth": 80
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              }
-            ]
-          }
-        },
+        "defaults": {},
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "status"
+              "options": "Status"
             },
             "properties": [
               {
-                "id": "custom.cellOptions",
-                "value": {
-                  "type": "color-background"
-                }
+                "id": "custom.displayMode",
+                "value": "color-background"
               },
               {
                 "id": "mappings",
                 "value": [
                   {
                     "options": {
-                      "ok": {
-                        "color": "green",
-                        "index": 0,
-                        "text": "ok"
-                      }
-                    },
-                    "type": "value"
-                  },
-                  {
-                    "options": {
+                      "disabled": {
+                        "color": "dark-grey",
+                        "index": 4,
+                        "text": "disabled"
+                      },
                       "error": {
                         "color": "red",
                         "index": 1,
                         "text": "error"
-                      }
-                    },
-                    "type": "value"
-                  },
-                  {
-                    "options": {
+                      },
                       "idle": {
-                        "color": "gray",
-                        "index": 2,
+                        "color": "dark-grey",
+                        "index": 3,
                         "text": "idle"
-                      }
-                    },
-                    "type": "value"
-                  },
-                  {
-                    "options": {
+                      },
+                      "ok": {
+                        "color": "green",
+                        "index": 0,
+                        "text": "ok"
+                      },
                       "running": {
                         "color": "blue",
-                        "index": 3,
+                        "index": 2,
                         "text": "running"
+                      },
+                      "warn": {
+                        "color": "orange",
+                        "index": 5,
+                        "text": "warn"
                       }
                     },
                     "type": "value"
@@ -664,19 +248,67 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "name"
+              "options": "Errors"
             },
             "properties": [
               {
+                "id": "custom.displayMode",
+                "value": "color-text"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 1
+                    },
+                    {
+                      "color": "red",
+                      "value": 3
+                    }
+                  ]
+                }
+              },
+              {
                 "id": "custom.width",
-                "value": 260
+                "value": 60
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "schedule"
+              "options": "Name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 280
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Schedule"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 110
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Last Run"
             },
             "properties": [
               {
@@ -688,115 +320,70 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "lastRun"
+              "options": "Next Run"
             },
             "properties": [
               {
                 "id": "custom.width",
                 "value": 100
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "nextRun"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 100
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "status"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 80
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "lastError"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 300
               }
             ]
           }
         ]
       },
       "gridPos": {
-        "h": 12,
+        "h": 14,
         "w": 24,
         "x": 0,
-        "y": 6
+        "y": 4
       },
-      "id": 201,
+      "id": 10,
       "options": {
         "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
         "showHeader": true,
         "sortBy": [
           {
             "desc": false,
-            "displayName": "name"
+            "displayName": "Status"
           }
         ]
       },
-      "pluginVersion": "12.4.1",
       "targets": [
         {
           "columns": [
             {
               "selector": "name",
-              "text": "name",
+              "text": "Name",
               "type": "string"
             },
             {
               "selector": "schedule",
-              "text": "schedule",
+              "text": "Schedule",
               "type": "string"
             },
             {
               "selector": "lastRun",
-              "text": "lastRun",
+              "text": "Last Run",
               "type": "string"
             },
             {
               "selector": "nextRun",
-              "text": "nextRun",
+              "text": "Next Run",
               "type": "string"
             },
             {
               "selector": "status",
-              "text": "status",
+              "text": "Status",
               "type": "string"
             },
             {
               "selector": "consecutiveErrors",
-              "text": "errors",
+              "text": "Errors",
               "type": "number"
             },
             {
               "selector": "lastError",
-              "text": "lastError",
+              "text": "Last Error",
               "type": "string"
             }
           ],
@@ -819,234 +406,24 @@
           }
         }
       ],
-      "title": "Cron Jobs",
+      "title": "⏱ Cron Jobs",
       "type": "table"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 18
-      },
-      "id": 300,
-      "title": "\ud83d\udea8 Errors & Alerts",
-      "type": "row"
     },
     {
       "datasource": {
         "type": "yesoreyeram-infinity-datasource",
         "uid": "afgnlkc6o06bkb"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "left",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "filterable": true,
-            "inspect": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "severity"
-            },
-            "properties": [
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "type": "color-background"
-                }
-              },
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "error": {
-                        "color": "red",
-                        "index": 0,
-                        "text": "error"
-                      }
-                    },
-                    "type": "value"
-                  },
-                  {
-                    "options": {
-                      "warn": {
-                        "color": "orange",
-                        "index": 1,
-                        "text": "warn"
-                      }
-                    },
-                    "type": "value"
-                  },
-                  {
-                    "options": {
-                      "info": {
-                        "color": "blue",
-                        "index": 2,
-                        "text": "info"
-                      }
-                    },
-                    "type": "value"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "time"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 160
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "component"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 220
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "severity"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 80
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "status"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 80
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "error"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 260
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "meaning"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 320
-              }
-            ]
-          }
-        ]
-      },
       "gridPos": {
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 18
       },
-      "id": 301,
-      "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "time"
-          }
-        ]
-      },
-      "pluginVersion": "12.4.1",
+      "id": 20,
       "targets": [
         {
-          "columns": [
-            {
-              "selector": "time",
-              "text": "time",
-              "type": "string"
-            },
-            {
-              "selector": "component",
-              "text": "component",
-              "type": "string"
-            },
-            {
-              "selector": "severity",
-              "text": "severity",
-              "type": "string"
-            },
-            {
-              "selector": "status",
-              "text": "status",
-              "type": "string"
-            },
-            {
-              "selector": "error",
-              "text": "error",
-              "type": "string"
-            },
-            {
-              "selector": "meaning",
-              "text": "meaning",
-              "type": "string"
-            }
-          ],
+          "columns": [],
           "datasource": {
             "type": "yesoreyeram-infinity-datasource",
             "uid": "afgnlkc6o06bkb"
@@ -1066,332 +443,21 @@
           }
         }
       ],
-      "title": "Errors & Alerts",
+      "title": "🚨 Errors & Alerts",
       "type": "table"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 27
-      },
-      "id": 400,
-      "title": "\ud83d\udcac Session Activity",
-      "type": "row"
     },
     {
       "datasource": {
         "type": "yesoreyeram-infinity-datasource",
         "uid": "afgnlkc6o06bkb"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "left",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "filterable": true,
-            "inspect": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "type"
-            },
-            "properties": [
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "type": "color-background"
-                }
-              },
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "channel": {
-                        "color": "blue",
-                        "index": 0
-                      }
-                    },
-                    "type": "value"
-                  },
-                  {
-                    "options": {
-                      "cron": {
-                        "color": "purple",
-                        "index": 1
-                      }
-                    },
-                    "type": "value"
-                  },
-                  {
-                    "options": {
-                      "subagent": {
-                        "color": "orange",
-                        "index": 2
-                      }
-                    },
-                    "type": "value"
-                  },
-                  {
-                    "options": {
-                      "direct": {
-                        "color": "gray",
-                        "index": 3
-                      }
-                    },
-                    "type": "value"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "pct"
-            },
-            "properties": [
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "mode": "basic",
-                  "type": "gauge"
-                }
-              },
-              {
-                "id": "max",
-                "value": 100
-              },
-              {
-                "id": "min",
-                "value": 0
-              },
-              {
-                "id": "unit",
-                "value": "percent"
-              },
-              {
-                "id": "custom.width",
-                "value": 140
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "age"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 100
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "type"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 90
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "model"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 170
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "tokensK"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 90
-              },
-              {
-                "id": "displayName",
-                "value": "tokens(k)"
-              }
-            ]
-          }
-        ]
-      },
       "gridPos": {
-        "h": 10,
-        "w": 24,
-        "x": 0,
-        "y": 28
-      },
-      "id": 401,
-      "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": [
-          {
-            "desc": false,
-            "displayName": "age"
-          }
-        ]
-      },
-      "pluginVersion": "12.4.1",
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "type",
-              "text": "type",
-              "type": "string"
-            },
-            {
-              "selector": "age",
-              "text": "age",
-              "type": "string"
-            },
-            {
-              "selector": "model",
-              "text": "model",
-              "type": "string"
-            },
-            {
-              "selector": "tokensK",
-              "text": "tokensK",
-              "type": "number"
-            },
-            {
-              "selector": "pct",
-              "text": "pct",
-              "type": "number"
-            },
-            {
-              "selector": "key",
-              "text": "key",
-              "type": "string"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "afgnlkc6o06bkb"
-          },
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "parser": "backend",
-          "refId": "A",
-          "root_selector": "sessions",
-          "source": "url",
-          "type": "json",
-          "url": "http://127.0.0.1:3001/session-activity.json",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "Recent Sessions",
-      "type": "table"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 38
-      },
-      "id": 500,
-      "title": "\ud83c\udfaf Objectives & Loops",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "afgnlkc6o06bkb"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "auto",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "filterable": true,
-            "inspect": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
+        "h": 8,
         "w": 12,
         "x": 0,
-        "y": 39
+        "y": 26
       },
-      "id": 1,
-      "options": {
-        "cellHeight": "sm",
-        "showHeader": true
-      },
-      "pluginVersion": "12.4.1",
+      "id": 30,
       "targets": [
         {
           "columns": [
@@ -1430,7 +496,7 @@
           }
         }
       ],
-      "title": "\ud83c\udfaf Objectives",
+      "title": "🎯 Objectives",
       "type": "table"
     },
     {
@@ -1438,48 +504,13 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "afgnlkc6o06bkb"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "auto",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "filterable": true,
-            "inspect": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
       "gridPos": {
-        "h": 10,
+        "h": 8,
         "w": 12,
         "x": 12,
-        "y": 39
+        "y": 26
       },
-      "id": 2,
-      "options": {
-        "cellHeight": "sm",
-        "showHeader": true
-      },
-      "pluginVersion": "12.4.1",
+      "id": 31,
       "targets": [
         {
           "columns": [],
@@ -1510,48 +541,13 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "afgnlkc6o06bkb"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "auto",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "filterable": true,
-            "inspect": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
       "gridPos": {
-        "h": 8,
+        "h": 6,
         "w": 12,
         "x": 0,
-        "y": 49
+        "y": 34
       },
-      "id": 3,
-      "options": {
-        "cellHeight": "sm",
-        "showHeader": true
-      },
-      "pluginVersion": "12.4.1",
+      "id": 32,
       "targets": [
         {
           "columns": [],
@@ -1576,23 +572,384 @@
       ],
       "title": "Integrations",
       "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 34
+      },
+      "id": 40,
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "sessions",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/session-activity.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "💬 Session Activity",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "running": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "running"
+                },
+                "stopped": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "stopped"
+                },
+                "unknown": {
+                  "color": "dark-grey",
+                  "index": 2,
+                  "text": "unknown"
+                }
+              },
+              "type": "value"
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 12,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/Gateway/",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "gateway",
+              "text": "Gateway",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "summary",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/system-summary.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Gateway",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "main": {
+                  "color": "blue",
+                  "index": 0,
+                  "text": "main"
+                },
+                "unknown": {
+                  "color": "dark-grey",
+                  "index": 1,
+                  "text": "unknown"
+                }
+              },
+              "type": "value"
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 15,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/Model/",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "model",
+              "text": "Model",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "summary",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/system-summary.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Model",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "degraded": {
+                  "color": "orange",
+                  "index": 1,
+                  "text": "degraded"
+                },
+                "error": {
+                  "color": "red",
+                  "index": 2,
+                  "text": "error"
+                },
+                "ok": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "ok"
+                },
+                "unknown": {
+                  "color": "dark-grey",
+                  "index": 3,
+                  "text": "unknown"
+                }
+              },
+              "type": "value"
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 18,
+        "y": 0
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/Overall/",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "overall",
+              "text": "Overall",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "summary",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/system-summary.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Status",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "error": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "error"
+                },
+                "ok": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "ok"
+                },
+                "unknown": {
+                  "color": "dark-grey",
+                  "index": 2,
+                  "text": "unknown"
+                }
+              },
+              "type": "value"
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 21,
+        "y": 0
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/Slack/",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "slack",
+              "text": "Slack",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "summary",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/system-summary.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Slack",
+      "type": "stat"
     }
   ],
   "refresh": "5m",
-  "schemaVersion": 39,
-  "tags": [
-    "openclaw"
-  ],
-  "templating": {
-    "list": []
-  },
-  "time": {
-    "from": "now-6h",
-    "to": "now"
-  },
-  "timepicker": {},
-  "timezone": "browser",
-  "title": "OpenClaw",
+  "schemaVersion": 42,
+  "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 13
+  "version": 15
 }

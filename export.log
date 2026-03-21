@@ -247,3 +247,1012 @@ Wrote 3 errors
 [12:45:01] Export complete at 2026-03-21 12:45 CDT
 [12:45:01] Building system summary...
 Wrote system-summary.json
+[12:50:00] Exporting cron jobs...
+Wrote 0 cron jobs
+[12:50:00] Exporting gateway status...
+Wrote gateway-status.json
+[12:50:00] Exporting session activity...
+Wrote 0 sessions
+[12:50:01] Building errors log...
+Wrote 3 errors
+[12:50:01] Export complete at 2026-03-21 12:50 CDT
+[12:50:01] Building system summary...
+Wrote system-summary.json
+[12:55:00] Exporting cron jobs...
+Wrote 0 cron jobs
+[12:55:00] Exporting gateway status...
+Wrote gateway-status.json
+[12:55:00] Exporting session activity...
+Wrote 0 sessions
+[12:55:01] Building errors log...
+Wrote 3 errors
+[12:55:01] Export complete at 2026-03-21 12:55 CDT
+[12:55:01] Building system summary...
+Wrote system-summary.json
+[13:00:00] Exporting cron jobs...
+Wrote 0 cron jobs
+[13:00:00] Exporting gateway status...
+Wrote gateway-status.json
+[13:00:00] Exporting session activity...
+Wrote 0 sessions
+[13:00:01] Building errors log...
+Wrote 3 errors
+[13:00:01] Export complete at 2026-03-21 13:00 CDT
+[13:00:01] Building system summary...
+Wrote system-summary.json
+[13:05:00] Exporting cron jobs...
+Wrote 0 cron jobs
+[13:05:00] Exporting gateway status...
+Wrote gateway-status.json
+[13:05:01] Exporting session activity...
+Wrote 0 sessions
+[13:05:01] Building errors log...
+Wrote 3 errors
+[13:05:01] Export complete at 2026-03-21 13:05 CDT
+[13:05:01] Building system summary...
+Wrote system-summary.json
+[13:10:00] Exporting cron jobs...
+Wrote 0 cron jobs
+[13:10:01] Exporting gateway status...
+Wrote gateway-status.json
+[13:10:01] Exporting session activity...
+Wrote 0 sessions
+[13:10:01] Building errors log...
+Wrote 3 errors
+[13:10:01] Export complete at 2026-03-21 13:10 CDT
+[13:10:01] Building system summary...
+Wrote system-summary.json
+[13:15:00] Exporting cron jobs...
+Wrote 0 cron jobs
+[13:15:00] Exporting gateway status...
+Wrote gateway-status.json
+[13:15:01] Exporting session activity...
+Wrote 0 sessions
+[13:15:01] Building errors log...
+Wrote 3 errors
+[13:15:01] Export complete at 2026-03-21 13:15 CDT
+[13:15:01] Building system summary...
+Wrote system-summary.json
+[13:20:01] Exporting cron jobs...
+Wrote 0 cron jobs
+[13:20:01] Exporting gateway status...
+Wrote gateway-status.json
+[13:20:01] Exporting session activity...
+Wrote 0 sessions
+[13:20:01] Building errors log...
+Wrote 3 errors
+[13:20:01] Export complete at 2026-03-21 13:20 CDT
+[13:20:01] Building system summary...
+Wrote system-summary.json
+[13:25:01] Exporting cron jobs...
+Wrote 0 cron jobs
+[13:25:01] Exporting gateway status...
+Wrote gateway-status.json
+[13:25:01] Exporting session activity...
+Wrote 0 sessions
+[13:25:01] Building errors log...
+Wrote 3 errors
+[13:25:01] Export complete at 2026-03-21 13:25 CDT
+[13:25:01] Building system summary...
+Wrote system-summary.json
+[13:30:01] Exporting cron jobs...
+Wrote 0 cron jobs
+[13:30:01] Exporting gateway status...
+Wrote gateway-status.json
+[13:30:01] Exporting session activity...
+Wrote 0 sessions
+[13:30:01] Building errors log...
+Wrote 3 errors
+[13:30:01] Export complete at 2026-03-21 13:30 CDT
+[13:30:01] Building system summary...
+Wrote system-summary.json
+[13:35:01] Exporting cron jobs...
+/Users/nick/.openclaw/workspace/dashboard-ui/export-openclaw-state.sh: line 109: 25921 Killed: 9               python3 - "$CRON_RAW" "$TIMESTAMP" "$LOCAL_TS"  <<'PYEOF'
+import json, sys, datetime
+
+raw, ts, local_ts = sys.argv[1], sys.argv[2], sys.argv[3]
+try:
+    data = json.loads(raw)
+except Exception:
+    data = {"jobs": []}
+
+def ms_to_relative(ms):
+    if not ms:
+        return None
+    try:
+        import time
+        now = time.time() * 1000  # actual UTC ms
+        diff = (ms - now) / 1000  # seconds
+        if diff > 0:
+            mins = int(diff / 60)
+            if mins < 60: return f"in {mins}m"
+            hrs = mins // 60
+            if hrs < 24: return f"in {hrs}h"
+            return f"in {hrs//24}d"
+        else:
+            diff = abs(diff)
+            mins = int(diff / 60)
+            if mins < 60: return f"{mins}m ago"
+            hrs = mins // 60
+            if hrs < 24: return f"{hrs}h ago"
+            return f"{hrs//24}d ago"
+    except:
+        return None
+
+def ms_to_iso(ms):
+    if not ms:
+        return None
+    try:
+        import datetime
+        return datetime.datetime.fromtimestamp(ms/1000, tz=datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    except:
+        return None
+
+def schedule_str(sched):
+    if not sched:
+        return "unknown"
+    kind = sched.get("kind", "")
+    if kind == "every":
+        ms = sched.get("everyMs", 0)
+        mins = ms // 60000
+        if mins < 60: return f"every {mins}m"
+        hrs = mins // 60
+        if hrs < 24: return f"every {hrs}h"
+        return f"every {hrs//24}d"
+    elif kind == "cron":
+        return sched.get("cronExpr", "cron")
+    return kind
+
+jobs_out = []
+for j in data.get("jobs", []):
+    state = j.get("state", {})
+    sched = j.get("schedule", {})
+    last_status = state.get("lastStatus") or state.get("lastRunStatus") or "idle"
+    consecutive_errors = state.get("consecutiveErrors", 0)
+    jobs_out.append({
+        "id": j.get("id", ""),
+        "name": j.get("name", ""),
+        "enabled": j.get("enabled", True),
+        "schedule": schedule_str(sched),
+        "lastRun": ms_to_relative(state.get("lastRunAtMs")),
+        "lastRunAt": ms_to_iso(state.get("lastRunAtMs")),
+        "nextRun": ms_to_relative(state.get("nextRunAtMs")),
+        "nextRunAt": ms_to_iso(state.get("nextRunAtMs")),
+        "status": last_status,
+        "consecutiveErrors": consecutive_errors,
+        "lastDurationMs": state.get("lastDurationMs"),
+        "lastError": state.get("lastError") or ("consecutive errors: " + str(consecutive_errors) if consecutive_errors > 0 else ""),
+    })
+
+out = {
+    "updatedAt": local_ts,
+    "updatedAtIso": ts,
+    "total": len(jobs_out),
+    "jobs": jobs_out
+}
+import os
+live_dir = os.path.expanduser("~/.openclaw/workspace/dashboard-ui/live")
+with open(os.path.join(live_dir, "cron-jobs.json"), "w") as f:
+    json.dump(out, f, indent=2)
+print(f"Wrote {len(jobs_out)} cron jobs")
+PYEOF
+
+[13:40:00] Exporting cron jobs...
+/Users/nick/.openclaw/workspace/dashboard-ui/export-openclaw-state.sh: line 109: 27164 Killed: 9               python3 - "$CRON_RAW" "$TIMESTAMP" "$LOCAL_TS"  <<'PYEOF'
+import json, sys, datetime
+
+raw, ts, local_ts = sys.argv[1], sys.argv[2], sys.argv[3]
+try:
+    data = json.loads(raw)
+except Exception:
+    data = {"jobs": []}
+
+def ms_to_relative(ms):
+    if not ms:
+        return None
+    try:
+        import time
+        now = time.time() * 1000  # actual UTC ms
+        diff = (ms - now) / 1000  # seconds
+        if diff > 0:
+            mins = int(diff / 60)
+            if mins < 60: return f"in {mins}m"
+            hrs = mins // 60
+            if hrs < 24: return f"in {hrs}h"
+            return f"in {hrs//24}d"
+        else:
+            diff = abs(diff)
+            mins = int(diff / 60)
+            if mins < 60: return f"{mins}m ago"
+            hrs = mins // 60
+            if hrs < 24: return f"{hrs}h ago"
+            return f"{hrs//24}d ago"
+    except:
+        return None
+
+def ms_to_iso(ms):
+    if not ms:
+        return None
+    try:
+        import datetime
+        return datetime.datetime.fromtimestamp(ms/1000, tz=datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    except:
+        return None
+
+def schedule_str(sched):
+    if not sched:
+        return "unknown"
+    kind = sched.get("kind", "")
+    if kind == "every":
+        ms = sched.get("everyMs", 0)
+        mins = ms // 60000
+        if mins < 60: return f"every {mins}m"
+        hrs = mins // 60
+        if hrs < 24: return f"every {hrs}h"
+        return f"every {hrs//24}d"
+    elif kind == "cron":
+        return sched.get("cronExpr", "cron")
+    return kind
+
+jobs_out = []
+for j in data.get("jobs", []):
+    state = j.get("state", {})
+    sched = j.get("schedule", {})
+    last_status = state.get("lastStatus") or state.get("lastRunStatus") or "idle"
+    consecutive_errors = state.get("consecutiveErrors", 0)
+    jobs_out.append({
+        "id": j.get("id", ""),
+        "name": j.get("name", ""),
+        "enabled": j.get("enabled", True),
+        "schedule": schedule_str(sched),
+        "lastRun": ms_to_relative(state.get("lastRunAtMs")),
+        "lastRunAt": ms_to_iso(state.get("lastRunAtMs")),
+        "nextRun": ms_to_relative(state.get("nextRunAtMs")),
+        "nextRunAt": ms_to_iso(state.get("nextRunAtMs")),
+        "status": last_status,
+        "consecutiveErrors": consecutive_errors,
+        "lastDurationMs": state.get("lastDurationMs"),
+        "lastError": state.get("lastError") or ("consecutive errors: " + str(consecutive_errors) if consecutive_errors > 0 else ""),
+    })
+
+out = {
+    "updatedAt": local_ts,
+    "updatedAtIso": ts,
+    "total": len(jobs_out),
+    "jobs": jobs_out
+}
+import os
+live_dir = os.path.expanduser("~/.openclaw/workspace/dashboard-ui/live")
+with open(os.path.join(live_dir, "cron-jobs.json"), "w") as f:
+    json.dump(out, f, indent=2)
+print(f"Wrote {len(jobs_out)} cron jobs")
+PYEOF
+
+[13:45:00] Exporting cron jobs...
+/Users/nick/.openclaw/workspace/dashboard-ui/export-openclaw-state.sh: line 109: 27626 Killed: 9               python3 - "$CRON_RAW" "$TIMESTAMP" "$LOCAL_TS"  <<'PYEOF'
+import json, sys, datetime
+
+raw, ts, local_ts = sys.argv[1], sys.argv[2], sys.argv[3]
+try:
+    data = json.loads(raw)
+except Exception:
+    data = {"jobs": []}
+
+def ms_to_relative(ms):
+    if not ms:
+        return None
+    try:
+        import time
+        now = time.time() * 1000  # actual UTC ms
+        diff = (ms - now) / 1000  # seconds
+        if diff > 0:
+            mins = int(diff / 60)
+            if mins < 60: return f"in {mins}m"
+            hrs = mins // 60
+            if hrs < 24: return f"in {hrs}h"
+            return f"in {hrs//24}d"
+        else:
+            diff = abs(diff)
+            mins = int(diff / 60)
+            if mins < 60: return f"{mins}m ago"
+            hrs = mins // 60
+            if hrs < 24: return f"{hrs}h ago"
+            return f"{hrs//24}d ago"
+    except:
+        return None
+
+def ms_to_iso(ms):
+    if not ms:
+        return None
+    try:
+        import datetime
+        return datetime.datetime.fromtimestamp(ms/1000, tz=datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    except:
+        return None
+
+def schedule_str(sched):
+    if not sched:
+        return "unknown"
+    kind = sched.get("kind", "")
+    if kind == "every":
+        ms = sched.get("everyMs", 0)
+        mins = ms // 60000
+        if mins < 60: return f"every {mins}m"
+        hrs = mins // 60
+        if hrs < 24: return f"every {hrs}h"
+        return f"every {hrs//24}d"
+    elif kind == "cron":
+        return sched.get("cronExpr", "cron")
+    return kind
+
+jobs_out = []
+for j in data.get("jobs", []):
+    state = j.get("state", {})
+    sched = j.get("schedule", {})
+    last_status = state.get("lastStatus") or state.get("lastRunStatus") or "idle"
+    consecutive_errors = state.get("consecutiveErrors", 0)
+    jobs_out.append({
+        "id": j.get("id", ""),
+        "name": j.get("name", ""),
+        "enabled": j.get("enabled", True),
+        "schedule": schedule_str(sched),
+        "lastRun": ms_to_relative(state.get("lastRunAtMs")),
+        "lastRunAt": ms_to_iso(state.get("lastRunAtMs")),
+        "nextRun": ms_to_relative(state.get("nextRunAtMs")),
+        "nextRunAt": ms_to_iso(state.get("nextRunAtMs")),
+        "status": last_status,
+        "consecutiveErrors": consecutive_errors,
+        "lastDurationMs": state.get("lastDurationMs"),
+        "lastError": state.get("lastError") or ("consecutive errors: " + str(consecutive_errors) if consecutive_errors > 0 else ""),
+    })
+
+out = {
+    "updatedAt": local_ts,
+    "updatedAtIso": ts,
+    "total": len(jobs_out),
+    "jobs": jobs_out
+}
+import os
+live_dir = os.path.expanduser("~/.openclaw/workspace/dashboard-ui/live")
+with open(os.path.join(live_dir, "cron-jobs.json"), "w") as f:
+    json.dump(out, f, indent=2)
+print(f"Wrote {len(jobs_out)} cron jobs")
+PYEOF
+
+[13:50:00] Exporting cron jobs...
+/Users/nick/.openclaw/workspace/dashboard-ui/export-openclaw-state.sh: line 109: 28951 Killed: 9               python3 - "$CRON_RAW" "$TIMESTAMP" "$LOCAL_TS"  <<'PYEOF'
+import json, sys, datetime
+
+raw, ts, local_ts = sys.argv[1], sys.argv[2], sys.argv[3]
+try:
+    data = json.loads(raw)
+except Exception:
+    data = {"jobs": []}
+
+def ms_to_relative(ms):
+    if not ms:
+        return None
+    try:
+        import time
+        now = time.time() * 1000  # actual UTC ms
+        diff = (ms - now) / 1000  # seconds
+        if diff > 0:
+            mins = int(diff / 60)
+            if mins < 60: return f"in {mins}m"
+            hrs = mins // 60
+            if hrs < 24: return f"in {hrs}h"
+            return f"in {hrs//24}d"
+        else:
+            diff = abs(diff)
+            mins = int(diff / 60)
+            if mins < 60: return f"{mins}m ago"
+            hrs = mins // 60
+            if hrs < 24: return f"{hrs}h ago"
+            return f"{hrs//24}d ago"
+    except:
+        return None
+
+def ms_to_iso(ms):
+    if not ms:
+        return None
+    try:
+        import datetime
+        return datetime.datetime.fromtimestamp(ms/1000, tz=datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    except:
+        return None
+
+def schedule_str(sched):
+    if not sched:
+        return "unknown"
+    kind = sched.get("kind", "")
+    if kind == "every":
+        ms = sched.get("everyMs", 0)
+        mins = ms // 60000
+        if mins < 60: return f"every {mins}m"
+        hrs = mins // 60
+        if hrs < 24: return f"every {hrs}h"
+        return f"every {hrs//24}d"
+    elif kind == "cron":
+        return sched.get("cronExpr", "cron")
+    return kind
+
+jobs_out = []
+for j in data.get("jobs", []):
+    state = j.get("state", {})
+    sched = j.get("schedule", {})
+    last_status = state.get("lastStatus") or state.get("lastRunStatus") or "idle"
+    consecutive_errors = state.get("consecutiveErrors", 0)
+    jobs_out.append({
+        "id": j.get("id", ""),
+        "name": j.get("name", ""),
+        "enabled": j.get("enabled", True),
+        "schedule": schedule_str(sched),
+        "lastRun": ms_to_relative(state.get("lastRunAtMs")),
+        "lastRunAt": ms_to_iso(state.get("lastRunAtMs")),
+        "nextRun": ms_to_relative(state.get("nextRunAtMs")),
+        "nextRunAt": ms_to_iso(state.get("nextRunAtMs")),
+        "status": last_status,
+        "consecutiveErrors": consecutive_errors,
+        "lastDurationMs": state.get("lastDurationMs"),
+        "lastError": state.get("lastError") or ("consecutive errors: " + str(consecutive_errors) if consecutive_errors > 0 else ""),
+    })
+
+out = {
+    "updatedAt": local_ts,
+    "updatedAtIso": ts,
+    "total": len(jobs_out),
+    "jobs": jobs_out
+}
+import os
+live_dir = os.path.expanduser("~/.openclaw/workspace/dashboard-ui/live")
+with open(os.path.join(live_dir, "cron-jobs.json"), "w") as f:
+    json.dump(out, f, indent=2)
+print(f"Wrote {len(jobs_out)} cron jobs")
+PYEOF
+
+[13:55:00] Exporting cron jobs...
+/Users/nick/.openclaw/workspace/dashboard-ui/export-openclaw-state.sh: line 109: 29641 Killed: 9               python3 - "$CRON_RAW" "$TIMESTAMP" "$LOCAL_TS"  <<'PYEOF'
+import json, sys, datetime
+
+raw, ts, local_ts = sys.argv[1], sys.argv[2], sys.argv[3]
+try:
+    data = json.loads(raw)
+except Exception:
+    data = {"jobs": []}
+
+def ms_to_relative(ms):
+    if not ms:
+        return None
+    try:
+        import time
+        now = time.time() * 1000  # actual UTC ms
+        diff = (ms - now) / 1000  # seconds
+        if diff > 0:
+            mins = int(diff / 60)
+            if mins < 60: return f"in {mins}m"
+            hrs = mins // 60
+            if hrs < 24: return f"in {hrs}h"
+            return f"in {hrs//24}d"
+        else:
+            diff = abs(diff)
+            mins = int(diff / 60)
+            if mins < 60: return f"{mins}m ago"
+            hrs = mins // 60
+            if hrs < 24: return f"{hrs}h ago"
+            return f"{hrs//24}d ago"
+    except:
+        return None
+
+def ms_to_iso(ms):
+    if not ms:
+        return None
+    try:
+        import datetime
+        return datetime.datetime.fromtimestamp(ms/1000, tz=datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    except:
+        return None
+
+def schedule_str(sched):
+    if not sched:
+        return "unknown"
+    kind = sched.get("kind", "")
+    if kind == "every":
+        ms = sched.get("everyMs", 0)
+        mins = ms // 60000
+        if mins < 60: return f"every {mins}m"
+        hrs = mins // 60
+        if hrs < 24: return f"every {hrs}h"
+        return f"every {hrs//24}d"
+    elif kind == "cron":
+        return sched.get("cronExpr", "cron")
+    return kind
+
+jobs_out = []
+for j in data.get("jobs", []):
+    state = j.get("state", {})
+    sched = j.get("schedule", {})
+    last_status = state.get("lastStatus") or state.get("lastRunStatus") or "idle"
+    consecutive_errors = state.get("consecutiveErrors", 0)
+    jobs_out.append({
+        "id": j.get("id", ""),
+        "name": j.get("name", ""),
+        "enabled": j.get("enabled", True),
+        "schedule": schedule_str(sched),
+        "lastRun": ms_to_relative(state.get("lastRunAtMs")),
+        "lastRunAt": ms_to_iso(state.get("lastRunAtMs")),
+        "nextRun": ms_to_relative(state.get("nextRunAtMs")),
+        "nextRunAt": ms_to_iso(state.get("nextRunAtMs")),
+        "status": last_status,
+        "consecutiveErrors": consecutive_errors,
+        "lastDurationMs": state.get("lastDurationMs"),
+        "lastError": state.get("lastError") or ("consecutive errors: " + str(consecutive_errors) if consecutive_errors > 0 else ""),
+    })
+
+out = {
+    "updatedAt": local_ts,
+    "updatedAtIso": ts,
+    "total": len(jobs_out),
+    "jobs": jobs_out
+}
+import os
+live_dir = os.path.expanduser("~/.openclaw/workspace/dashboard-ui/live")
+with open(os.path.join(live_dir, "cron-jobs.json"), "w") as f:
+    json.dump(out, f, indent=2)
+print(f"Wrote {len(jobs_out)} cron jobs")
+PYEOF
+
+[14:00:00] Exporting cron jobs...
+/Users/nick/.openclaw/workspace/dashboard-ui/export-openclaw-state.sh: line 109: 30681 Killed: 9               python3 - "$CRON_RAW" "$TIMESTAMP" "$LOCAL_TS"  <<'PYEOF'
+import json, sys, datetime
+
+raw, ts, local_ts = sys.argv[1], sys.argv[2], sys.argv[3]
+try:
+    data = json.loads(raw)
+except Exception:
+    data = {"jobs": []}
+
+def ms_to_relative(ms):
+    if not ms:
+        return None
+    try:
+        import time
+        now = time.time() * 1000  # actual UTC ms
+        diff = (ms - now) / 1000  # seconds
+        if diff > 0:
+            mins = int(diff / 60)
+            if mins < 60: return f"in {mins}m"
+            hrs = mins // 60
+            if hrs < 24: return f"in {hrs}h"
+            return f"in {hrs//24}d"
+        else:
+            diff = abs(diff)
+            mins = int(diff / 60)
+            if mins < 60: return f"{mins}m ago"
+            hrs = mins // 60
+            if hrs < 24: return f"{hrs}h ago"
+            return f"{hrs//24}d ago"
+    except:
+        return None
+
+def ms_to_iso(ms):
+    if not ms:
+        return None
+    try:
+        import datetime
+        return datetime.datetime.fromtimestamp(ms/1000, tz=datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    except:
+        return None
+
+def schedule_str(sched):
+    if not sched:
+        return "unknown"
+    kind = sched.get("kind", "")
+    if kind == "every":
+        ms = sched.get("everyMs", 0)
+        mins = ms // 60000
+        if mins < 60: return f"every {mins}m"
+        hrs = mins // 60
+        if hrs < 24: return f"every {hrs}h"
+        return f"every {hrs//24}d"
+    elif kind == "cron":
+        return sched.get("cronExpr", "cron")
+    return kind
+
+jobs_out = []
+for j in data.get("jobs", []):
+    state = j.get("state", {})
+    sched = j.get("schedule", {})
+    last_status = state.get("lastStatus") or state.get("lastRunStatus") or "idle"
+    consecutive_errors = state.get("consecutiveErrors", 0)
+    jobs_out.append({
+        "id": j.get("id", ""),
+        "name": j.get("name", ""),
+        "enabled": j.get("enabled", True),
+        "schedule": schedule_str(sched),
+        "lastRun": ms_to_relative(state.get("lastRunAtMs")),
+        "lastRunAt": ms_to_iso(state.get("lastRunAtMs")),
+        "nextRun": ms_to_relative(state.get("nextRunAtMs")),
+        "nextRunAt": ms_to_iso(state.get("nextRunAtMs")),
+        "status": last_status,
+        "consecutiveErrors": consecutive_errors,
+        "lastDurationMs": state.get("lastDurationMs"),
+        "lastError": state.get("lastError") or ("consecutive errors: " + str(consecutive_errors) if consecutive_errors > 0 else ""),
+    })
+
+out = {
+    "updatedAt": local_ts,
+    "updatedAtIso": ts,
+    "total": len(jobs_out),
+    "jobs": jobs_out
+}
+import os
+live_dir = os.path.expanduser("~/.openclaw/workspace/dashboard-ui/live")
+with open(os.path.join(live_dir, "cron-jobs.json"), "w") as f:
+    json.dump(out, f, indent=2)
+print(f"Wrote {len(jobs_out)} cron jobs")
+PYEOF
+
+[14:05:00] Exporting cron jobs...
+/Users/nick/.openclaw/workspace/dashboard-ui/export-openclaw-state.sh: line 109: 31273 Killed: 9               python3 - "$CRON_RAW" "$TIMESTAMP" "$LOCAL_TS"  <<'PYEOF'
+import json, sys, datetime
+
+raw, ts, local_ts = sys.argv[1], sys.argv[2], sys.argv[3]
+try:
+    data = json.loads(raw)
+except Exception:
+    data = {"jobs": []}
+
+def ms_to_relative(ms):
+    if not ms:
+        return None
+    try:
+        import time
+        now = time.time() * 1000  # actual UTC ms
+        diff = (ms - now) / 1000  # seconds
+        if diff > 0:
+            mins = int(diff / 60)
+            if mins < 60: return f"in {mins}m"
+            hrs = mins // 60
+            if hrs < 24: return f"in {hrs}h"
+            return f"in {hrs//24}d"
+        else:
+            diff = abs(diff)
+            mins = int(diff / 60)
+            if mins < 60: return f"{mins}m ago"
+            hrs = mins // 60
+            if hrs < 24: return f"{hrs}h ago"
+            return f"{hrs//24}d ago"
+    except:
+        return None
+
+def ms_to_iso(ms):
+    if not ms:
+        return None
+    try:
+        import datetime
+        return datetime.datetime.fromtimestamp(ms/1000, tz=datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    except:
+        return None
+
+def schedule_str(sched):
+    if not sched:
+        return "unknown"
+    kind = sched.get("kind", "")
+    if kind == "every":
+        ms = sched.get("everyMs", 0)
+        mins = ms // 60000
+        if mins < 60: return f"every {mins}m"
+        hrs = mins // 60
+        if hrs < 24: return f"every {hrs}h"
+        return f"every {hrs//24}d"
+    elif kind == "cron":
+        return sched.get("cronExpr", "cron")
+    return kind
+
+jobs_out = []
+for j in data.get("jobs", []):
+    state = j.get("state", {})
+    sched = j.get("schedule", {})
+    last_status = state.get("lastStatus") or state.get("lastRunStatus") or "idle"
+    consecutive_errors = state.get("consecutiveErrors", 0)
+    jobs_out.append({
+        "id": j.get("id", ""),
+        "name": j.get("name", ""),
+        "enabled": j.get("enabled", True),
+        "schedule": schedule_str(sched),
+        "lastRun": ms_to_relative(state.get("lastRunAtMs")),
+        "lastRunAt": ms_to_iso(state.get("lastRunAtMs")),
+        "nextRun": ms_to_relative(state.get("nextRunAtMs")),
+        "nextRunAt": ms_to_iso(state.get("nextRunAtMs")),
+        "status": last_status,
+        "consecutiveErrors": consecutive_errors,
+        "lastDurationMs": state.get("lastDurationMs"),
+        "lastError": state.get("lastError") or ("consecutive errors: " + str(consecutive_errors) if consecutive_errors > 0 else ""),
+    })
+
+out = {
+    "updatedAt": local_ts,
+    "updatedAtIso": ts,
+    "total": len(jobs_out),
+    "jobs": jobs_out
+}
+import os
+live_dir = os.path.expanduser("~/.openclaw/workspace/dashboard-ui/live")
+with open(os.path.join(live_dir, "cron-jobs.json"), "w") as f:
+    json.dump(out, f, indent=2)
+print(f"Wrote {len(jobs_out)} cron jobs")
+PYEOF
+
+[14:10:00] Exporting cron jobs...
+/Users/nick/.openclaw/workspace/dashboard-ui/export-openclaw-state.sh: line 109: 32405 Killed: 9               python3 - "$CRON_RAW" "$TIMESTAMP" "$LOCAL_TS"  <<'PYEOF'
+import json, sys, datetime
+
+raw, ts, local_ts = sys.argv[1], sys.argv[2], sys.argv[3]
+try:
+    data = json.loads(raw)
+except Exception:
+    data = {"jobs": []}
+
+def ms_to_relative(ms):
+    if not ms:
+        return None
+    try:
+        import time
+        now = time.time() * 1000  # actual UTC ms
+        diff = (ms - now) / 1000  # seconds
+        if diff > 0:
+            mins = int(diff / 60)
+            if mins < 60: return f"in {mins}m"
+            hrs = mins // 60
+            if hrs < 24: return f"in {hrs}h"
+            return f"in {hrs//24}d"
+        else:
+            diff = abs(diff)
+            mins = int(diff / 60)
+            if mins < 60: return f"{mins}m ago"
+            hrs = mins // 60
+            if hrs < 24: return f"{hrs}h ago"
+            return f"{hrs//24}d ago"
+    except:
+        return None
+
+def ms_to_iso(ms):
+    if not ms:
+        return None
+    try:
+        import datetime
+        return datetime.datetime.fromtimestamp(ms/1000, tz=datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    except:
+        return None
+
+def schedule_str(sched):
+    if not sched:
+        return "unknown"
+    kind = sched.get("kind", "")
+    if kind == "every":
+        ms = sched.get("everyMs", 0)
+        mins = ms // 60000
+        if mins < 60: return f"every {mins}m"
+        hrs = mins // 60
+        if hrs < 24: return f"every {hrs}h"
+        return f"every {hrs//24}d"
+    elif kind == "cron":
+        return sched.get("cronExpr", "cron")
+    return kind
+
+jobs_out = []
+for j in data.get("jobs", []):
+    state = j.get("state", {})
+    sched = j.get("schedule", {})
+    last_status = state.get("lastStatus") or state.get("lastRunStatus") or "idle"
+    consecutive_errors = state.get("consecutiveErrors", 0)
+    jobs_out.append({
+        "id": j.get("id", ""),
+        "name": j.get("name", ""),
+        "enabled": j.get("enabled", True),
+        "schedule": schedule_str(sched),
+        "lastRun": ms_to_relative(state.get("lastRunAtMs")),
+        "lastRunAt": ms_to_iso(state.get("lastRunAtMs")),
+        "nextRun": ms_to_relative(state.get("nextRunAtMs")),
+        "nextRunAt": ms_to_iso(state.get("nextRunAtMs")),
+        "status": last_status,
+        "consecutiveErrors": consecutive_errors,
+        "lastDurationMs": state.get("lastDurationMs"),
+        "lastError": state.get("lastError") or ("consecutive errors: " + str(consecutive_errors) if consecutive_errors > 0 else ""),
+    })
+
+out = {
+    "updatedAt": local_ts,
+    "updatedAtIso": ts,
+    "total": len(jobs_out),
+    "jobs": jobs_out
+}
+import os
+live_dir = os.path.expanduser("~/.openclaw/workspace/dashboard-ui/live")
+with open(os.path.join(live_dir, "cron-jobs.json"), "w") as f:
+    json.dump(out, f, indent=2)
+print(f"Wrote {len(jobs_out)} cron jobs")
+PYEOF
+
+[14:15:00] Exporting cron jobs...
+/Users/nick/.openclaw/workspace/dashboard-ui/export-openclaw-state.sh: line 109: 33137 Killed: 9               python3 - "$CRON_RAW" "$TIMESTAMP" "$LOCAL_TS"  <<'PYEOF'
+import json, sys, datetime
+
+raw, ts, local_ts = sys.argv[1], sys.argv[2], sys.argv[3]
+try:
+    data = json.loads(raw)
+except Exception:
+    data = {"jobs": []}
+
+def ms_to_relative(ms):
+    if not ms:
+        return None
+    try:
+        import time
+        now = time.time() * 1000  # actual UTC ms
+        diff = (ms - now) / 1000  # seconds
+        if diff > 0:
+            mins = int(diff / 60)
+            if mins < 60: return f"in {mins}m"
+            hrs = mins // 60
+            if hrs < 24: return f"in {hrs}h"
+            return f"in {hrs//24}d"
+        else:
+            diff = abs(diff)
+            mins = int(diff / 60)
+            if mins < 60: return f"{mins}m ago"
+            hrs = mins // 60
+            if hrs < 24: return f"{hrs}h ago"
+            return f"{hrs//24}d ago"
+    except:
+        return None
+
+def ms_to_iso(ms):
+    if not ms:
+        return None
+    try:
+        import datetime
+        return datetime.datetime.fromtimestamp(ms/1000, tz=datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    except:
+        return None
+
+def schedule_str(sched):
+    if not sched:
+        return "unknown"
+    kind = sched.get("kind", "")
+    if kind == "every":
+        ms = sched.get("everyMs", 0)
+        mins = ms // 60000
+        if mins < 60: return f"every {mins}m"
+        hrs = mins // 60
+        if hrs < 24: return f"every {hrs}h"
+        return f"every {hrs//24}d"
+    elif kind == "cron":
+        return sched.get("cronExpr", "cron")
+    return kind
+
+jobs_out = []
+for j in data.get("jobs", []):
+    state = j.get("state", {})
+    sched = j.get("schedule", {})
+    last_status = state.get("lastStatus") or state.get("lastRunStatus") or "idle"
+    consecutive_errors = state.get("consecutiveErrors", 0)
+    jobs_out.append({
+        "id": j.get("id", ""),
+        "name": j.get("name", ""),
+        "enabled": j.get("enabled", True),
+        "schedule": schedule_str(sched),
+        "lastRun": ms_to_relative(state.get("lastRunAtMs")),
+        "lastRunAt": ms_to_iso(state.get("lastRunAtMs")),
+        "nextRun": ms_to_relative(state.get("nextRunAtMs")),
+        "nextRunAt": ms_to_iso(state.get("nextRunAtMs")),
+        "status": last_status,
+        "consecutiveErrors": consecutive_errors,
+        "lastDurationMs": state.get("lastDurationMs"),
+        "lastError": state.get("lastError") or ("consecutive errors: " + str(consecutive_errors) if consecutive_errors > 0 else ""),
+    })
+
+out = {
+    "updatedAt": local_ts,
+    "updatedAtIso": ts,
+    "total": len(jobs_out),
+    "jobs": jobs_out
+}
+import os
+live_dir = os.path.expanduser("~/.openclaw/workspace/dashboard-ui/live")
+with open(os.path.join(live_dir, "cron-jobs.json"), "w") as f:
+    json.dump(out, f, indent=2)
+print(f"Wrote {len(jobs_out)} cron jobs")
+PYEOF
+
+[14:20:00] Exporting cron jobs...
+/Users/nick/.openclaw/workspace/dashboard-ui/export-openclaw-state.sh: line 109: 35016 Killed: 9               python3 - "$CRON_RAW" "$TIMESTAMP" "$LOCAL_TS"  <<'PYEOF'
+import json, sys, datetime
+
+raw, ts, local_ts = sys.argv[1], sys.argv[2], sys.argv[3]
+try:
+    data = json.loads(raw)
+except Exception:
+    data = {"jobs": []}
+
+def ms_to_relative(ms):
+    if not ms:
+        return None
+    try:
+        import time
+        now = time.time() * 1000  # actual UTC ms
+        diff = (ms - now) / 1000  # seconds
+        if diff > 0:
+            mins = int(diff / 60)
+            if mins < 60: return f"in {mins}m"
+            hrs = mins // 60
+            if hrs < 24: return f"in {hrs}h"
+            return f"in {hrs//24}d"
+        else:
+            diff = abs(diff)
+            mins = int(diff / 60)
+            if mins < 60: return f"{mins}m ago"
+            hrs = mins // 60
+            if hrs < 24: return f"{hrs}h ago"
+            return f"{hrs//24}d ago"
+    except:
+        return None
+
+def ms_to_iso(ms):
+    if not ms:
+        return None
+    try:
+        import datetime
+        return datetime.datetime.fromtimestamp(ms/1000, tz=datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    except:
+        return None
+
+def schedule_str(sched):
+    if not sched:
+        return "unknown"
+    kind = sched.get("kind", "")
+    if kind == "every":
+        ms = sched.get("everyMs", 0)
+        mins = ms // 60000
+        if mins < 60: return f"every {mins}m"
+        hrs = mins // 60
+        if hrs < 24: return f"every {hrs}h"
+        return f"every {hrs//24}d"
+    elif kind == "cron":
+        return sched.get("cronExpr", "cron")
+    return kind
+
+jobs_out = []
+for j in data.get("jobs", []):
+    state = j.get("state", {})
+    sched = j.get("schedule", {})
+    last_status = state.get("lastStatus") or state.get("lastRunStatus") or "idle"
+    consecutive_errors = state.get("consecutiveErrors", 0)
+    jobs_out.append({
+        "id": j.get("id", ""),
+        "name": j.get("name", ""),
+        "enabled": j.get("enabled", True),
+        "schedule": schedule_str(sched),
+        "lastRun": ms_to_relative(state.get("lastRunAtMs")),
+        "lastRunAt": ms_to_iso(state.get("lastRunAtMs")),
+        "nextRun": ms_to_relative(state.get("nextRunAtMs")),
+        "nextRunAt": ms_to_iso(state.get("nextRunAtMs")),
+        "status": last_status,
+        "consecutiveErrors": consecutive_errors,
+        "lastDurationMs": state.get("lastDurationMs"),
+        "lastError": state.get("lastError") or ("consecutive errors: " + str(consecutive_errors) if consecutive_errors > 0 else ""),
+    })
+
+out = {
+    "updatedAt": local_ts,
+    "updatedAtIso": ts,
+    "total": len(jobs_out),
+    "jobs": jobs_out
+}
+import os
+live_dir = os.path.expanduser("~/.openclaw/workspace/dashboard-ui/live")
+with open(os.path.join(live_dir, "cron-jobs.json"), "w") as f:
+    json.dump(out, f, indent=2)
+print(f"Wrote {len(jobs_out)} cron jobs")
+PYEOF
+

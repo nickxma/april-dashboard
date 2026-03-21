@@ -1,23 +1,94 @@
 {
-  "updatedAt": "2026-03-21 12:45 CDT",
-  "updatedAtIso": "2026-03-21T17:45:00Z",
+  "updatedAt": "2026-03-21 13:31 CDT",
+  "updatedAtIso": "2026-03-21T18:31:46Z",
   "gateway": {
-    "state": "unknown",
-    "pid": null,
+    "state": "running",
+    "pid": 10831,
     "type": "local"
   },
   "sessions": {
-    "total": 0,
+    "total": 342,
     "active": 0,
-    "recent": []
+    "recent": [
+      {
+        "kind": "direct",
+        "key": "agent:main:slack:channel:c0an38\u2026",
+        "age": "\u2502",
+        "model": "group",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
+        "key": "agent:main:slack:channel:c0ak32\u2026",
+        "age": "\u2502",
+        "model": "group",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
+        "key": "agent:main:main",
+        "age": "\u2502",
+        "model": "direct",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
+        "key": "agent:main:cron:b3605742-fa0f-4\u2026",
+        "age": "\u2502",
+        "model": "direct",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
+        "key": "agent:main:cron:b3605742-fa0f-4\u2026",
+        "age": "\u2502",
+        "model": "direct",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
+        "key": "agent:main:slack:channel:c0ak32\u2026",
+        "age": "\u2502",
+        "model": "group",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
+        "key": "agent:main:cron:b22c07ef-a3cc-4\u2026",
+        "age": "\u2502",
+        "model": "direct",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
+        "key": "agent:main:cron:b22c07ef-a3cc-4\u2026",
+        "age": "\u2502",
+        "model": "direct",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
+        "key": "agent:main:cron:0152176b-6576-4\u2026",
+        "age": "\u2502",
+        "model": "direct",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
+        "key": "agent:main:cron:0152176b-6576-4\u2026",
+        "age": "\u2502",
+        "model": "direct",
+        "tokens": "\u2502"
+      }
+    ]
   },
   "channels": {
-    "slack": "unknown"
+    "slack": "ok"
   },
   "memory": {
-    "files": 0,
-    "chunks": 0
+    "files": 8,
+    "chunks": 39
   },
-  "model": "unknown",
-  "rawStatus": ""
+  "model": "main",
+  "rawStatus": "OpenClaw status\n\nOverview\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Item            \u2502 Value                                                                                              \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n\u2502 Dashboard       \u2502 http://127.0.0.1:18789/                                                                            \u2502\n\u2502 OS              \u2502 macos 26.3.1 (arm64) \u00b7 node 25.6.1                                                                 \u2502\n\u2502 Tailscale       \u2502 serve \u00b7 mmm4.tail7a0b9.ts.net \u00b7 https://mmm4.tail7a0b9.ts.net                                      \u2502\n\u2502 Channel         \u2502 stable (default)                                                                                   \u2502\n\u2502 Update          \u2502 pnpm \u00b7 npm latest 2026.3.13                                                                        \u2502\n\u2502 Gateway         \u2502 local \u00b7 ws://127.0.0.1:18789 (local loopback) \u00b7 unreachable (missing scope: operator.read)         \u2502\n\u2502 Gateway service \u2502 LaunchAgent installed \u00b7 loaded \u00b7 running (pid 10831, state active)                                 \u2502\n\u2502 Node service    \u2502 LaunchAgent not installed                                                                          \u2502\n\u2502 Agents          \u2502 1 \u00b7 no bootstrap files \u00b7 sessions 342 \u00b7 default main active 1m ago                                 \u2502\n\u2502 Memory          \u2502 8 files \u00b7 39 chunks \u00b7 sources memory \u00b7 plugin memory-core \u00b7 vector ready \u00b7 fts ready \u00b7 cache on    \u2502\n\u2502                 \u2502 (280)                                                                                              \u2502\n\u2502 Probes          \u2502 skipped (use --deep)                                                                               \u2502\n\u2502 Events          \u2502 none                                                                                               \u2502\n\u2502 Heartbeat       \u2502 1h (main)         "
 }
