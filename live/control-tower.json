@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-20 22:57 CDT",
+  "updatedAt": "2026-03-21 04:57 CDT",
   "projects": [
     {
       "name": "Launch Twitter account for AI + mindfulness content",
@@ -49,7 +49,7 @@
       "name": "paperclip-activity-feed",
       "status": "ok",
       "workstream": "Paperclip task update summaries to #paperclip",
-      "cadence": "Every 5m"
+      "cadence": "Every 30m"
     },
     {
       "name": "gmail-calendar-sync",

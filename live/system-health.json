@@ -1,30 +1,39 @@
 {
-  "updatedAt": "2026-03-20 23:59 CDT",
+  "updatedAt": "2026-03-21 05:59 CDT",
   "summary": {
     "overall": "degraded",
     "enabledJobs": 20,
-    "failingJobs": 1,
+    "failingJobs": 2,
     "staleJobs": 0,
-    "openErrors": 2
+    "openErrors": 3
   },
   "errors": [
     {
-      "time": "2026-03-20 23:03 CDT",
+      "time": "2026-03-21 04:53 CDT",
+      "component": "paperclip-activity-feed",
+      "severity": "warn",
+      "status": "open",
+      "error": "cron: job execution timed out",
+      "meaning": "Paperclip watchdog timed out after 120s — likely the Paperclip API at 127.0.0.1:3100 was slow or unresponsive, causing the agent to exceed its timeout limit.",
+      "suggestedFix": "Check if Paperclip is running: curl -s http://127.0.0.1:3100/health. If down, restart Paperclip. Consider increasing job timeoutSeconds to 180 or reducing API calls per run."
+    },
+    {
+      "time": "2026-03-21 00:43 CDT",
       "component": "daily-brief",
       "severity": "warn",
       "status": "open",
       "error": "⚠️ ✉️ Message failed",
-      "meaning": "The daily brief ran and generated output but an internal Slack message tool call failed during execution (agent output was still delivered, but the job finished in error state)",
-      "suggestedFix": "Check delivery config for daily-brief — ensure target uses explicit format 'channel:C0AMSE2TW2X'; inspect agent run logs for which message call failed"
+      "meaning": "The daily-brief job completed successfully and generated output, but the Slack delivery failed — likely a missing or malformed channel target in the delivery config.",
+      "suggestedFix": "Update the daily-brief job delivery config to use an explicit channel ID (e.g. channel:C0AMSE2TW2X) instead of relying on channel name resolution. The prior run showed 'Delivering to Slack requires target <channelId|user:ID|channel:ID>'."
     },
     {
-      "time": "2026-03-20 17:05 CDT",
+      "time": "2026-03-20 23:04 CDT",
       "component": "daily-brief",
       "severity": "warn",
       "status": "open",
       "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
-      "meaning": "On first run after job creation, the delivery target was not in a valid Slack ID format — the channel was not recognized",
-      "suggestedFix": "Delivery config was missing explicit channel ID prefix; update to 'channel:C0AMSE2TW2X' (already partially fixed in state, but consecutiveErrors persist)"
+      "meaning": "Previous daily-brief run also failed delivery — the delivery.to field was not set to a valid Slack channel ID format, so the message was never sent to #daily-brief.",
+      "suggestedFix": "Set delivery.to to 'channel:C0AMSE2TW2X' explicitly in the daily-brief cron job config to fix recurring delivery failures."
     }
   ]
 }
