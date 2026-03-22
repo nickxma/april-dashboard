@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-22 06:57 CDT",
+  "updatedAt": "2026-03-22 10:57 CDT",
   "projects": [
     {
       "name": "Launch Twitter account for AI + mindfulness content",
@@ -65,8 +65,8 @@
     },
     {
       "name": "infrastructure-daily-scan",
-      "status": "error",
-      "workstream": "Daily infra tooling intel for #infrastructure (1 consecutive error)",
+      "status": "ok",
+      "workstream": "Daily infra tooling intel for #infrastructure",
       "cadence": "08:00 America/Chicago daily"
     },
     {
@@ -125,8 +125,8 @@
     },
     {
       "name": "toggl-weekly-summary",
-      "status": "ok",
-      "workstream": "Weekly Toggl time allocation summary",
+      "status": "error",
+      "workstream": "Weekly Toggl time allocation summary (delivery config error)",
       "cadence": "09:00 America/Chicago Sundays"
     },
     {

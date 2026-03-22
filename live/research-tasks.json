@@ -1,29 +1,29 @@
 {
-  "updatedAt": "2026-03-21T12:35:00Z",
-  "paypalAcquisitionProbabilityPct": 22,
-  "thesis": "Stripe has publicly explored acquiring PayPal but PayPal's board is reportedly not seeking a sale, making a near-term deal unlikely but not impossible.",
-  "method": "Probability estimated from reported acquirer interest, board posture signals, and analyst commentary weight.",
+  "updatedAt": "2026-03-22T12:35:00Z",
+  "paypalAcquisitionProbabilityPct": 28,
+  "thesis": "Stripe expressed preliminary acquisition interest in February 2026, but PayPal is not actively seeking a sale, leaving a deal possible but unlikely near-term.",
+  "method": "Probability estimated from credibility of Bloomberg/CNBC reports, Semafor's counter-signal that PayPal isn't seeking a sale, and absence of formal deal announcement as of March 18.",
   "evidence": [
     {
       "date": "2026-02-24",
       "signal": "Bloomberg reported Stripe is considering acquiring all or parts of PayPal; PYPL stock surged ~7%",
       "direction": "bullish",
-      "strength": "high",
+      "strength": "medium",
       "url": "https://www.bloomberg.com/news/articles/2026-02-24/payments-processor-stripe-expresses-interest-in-paypal"
     },
     {
       "date": "2026-02-27",
-      "signal": "Semafor reported PayPal is not actively seeking a sale, tempering acquisition speculation",
+      "signal": "Semafor reported PayPal may not be actively seeking a sale, dampening deal speculation",
       "direction": "bearish",
       "strength": "medium",
       "url": "https://www.indexbox.io/blog/paypal-acquisition-interest-reported-amid-ceo-transition/"
     },
     {
-      "date": "2026-03-04",
-      "signal": "Forbes analyst commentary says PayPal's destiny is eventual acquisition but unlikely in 2026; board would require significant overpayment",
+      "date": "2026-03-18",
+      "signal": "PayPal remains independent as of March 18; Airwallex summary confirms no deal closed and interest was only preliminary",
       "direction": "bearish",
-      "strength": "medium",
-      "url": "https://www.forbes.com/sites/ronshevlin/2026/03/04/who-should-acquire-paypal-5-potential-acquirers-nobodys-talking-about/"
+      "strength": "low",
+      "url": "https://www.airwallex.com/us/blog/paypal-acquisition"
     }
   ]
 }

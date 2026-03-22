@@ -1,25 +1,25 @@
 {
-  "updatedAt": "2026-03-22 07:00 CDT",
-  "updatedAtIso": "2026-03-22T12:00:00Z",
+  "updatedAt": "2026-03-22 12:45 CDT",
+  "updatedAtIso": "2026-03-22T17:45:00Z",
   "total": 2,
   "errors": [
     {
-      "time": "2026-03-22 00:01 CDT",
-      "component": "infrastructure-daily-scan",
-      "severity": "warn",
-      "status": "open",
-      "error": "\u26a0\ufe0f \u2709\ufe0f Message failed",
-      "meaning": "The job ran successfully and produced valid output, but the Slack delivery failed \u2014 the bot lacks write scope for the #infrastructure channel.",
-      "suggestedFix": "Update job delivery config to use a channel the bot has write access to, or grant the Slack bot scope for channel C0ANLFZD1TJ."
-    },
-    {
-      "time": "2026-03-21 17:00 CDT",
+      "time": "2026-03-22 06:00 CDT",
       "component": "calendar-daily-fill",
       "severity": "warn",
       "status": "open",
       "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
-      "meaning": "The calendar fill job ran and completed the calendar work, but the Slack post failed because the delivery target format was invalid (bare channel ID instead of channel:ID format).",
-      "suggestedFix": "Update the job delivery config: set 'to' to 'channel:C0AN2RABC3W' (add the 'channel:' prefix)."
+      "meaning": "Job ran and filled the calendar successfully, but the delivery target format is invalid \u2014 the Slack channel ID in the delivery config is missing the required 'channel:' prefix.",
+      "suggestedFix": "Update job delivery target from 'C0AN2RABC3W' to 'channel:C0AN2RABC3W' to match the expected format."
+    },
+    {
+      "time": "2026-03-22 09:00 CDT",
+      "component": "toggl-weekly-summary",
+      "severity": "warn",
+      "status": "open",
+      "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
+      "meaning": "Toggl weekly summary ran and produced output successfully, but failed to deliver to Slack \u2014 the delivery target 'slack:c0amwt9jb5y' uses an invalid prefix format.",
+      "suggestedFix": "Update job delivery target from 'slack:c0amwt9jb5y' to 'channel:C0AMWT9JB5Y' (uppercase channel ID with correct prefix)."
     }
   ]
 }

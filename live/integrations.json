@@ -3,59 +3,59 @@
     {
       "name": "Slack",
       "status": "connected",
-      "description": "Bot token active (xoxb), app token active (xapp)",
-      "lastVerified": "2026-03-22T11:46:00Z"
+      "description": "Bot and app tokens valid (xoxb + xapp)",
+      "lastVerified": "2026-03-22T17:46:00Z"
     },
     {
       "name": "GitHub",
       "status": "connected",
-      "description": "Logged in as nickxma via keyring, SSH protocol",
-      "lastVerified": "2026-03-22T11:46:00Z"
+      "description": "Authenticated as nickxma via keyring (repo, read:org, gist, admin:public_key)",
+      "lastVerified": "2026-03-22T17:46:00Z"
     },
     {
       "name": "Obsidian",
       "status": "connected",
-      "description": "obsidian-cli found at /opt/homebrew/bin/obsidian-cli, vault at ~/Obsidian",
-      "lastVerified": "2026-03-22T11:46:00Z"
+      "description": "obsidian-cli found; ~/Obsidian vault accessible",
+      "lastVerified": "2026-03-22T17:46:00Z"
     },
     {
       "name": "Google Workspace",
       "status": "connected",
       "description": "OAuth credentials present for nickxma@gmail.com",
-      "lastVerified": "2026-03-22T11:46:00Z"
+      "lastVerified": "2026-03-22T17:46:00Z"
     },
     {
       "name": "Google Calendar",
       "status": "connected",
-      "description": "Calendar list returned successfully, events loading normally",
-      "lastVerified": "2026-03-22T11:46:00Z"
+      "description": "gog cal list returned events successfully",
+      "lastVerified": "2026-03-22T17:46:00Z"
     },
     {
       "name": "Paperclip",
       "status": "connected",
-      "description": "Service responding at http://127.0.0.1:3100",
-      "lastVerified": "2026-03-22T11:46:00Z"
+      "description": "Server responding on http://127.0.0.1:3100",
+      "lastVerified": "2026-03-22T17:46:00Z"
     },
     {
       "name": "Tailscale",
       "status": "connected",
-      "description": "4 peers visible; mmm4, n1, n2 online",
-      "lastVerified": "2026-03-22T11:46:00Z"
+      "description": "mmm4 online (100.74.228.112); n1 and n2 also online",
+      "lastVerified": "2026-03-22T17:46:00Z"
     },
     {
       "name": "Things 3",
       "status": "connected",
-      "description": "things CLI found at /opt/homebrew/bin/things",
-      "lastVerified": "2026-03-22T11:46:00Z"
+      "description": "things CLI available at /opt/homebrew/bin/things",
+      "lastVerified": "2026-03-22T17:46:00Z"
     },
     {
       "name": "1Password",
       "status": "connected",
-      "description": "op CLI found at /opt/homebrew/bin/op",
-      "lastVerified": "2026-03-22T11:46:00Z"
+      "description": "op CLI available at /opt/homebrew/bin/op",
+      "lastVerified": "2026-03-22T17:46:00Z"
     }
   ],
   "attention": [],
   "available": [],
-  "updatedAt": "2026-03-22T11:46:00Z"
+  "updatedAt": "2026-03-22T17:46:00Z"
 }
