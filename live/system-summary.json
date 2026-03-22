@@ -10,9 +10,11 @@
       "slackOk": 1,
       "overall": "degraded",
       "statusLevel": 0,
-      "failingJobs": 2,
+      "failingJobs": 1,
       "enabledJobs": 21,
-      "updatedAt": "2026-03-22 12:45 CDT"
+      "openErrors": 1,
+      "staleJobs": 0,
+      "updatedAt": "2026-03-22 18:45 CDT"
     }
   ]
 }

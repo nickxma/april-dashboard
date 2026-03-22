@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-03-22 12:45 CDT",
-  "updatedAtIso": "2026-03-22T17:45:00Z",
+  "updatedAt": "2026-03-22 18:45 CDT",
+  "updatedAtIso": "2026-03-22T23:45:00Z",
   "gateway": {
     "state": "running",
     "pid": 10831,
@@ -22,6 +22,13 @@
         "key": "agent:main:cron:f28d2005-d543-4\u2026",
         "age": "\u2502",
         "model": "direct",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
+        "key": "agent:main:slack:channel:c0an38\u2026",
+        "age": "\u2502",
+        "model": "group",
         "tokens": "\u2502"
       },
       {
@@ -69,13 +76,6 @@
       {
         "kind": "direct",
         "key": "agent:main:cron:b22c07ef-a3cc-4\u2026",
-        "age": "\u2502",
-        "model": "direct",
-        "tokens": "\u2502"
-      },
-      {
-        "kind": "direct",
-        "key": "agent:main:cron:0152176b-6576-4\u2026",
         "age": "\u2502",
         "model": "direct",
         "tokens": "\u2502"

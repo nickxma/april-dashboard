@@ -1,30 +1,21 @@
 {
-  "updatedAt": "2026-03-22 11:59 CDT",
+  "updatedAt": "2026-03-22 17:59 CDT",
   "summary": {
     "overall": "degraded",
     "enabledJobs": 21,
-    "failingJobs": 2,
+    "failingJobs": 1,
     "staleJobs": 0,
-    "openErrors": 2
+    "openErrors": 1
   },
   "errors": [
     {
-      "time": "2026-03-22 06:00 CDT",
-      "component": "calendar-daily-fill",
-      "severity": "warn",
-      "status": "open",
-      "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
-      "meaning": "Job ran and filled the calendar successfully, but the delivery target format is invalid — the Slack channel ID in the delivery config is missing the required 'channel:' prefix.",
-      "suggestedFix": "Update job delivery target from 'C0AN2RABC3W' to 'channel:C0AN2RABC3W' to match the expected format."
-    },
-    {
-      "time": "2026-03-22 09:00 CDT",
+      "time": "2026-03-22 11:06 CDT",
       "component": "toggl-weekly-summary",
       "severity": "warn",
       "status": "open",
       "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
-      "meaning": "Toggl weekly summary ran and produced output successfully, but failed to deliver to Slack — the delivery target 'slack:c0amwt9jb5y' uses an invalid prefix format.",
-      "suggestedFix": "Update job delivery target from 'slack:c0amwt9jb5y' to 'channel:C0AMWT9JB5Y' (uppercase channel ID with correct prefix)."
+      "meaning": "The weekly Toggl summary ran and produced output successfully, but the Slack delivery failed because the channel target format is invalid. The report was not posted to #toggl.",
+      "suggestedFix": "Update the job delivery config: change `to` from `channel:C0AMWT9JB5Y` to just the channel ID `C0AMWT9JB5Y`, or verify the channel target format matches what the delivery system expects."
     }
   ]
 }

@@ -1,0 +1,22 @@
+{
+  "evidence": [
+    {
+      "date": "2026-03-18",
+      "direction": "bearish",
+      "strength": "low",
+      "signal": "PayPal remains independent as of March 18; Airwallex summary confirms no deal closed and interest was only preliminary"
+    },
+    {
+      "date": "2026-02-27",
+      "direction": "bearish",
+      "strength": "medium",
+      "signal": "Semafor reported PayPal may not be actively seeking a sale, dampening deal speculation"
+    },
+    {
+      "date": "2026-02-24",
+      "direction": "bullish",
+      "strength": "medium",
+      "signal": "Bloomberg reported Stripe is considering acquiring all or parts of PayPal; PYPL stock surged ~7%"
+    }
+  ]
+}
