@@ -12,7 +12,7 @@
         "y": 0
       },
       "id": 200,
-      "title": "⚡ Needs Your Attention",
+      "title": "\u26a1 Needs Your Attention",
       "type": "row"
     },
     {
@@ -224,7 +224,7 @@
           }
         }
       ],
-      "title": "Open Loops — items waiting on action",
+      "title": "Open Loops \u2014 items waiting on action",
       "type": "table"
     },
     {
@@ -995,7 +995,7 @@
         "y": 18
       },
       "id": 300,
-      "title": "🎯 Objectives",
+      "title": "\ud83c\udfaf Objectives",
       "type": "row"
     },
     {
@@ -1156,7 +1156,7 @@
         "y": 31
       },
       "id": 400,
-      "title": "⏱ Cron Jobs",
+      "title": "\u23f1 Cron Jobs",
       "type": "row"
     },
     {
@@ -1190,6 +1190,11 @@
                         "color": "red",
                         "index": 1,
                         "text": "error"
+                      },
+                      "idle": {
+                        "color": "text",
+                        "index": 3,
+                        "text": "idle"
                       },
                       "ok": {
                         "color": "green",
@@ -1299,6 +1304,22 @@
                 "value": 0
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Last Error"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 280
+              },
+              {
+                "id": "custom.overflow",
+                "value": "truncate"
+              }
+            ]
           }
         ]
       },
@@ -1356,6 +1377,11 @@
               "selector": "lastDurationMs",
               "text": "Duration",
               "type": "number"
+            },
+            {
+              "selector": "lastError",
+              "text": "Last Error",
+              "type": "string"
             }
           ],
           "datasource": {
@@ -1377,7 +1403,7 @@
           }
         }
       ],
-      "title": "⏱ Cron Jobs",
+      "title": "\u23f1 Cron Jobs",
       "type": "table"
     },
     {
@@ -1390,7 +1416,7 @@
         "y": 45
       },
       "id": 100,
-      "title": "🏥 System Health",
+      "title": "\ud83c\udfe5 System Health",
       "type": "row"
     },
     {
@@ -1875,7 +1901,7 @@
           }
         }
       ],
-      "title": "🔴 Active System Errors",
+      "title": "\ud83d\udd34 Active System Errors",
       "type": "table"
     },
     {
@@ -1888,7 +1914,7 @@
         "y": 58
       },
       "id": 500,
-      "title": "📋 Activity & Integrations",
+      "title": "\ud83d\udccb Activity & Integrations",
       "type": "row"
     },
     {
@@ -2126,7 +2152,7 @@
           }
         }
       ],
-      "title": "💬 Session Activity",
+      "title": "\ud83d\udcac Session Activity",
       "type": "table"
     },
     {
@@ -2235,7 +2261,7 @@
         "y": 66
       },
       "id": 600,
-      "title": "🎮 Control Tower",
+      "title": "\ud83c\udfae Control Tower",
       "type": "row"
     },
     {
@@ -2582,7 +2608,7 @@
           }
         }
       ],
-      "title": "🤖 Agent Fleet",
+      "title": "\ud83e\udd16 Agent Fleet",
       "type": "table"
     },
     {
@@ -2766,5 +2792,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 31
+  "version": 32
 }
