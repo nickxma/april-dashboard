@@ -422,3 +422,27 @@ with open(os.path.join(live, "system-summary.json"), "w") as f:
     json.dump({"summary": flat}, f, indent=2)
 print(f"Wrote system-summary.json")
 PYEOF2
+
+# ─── RESEARCH EVIDENCE (array wrapper for Infinity panel) ────────────────────
+python3 - "$LIVE_DIR" <<'PYEOF_EVIDENCE'
+import json, sys, os
+live = sys.argv[1]
+rt_path = os.path.join(live, "research-tasks.json")
+out_path = os.path.join(live, "research-evidence.json")
+try:
+    rt = json.load(open(rt_path))
+    evidence = rt.get("evidence", [])
+    rows = []
+    for e in sorted(evidence, key=lambda x: x.get("date",""), reverse=True):
+        rows.append({
+            "date":      e.get("date", ""),
+            "direction": e.get("direction", ""),
+            "strength":  e.get("strength", ""),
+            "signal":    e.get("signal", ""),
+        })
+    with open(out_path, "w") as f:
+        json.dump({"evidence": rows}, f, indent=2)
+    print(f"Wrote research-evidence.json ({len(rows)} items)")
+except Exception as e:
+    print(f"research-evidence: skipped ({e})")
+PYEOF_EVIDENCE

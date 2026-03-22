@@ -2842,24 +2842,130 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Updated"
+              "options": "Direction"
             },
             "properties": [
               {
                 "id": "custom.width",
-                "value": 160
+                "value": 80
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "bearish": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "bearish"
+                      },
+                      "bullish": {
+                        "color": "green",
+                        "index": 0,
+                        "text": "bullish"
+                      },
+                      "neutral": {
+                        "color": "text",
+                        "index": 2,
+                        "text": "neutral"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "text",
+                      "value": null
+                    }
+                  ]
+                }
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "Thesis"
+              "options": "Strength"
             },
             "properties": [
               {
                 "id": "custom.width",
-                "value": 600
+                "value": 75
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "high": {
+                        "color": "red",
+                        "index": 0,
+                        "text": "high"
+                      },
+                      "low": {
+                        "color": "text",
+                        "index": 2,
+                        "text": "low"
+                      },
+                      "medium": {
+                        "color": "orange",
+                        "index": 1,
+                        "text": "medium"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "text",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Date"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 90
               }
             ]
           }
@@ -2873,7 +2979,7 @@
       },
       "id": 701,
       "options": {
-        "cellHeight": "lg",
+        "cellHeight": "md",
         "showHeader": true,
         "sortBy": []
       },
@@ -2881,18 +2987,23 @@
         {
           "columns": [
             {
-              "selector": "thesis",
-              "text": "Thesis",
+              "selector": "date",
+              "text": "Date",
               "type": "string"
             },
             {
-              "selector": "method",
-              "text": "Method",
+              "selector": "direction",
+              "text": "Direction",
               "type": "string"
             },
             {
-              "selector": "updatedAt",
-              "text": "Updated",
+              "selector": "strength",
+              "text": "Strength",
+              "type": "string"
+            },
+            {
+              "selector": "signal",
+              "text": "Signal",
               "type": "string"
             }
           ],
@@ -2904,17 +3015,17 @@
           "format": "table",
           "parser": "backend",
           "refId": "A",
-          "root_selector": "summary",
+          "root_selector": "evidence",
           "source": "url",
           "type": "json",
-          "url": "http://127.0.0.1:3001/research-summary.json",
+          "url": "http://127.0.0.1:3001/research-evidence.json",
           "url_options": {
             "data": "",
             "method": "GET"
           }
         }
       ],
-      "title": "PYUSD / Stablecoin Research Signal",
+      "title": "PayPal Acquisition Evidence Trail",
       "type": "table"
     }
   ],
@@ -2922,5 +3033,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 36
+  "version": 37
 }
