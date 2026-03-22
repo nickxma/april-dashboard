@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-03-22 04:34 CDT",
-  "updatedAtIso": "2026-03-22T09:34:23Z",
-  "total": 4,
+  "updatedAt": "2026-03-22 06:45 CDT",
+  "updatedAtIso": "2026-03-22T11:45:00Z",
+  "total": 3,
   "errors": [
     {
-      "time": "2026-03-21 07:15 CDT",
+      "time": "2026-03-21 06:15 CDT",
       "component": "daily-brief",
       "severity": "warn",
       "status": "open",
       "error": "\u26a0\ufe0f \u2709\ufe0f Message failed",
-      "meaning": "Daily brief job completed successfully but Slack delivery failed. Content was generated (flight day summary, Chase Zelle alert, stablecoin deadline flag) but may not have reached #daily-brief channel.",
-      "suggestedFix": "Check Slack delivery target config for daily-brief job \u2014 ensure 'to' is set to a valid channel:ID format (e.g. channel:C0AMSE2TW2X)"
+      "meaning": "The daily brief runs successfully and produces output, but the Slack delivery step fails with a message-send error. This has occurred on 3 consecutive runs. Content is generated but not reliably delivered to #daily-brief.",
+      "suggestedFix": "Check the delivery target config for daily-brief \u2014 the channel field may need to use 'channel:C0AMSE2TW2X' format instead of a bare channel ID."
     },
     {
       "time": "2026-03-21 08:00 CDT",
@@ -18,8 +18,8 @@
       "severity": "warn",
       "status": "open",
       "error": "\u26a0\ufe0f \u2709\ufe0f Message failed",
-      "meaning": "Infrastructure intel scan completed and generated content (OpenClaw/Claude Code version checks, MCP roadmap notes) but Slack delivery to #infrastructure failed.",
-      "suggestedFix": "Update infrastructure-daily-scan job delivery.to to use channel:C0ANLFZD1TJ format instead of bare channel name"
+      "meaning": "The infrastructure scan runs and produces valid output, but Slack delivery to #infrastructure fails. 1 consecutive error. Earlier runs succeeded, suggesting a transient config issue.",
+      "suggestedFix": "Verify the delivery target uses 'channel:C0ANLFZD1TJ' format \u2014 the job has both 'channel' and 'to' fields set which may cause ambiguity."
     },
     {
       "time": "2026-03-21 17:00 CDT",
@@ -27,17 +27,8 @@
       "severity": "warn",
       "status": "open",
       "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
-      "meaning": "Calendar gap-fill job ran and filled Sunday's schedule gaps correctly, but failed to post the schedule summary to Slack due to malformed delivery target.",
-      "suggestedFix": "Fix calendar-daily-fill job delivery target \u2014 change 'C0AN2RABC3W' to 'channel:C0AN2RABC3W' in job config"
-    },
-    {
-      "time": "2026-03-22T09:03:36Z",
-      "component": "paperclip-activity-feed",
-      "severity": "error",
-      "status": "open",
-      "error": "consecutive errors: 1",
-      "meaning": "Cron job failed with 1 consecutive errors",
-      "suggestedFix": "Check cron job logs for details"
+      "meaning": "The calendar gap-fill job ran successfully and filled tomorrow's calendar, but the Slack post announcing the schedule failed due to a malformed delivery target. Channel C0AN2RABC3W is set in both 'channel' and 'to' fields without the required 'channel:' prefix.",
+      "suggestedFix": "Fix the job delivery config: set 'to' to 'channel:C0AN2RABC3W' (with the channel: prefix) and remove the bare 'channel' field, or set channel to the channel ID string directly."
     }
   ]
 }

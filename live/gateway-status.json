@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-03-22 04:34 CDT",
-  "updatedAtIso": "2026-03-22T09:34:23Z",
+  "updatedAt": "2026-03-22 06:45 CDT",
+  "updatedAtIso": "2026-03-22T11:45:00Z",
   "gateway": {
     "state": "running",
     "pid": 10831,
@@ -12,6 +12,34 @@
     "recent": [
       {
         "kind": "direct",
+        "key": "agent:main:cron:f28d2005-d543-4\u2026",
+        "age": "\u2502",
+        "model": "direct",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
+        "key": "agent:main:cron:f28d2005-d543-4\u2026",
+        "age": "\u2502",
+        "model": "direct",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
+        "key": "agent:main:cron:b3605742-fa0f-4\u2026",
+        "age": "\u2502",
+        "model": "direct",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
+        "key": "agent:main:cron:b3605742-fa0f-4\u2026",
+        "age": "\u2502",
+        "model": "direct",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
         "key": "agent:main:cron:b22c07ef-a3cc-4\u2026",
         "age": "\u2502",
         "model": "direct",
@@ -20,6 +48,20 @@
       {
         "kind": "direct",
         "key": "agent:main:cron:b22c07ef-a3cc-4\u2026",
+        "age": "\u2502",
+        "model": "direct",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
+        "key": "agent:main:cron:37b597ef-0cbf-4\u2026",
+        "age": "\u2502",
+        "model": "direct",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
+        "key": "agent:main:cron:37b597ef-0cbf-4\u2026",
         "age": "\u2502",
         "model": "direct",
         "tokens": "\u2502"
@@ -34,48 +76,6 @@
       {
         "kind": "direct",
         "key": "agent:main:cron:b3605742-fa0f-4\u2026",
-        "age": "\u2502",
-        "model": "direct",
-        "tokens": "\u2502"
-      },
-      {
-        "kind": "direct",
-        "key": "agent:main:cron:b3605742-fa0f-4\u2026",
-        "age": "\u2502",
-        "model": "direct",
-        "tokens": "\u2502"
-      },
-      {
-        "kind": "direct",
-        "key": "agent:main:cron:b22c07ef-a3cc-4\u2026",
-        "age": "\u2502",
-        "model": "direct",
-        "tokens": "\u2502"
-      },
-      {
-        "kind": "direct",
-        "key": "agent:main:cron:0152176b-6576-4\u2026",
-        "age": "\u2502",
-        "model": "direct",
-        "tokens": "\u2502"
-      },
-      {
-        "kind": "direct",
-        "key": "agent:main:cron:0152176b-6576-4\u2026",
-        "age": "\u2502",
-        "model": "direct",
-        "tokens": "\u2502"
-      },
-      {
-        "kind": "direct",
-        "key": "agent:main:cron:f28d2005-d543-4\u2026",
-        "age": "\u2502",
-        "model": "direct",
-        "tokens": "\u2502"
-      },
-      {
-        "kind": "direct",
-        "key": "agent:main:cron:f28d2005-d543-4\u2026",
         "age": "\u2502",
         "model": "direct",
         "tokens": "\u2502"

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-22 02:59 CDT",
+  "updatedAt": "2026-03-22 05:59 CDT",
   "summary": {
     "overall": "degraded",
     "enabledJobs": 21,
@@ -14,8 +14,8 @@
       "severity": "warn",
       "status": "open",
       "error": "⚠️ ✉️ Message failed",
-      "meaning": "Daily brief ran successfully and generated content, but Slack delivery failed. The brief content was produced but not posted to #daily-brief. Has failed 3 consecutive runs.",
-      "suggestedFix": "Check the delivery target config for daily-brief — ensure 'to' is set to 'channel:C0AMSE2TW2X' (with channel: prefix) rather than a bare channel ID."
+      "meaning": "The daily brief runs successfully and produces output, but the Slack delivery step fails with a message-send error. This has occurred on 3 consecutive runs. Content is generated but not reliably delivered to #daily-brief.",
+      "suggestedFix": "Check the delivery target config for daily-brief — the channel field may need to use 'channel:C0AMSE2TW2X' format instead of a bare channel ID."
     },
     {
       "time": "2026-03-21 08:00 CDT",
@@ -23,8 +23,8 @@
       "severity": "warn",
       "status": "open",
       "error": "⚠️ ✉️ Message failed",
-      "meaning": "Infrastructure scan completed and generated content, but Slack delivery failed for the most recent run. Content was produced but not posted to #infrastructure.",
-      "suggestedFix": "Verify delivery config uses 'channel:C0ANLFZD1TJ' format (with channel: prefix) in the 'to' field — same pattern as the daily-brief fix."
+      "meaning": "The infrastructure scan runs and produces valid output, but Slack delivery to #infrastructure fails. 1 consecutive error. Earlier runs succeeded, suggesting a transient config issue.",
+      "suggestedFix": "Verify the delivery target uses 'channel:C0ANLFZD1TJ' format — the job has both 'channel' and 'to' fields set which may cause ambiguity."
     },
     {
       "time": "2026-03-21 17:00 CDT",
@@ -32,8 +32,8 @@
       "severity": "warn",
       "status": "open",
       "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
-      "meaning": "Calendar fill job ran and updated the calendar successfully, but Slack summary delivery failed. The delivery target 'slack:c0an2rabc3w' is not in the expected format.",
-      "suggestedFix": "Update calendar-daily-fill delivery to field from 'slack:c0an2rabc3w' to 'channel:C0AN2RABC3W' to match the required channelId format."
+      "meaning": "The calendar gap-fill job ran successfully and filled tomorrow's calendar, but the Slack post announcing the schedule failed due to a malformed delivery target. Channel C0AN2RABC3W is set in both 'channel' and 'to' fields without the required 'channel:' prefix.",
+      "suggestedFix": "Fix the job delivery config: set 'to' to 'channel:C0AN2RABC3W' (with the channel: prefix) and remove the bare 'channel' field, or set channel to the channel ID string directly."
     }
   ]
 }
