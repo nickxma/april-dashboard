@@ -3,43 +3,38 @@
     {
       "name": "Baddies",
       "status": "Active",
-      "latest": "NYC trip imminent (DAS March 22) — yoga with Carly + Diana lined up, texts out, no confirmations yet; Rae fully off table"
+      "latest": "●●●●● NYC trip in 2 days — Carly + Diana texted about yoga, no confirmations yet; approaching is the muscle, not any one person."
     },
     {
       "name": "Mindfulness Content",
       "status": "Active",
-      "latest": "Engine built (20 tweets, 5 sites, 760 transcripts), Tweet 1 variant A/B/C pending Nick approval, paradoxofacceptance.xyz still empty; flight proofreading window is now"
+      "latest": "●●●●○ Engine built, 1 tweet live @quiet_drift; paradoxofacceptance.xyz still zero content — deploy (OLU-175) stuck queued; 5 Convergence improvement tickets (OLU-271–275) sent to Paperclip CEO this morning."
     },
     {
       "name": "Stablecoin Expertise",
       "status": "Paused",
-      "latest": "30 days to April 20 — all artifacts built, Smitha pitch CRITICAL/blocked (OLU-43); PYUSD $4.1B, Arbitrum $220M, 70-country expansion noted in latest research"
+      "latest": "●●○○○ 29 days to April 20 — PYUSD $4.1B, 70-country expansion confirmed; all deliverables built but Smitha pitch (OLU-255) still unassigned and unstarted; NYC trip eats this week."
     },
     {
       "name": "Selling Co-op",
       "status": "Active",
-      "latest": "Matylda Pearson (Corcoran) meeting Wed March 25 9-10AM ET — sell now vs. wait for fall paint job is the decision; questions unprepped"
+      "latest": "●●●●○ Matylda Pearson (Corcoran) meeting Wed Mar 25 9-10am ET — apartment prepped, but OLU-256 meeting prep orphaned and unassigned; sell-now vs. wait-for-fall paint job is the decision."
     },
     {
-      "name": "Formula",
+      "name": "Formula (Dad's Business)",
       "status": "Paused",
-      "latest": "Employee back but unreliable, no backup candidate identified — keeps getting deprioritized, single point of failure"
-    },
-    {
-      "name": "Convergence (Mindfulness × Crypto × AI)",
-      "status": "Active",
-      "latest": "Voice memo breakthrough 2026-03-20 — MVP in Paperclip but 4 tasks blocked (OLU-46, OLU-61, OLU-73, OLU-38); needs vacation dates + Waking Up licensing call from Nick"
+      "latest": "●●●○○ Employee back but unreliable — no backup hire identified or contacted; keeps getting deprioritized, single point of failure."
     }
   ],
-  "updatedAt": "2026-03-21T12:00:00.000Z",
+  "updatedAt": "2026-03-22T12:00:00Z",
   "sources": [
     "journal-state/2026-03-20.md",
-    "#journal (C0AL3MWCR40) — last 5 messages",
-    "#toggl (C0AMWT9JB5Y) — last 3 messages (no hours data, Notion sync discussion only)",
-    "#obj-95 (C0AL3MQV41W) — last 3 messages",
-    "#obj-106 (C0AJTUZED2B) — last 3 messages",
-    "#obj-95b (C0AK3RYHE0P) — last 3 messages",
-    "#paperclip (C0AN38F223B) — last 3 messages",
+    "#april-journal (C0AL3MWCR40) — last 5 messages",
+    "#toggl (C0AMWT9JB5Y) — no time data available, system architecture discussion only",
+    "#obj-95 (C0AL3MQV41W) — tweet draft variants awaiting Nick A/B/C pick",
+    "#obj-106 (C0AJTUZED2B) — PYUSD signal drops Mar 19+21",
+    "#obj-95b (C0AK3RYHE0P) — 5 Paperclip tickets created for Convergence MVP",
+    "#paperclip (C0AN38F223B) — Paperclip task status with multiple Nick blockers",
     "MEMORY.md"
   ]
 }

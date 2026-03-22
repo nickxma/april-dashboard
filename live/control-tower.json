@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-22 04:57 CDT",
+  "updatedAt": "2026-03-22 06:57 CDT",
   "projects": [
     {
       "name": "Launch Twitter account for AI + mindfulness content",
@@ -77,8 +77,8 @@
     },
     {
       "name": "daily-brief",
-      "status": "error",
-      "workstream": "Morning brief: calendar, email, Toggl, weather to #daily-brief (3 consecutive errors)",
+      "status": "ok",
+      "workstream": "Morning brief: calendar, email, Toggl, weather to #daily-brief",
       "cadence": "06:15 America/Chicago daily"
     },
     {
@@ -104,6 +104,12 @@
       "status": "ok",
       "workstream": "Daily research task refresh (PayPal acquisition probability)",
       "cadence": "07:35 America/Chicago daily"
+    },
+    {
+      "name": "infra-version-check",
+      "status": "ok",
+      "workstream": "Checks openclaw/claude-code/paperclip for version updates → #infrastructure",
+      "cadence": "07:00 America/Chicago daily"
     },
     {
       "name": "obj-95-mindfulness-tweet-drafts",
