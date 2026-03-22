@@ -1999,6 +1999,18 @@
                 "value": 140
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Last Verified"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 160
+              }
+            ]
           }
         ]
       },
@@ -2025,6 +2037,11 @@
             {
               "selector": "description",
               "text": "Details",
+              "type": "string"
+            },
+            {
+              "selector": "lastVerified",
+              "text": "Last Verified",
               "type": "string"
             }
           ],
@@ -2391,6 +2408,18 @@
                 "value": 80
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Agent"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 120
+              }
+            ]
           }
         ]
       },
@@ -2425,6 +2454,11 @@
             {
               "selector": "next",
               "text": "Next Action",
+              "type": "string"
+            },
+            {
+              "selector": "agent",
+              "text": "Agent",
               "type": "string"
             }
           ],
@@ -2888,5 +2922,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 35
+  "version": 36
 }

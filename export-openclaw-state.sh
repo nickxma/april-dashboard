@@ -90,7 +90,11 @@ def schedule_str(sched):
         if hrs < 24: return f"every {hrs}h"
         return f"every {hrs//24}d"
     elif kind == "cron":
-        return sched.get("cronExpr", "cron")
+        expr = sched.get("expr") or sched.get("cronExpr", "")
+        tz = sched.get("tz", "")
+        if expr and tz:
+            return f"{expr} ({tz.split('/')[-1]})"
+        return expr or "cron"
     return kind
 
 jobs_out = []
