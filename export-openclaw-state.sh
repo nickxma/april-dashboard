@@ -228,7 +228,11 @@ for line in raw.splitlines():
         kind = parts[0]
         key = parts[1]
         # age can be 1 or 2 tokens
+        # Formats: "just now", "in 13m", "12m ago", "2h ago"
         if len(parts) > 3 and parts[2] in ("just", "in"):
+            age = parts[2] + " " + parts[3]
+            rest = parts[4:]
+        elif len(parts) > 3 and parts[3] == "ago":
             age = parts[2] + " " + parts[3]
             rest = parts[4:]
         elif len(parts) > 2:
