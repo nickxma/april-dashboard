@@ -1498,7 +1498,7 @@
           "root_selector": "summary",
           "source": "url",
           "type": "json",
-          "url": "http://127.0.0.1:3001/system-health.json",
+          "url": "http://127.0.0.1:3001/system-summary.json",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -1577,7 +1577,7 @@
           "root_selector": "summary",
           "source": "url",
           "type": "json",
-          "url": "http://127.0.0.1:3001/system-health.json",
+          "url": "http://127.0.0.1:3001/system-summary.json",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -1652,7 +1652,7 @@
           "root_selector": "summary",
           "source": "url",
           "type": "json",
-          "url": "http://127.0.0.1:3001/system-health.json",
+          "url": "http://127.0.0.1:3001/system-summary.json",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -1727,7 +1727,7 @@
           "root_selector": "summary",
           "source": "url",
           "type": "json",
-          "url": "http://127.0.0.1:3001/system-health.json",
+          "url": "http://127.0.0.1:3001/system-summary.json",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -2792,5 +2792,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 32
+  "version": 33
 }

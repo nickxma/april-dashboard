@@ -390,7 +390,10 @@ except: pass
 gw_state = gw.get("gateway",{}).get("state","unknown")
 slack_state = gw.get("channels",{}).get("slack","unknown")
 model_val = gw.get("model","unknown")
-overall_val = sh.get("summary",{}).get("overall","unknown")
+sh_summary = sh.get("summary", {})
+overall_val = sh_summary.get("overall","unknown")
+open_errors = sh_summary.get("openErrors", 0)
+stale_jobs = sh_summary.get("staleJobs", 0)
 # Compute live job counts directly from cron-jobs.json (fresher than system-health.json)
 cj_jobs = cj.get("jobs", [])
 failing_jobs = len([j for j in cj_jobs if j.get("status") == "error"])
@@ -407,6 +410,8 @@ flat = [{
     "statusLevel": 1 if overall_val == "ok" else (0 if overall_val == "degraded" else -1),
     "failingJobs": failing_jobs,
     "enabledJobs": enabled_jobs,
+    "openErrors": open_errors,
+    "staleJobs": stale_jobs,
     "updatedAt": cj.get("updatedAt", local_ts),
 }]
 with open(os.path.join(live, "system-summary.json"), "w") as f:
