@@ -1,23 +1,13 @@
 {
-  "updatedAt": "2026-03-22 00:45 CDT",
-  "updatedAtIso": "2026-03-22T05:45:01Z",
-  "total": 264,
+  "updatedAt": "2026-03-22 03:20 CDT",
+  "updatedAtIso": "2026-03-22T08:20:00Z",
+  "total": 263,
   "sessions": [
     {
       "kind": "direct",
-      "type": "cron",
-      "key": "agent:main:cron:...c8a794",
-      "age": "1m",
-      "model": "ago",
-      "tokensK": 0,
-      "maxK": 0,
-      "pct": 0
-    },
-    {
-      "kind": "direct",
-      "type": "cron",
-      "key": "agent:main:cron:...b69efa",
-      "age": "1m",
+      "type": "direct",
+      "key": "agent:main:main",
+      "age": "6m",
       "model": "ago",
       "tokensK": 0,
       "maxK": 0,
@@ -27,7 +17,7 @@
       "kind": "direct",
       "type": "cron",
       "key": "agent:main:cron:...5ef81c",
-      "age": "5m",
+      "age": "11m",
       "model": "ago",
       "tokensK": 0,
       "maxK": 0,
@@ -36,8 +26,8 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...6f750b",
-      "age": "5m",
+      "key": "agent:main:cron:...49e8d8",
+      "age": "11m",
       "model": "ago",
       "tokensK": 0,
       "maxK": 0,
@@ -47,7 +37,7 @@
       "kind": "direct",
       "type": "cron",
       "key": "agent:main:cron:...c7f6b4",
-      "age": "12m",
+      "age": "17m",
       "model": "ago",
       "tokensK": 0,
       "maxK": 0,
@@ -56,38 +46,8 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...a0f9c9",
-      "age": "12m",
-      "model": "ago",
-      "tokensK": 0,
-      "maxK": 0,
-      "pct": 0
-    },
-    {
-      "kind": "direct",
-      "type": "direct",
-      "key": "agent:main:main",
-      "age": "31m",
-      "model": "ago",
-      "tokensK": 0,
-      "maxK": 0,
-      "pct": 0
-    },
-    {
-      "kind": "direct",
-      "type": "cron",
-      "key": "agent:main:cron:...59304a",
-      "age": "35m",
-      "model": "ago",
-      "tokensK": 0,
-      "maxK": 0,
-      "pct": 0
-    },
-    {
-      "kind": "direct",
-      "type": "cron",
-      "key": "agent:main:cron:...dc4156",
-      "age": "42m",
+      "key": "agent:main:cron:...100258",
+      "age": "17m",
       "model": "ago",
       "tokensK": 0,
       "maxK": 0,
@@ -97,7 +57,7 @@
       "kind": "direct",
       "type": "cron",
       "key": "agent:main:cron:...55d701",
-      "age": "46m",
+      "age": "21m",
       "model": "ago",
       "tokensK": 0,
       "maxK": 0,
@@ -106,78 +66,8 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...bdc801",
-      "age": "46m",
-      "model": "ago",
-      "tokensK": 0,
-      "maxK": 0,
-      "pct": 0
-    },
-    {
-      "kind": "direct",
-      "type": "cron",
-      "key": "agent:main:cron:...e2a81e",
-      "age": "1h",
-      "model": "ago",
-      "tokensK": 0,
-      "maxK": 0,
-      "pct": 0
-    },
-    {
-      "kind": "direct",
-      "type": "cron",
-      "key": "agent:main:cron:...07143a",
-      "age": "1h",
-      "model": "ago",
-      "tokensK": 0,
-      "maxK": 0,
-      "pct": 0
-    },
-    {
-      "kind": "group",
-      "type": "channel",
-      "key": "agent:main:slack...ryhe0p",
-      "age": "1h",
-      "model": "ago",
-      "tokensK": 0,
-      "maxK": 0,
-      "pct": 0
-    },
-    {
-      "kind": "direct",
-      "type": "cron",
-      "key": "agent:main:cron:...1f3312",
-      "age": "1h",
-      "model": "ago",
-      "tokensK": 0,
-      "maxK": 0,
-      "pct": 0
-    },
-    {
-      "kind": "direct",
-      "type": "cron",
-      "key": "agent:main:cron:...029a77",
-      "age": "2h",
-      "model": "ago",
-      "tokensK": 0,
-      "maxK": 0,
-      "pct": 0
-    },
-    {
-      "kind": "direct",
-      "type": "cron",
-      "key": "agent:main:cron:...9a3237",
-      "age": "2h",
-      "model": "ago",
-      "tokensK": 0,
-      "maxK": 0,
-      "pct": 0
-    },
-    {
-      "kind": "direct",
-      "type": "cron",
-      "key": "agent:main:cron:...fc9295",
-      "age": "2h",
+      "key": "agent:main:cron:...0c4050",
+      "age": "21m",
       "model": "ago",
       "tokensK": 0,
       "maxK": 0,
@@ -187,6 +77,96 @@
       "kind": "direct",
       "type": "cron",
       "key": "agent:main:cron:...0a2b4c",
+      "age": "23m",
+      "model": "ago",
+      "tokensK": 0,
+      "maxK": 0,
+      "pct": 0
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...f99f52",
+      "age": "23m",
+      "model": "ago",
+      "tokensK": 0,
+      "maxK": 0,
+      "pct": 0
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...c8a794",
+      "age": "36m",
+      "model": "ago",
+      "tokensK": 0,
+      "maxK": 0,
+      "pct": 0
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...e2e14f",
+      "age": "36m",
+      "model": "ago",
+      "tokensK": 0,
+      "maxK": 0,
+      "pct": 0
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...cb9ad6",
+      "age": "41m",
+      "model": "ago",
+      "tokensK": 0,
+      "maxK": 0,
+      "pct": 0
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...b5bf2a",
+      "age": "47m",
+      "model": "ago",
+      "tokensK": 0,
+      "maxK": 0,
+      "pct": 0
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...90d469",
+      "age": "1h",
+      "model": "ago",
+      "tokensK": 0,
+      "maxK": 0,
+      "pct": 0
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...ff01eb",
+      "age": "1h",
+      "model": "ago",
+      "tokensK": 0,
+      "maxK": 0,
+      "pct": 0
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...d4dabe",
+      "age": "1h",
+      "model": "ago",
+      "tokensK": 0,
+      "maxK": 0,
+      "pct": 0
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...d55b62",
       "age": "2h",
       "model": "ago",
       "tokensK": 0,
@@ -196,7 +176,7 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...38e939",
+      "key": "agent:main:cron:...baf65e",
       "age": "2h",
       "model": "ago",
       "tokensK": 0,
@@ -206,7 +186,7 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...dfccc6",
+      "key": "agent:main:cron:...22ca23",
       "age": "2h",
       "model": "ago",
       "tokensK": 0,
@@ -216,7 +196,7 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...dd6ff1",
+      "key": "agent:main:cron:...48d1c5",
       "age": "2h",
       "model": "ago",
       "tokensK": 0,
@@ -226,7 +206,7 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...268b60",
+      "key": "agent:main:cron:...0e502f",
       "age": "2h",
       "model": "ago",
       "tokensK": 0,
@@ -236,7 +216,27 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...e5698d",
+      "key": "agent:main:cron:...137671",
+      "age": "2h",
+      "model": "ago",
+      "tokensK": 0,
+      "maxK": 0,
+      "pct": 0
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...6cd78e",
+      "age": "2h",
+      "model": "ago",
+      "tokensK": 0,
+      "maxK": 0,
+      "pct": 0
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...5c8f4c",
       "age": "3h",
       "model": "ago",
       "tokensK": 0,
@@ -246,7 +246,7 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...5f3189",
+      "key": "agent:main:cron:...453173",
       "age": "3h",
       "model": "ago",
       "tokensK": 0,
@@ -256,7 +256,7 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...6ed4f5",
+      "key": "agent:main:cron:...b69efa",
       "age": "3h",
       "model": "ago",
       "tokensK": 0,
@@ -266,7 +266,7 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...c5a3a7",
+      "key": "agent:main:cron:...6f750b",
       "age": "3h",
       "model": "ago",
       "tokensK": 0,
@@ -276,7 +276,7 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...4f9656",
+      "key": "agent:main:cron:...a0f9c9",
       "age": "3h",
       "model": "ago",
       "tokensK": 0,
@@ -284,9 +284,9 @@
       "pct": 0
     },
     {
-      "kind": "group",
-      "type": "channel",
-      "key": "agent:main:slack...1q3nkc",
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...59304a",
       "age": "3h",
       "model": "ago",
       "tokensK": 0,
@@ -294,9 +294,9 @@
       "pct": 0
     },
     {
-      "kind": "group",
-      "type": "channel",
-      "key": "agent:main:slack...rabc3w",
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...dc4156",
       "age": "3h",
       "model": "ago",
       "tokensK": 0,
