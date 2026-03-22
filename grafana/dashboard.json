@@ -391,7 +391,13 @@
             "type": "yesoreyeram-infinity-datasource",
             "uid": "afgnlkc6o06bkb"
           },
-          "filters": [],
+          "filters": [
+            {
+              "field": "status",
+              "operator": "==",
+              "value": "error"
+            }
+          ],
           "format": "table",
           "global_query_id": "",
           "parser": "backend",
@@ -2119,5 +2125,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 23
+  "version": 24
 }
