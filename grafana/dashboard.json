@@ -392,6 +392,11 @@
               "selector": "lastRun",
               "text": "Last Run",
               "type": "string"
+            },
+            {
+              "selector": "nextRun",
+              "text": "Next Run",
+              "type": "string"
             }
           ],
           "datasource": {
@@ -1313,7 +1318,7 @@
             "properties": [
               {
                 "id": "custom.width",
-                "value": 280
+                "value": 300
               },
               {
                 "id": "custom.overflow",
@@ -2089,6 +2094,89 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Type"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 70
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "channel": {
+                        "color": "purple",
+                        "index": 1,
+                        "text": "channel"
+                      },
+                      "cron": {
+                        "color": "blue",
+                        "index": 0,
+                        "text": "cron"
+                      },
+                      "direct": {
+                        "color": "text",
+                        "index": 2,
+                        "text": "direct"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "text",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Session Key"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 200
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Tokens (k)"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 80
+              }
+            ]
           }
         ]
       },
@@ -2099,6 +2187,14 @@
         "y": 59
       },
       "id": 40,
+      "options": {
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Ctx %"
+          }
+        ]
+      },
       "targets": [
         {
           "columns": [
@@ -2792,5 +2888,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 33
+  "version": 35
 }
