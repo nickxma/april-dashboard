@@ -1089,10 +1089,10 @@
         ]
       },
       "gridPos": {
-        "h": 12,
+        "h": 10,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 23
       },
       "id": 301,
       "options": {
@@ -2584,11 +2584,182 @@
       ],
       "title": "🤖 Agent Fleet",
       "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 25
+              },
+              {
+                "color": "orange",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 75
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 19
+      },
+      "id": 700,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "paypalAcquisitionProbabilityPct",
+              "text": "PayPal Acq. %",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "dataframe",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/research-tasks.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "PayPal Acquisition Probability",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "wrap": true
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Updated"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 160
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Thesis"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 600
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 18,
+        "x": 6,
+        "y": 19
+      },
+      "id": 701,
+      "options": {
+        "cellHeight": "lg",
+        "showHeader": true,
+        "sortBy": []
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "thesis",
+              "text": "Thesis",
+              "type": "string"
+            },
+            {
+              "selector": "updatedAt",
+              "text": "Updated",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "dataframe",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/research-tasks.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "PYUSD / Stablecoin Research Signal",
+      "type": "table"
     }
   ],
   "refresh": "5m",
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 28
+  "version": 30
 }
