@@ -2394,6 +2394,53 @@
               {
                 "id": "custom.width",
                 "value": 50
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "P1": {
+                        "color": "red",
+                        "index": 0,
+                        "text": "P1"
+                      },
+                      "P2": {
+                        "color": "orange",
+                        "index": 1,
+                        "text": "P2"
+                      },
+                      "P3": {
+                        "color": "yellow",
+                        "index": 2,
+                        "text": "P3"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "text",
+                      "value": null
+                    }
+                  ]
+                }
               }
             ]
           },
@@ -2500,6 +2547,36 @@
               {
                 "id": "custom.width",
                 "value": 60
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "yellow",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 6
+                    },
+                    {
+                      "color": "red",
+                      "value": 8
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
               }
             ]
           },
@@ -3033,5 +3110,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 37
+  "version": 38
 }

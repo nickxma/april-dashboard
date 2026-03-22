@@ -395,21 +395,29 @@ gw_state = gw.get("gateway",{}).get("state","unknown")
 slack_state = gw.get("channels",{}).get("slack","unknown")
 model_val = gw.get("model","unknown")
 sh_summary = sh.get("summary", {})
-overall_val = sh_summary.get("overall","unknown")
 open_errors = sh_summary.get("openErrors", 0)
 stale_jobs = sh_summary.get("staleJobs", 0)
 # Compute live job counts directly from cron-jobs.json (fresher than system-health.json)
 cj_jobs = cj.get("jobs", [])
 failing_jobs = len([j for j in cj_jobs if j.get("status") == "error"])
 enabled_jobs = len([j for j in cj_jobs if j.get("enabled", True)])
+# Compute overall freshly: error state if any subsystem is down, degraded if jobs failing
+gw_ok = gw_state == "running"
+slack_ok = slack_state == "ok"
+if not gw_ok or not slack_ok:
+    overall_val = "error"
+elif failing_jobs > 0 or stale_jobs > 0:
+    overall_val = "degraded"
+else:
+    overall_val = "ok"
 flat = [{
     "gateway": gw_state,
-    "gatewayOk": 1 if gw_state == "running" else 0,
+    "gatewayOk": 1 if gw_ok else 0,
     "model": model_val,
     "modelOk": 1 if model_val not in ("unknown", "") else 0,
     "sessions": gw.get("sessions",{}).get("total",0),
     "slack": slack_state,
-    "slackOk": 1 if slack_state == "ok" else 0,
+    "slackOk": 1 if slack_ok else 0,
     "overall": overall_val,
     "statusLevel": 1 if overall_val == "ok" else (0 if overall_val == "degraded" else -1),
     "failingJobs": failing_jobs,
