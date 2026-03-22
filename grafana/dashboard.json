@@ -2645,7 +2645,7 @@
         {
           "columns": [
             {
-              "selector": "paypalAcquisitionProbabilityPct",
+              "selector": "probabilityPct",
               "text": "PayPal Acq. %",
               "type": "number"
             }
@@ -2655,13 +2655,13 @@
             "uid": "afgnlkc6o06bkb"
           },
           "filters": [],
-          "format": "dataframe",
+          "format": "table",
           "parser": "backend",
           "refId": "A",
-          "root_selector": "",
+          "root_selector": "summary",
           "source": "url",
           "type": "json",
-          "url": "http://127.0.0.1:3001/research-tasks.json",
+          "url": "http://127.0.0.1:3001/research-summary.json",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -2730,6 +2730,11 @@
               "type": "string"
             },
             {
+              "selector": "method",
+              "text": "Method",
+              "type": "string"
+            },
+            {
               "selector": "updatedAt",
               "text": "Updated",
               "type": "string"
@@ -2740,13 +2745,13 @@
             "uid": "afgnlkc6o06bkb"
           },
           "filters": [],
-          "format": "dataframe",
+          "format": "table",
           "parser": "backend",
           "refId": "A",
-          "root_selector": "",
+          "root_selector": "summary",
           "source": "url",
           "type": "json",
-          "url": "http://127.0.0.1:3001/research-tasks.json",
+          "url": "http://127.0.0.1:3001/research-summary.json",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -2761,5 +2766,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 30
+  "version": 31
 }

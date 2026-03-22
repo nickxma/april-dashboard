@@ -354,6 +354,27 @@ PYEOF
 
 log "--- Export complete at $LOCAL_TS ---"
 
+# ─── RESEARCH SUMMARY (array wrapper for Infinity compatibility) ──────────
+python3 - "$LIVE_DIR" <<'PYEOF_RESEARCH'
+import json, sys, os
+live = sys.argv[1]
+rt_path = os.path.join(live, "research-tasks.json")
+out_path = os.path.join(live, "research-summary.json")
+try:
+    rt = json.load(open(rt_path))
+    row = {
+        "probabilityPct": rt.get("paypalAcquisitionProbabilityPct", 0),
+        "thesis": rt.get("thesis", ""),
+        "method": rt.get("method", ""),
+        "updatedAt": rt.get("updatedAt", ""),
+    }
+    with open(out_path, "w") as f:
+        json.dump({"summary": [row]}, f, indent=2)
+    print(f"Wrote research-summary.json (probability={row['probabilityPct']}%)")
+except Exception as e:
+    print(f"research-summary: skipped ({e})")
+PYEOF_RESEARCH
+
 # ─── SYSTEM SUMMARY (flat for stat panels) ────────────────────────────────
 log "Building system summary..."
 python3 - "$LIVE_DIR" "$LOCAL_TS" <<'PYEOF2'
