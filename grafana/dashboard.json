@@ -1156,6 +1156,10 @@
             },
             "properties": [
               {
+                "id": "custom.width",
+                "value": 70
+              },
+              {
                 "id": "custom.displayMode",
                 "value": "color-background"
               },
@@ -1164,20 +1168,10 @@
                 "value": [
                   {
                     "options": {
-                      "disabled": {
-                        "color": "dark-grey",
-                        "index": 4,
-                        "text": "disabled"
-                      },
                       "error": {
                         "color": "red",
                         "index": 1,
                         "text": "error"
-                      },
-                      "idle": {
-                        "color": "dark-grey",
-                        "index": 3,
-                        "text": "idle"
                       },
                       "ok": {
                         "color": "green",
@@ -1188,16 +1182,29 @@
                         "color": "blue",
                         "index": 2,
                         "text": "running"
-                      },
-                      "warn": {
-                        "color": "orange",
-                        "index": 5,
-                        "text": "warn"
                       }
                     },
                     "type": "value"
                   }
                 ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "yellow",
+                      "value": null
+                    }
+                  ]
+                }
               }
             ]
           },
@@ -1208,8 +1215,12 @@
             },
             "properties": [
               {
+                "id": "custom.width",
+                "value": 60
+              },
+              {
                 "id": "custom.displayMode",
-                "value": "color-text"
+                "value": "color-background"
               },
               {
                 "id": "thresholds",
@@ -1221,7 +1232,7 @@
                       "value": null
                     },
                     {
-                      "color": "orange",
+                      "color": "yellow",
                       "value": 1
                     },
                     {
@@ -1232,56 +1243,22 @@
                 }
               },
               {
-                "id": "custom.width",
-                "value": 60
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "Name"
+              "options": "Job"
             },
             "properties": [
               {
                 "id": "custom.width",
-                "value": 280
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Schedule"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 110
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Last Run"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 100
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Next Run"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 100
+                "value": 220
               }
             ]
           }
@@ -1309,7 +1286,7 @@
           "columns": [
             {
               "selector": "name",
-              "text": "Name",
+              "text": "Job",
               "type": "string"
             },
             {
@@ -1336,11 +1313,6 @@
               "selector": "consecutiveErrors",
               "text": "Errors",
               "type": "number"
-            },
-            {
-              "selector": "lastError",
-              "text": "Last Error",
-              "type": "string"
             }
           ],
           "datasource": {
@@ -1881,6 +1853,81 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "afgnlkc6o06bkb"
       },
+      "fieldConfig": {
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "connected": {
+                        "color": "green",
+                        "index": 0,
+                        "text": "connected"
+                      },
+                      "degraded": {
+                        "color": "yellow",
+                        "index": 2,
+                        "text": "degraded"
+                      },
+                      "error": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "error"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "yellow",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Integration"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 140
+              }
+            ]
+          }
+        ]
+      },
       "gridPos": {
         "h": 7,
         "w": 8,
@@ -1890,7 +1937,23 @@
       "id": 32,
       "targets": [
         {
-          "columns": [],
+          "columns": [
+            {
+              "selector": "name",
+              "text": "Integration",
+              "type": "string"
+            },
+            {
+              "selector": "status",
+              "text": "Status",
+              "type": "string"
+            },
+            {
+              "selector": "description",
+              "text": "Details",
+              "type": "string"
+            }
+          ],
           "datasource": {
             "type": "yesoreyeram-infinity-datasource",
             "uid": "afgnlkc6o06bkb"
@@ -2315,5 +2378,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 25
+  "version": 26
 }
