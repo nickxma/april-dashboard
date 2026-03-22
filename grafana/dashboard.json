@@ -12,7 +12,7 @@
         "y": 0
       },
       "id": 200,
-      "title": "\u26a1 Needs Your Attention",
+      "title": "⚡ Needs Your Attention",
       "type": "row"
     },
     {
@@ -217,7 +217,7 @@
           }
         }
       ],
-      "title": "Open Loops \u2014 items waiting on action",
+      "title": "Open Loops — items waiting on action",
       "type": "table"
     },
     {
@@ -982,7 +982,7 @@
         "y": 18
       },
       "id": 300,
-      "title": "\ud83c\udfaf Objectives",
+      "title": "🎯 Objectives",
       "type": "row"
     },
     {
@@ -1132,7 +1132,7 @@
         "y": 31
       },
       "id": 400,
-      "title": "\u23f1 Cron Jobs",
+      "title": "⏱ Cron Jobs",
       "type": "row"
     },
     {
@@ -1356,7 +1356,7 @@
           }
         }
       ],
-      "title": "\u23f1 Cron Jobs",
+      "title": "⏱ Cron Jobs",
       "type": "table"
     },
     {
@@ -1369,7 +1369,7 @@
         "y": 45
       },
       "id": 100,
-      "title": "\ud83c\udfe5 System Health",
+      "title": "🏥 System Health",
       "type": "row"
     },
     {
@@ -1854,7 +1854,7 @@
           }
         }
       ],
-      "title": "\ud83d\udd34 Active System Errors",
+      "title": "🔴 Active System Errors",
       "type": "table"
     },
     {
@@ -1867,7 +1867,7 @@
         "y": 58
       },
       "id": 500,
-      "title": "\ud83d\udccb Activity & Integrations",
+      "title": "📋 Activity & Integrations",
       "type": "row"
     },
     {
@@ -1912,6 +1912,48 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "afgnlkc6o06bkb"
       },
+      "fieldConfig": {
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Ctx %"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 50
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              }
+            ]
+          }
+        ]
+      },
       "gridPos": {
         "h": 7,
         "w": 8,
@@ -1921,7 +1963,38 @@
       "id": 40,
       "targets": [
         {
-          "columns": [],
+          "columns": [
+            {
+              "selector": "type",
+              "text": "Type",
+              "type": "string"
+            },
+            {
+              "selector": "key",
+              "text": "Session Key",
+              "type": "string"
+            },
+            {
+              "selector": "age",
+              "text": "Age",
+              "type": "string"
+            },
+            {
+              "selector": "model",
+              "text": "Model",
+              "type": "string"
+            },
+            {
+              "selector": "tokensK",
+              "text": "Tokens (k)",
+              "type": "number"
+            },
+            {
+              "selector": "pct",
+              "text": "Ctx %",
+              "type": "number"
+            }
+          ],
           "datasource": {
             "type": "yesoreyeram-infinity-datasource",
             "uid": "afgnlkc6o06bkb"
@@ -1941,7 +2014,7 @@
           }
         }
       ],
-      "title": "\ud83d\udcac Session Activity",
+      "title": "💬 Session Activity",
       "type": "table"
     },
     {
@@ -2046,5 +2119,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 22
+  "version": 23
 }
