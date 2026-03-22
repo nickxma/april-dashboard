@@ -34,18 +34,23 @@
             },
             "properties": [
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
-              },
-              {
                 "id": "custom.width",
                 "value": 90
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
               },
               {
                 "id": "mappings",
                 "value": [
                   {
                     "options": {
+                      "actionable": {
+                        "color": "yellow",
+                        "index": 1,
+                        "text": "actionable"
+                      },
                       "blocked": {
                         "color": "red",
                         "index": 0,
@@ -53,35 +58,31 @@
                       },
                       "done": {
                         "color": "green",
-                        "index": 3,
-                        "text": "done"
-                      },
-                      "in_progress": {
-                        "color": "blue",
-                        "index": 1,
-                        "text": "in progress"
-                      },
-                      "open": {
-                        "color": "orange",
                         "index": 2,
-                        "text": "open"
+                        "text": "done"
                       }
                     },
                     "type": "value"
                   }
                 ]
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Item"
-            },
-            "properties": [
+              },
               {
-                "id": "custom.width",
-                "value": 240
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "yellow",
+                      "value": null
+                    }
+                  ]
+                }
               }
             ]
           },
@@ -96,6 +97,10 @@
                 "value": 80
               },
               {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
                 "id": "thresholds",
                 "value": {
                   "mode": "absolute",
@@ -105,7 +110,7 @@
                       "value": null
                     },
                     {
-                      "color": "orange",
+                      "color": "yellow",
                       "value": 3
                     },
                     {
@@ -116,8 +121,10 @@
                 }
               },
               {
-                "id": "custom.displayMode",
-                "value": "color-text"
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
               }
             ]
           },
@@ -1010,12 +1017,12 @@
             },
             "properties": [
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.width",
+                "value": 80
               },
               {
-                "id": "custom.width",
-                "value": 90
+                "id": "custom.displayMode",
+                "value": "color-background"
               },
               {
                 "id": "mappings",
@@ -1032,8 +1039,13 @@
                         "index": 2,
                         "text": "Done"
                       },
+                      "Dropped": {
+                        "color": "red",
+                        "index": 3,
+                        "text": "Dropped"
+                      },
                       "Paused": {
-                        "color": "dark-grey",
+                        "color": "yellow",
                         "index": 1,
                         "text": "Paused"
                       }
@@ -1041,6 +1053,24 @@
                     "type": "value"
                   }
                 ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "yellow",
+                      "value": null
+                    }
+                  ]
+                }
               }
             ]
           },
@@ -1052,19 +1082,7 @@
             "properties": [
               {
                 "id": "custom.width",
-                "value": 220
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Latest"
-            },
-            "properties": [
-              {
-                "id": "custom.wrap",
-                "value": true
+                "value": 200
               }
             ]
           }
@@ -2378,5 +2396,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 26
+  "version": 27
 }
