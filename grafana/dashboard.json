@@ -1279,6 +1279,26 @@
                 "value": 220
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Duration"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 80
+              },
+              {
+                "id": "unit",
+                "value": "ms"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              }
+            ]
           }
         ]
       },
@@ -1330,6 +1350,11 @@
             {
               "selector": "consecutiveErrors",
               "text": "Errors",
+              "type": "number"
+            },
+            {
+              "selector": "lastDurationMs",
+              "text": "Duration",
               "type": "number"
             }
           ],
@@ -2390,11 +2415,180 @@
       ],
       "title": "Nick-Blocking Decisions",
       "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "wrap": false
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0 active": {
+                        "color": "text",
+                        "index": 3,
+                        "text": "0 active"
+                      },
+                      "On-demand": {
+                        "color": "blue",
+                        "index": 2,
+                        "text": "On-demand"
+                      },
+                      "Scheduled": {
+                        "color": "blue",
+                        "index": 4,
+                        "text": "Scheduled"
+                      },
+                      "error": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "error"
+                      },
+                      "ok": {
+                        "color": "green",
+                        "index": 0,
+                        "text": "ok"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "yellow",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Agent"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 260
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Cadence"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 220
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 74
+      },
+      "id": 603,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Agent"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "name",
+              "text": "Agent",
+              "type": "string"
+            },
+            {
+              "selector": "status",
+              "text": "Status",
+              "type": "string"
+            },
+            {
+              "selector": "workstream",
+              "text": "Workstream",
+              "type": "string"
+            },
+            {
+              "selector": "cadence",
+              "text": "Cadence",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "agents",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/control-tower.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "🤖 Agent Fleet",
+      "type": "table"
     }
   ],
   "refresh": "5m",
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 27
+  "version": 28
 }
