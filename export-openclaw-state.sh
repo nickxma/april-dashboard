@@ -649,6 +649,29 @@ except Exception as e:
     print(f"integrations-enriched: skipped ({e})")
 PYEOF_INTEG
 
+# ─── CONTROL TOWER ENRICHMENT (add agentSortOrder for error-first sort) ───────
+python3 - "$LIVE_DIR" <<'PYEOF_CT'
+import json, sys, os
+live = sys.argv[1]
+src = os.path.join(live, "control-tower.json")
+out = os.path.join(live, "control-tower-enriched.json")
+STATUS_ORDER = {"error": 1, "running": 2, "ok": 3, "On-demand": 4, "Scheduled": 5}
+try:
+    data = json.load(open(src))
+    agents = []
+    for a in data.get("agents", []):
+        status = a.get("status", "")
+        sort_key = STATUS_ORDER.get(status, 6)
+        agents.append({**a, "agentSortOrder": sort_key})
+    agents.sort(key=lambda x: x["agentSortOrder"])
+    enriched = {**data, "agents": agents}
+    with open(out, "w") as f:
+        json.dump(enriched, f, indent=2)
+    print(f"Wrote control-tower-enriched.json ({len(agents)} agents)")
+except Exception as e:
+    print(f"control-tower-enriched: skipped ({e})")
+PYEOF_CT
+
 # ─── CRON SCHEDULE BY HOUR (for schedule distribution bargauge) ──────────────
 python3 - "$LIVE_DIR" <<'PYEOF_SCHED'
 import json, sys, os
