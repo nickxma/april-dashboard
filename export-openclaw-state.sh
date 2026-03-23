@@ -559,6 +559,8 @@ flat = [{
     "openErrors": open_errors,
     "staleJobs": stale_jobs,
     "totalTokensK": sum(s.get("tokensK", 0) for s in sa.get("sessions", [])),
+    "sonnetTokensK": sum(s.get("tokensK", 0) for s in sa.get("sessions", []) if "sonnet" in s.get("model", "").lower()),
+    "opusTokensK": sum(s.get("tokensK", 0) for s in sa.get("sessions", []) if "opus" in s.get("model", "").lower()),
     "activeSessions": len([s for s in sa.get("sessions", []) if s.get("tokensK", 0) > 0]),
     "cronSuccessPct": cron_success_pct,
     "urgentLoops": len([l for l in ol.get("loops", []) if 0 <= l.get("daysUntilDeadline", 999) <= 7]),
