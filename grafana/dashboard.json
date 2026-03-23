@@ -1280,7 +1280,7 @@
             "properties": [
               {
                 "id": "custom.width",
-                "value": 200
+                "value": 240
               }
             ]
           },
@@ -1292,7 +1292,7 @@
             "properties": [
               {
                 "id": "custom.width",
-                "value": 650
+                "value": 900
               },
               {
                 "id": "custom.overflow",
@@ -4393,5 +4393,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 76
+  "version": 77
 }
