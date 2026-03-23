@@ -1231,7 +1231,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 23
+        "y": 19
       },
       "id": 301,
       "options": {
@@ -1292,1691 +1292,16 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 31
+        "y": 29
       },
-      "id": 400,
-      "options": {},
-      "title": "\u23f1 Cron Jobs",
+      "id": 302,
+      "panels": [],
+      "title": "\ud83d\udd2c Research",
       "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "afgnlkc6o06bkb"
-      },
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Status"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 70
-              },
-              {
-                "id": "custom.displayMode",
-                "value": "color-background"
-              },
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "error": {
-                        "color": "red",
-                        "index": 1,
-                        "text": "error"
-                      },
-                      "idle": {
-                        "color": "text",
-                        "index": 3,
-                        "text": "idle"
-                      },
-                      "ok": {
-                        "color": "green",
-                        "index": 0,
-                        "text": "ok"
-                      },
-                      "running": {
-                        "color": "blue",
-                        "index": 2,
-                        "text": "running"
-                      }
-                    },
-                    "type": "value"
-                  }
-                ]
-              },
-              {
-                "id": "color",
-                "value": {
-                  "mode": "thresholds"
-                }
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "yellow",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Errors"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 60
-              },
-              {
-                "id": "custom.displayMode",
-                "value": "color-background"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    },
-                    {
-                      "color": "yellow",
-                      "value": 1
-                    },
-                    {
-                      "color": "red",
-                      "value": 3
-                    }
-                  ]
-                }
-              },
-              {
-                "id": "color",
-                "value": {
-                  "mode": "thresholds"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Job"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 220
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Duration"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 80
-              },
-              {
-                "id": "unit",
-                "value": "ms"
-              },
-              {
-                "id": "decimals",
-                "value": 0
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Last Error"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 300
-              },
-              {
-                "id": "custom.overflow",
-                "value": "truncate"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 13,
-        "w": 16,
-        "x": 0,
-        "y": 32
-      },
-      "id": 10,
-      "options": {
-        "cellHeight": "sm",
-        "showHeader": true,
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "Errors"
-          }
-        ]
-      },
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "name",
-              "text": "Job",
-              "type": "string"
-            },
-            {
-              "selector": "status",
-              "text": "Status",
-              "type": "string"
-            },
-            {
-              "selector": "schedule",
-              "text": "Schedule",
-              "type": "string"
-            },
-            {
-              "selector": "lastRun",
-              "text": "Last Run",
-              "type": "string"
-            },
-            {
-              "selector": "nextRun",
-              "text": "Next Run",
-              "type": "string"
-            },
-            {
-              "selector": "consecutiveErrors",
-              "text": "Errors",
-              "type": "number"
-            },
-            {
-              "selector": "lastDurationMs",
-              "text": "Duration",
-              "type": "number"
-            },
-            {
-              "selector": "lastError",
-              "text": "Last Error",
-              "type": "string"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "afgnlkc6o06bkb"
-          },
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "parser": "backend",
-          "refId": "A",
-          "root_selector": "jobs",
-          "source": "url",
-          "type": "json",
-          "url": "http://127.0.0.1:3001/cron-jobs.json",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "\u23f1 Cron Jobs",
-      "type": "table"
-    },
-    {
-      "collapsed": false,
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 45
-      },
-      "id": 100,
-      "options": {},
-      "title": "\ud83c\udfe5 System Health",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "afgnlkc6o06bkb"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "mappings": [
-            {
-              "options": {
-                "degraded": {
-                  "color": "orange",
-                  "index": 1,
-                  "text": "degraded"
-                },
-                "error": {
-                  "color": "red",
-                  "index": 2,
-                  "text": "error"
-                },
-                "ok": {
-                  "color": "green",
-                  "index": 0,
-                  "text": "ok"
-                },
-                "unknown": {
-                  "color": "dark-grey",
-                  "index": 3,
-                  "text": "unknown"
-                }
-              },
-              "type": "value"
-            }
-          ]
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 0,
-        "y": 46
-      },
-      "id": 101,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "/Overall/",
-          "values": false
-        },
-        "textMode": "value"
-      },
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "overall",
-              "text": "Overall",
-              "type": "string"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "afgnlkc6o06bkb"
-          },
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "parser": "backend",
-          "refId": "A",
-          "root_selector": "summary",
-          "source": "url",
-          "type": "json",
-          "url": "http://127.0.0.1:3001/system-summary.json",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "System Health",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "afgnlkc6o06bkb"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
-              },
-              {
-                "color": "red",
-                "value": 3
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 4,
-        "y": 46
-      },
-      "id": 102,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "/Failing/",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "failingJobs",
-              "text": "Failing",
-              "type": "number"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "afgnlkc6o06bkb"
-          },
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "parser": "backend",
-          "refId": "A",
-          "root_selector": "summary",
-          "source": "url",
-          "type": "json",
-          "url": "http://127.0.0.1:3001/system-summary.json",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "Failing Jobs",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "afgnlkc6o06bkb"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 1
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 8,
-        "y": 46
-      },
-      "id": 103,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "/Open Errors/",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "openErrors",
-              "text": "Open Errors",
-              "type": "number"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "afgnlkc6o06bkb"
-          },
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "parser": "backend",
-          "refId": "A",
-          "root_selector": "summary",
-          "source": "url",
-          "type": "json",
-          "url": "http://127.0.0.1:3001/system-summary.json",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "Open Errors",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "afgnlkc6o06bkb"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 12,
-        "y": 46
-      },
-      "id": 104,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "/Stale/",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "staleJobs",
-              "text": "Stale",
-              "type": "number"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "afgnlkc6o06bkb"
-          },
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "parser": "backend",
-          "refId": "A",
-          "root_selector": "summary",
-          "source": "url",
-          "type": "json",
-          "url": "http://127.0.0.1:3001/system-summary.json",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "Stale Jobs",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "afgnlkc6o06bkb"
-      },
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Severity"
-            },
-            "properties": [
-              {
-                "id": "custom.displayMode",
-                "value": "color-background"
-              },
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "error": {
-                        "color": "red",
-                        "index": 0,
-                        "text": "error"
-                      },
-                      "info": {
-                        "color": "blue",
-                        "index": 2,
-                        "text": "info"
-                      },
-                      "warn": {
-                        "color": "orange",
-                        "index": 1,
-                        "text": "warn"
-                      }
-                    },
-                    "type": "value"
-                  }
-                ]
-              },
-              {
-                "id": "custom.width",
-                "value": 80
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Status"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 80
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Time"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 160
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Component"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 200
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 24,
-        "x": 0,
-        "y": 50
-      },
-      "id": 105,
-      "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "Time"
-          }
-        ]
-      },
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "time",
-              "text": "Time",
-              "type": "string"
-            },
-            {
-              "selector": "component",
-              "text": "Component",
-              "type": "string"
-            },
-            {
-              "selector": "severity",
-              "text": "Severity",
-              "type": "string"
-            },
-            {
-              "selector": "status",
-              "text": "Status",
-              "type": "string"
-            },
-            {
-              "selector": "error",
-              "text": "Error",
-              "type": "string"
-            },
-            {
-              "selector": "meaning",
-              "text": "Meaning",
-              "type": "string"
-            },
-            {
-              "selector": "suggestedFix",
-              "text": "Suggested Fix",
-              "type": "string"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "afgnlkc6o06bkb"
-          },
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "parser": "backend",
-          "refId": "A",
-          "root_selector": "errors",
-          "source": "url",
-          "type": "json",
-          "url": "http://127.0.0.1:3001/system-health.json",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "\ud83d\udd34 Active System Errors",
-      "type": "table"
-    },
-    {
-      "collapsed": false,
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 58
-      },
-      "id": 500,
-      "options": {},
-      "title": "\ud83d\udccb Activity & Integrations",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "afgnlkc6o06bkb"
-      },
-      "fieldConfig": {
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Status"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 100
-              },
-              {
-                "id": "custom.displayMode",
-                "value": "color-background"
-              },
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "connected": {
-                        "color": "green",
-                        "index": 0,
-                        "text": "connected"
-                      },
-                      "degraded": {
-                        "color": "yellow",
-                        "index": 2,
-                        "text": "degraded"
-                      },
-                      "error": {
-                        "color": "red",
-                        "index": 1,
-                        "text": "error"
-                      }
-                    },
-                    "type": "value"
-                  }
-                ]
-              },
-              {
-                "id": "color",
-                "value": {
-                  "mode": "thresholds"
-                }
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "yellow",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Integration"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 140
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Last Verified"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 160
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 0,
-        "y": 59
-      },
-      "id": 32,
-      "options": {},
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "name",
-              "text": "Integration",
-              "type": "string"
-            },
-            {
-              "selector": "status",
-              "text": "Status",
-              "type": "string"
-            },
-            {
-              "selector": "description",
-              "text": "Details",
-              "type": "string"
-            },
-            {
-              "selector": "lastVerified",
-              "text": "Last Verified",
-              "type": "string"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "afgnlkc6o06bkb"
-          },
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "parser": "backend",
-          "refId": "A",
-          "root_selector": "connected",
-          "source": "url",
-          "type": "json",
-          "url": "http://127.0.0.1:3001/integrations.json",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "Integrations",
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "afgnlkc6o06bkb"
-      },
-      "fieldConfig": {
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Ctx %"
-            },
-            "properties": [
-              {
-                "id": "custom.displayMode",
-                "value": "color-background"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    },
-                    {
-                      "color": "yellow",
-                      "value": 50
-                    },
-                    {
-                      "color": "red",
-                      "value": 80
-                    }
-                  ]
-                }
-              },
-              {
-                "id": "color",
-                "value": {
-                  "mode": "thresholds"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Type"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 70
-              },
-              {
-                "id": "custom.displayMode",
-                "value": "color-background"
-              },
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "channel": {
-                        "color": "purple",
-                        "index": 1,
-                        "text": "channel"
-                      },
-                      "cron": {
-                        "color": "blue",
-                        "index": 0,
-                        "text": "cron"
-                      },
-                      "direct": {
-                        "color": "text",
-                        "index": 2,
-                        "text": "direct"
-                      }
-                    },
-                    "type": "value"
-                  }
-                ]
-              },
-              {
-                "id": "color",
-                "value": {
-                  "mode": "thresholds"
-                }
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "text",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Session"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 200
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Tokens (k)"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 80
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 8,
-        "y": 59
-      },
-      "id": 40,
-      "options": {
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "Ctx %"
-          }
-        ]
-      },
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "type",
-              "text": "Type",
-              "type": "string"
-            },
-            {
-              "selector": "label",
-              "text": "Session",
-              "type": "string"
-            },
-            {
-              "selector": "age",
-              "text": "Age",
-              "type": "string"
-            },
-            {
-              "selector": "model",
-              "text": "Model",
-              "type": "string"
-            },
-            {
-              "selector": "tokensK",
-              "text": "Tokens (k)",
-              "type": "number"
-            },
-            {
-              "selector": "pct",
-              "text": "Ctx %",
-              "type": "number"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "afgnlkc6o06bkb"
-          },
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "parser": "backend",
-          "refId": "A",
-          "root_selector": "sessions",
-          "source": "url",
-          "type": "json",
-          "url": "http://127.0.0.1:3001/session-activity.json",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "\ud83d\udcac Session Activity",
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "afgnlkc6o06bkb"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 25
-              },
-              {
-                "color": "yellow",
-                "value": 50
-              },
-              {
-                "color": "green",
-                "value": 75
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 59
-      },
-      "id": 501,
-      "options": {
-        "displayMode": "lcd",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "namePlacement": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "/^Percent$/",
-          "values": false
-        },
-        "showUnfilled": true,
-        "text": {},
-        "valueMode": "color"
-      },
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "name",
-              "text": "Project",
-              "type": "string"
-            },
-            {
-              "selector": "percent",
-              "text": "Percent",
-              "type": "number"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "afgnlkc6o06bkb"
-          },
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "parser": "backend",
-          "refId": "A",
-          "root_selector": "projects",
-          "source": "url",
-          "type": "json",
-          "url": "http://127.0.0.1:3001/control-tower.json",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "Project Progress",
-      "type": "bargauge"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 66
-      },
-      "id": 600,
-      "options": {},
-      "title": "\ud83c\udfae Control Tower",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "afgnlkc6o06bkb"
-      },
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Rank"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 50
-              },
-              {
-                "id": "custom.displayMode",
-                "value": "color-background"
-              },
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "P1": {
-                        "color": "red",
-                        "index": 0,
-                        "text": "P1"
-                      },
-                      "P2": {
-                        "color": "orange",
-                        "index": 1,
-                        "text": "P2"
-                      },
-                      "P3": {
-                        "color": "yellow",
-                        "index": 2,
-                        "text": "P3"
-                      }
-                    },
-                    "type": "value"
-                  }
-                ]
-              },
-              {
-                "id": "color",
-                "value": {
-                  "mode": "thresholds"
-                }
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "text",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Ball"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 80
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Agent"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 120
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 67
-      },
-      "id": 601,
-      "options": {
-        "sortBy": [
-          {
-            "desc": false,
-            "displayName": "Rank"
-          }
-        ]
-      },
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "rank",
-              "text": "Rank",
-              "type": "string"
-            },
-            {
-              "selector": "task",
-              "text": "Task",
-              "type": "string"
-            },
-            {
-              "selector": "ball",
-              "text": "Ball",
-              "type": "string"
-            },
-            {
-              "selector": "next",
-              "text": "Next Action",
-              "type": "string"
-            },
-            {
-              "selector": "agent",
-              "text": "Agent",
-              "type": "string"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "afgnlkc6o06bkb"
-          },
-          "filters": [],
-          "format": "table",
-          "parser": "backend",
-          "refId": "A",
-          "root_selector": "priorities",
-          "source": "url",
-          "type": "json",
-          "url": "http://127.0.0.1:3001/control-tower.json",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "Top Priorities",
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "afgnlkc6o06bkb"
-      },
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Score"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 60
-              },
-              {
-                "id": "custom.displayMode",
-                "value": "color-background"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "yellow",
-                      "value": null
-                    },
-                    {
-                      "color": "orange",
-                      "value": 6
-                    },
-                    {
-                      "color": "red",
-                      "value": 8
-                    }
-                  ]
-                }
-              },
-              {
-                "id": "color",
-                "value": {
-                  "mode": "thresholds"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Owner"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 70
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 67
-      },
-      "id": 602,
-      "options": {
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "Score"
-          }
-        ]
-      },
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "score",
-              "text": "Score",
-              "type": "number"
-            },
-            {
-              "selector": "item",
-              "text": "Item",
-              "type": "string"
-            },
-            {
-              "selector": "owner",
-              "text": "Owner",
-              "type": "string"
-            },
-            {
-              "selector": "next",
-              "text": "Next Action",
-              "type": "string"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "afgnlkc6o06bkb"
-          },
-          "filters": [],
-          "format": "table",
-          "parser": "backend",
-          "refId": "A",
-          "root_selector": "blockers",
-          "source": "url",
-          "type": "json",
-          "url": "http://127.0.0.1:3001/control-tower.json",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "Nick-Blocking Decisions",
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "afgnlkc6o06bkb"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "wrap": false
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Status"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 100
-              },
-              {
-                "id": "custom.displayMode",
-                "value": "color-background"
-              },
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "0 active": {
-                        "color": "text",
-                        "index": 3,
-                        "text": "0 active"
-                      },
-                      "On-demand": {
-                        "color": "blue",
-                        "index": 2,
-                        "text": "On-demand"
-                      },
-                      "Scheduled": {
-                        "color": "blue",
-                        "index": 4,
-                        "text": "Scheduled"
-                      },
-                      "error": {
-                        "color": "red",
-                        "index": 1,
-                        "text": "error"
-                      },
-                      "ok": {
-                        "color": "green",
-                        "index": 0,
-                        "text": "ok"
-                      }
-                    },
-                    "type": "value"
-                  }
-                ]
-              },
-              {
-                "id": "color",
-                "value": {
-                  "mode": "thresholds"
-                }
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "yellow",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Agent"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 260
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Cadence"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 220
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 24,
-        "x": 0,
-        "y": 74
-      },
-      "id": 603,
-      "options": {
-        "cellHeight": "sm",
-        "showHeader": true,
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "Status"
-          }
-        ]
-      },
-      "targets": [
-        {
-          "columns": [
-            {
-              "selector": "name",
-              "text": "Agent",
-              "type": "string"
-            },
-            {
-              "selector": "status",
-              "text": "Status",
-              "type": "string"
-            },
-            {
-              "selector": "workstream",
-              "text": "Workstream",
-              "type": "string"
-            },
-            {
-              "selector": "cadence",
-              "text": "Cadence",
-              "type": "string"
-            }
-          ],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "afgnlkc6o06bkb"
-          },
-          "filters": [],
-          "format": "table",
-          "parser": "backend",
-          "refId": "A",
-          "root_selector": "agents",
-          "source": "url",
-          "type": "json",
-          "url": "http://127.0.0.1:3001/control-tower.json",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "\ud83e\udd16 Agent Fleet",
-      "type": "table"
     },
     {
       "datasource": {
@@ -3017,7 +1342,7 @@
         "h": 4,
         "w": 6,
         "x": 0,
-        "y": 19
+        "y": 30
       },
       "id": 700,
       "options": {
@@ -3242,7 +1567,7 @@
         "h": 4,
         "w": 18,
         "x": 6,
-        "y": 19
+        "y": 30
       },
       "id": 701,
       "options": {
@@ -3298,6 +1623,267 @@
         }
       ],
       "title": "PayPal Acquisition Evidence Trail",
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 34
+      },
+      "id": 400,
+      "options": {},
+      "title": "\u23f1 Cron Jobs",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 70
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "error": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "error"
+                      },
+                      "idle": {
+                        "color": "text",
+                        "index": 3,
+                        "text": "idle"
+                      },
+                      "ok": {
+                        "color": "green",
+                        "index": 0,
+                        "text": "ok"
+                      },
+                      "running": {
+                        "color": "blue",
+                        "index": 2,
+                        "text": "running"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "yellow",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Errors"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 60
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 1
+                    },
+                    {
+                      "color": "red",
+                      "value": 3
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Job"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 220
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Duration"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 80
+              },
+              {
+                "id": "unit",
+                "value": "ms"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Last Error"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 300
+              },
+              {
+                "id": "custom.overflow",
+                "value": "truncate"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 16,
+        "x": 0,
+        "y": 35
+      },
+      "id": 10,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Errors"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "name",
+              "text": "Job",
+              "type": "string"
+            },
+            {
+              "selector": "status",
+              "text": "Status",
+              "type": "string"
+            },
+            {
+              "selector": "schedule",
+              "text": "Schedule",
+              "type": "string"
+            },
+            {
+              "selector": "lastRun",
+              "text": "Last Run",
+              "type": "string"
+            },
+            {
+              "selector": "nextRun",
+              "text": "Next Run",
+              "type": "string"
+            },
+            {
+              "selector": "consecutiveErrors",
+              "text": "Errors",
+              "type": "number"
+            },
+            {
+              "selector": "lastDurationMs",
+              "text": "Duration",
+              "type": "number"
+            },
+            {
+              "selector": "lastError",
+              "text": "Last Error",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "jobs",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/cron-jobs.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "\u23f1 Cron Jobs",
       "type": "table"
     },
     {
@@ -3389,7 +1975,7 @@
         "h": 13,
         "w": 8,
         "x": 16,
-        "y": 32
+        "y": 35
       },
       "id": 401,
       "options": {
@@ -3442,6 +2028,338 @@
       "type": "table"
     },
     {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 48
+      },
+      "id": 100,
+      "options": {},
+      "title": "\ud83c\udfe5 System Health",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "degraded": {
+                  "color": "orange",
+                  "index": 1,
+                  "text": "degraded"
+                },
+                "error": {
+                  "color": "red",
+                  "index": 2,
+                  "text": "error"
+                },
+                "ok": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "ok"
+                },
+                "unknown": {
+                  "color": "dark-grey",
+                  "index": 3,
+                  "text": "unknown"
+                }
+              },
+              "type": "value"
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 49
+      },
+      "id": 101,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/Overall/",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "overall",
+              "text": "Overall",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "summary",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/system-summary.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "System Health",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 3
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 49
+      },
+      "id": 102,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/Failing/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "failingJobs",
+              "text": "Failing",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "summary",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/system-summary.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Failing Jobs",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 49
+      },
+      "id": 103,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/Open Errors/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "openErrors",
+              "text": "Open Errors",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "summary",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/system-summary.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Open Errors",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 12,
+        "y": 49
+      },
+      "id": 104,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/Stale/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "staleJobs",
+              "text": "Stale",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "summary",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/system-summary.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Stale Jobs",
+      "type": "stat"
+    },
+    {
       "datasource": {
         "type": "yesoreyeram-infinity-datasource",
         "uid": "afgnlkc6o06bkb"
@@ -3470,7 +2388,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 46
+        "y": 49
       },
       "id": 106,
       "options": {
@@ -3561,7 +2479,7 @@
         "h": 4,
         "w": 4,
         "x": 20,
-        "y": 46
+        "y": 49
       },
       "id": 107,
       "options": {
@@ -3609,11 +2527,1106 @@
       ],
       "title": "Tokens In-Use",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Severity"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "error": {
+                        "color": "red",
+                        "index": 0,
+                        "text": "error"
+                      },
+                      "info": {
+                        "color": "blue",
+                        "index": 2,
+                        "text": "info"
+                      },
+                      "warn": {
+                        "color": "orange",
+                        "index": 1,
+                        "text": "warn"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 80
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 80
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 160
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Component"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 200
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 53
+      },
+      "id": 105,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Time"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "time",
+              "text": "Time",
+              "type": "string"
+            },
+            {
+              "selector": "component",
+              "text": "Component",
+              "type": "string"
+            },
+            {
+              "selector": "severity",
+              "text": "Severity",
+              "type": "string"
+            },
+            {
+              "selector": "status",
+              "text": "Status",
+              "type": "string"
+            },
+            {
+              "selector": "error",
+              "text": "Error",
+              "type": "string"
+            },
+            {
+              "selector": "meaning",
+              "text": "Meaning",
+              "type": "string"
+            },
+            {
+              "selector": "suggestedFix",
+              "text": "Suggested Fix",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "errors",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/system-health.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "\ud83d\udd34 Active System Errors",
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 61
+      },
+      "id": 500,
+      "options": {},
+      "title": "\ud83d\udccb Activity & Integrations",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "connected": {
+                        "color": "green",
+                        "index": 0,
+                        "text": "connected"
+                      },
+                      "degraded": {
+                        "color": "yellow",
+                        "index": 2,
+                        "text": "degraded"
+                      },
+                      "error": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "error"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "yellow",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Integration"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 140
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Last Verified"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 160
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 0,
+        "y": 62
+      },
+      "id": 32,
+      "options": {},
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "name",
+              "text": "Integration",
+              "type": "string"
+            },
+            {
+              "selector": "status",
+              "text": "Status",
+              "type": "string"
+            },
+            {
+              "selector": "description",
+              "text": "Details",
+              "type": "string"
+            },
+            {
+              "selector": "lastVerified",
+              "text": "Last Verified",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "connected",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/integrations.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Integrations",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Ctx %"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 50
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Type"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 70
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "channel": {
+                        "color": "purple",
+                        "index": 1,
+                        "text": "channel"
+                      },
+                      "cron": {
+                        "color": "blue",
+                        "index": 0,
+                        "text": "cron"
+                      },
+                      "direct": {
+                        "color": "text",
+                        "index": 2,
+                        "text": "direct"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "text",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Session"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 200
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Tokens (k)"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 80
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 8,
+        "y": 62
+      },
+      "id": 40,
+      "options": {
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Ctx %"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "type",
+              "text": "Type",
+              "type": "string"
+            },
+            {
+              "selector": "label",
+              "text": "Session",
+              "type": "string"
+            },
+            {
+              "selector": "age",
+              "text": "Age",
+              "type": "string"
+            },
+            {
+              "selector": "model",
+              "text": "Model",
+              "type": "string"
+            },
+            {
+              "selector": "tokensK",
+              "text": "Tokens (k)",
+              "type": "number"
+            },
+            {
+              "selector": "pct",
+              "text": "Ctx %",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "sessions",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/session-activity.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "\ud83d\udcac Session Activity",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 25
+              },
+              {
+                "color": "yellow",
+                "value": 50
+              },
+              {
+                "color": "green",
+                "value": 75
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 62
+      },
+      "id": 501,
+      "options": {
+        "displayMode": "lcd",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Percent$/",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {},
+        "valueMode": "color"
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "name",
+              "text": "Project",
+              "type": "string"
+            },
+            {
+              "selector": "percent",
+              "text": "Percent",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "projects",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/control-tower.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Project Progress",
+      "type": "bargauge"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 69
+      },
+      "id": 600,
+      "options": {},
+      "title": "\ud83c\udfae Control Tower",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Rank"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 50
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "P1": {
+                        "color": "red",
+                        "index": 0,
+                        "text": "P1"
+                      },
+                      "P2": {
+                        "color": "orange",
+                        "index": 1,
+                        "text": "P2"
+                      },
+                      "P3": {
+                        "color": "yellow",
+                        "index": 2,
+                        "text": "P3"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "text",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Ball"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 80
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Agent"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 120
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 70
+      },
+      "id": 601,
+      "options": {
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Rank"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "rank",
+              "text": "Rank",
+              "type": "string"
+            },
+            {
+              "selector": "task",
+              "text": "Task",
+              "type": "string"
+            },
+            {
+              "selector": "ball",
+              "text": "Ball",
+              "type": "string"
+            },
+            {
+              "selector": "next",
+              "text": "Next Action",
+              "type": "string"
+            },
+            {
+              "selector": "agent",
+              "text": "Agent",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "priorities",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/control-tower.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Top Priorities",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Score"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 60
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "yellow",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 6
+                    },
+                    {
+                      "color": "red",
+                      "value": 8
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Owner"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 70
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 70
+      },
+      "id": 602,
+      "options": {
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Score"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "score",
+              "text": "Score",
+              "type": "number"
+            },
+            {
+              "selector": "item",
+              "text": "Item",
+              "type": "string"
+            },
+            {
+              "selector": "owner",
+              "text": "Owner",
+              "type": "string"
+            },
+            {
+              "selector": "next",
+              "text": "Next Action",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "blockers",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/control-tower.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Nick-Blocking Decisions",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "wrap": false
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0 active": {
+                        "color": "text",
+                        "index": 3,
+                        "text": "0 active"
+                      },
+                      "On-demand": {
+                        "color": "blue",
+                        "index": 2,
+                        "text": "On-demand"
+                      },
+                      "Scheduled": {
+                        "color": "blue",
+                        "index": 4,
+                        "text": "Scheduled"
+                      },
+                      "error": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "error"
+                      },
+                      "ok": {
+                        "color": "green",
+                        "index": 0,
+                        "text": "ok"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "yellow",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Agent"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 260
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Cadence"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 220
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 77
+      },
+      "id": 603,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Status"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "name",
+              "text": "Agent",
+              "type": "string"
+            },
+            {
+              "selector": "status",
+              "text": "Status",
+              "type": "string"
+            },
+            {
+              "selector": "workstream",
+              "text": "Workstream",
+              "type": "string"
+            },
+            {
+              "selector": "cadence",
+              "text": "Cadence",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "agents",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/control-tower.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "\ud83e\udd16 Agent Fleet",
+      "type": "table"
     }
   ],
   "refresh": "5m",
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 45
+  "version": 46
 }
