@@ -474,6 +474,9 @@ except: pass
 sa = {}
 try: sa = json.load(open(os.path.join(live, "session-activity.json")))
 except: pass
+ol = {}
+try: ol = json.load(open(os.path.join(live, "open-loops-enriched.json")))
+except: pass
 gw_state = gw.get("gateway",{}).get("state","unknown")
 slack_state = gw.get("channels",{}).get("slack","unknown")
 model_val = gw.get("model","unknown")
@@ -512,6 +515,8 @@ flat = [{
     "totalTokensK": sum(s.get("tokensK", 0) for s in sa.get("sessions", [])),
     "activeSessions": len([s for s in sa.get("sessions", []) if s.get("tokensK", 0) > 0]),
     "cronSuccessPct": cron_success_pct,
+    "urgentLoops": len([l for l in ol.get("loops", []) if 0 <= l.get("daysUntilDeadline", 999) <= 7]),
+    "totalLoops": len(ol.get("loops", [])),
     "updatedAt": cj.get("updatedAt", local_ts),
 }]
 with open(os.path.join(live, "system-summary.json"), "w") as f:
