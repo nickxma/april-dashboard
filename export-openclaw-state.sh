@@ -118,11 +118,18 @@ for j in data.get("jobs", []):
         "lastError": state.get("lastError") or ("consecutive errors: " + str(consecutive_errors) if consecutive_errors > 0 else ""),
     })
 
+# Compute next 5 upcoming runs sorted by nextRunAt ISO string
+next_runs = sorted(
+    [j for j in jobs_out if j.get("nextRunAt")],
+    key=lambda x: x["nextRunAt"]
+)[:5]
+
 out = {
     "updatedAt": local_ts,
     "updatedAtIso": ts,
     "total": len(jobs_out),
-    "jobs": jobs_out
+    "jobs": jobs_out,
+    "nextRuns": next_runs
 }
 import os
 live_dir = os.path.expanduser("~/.openclaw/workspace/dashboard-ui/live")
