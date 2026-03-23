@@ -574,6 +574,17 @@
             "match": "any",
             "type": "include"
           }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": [
+              {
+                "desc": true,
+                "displayName": "Errors"
+              }
+            ]
+          }
         }
       ],
       "type": "table"
@@ -2013,6 +2024,19 @@
         }
       ],
       "title": "\u23f1 Cron Jobs",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": [
+              {
+                "desc": true,
+                "displayName": "Errors"
+              }
+            ]
+          }
+        }
+      ],
       "type": "table"
     },
     {
@@ -4117,5 +4141,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 59
+  "version": 60
 }
