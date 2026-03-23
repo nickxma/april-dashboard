@@ -152,6 +152,75 @@
                 "value": 100
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Due In"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 70
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 0
+                    },
+                    {
+                      "color": "orange",
+                      "value": 4
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 8
+                    },
+                    {
+                      "color": "text",
+                      "value": 30
+                    },
+                    {
+                      "color": "text",
+                      "value": 998
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "999": {
+                        "color": "text",
+                        "index": 0,
+                        "text": "\u2014"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              }
+            ]
           }
         ]
       },
@@ -167,8 +236,8 @@
         "showHeader": true,
         "sortBy": [
           {
-            "desc": true,
-            "displayName": "Days Open"
+            "desc": false,
+            "displayName": "Due In"
           }
         ]
       },
@@ -204,6 +273,11 @@
               "selector": "deadline",
               "text": "Deadline",
               "type": "string"
+            },
+            {
+              "selector": "daysUntilDeadline",
+              "text": "Due In",
+              "type": "number"
             }
           ],
           "datasource": {
@@ -218,7 +292,7 @@
           "root_selector": "loops",
           "source": "url",
           "type": "json",
-          "url": "http://127.0.0.1:3001/open-loops.json",
+          "url": "http://127.0.0.1:3001/open-loops-enriched.json",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -3309,5 +3383,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 42
+  "version": 43
 }

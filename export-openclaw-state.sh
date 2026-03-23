@@ -535,3 +535,29 @@ try:
 except Exception as e:
     print(f"research-evidence: skipped ({e})")
 PYEOF_EVIDENCE
+
+# ─── OPEN LOOPS ENRICHMENT (add daysUntilDeadline, sort by urgency) ──────────
+python3 - "$LIVE_DIR" <<'PYEOF_LOOPS'
+import json, sys, os, datetime
+live = sys.argv[1]
+src = os.path.join(live, "open-loops.json")
+out = os.path.join(live, "open-loops-enriched.json")
+try:
+    data = json.load(open(src))
+    today = datetime.date.today()
+    loops = []
+    for l in data.get("loops", []):
+        dl = l.get("deadline")
+        try:
+            days_until = (datetime.date.fromisoformat(dl) - today).days if dl else None
+        except Exception:
+            days_until = None
+        loops.append({**l, "daysUntilDeadline": days_until if days_until is not None else 999})
+    # Sort: deadline items first (ascending), then no-deadline items
+    loops.sort(key=lambda x: x["daysUntilDeadline"])
+    with open(out, "w") as f:
+        json.dump({"loops": loops, "updatedAt": data.get("updatedAt", "")}, f, indent=2)
+    print(f"Wrote open-loops-enriched.json ({len(loops)} items)")
+except Exception as e:
+    print(f"open-loops-enriched: skipped ({e})")
+PYEOF_LOOPS
