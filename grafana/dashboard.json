@@ -2034,7 +2034,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 48
+        "y": 55
       },
       "id": 100,
       "options": {},
@@ -2082,7 +2082,7 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 49
+        "y": 56
       },
       "id": 101,
       "options": {
@@ -2161,7 +2161,7 @@
         "h": 4,
         "w": 4,
         "x": 4,
-        "y": 49
+        "y": 56
       },
       "id": 102,
       "options": {
@@ -2236,7 +2236,7 @@
         "h": 4,
         "w": 4,
         "x": 8,
-        "y": 49
+        "y": 56
       },
       "id": 103,
       "options": {
@@ -2311,7 +2311,7 @@
         "h": 4,
         "w": 4,
         "x": 12,
-        "y": 49
+        "y": 56
       },
       "id": 104,
       "options": {
@@ -2388,7 +2388,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 49
+        "y": 56
       },
       "id": 106,
       "options": {
@@ -2479,7 +2479,7 @@
         "h": 4,
         "w": 4,
         "x": 20,
-        "y": 49
+        "y": 56
       },
       "id": 107,
       "options": {
@@ -2619,7 +2619,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 53
+        "y": 60
       },
       "id": 105,
       "options": {
@@ -2708,7 +2708,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 61
+        "y": 68
       },
       "id": 500,
       "options": {},
@@ -2809,9 +2809,9 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 8,
+        "w": 10,
         "x": 0,
-        "y": 62
+        "y": 69
       },
       "id": 32,
       "options": {},
@@ -2993,9 +2993,9 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 8,
-        "x": 8,
-        "y": 62
+        "w": 10,
+        "x": 10,
+        "y": 69
       },
       "id": 40,
       "options": {
@@ -3101,9 +3101,9 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 62
+        "w": 4,
+        "x": 20,
+        "y": 69
       },
       "id": 501,
       "options": {
@@ -3165,7 +3165,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 69
+        "y": 76
       },
       "id": 600,
       "options": {},
@@ -3269,7 +3269,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 70
+        "y": 77
       },
       "id": 601,
       "options": {
@@ -3398,7 +3398,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 70
+        "y": 77
       },
       "id": 602,
       "options": {
@@ -3565,7 +3565,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 77
+        "y": 84
       },
       "id": 603,
       "options": {
@@ -3622,11 +3622,114 @@
       ],
       "title": "\ud83e\udd16 Agent Fleet",
       "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "afgnlkc6o06bkb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 3,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "blue",
+                "value": 1
+              },
+              {
+                "color": "green",
+                "value": 2
+              },
+              {
+                "color": "orange",
+                "value": 3
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 48
+      },
+      "id": 402,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Jobs$/",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {},
+        "valueMode": "color"
+      },
+      "pluginVersion": "12.4.1",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "hour",
+              "text": "Hour",
+              "type": "string"
+            },
+            {
+              "selector": "timedJobs",
+              "text": "Jobs",
+              "type": "number"
+            },
+            {
+              "selector": "jobNames",
+              "text": "Job Names",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "afgnlkc6o06bkb"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "hours",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:3001/cron-schedule-hours.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "\ud83d\udcc5 Cron Schedule by Hour (Chicago)",
+      "type": "bargauge"
     }
   ],
   "refresh": "5m",
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 46
+  "version": 48
 }

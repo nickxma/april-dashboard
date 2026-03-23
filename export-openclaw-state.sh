@@ -591,3 +591,63 @@ try:
 except Exception as e:
     print(f"objectives-enriched: skipped ({e})")
 PYEOF_OBJ
+
+# ─── CRON SCHEDULE BY HOUR (for schedule distribution bargauge) ──────────────
+python3 - "$LIVE_DIR" <<'PYEOF_SCHED'
+import json, sys, os
+from collections import defaultdict
+
+live = sys.argv[1]
+try:
+    cj = json.load(open(os.path.join(live, "cron-jobs.json")))
+    jobs = cj.get("jobs", [])
+
+    # Raw schedule data from source jobs.json for cron expressions
+    import re
+    time_jobs = defaultdict(list)
+    interval_count = 0
+    for j in jobs:
+        sched = j.get("schedule", "")
+        if not sched or not j.get("name"):
+            continue
+        # interval jobs: "every Xm/h"
+        if sched.startswith("every "):
+            interval_count += 1
+            continue
+        # time-specific: extract hour from schedule string like "1am daily (Chicago)"
+        # or "Sundays 9am (Chicago)"
+        m = re.search(r'(\d+)(am|pm)', sched)
+        if m:
+            h = int(m.group(1))
+            suffix = m.group(2)
+            if suffix == "pm" and h != 12:
+                h += 12
+            elif suffix == "am" and h == 12:
+                h = 0
+            time_jobs[h].append(j["name"])
+
+    hours = []
+    for h in range(24):
+        timed = time_jobs.get(h, [])
+        if not timed:
+            continue  # only include hours with scheduled jobs
+        label = f"{h % 12 or 12}{'am' if h < 12 else 'pm'}"
+        hours.append({
+            "hour": label,
+            "hourNum": h,
+            "timedJobs": len(timed),
+            "jobNames": ", ".join(n[:22] for n in timed[:3]),
+        })
+
+    out = {
+        "hours": hours,
+        "intervalJobs": interval_count,
+        "updatedAt": cj.get("updatedAt", ""),
+    }
+    with open(os.path.join(live, "cron-schedule-hours.json"), "w") as f:
+        json.dump(out, f, indent=2)
+    non_zero = [h for h in hours if h["timedJobs"] > 0]
+    print(f"Wrote cron-schedule-hours.json ({len(non_zero)} active hours, {interval_count} interval jobs)")
+except Exception as e:
+    print(f"cron-schedule-hours: skipped ({e})")
+PYEOF_SCHED
