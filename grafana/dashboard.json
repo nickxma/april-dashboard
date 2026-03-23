@@ -1166,6 +1166,64 @@
                 "value": 200
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Progress"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 80
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "gradient-gauge"
+              },
+              {
+                "id": "max",
+                "value": 100
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 30
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 60
+                    },
+                    {
+                      "color": "green",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              }
+            ]
           }
         ]
       },
@@ -1200,6 +1258,11 @@
               "type": "string"
             },
             {
+              "selector": "progressPct",
+              "text": "Progress",
+              "type": "number"
+            },
+            {
               "selector": "latest",
               "text": "Latest",
               "type": "string"
@@ -1217,7 +1280,7 @@
           "root_selector": "objectives",
           "source": "url",
           "type": "json",
-          "url": "http://127.0.0.1:3001/objectives.json",
+          "url": "http://127.0.0.1:3001/objectives-enriched.json",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -3552,5 +3615,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 44
+  "version": 45
 }

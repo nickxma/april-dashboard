@@ -566,3 +566,28 @@ try:
 except Exception as e:
     print(f"open-loops-enriched: skipped ({e})")
 PYEOF_LOOPS
+
+# ─── OBJECTIVES ENRICHMENT (add progressPct from bullet indicators) ──────────
+python3 - "$LIVE_DIR" <<'PYEOF_OBJ'
+import json, sys, os, re
+live = sys.argv[1]
+src = os.path.join(live, "objectives.json")
+out = os.path.join(live, "objectives-enriched.json")
+try:
+    data = json.load(open(src))
+    objs = []
+    for o in data.get("objectives", []):
+        latest = o.get("latest", "")
+        filled = latest.count("\u25cf")   # ●
+        total  = filled + latest.count("\u25cb")  # ○
+        pct    = round(filled / total * 100) if total > 0 else 0
+        # Strip bullet prefix from latest text
+        clean  = re.sub(r'^[\u25cf\u25cb]+\s*', '', latest).strip()
+        objs.append({**o, "progressPct": pct, "latest": clean})
+    with open(out, "w") as f:
+        json.dump({"objectives": objs, "updatedAt": data.get("updatedAt", ""),
+                   "sources": data.get("sources", [])}, f, indent=2)
+    print(f"Wrote objectives-enriched.json ({len(objs)} objectives)")
+except Exception as e:
+    print(f"objectives-enriched: skipped ({e})")
+PYEOF_OBJ
