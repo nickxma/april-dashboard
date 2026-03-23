@@ -596,55 +596,6 @@ except Exception as e:
     print(f"research-evidence: skipped ({e})")
 PYEOF_EVIDENCE
 
-# ─── OPEN LOOPS ENRICHMENT (add daysUntilDeadline, sort by urgency) ──────────
-python3 - "$LIVE_DIR" <<'PYEOF_LOOPS'
-import json, sys, os, datetime, re
-live = sys.argv[1]
-src = os.path.join(live, "open-loops.json")
-out = os.path.join(live, "open-loops-enriched.json")
-try:
-    data = json.load(open(src))
-    today = datetime.date.today()
-    loops = []
-    def parse_deadline_date(dl):
-        """Parse deadline string to date object, handling both date-only and ISO datetime formats."""
-        if not dl:
-            return None
-        for fmt in (
-            lambda s: datetime.date.fromisoformat(s),                        # "2026-03-25"
-            lambda s: datetime.datetime.fromisoformat(s.replace("Z", "+00:00")).date(),  # "2026-03-25T14:00:00.000Z"
-        ):
-            try:
-                return fmt(dl)
-            except Exception:
-                pass
-        return None
-    for l in data.get("loops", []):
-        dl = l.get("deadline")
-        d_obj = parse_deadline_date(dl)
-        days_until = (d_obj - today).days if d_obj else None
-        # Format deadline as "3/24" for display
-        deadline_short = d_obj.strftime("%-m/%-d") if d_obj else ""
-        # Extract first OLU-XXXX reference for data link
-        item_text = l.get("item", "")
-        olu_match = re.search(r'OLU-(\d+)', item_text)
-        olu_link = f"http://127.0.0.1:3000/OLU/issues/OLU-{olu_match.group(1)}" if olu_match else ""
-        # Strip redundant owner prefix from nextAction (e.g., "Nick: " or "Claw: ")
-        next_action = l.get("nextAction", "")
-        next_action = re.sub(r'^(?:Nick|Claw|[A-Z][a-z]+):\s*', '', next_action)
-        loops.append({**{k: v for k, v in l.items() if k != "nextAction"},
-                      "nextAction": next_action,
-                      "daysUntilDeadline": days_until if days_until is not None else 999,
-                      "deadlineShort": deadline_short, "oluLink": olu_link})
-    # Sort: deadline items first (ascending), then no-deadline items
-    loops.sort(key=lambda x: x["daysUntilDeadline"])
-    with open(out, "w") as f:
-        json.dump({"loops": loops, "updatedAt": data.get("updatedAt", "")}, f, indent=2)
-    print(f"Wrote open-loops-enriched.json ({len(loops)} items)")
-except Exception as e:
-    print(f"open-loops-enriched: skipped ({e})")
-PYEOF_LOOPS
-
 # ─── OBJECTIVES ENRICHMENT (add progressPct from bullet indicators) ──────────
 python3 - "$LIVE_DIR" <<'PYEOF_OBJ'
 import json, sys, os, re
