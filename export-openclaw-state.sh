@@ -576,7 +576,7 @@ try:
         # Extract first OLU-XXXX reference for data link
         item_text = l.get("item", "")
         olu_match = re.search(r'OLU-(\d+)', item_text)
-        olu_link = f"/OLU/issues/OLU-{olu_match.group(1)}" if olu_match else ""
+        olu_link = f"http://127.0.0.1:3000/OLU/issues/OLU-{olu_match.group(1)}" if olu_match else ""
         # Strip redundant owner prefix from nextAction (e.g., "Nick: " or "Claw: ")
         next_action = l.get("nextAction", "")
         next_action = re.sub(r'^(?:Nick|Claw|[A-Z][a-z]+):\s*', '', next_action)
