@@ -1678,6 +1678,16 @@
               {
                 "id": "custom.overflow",
                 "value": "truncate"
+              },
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "View Source",
+                    "url": "${__data.fields.url}"
+                  }
+                ]
               }
             ]
           },
@@ -4169,5 +4179,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 62
+  "version": 63
 }
