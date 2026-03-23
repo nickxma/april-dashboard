@@ -78,6 +78,46 @@ def ms_to_iso(ms):
     except:
         return None
 
+DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+
+def fmt_hour(h):
+    """Convert 0-23 hour to 12h string like '9am', '5pm'."""
+    h = int(h)
+    if h == 0: return "12am"
+    if h == 12: return "12pm"
+    return f"{h}am" if h < 12 else f"{h-12}pm"
+
+def cron_to_human(expr, tz=""):
+    """Convert simple cron expressions to human-readable strings."""
+    parts = expr.strip().split()
+    if len(parts) != 5:
+        return expr
+    m, h, dom, mon, dow = parts
+    tz_short = tz.split("/")[-1] if tz else ""
+    suffix = f" ({tz_short})" if tz_short else ""
+
+    # Hour is a number, minute is 0
+    if not h.isdigit():
+        return expr + suffix
+    time_str = fmt_hour(h) if m == "0" else f"{h}:{m.zfill(2)}"
+
+    # daily: dom=* mon=* dow=*
+    if dom == "*" and mon == "*" and dow == "*":
+        return f"{time_str} daily{suffix}"
+
+    # specific weekdays (e.g. "1,3,5" or "0")
+    if dom == "*" and mon == "*" and dow != "*":
+        days = dow.split(",")
+        day_names = [DAYS[int(d)] for d in days if d.isdigit() and int(d) < 7]
+        if len(day_names) == 7:
+            return f"{time_str} daily{suffix}"
+        if len(day_names) == 1:
+            full = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+            return f"{full[int(days[0])]+'s'} {time_str}{suffix}"
+        return f"{'/'.join(day_names)} {time_str}{suffix}"
+
+    return expr + suffix
+
 def schedule_str(sched):
     if not sched:
         return "unknown"
@@ -92,9 +132,7 @@ def schedule_str(sched):
     elif kind == "cron":
         expr = sched.get("expr") or sched.get("cronExpr", "")
         tz = sched.get("tz", "")
-        if expr and tz:
-            return f"{expr} ({tz.split('/')[-1]})"
-        return expr or "cron"
+        return cron_to_human(expr, tz) if expr else "cron"
     return kind
 
 jobs_out = []
@@ -304,11 +342,24 @@ for line in raw.splitlines():
             "pct": round(tokens_in / tokens_max * 100, 1) if tokens_max > 0 else 0
         })
 
+# Dedup: for each age bucket, if a resolved cron session exists,
+# drop unresolved cron sessions with the same age (they are spawned sub-agents)
+from collections import defaultdict
+resolved_ages = set()
+for s in sessions:
+    if s["type"] == "cron" and s["label"] != s["key"]:
+        resolved_ages.add(s["age"])
+deduped = []
+for s in sessions:
+    if s["type"] == "cron" and s["label"] == s["key"] and s["age"] in resolved_ages:
+        continue  # skip unresolved duplicate at same age as a resolved cron session
+    deduped.append(s)
+
 out = {
     "updatedAt": local_ts,
     "updatedAtIso": ts,
-    "total": len(sessions),
-    "sessions": sessions[:30]
+    "total": len(deduped),
+    "sessions": deduped[:30]
 }
 
 live_dir = os.path.expanduser("~/.openclaw/workspace/dashboard-ui/live")
