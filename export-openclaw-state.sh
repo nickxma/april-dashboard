@@ -586,7 +586,10 @@ try:
         pct    = round(filled / total * 100) if total > 0 else 0
         # Strip bullet prefix from latest text
         clean  = re.sub(r'^[\u25cf\u25cb]+\s*', '', latest).strip()
-        objs.append({**o, "progressPct": pct, "latest": clean})
+        status = o.get("status", "")
+        status_order = {"Active": 1, "Paused": 2, "Done": 3, "Dropped": 4}.get(status, 5)
+        objs.append({**o, "progressPct": pct, "latest": clean, "statusOrder": status_order})
+    objs.sort(key=lambda x: x["statusOrder"])
     with open(out, "w") as f:
         json.dump({"objectives": objs, "updatedAt": data.get("updatedAt", ""),
                    "sources": data.get("sources", [])}, f, indent=2)

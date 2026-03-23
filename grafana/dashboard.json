@@ -1294,6 +1294,10 @@
               "selector": "latest",
               "text": "Latest",
               "type": "string"
+            },
+            {
+              "selector": "statusOrder",
+              "text": "statusOrder"
             }
           ],
           "datasource": {
@@ -1316,6 +1320,29 @@
         }
       ],
       "title": "Active Objectives",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": [
+              {
+                "desc": false,
+                "displayName": "statusOrder"
+              }
+            ]
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "statusOrder": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
       "type": "table"
     },
     {
@@ -3912,5 +3939,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 51
+  "version": 52
 }
