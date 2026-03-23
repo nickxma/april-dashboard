@@ -1121,16 +1121,8 @@
                 "value": null
               },
               {
-                "color": "yellow",
-                "value": 10
-              },
-              {
-                "color": "orange",
-                "value": 30
-              },
-              {
                 "color": "red",
-                "value": 60
+                "value": 1
               }
             ]
           },
@@ -1163,8 +1155,8 @@
         {
           "columns": [
             {
-              "selector": "dataAgeMinutes",
-              "text": "Age",
+              "selector": "criticalErrors",
+              "text": "Critical Errors",
               "type": "number"
             }
           ],
@@ -1187,7 +1179,7 @@
           }
         }
       ],
-      "title": "Data Age (min)",
+      "title": "\ud83d\udd34 Critical Errors",
       "type": "stat"
     },
     {
@@ -2493,7 +2485,7 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
+        "w": 2,
         "x": 9,
         "y": 56
       },
@@ -2570,8 +2562,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 4,
-        "x": 12,
+        "w": 2,
+        "x": 13,
         "y": 56
       },
       "id": 106,
@@ -2662,7 +2654,7 @@
       "gridPos": {
         "h": 4,
         "w": 2,
-        "x": 16,
+        "x": 15,
         "y": 56
       },
       "id": 107,
@@ -4187,8 +4179,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 4,
-        "x": 20,
+        "w": 2,
+        "x": 11,
         "y": 56
       },
       "id": 108,
@@ -4266,8 +4258,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
-        "x": 18,
+        "w": 4,
+        "x": 17,
         "y": 56
       },
       "id": 109,
@@ -4401,5 +4393,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 75
+  "version": 76
 }

@@ -523,12 +523,18 @@ except: pass
 ol = {}
 try: ol = json.load(open(os.path.join(live, "open-loops-enriched.json")))
 except: pass
+el = {}
+try: el = json.load(open(os.path.join(live, "errors-log.json")))
+except: pass
 gw_state = gw.get("gateway",{}).get("state","unknown")
 slack_state = gw.get("channels",{}).get("slack","unknown")
 model_val = gw.get("model","unknown")
 sh_summary = sh.get("summary", {})
-open_errors = sh_summary.get("openErrors", 0)
 stale_jobs = sh_summary.get("staleJobs", 0)
+# Compute live error counts from errors-log.json (fresher than system-health.json)
+el_errors = el.get("errors", [])
+open_errors = len(el_errors)
+critical_errors = len([e for e in el_errors if e.get("severity") == "critical"])
 # Compute live job counts directly from cron-jobs.json (fresher than system-health.json)
 cj_jobs = cj.get("jobs", [])
 failing_jobs = len([j for j in cj_jobs if j.get("status") == "error"])
@@ -557,6 +563,7 @@ flat = [{
     "failingJobs": failing_jobs,
     "enabledJobs": enabled_jobs,
     "openErrors": open_errors,
+    "criticalErrors": critical_errors,
     "staleJobs": stale_jobs,
     "totalTokensK": sum(s.get("tokensK", 0) for s in sa.get("sessions", [])),
     "sonnetTokensK": sum(s.get("tokensK", 0) for s in sa.get("sessions", []) if "sonnet" in s.get("model", "").lower()),
