@@ -224,6 +224,19 @@ import json, sys, re, os
 
 raw, ts, local_ts = sys.argv[1], sys.argv[2], sys.argv[3]
 
+# Build cron job UUID suffix → name lookup
+# openclaw sessions truncates keys as "agent:main:cron:...SUFFIX" (last 6 hex chars)
+cron_lookup = {}
+try:
+    import json as _json
+    cj_path = os.path.join(os.path.expanduser("~/.openclaw/workspace/dashboard-ui/live"), "cron-jobs.json")
+    cj_data = _json.load(open(cj_path))
+    for j in cj_data.get("jobs", []):
+        uuid_clean = j["id"].replace("-", "")
+        cron_lookup[uuid_clean[-6:]] = j["name"]  # last 6 hex chars of UUID
+except Exception:
+    pass
+
 sessions = []
 for line in raw.splitlines():
     # Lines look like: "group  agent:main:slack...2jbktm  just now  claude-opus-4-6 119k/1000k (12%)     system id:..."
@@ -263,11 +276,20 @@ for line in raw.splitlines():
             stype = "subagent"
         else:
             stype = "direct"
-        
+
+        # resolve job name from cron UUID suffix in key
+        label = key
+        if stype == "cron":
+            # key format: agent:main:cron:...SUFFIX (last 6 hex chars of UUID)
+            raw_suffix = key.split(":")[-1].replace("...", "").replace("\u2026", "").replace("…", "").strip()
+            suffix6 = raw_suffix[-6:] if len(raw_suffix) >= 6 else raw_suffix
+            label = cron_lookup.get(suffix6, key)
+
         sessions.append({
             "kind": kind,
             "type": stype,
             "key": key,
+            "label": label,
             "age": age,
             "model": model,
             "tokensK": tokens_in,

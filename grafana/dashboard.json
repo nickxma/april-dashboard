@@ -12,6 +12,7 @@
         "y": 0
       },
       "id": 200,
+      "options": {},
       "title": "\u26a1 Needs Your Attention",
       "type": "row"
     },
@@ -1000,6 +1001,7 @@
         "y": 18
       },
       "id": 300,
+      "options": {},
       "title": "\ud83c\udfaf Objectives",
       "type": "row"
     },
@@ -1161,6 +1163,7 @@
         "y": 31
       },
       "id": 400,
+      "options": {},
       "title": "\u23f1 Cron Jobs",
       "type": "row"
     },
@@ -1421,6 +1424,7 @@
         "y": 45
       },
       "id": 100,
+      "options": {},
       "title": "\ud83c\udfe5 System Health",
       "type": "row"
     },
@@ -1846,7 +1850,13 @@
           ],
           "show": false
         },
-        "showHeader": true
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Time"
+          }
+        ]
       },
       "targets": [
         {
@@ -1919,6 +1929,7 @@
         "y": 58
       },
       "id": 500,
+      "options": {},
       "title": "\ud83d\udccb Activity & Integrations",
       "type": "row"
     },
@@ -2021,6 +2032,7 @@
         "y": 59
       },
       "id": 32,
+      "options": {},
       "targets": [
         {
           "columns": [
@@ -2174,7 +2186,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Session Key"
+              "options": "Session"
             },
             "properties": [
               {
@@ -2221,8 +2233,8 @@
               "type": "string"
             },
             {
-              "selector": "key",
-              "text": "Session Key",
+              "selector": "label",
+              "text": "Session",
               "type": "string"
             },
             {
@@ -2374,6 +2386,7 @@
         "y": 66
       },
       "id": 600,
+      "options": {},
       "title": "\ud83c\udfae Control Tower",
       "type": "row"
     },
@@ -2478,7 +2491,12 @@
       },
       "id": 601,
       "options": {
-        "sortBy": []
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Rank"
+          }
+        ]
       },
       "targets": [
         {
@@ -2602,7 +2620,12 @@
       },
       "id": 602,
       "options": {
-        "sortBy": []
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Score"
+          }
+        ]
       },
       "targets": [
         {
@@ -2768,8 +2791,8 @@
         "showHeader": true,
         "sortBy": [
           {
-            "desc": false,
-            "displayName": "Agent"
+            "desc": true,
+            "displayName": "Status"
           }
         ]
       },
@@ -3110,5 +3133,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 38
+  "version": 40
 }
