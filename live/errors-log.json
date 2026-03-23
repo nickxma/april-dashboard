@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-03-22 18:45 CDT",
-  "updatedAtIso": "2026-03-22T23:45:00Z",
+  "updatedAt": "2026-03-23 00:45 CDT",
+  "updatedAtIso": "2026-03-23T05:45:00Z",
   "total": 1,
   "errors": [
     {
-      "time": "2026-03-22 11:06 CDT",
+      "time": "2026-03-22 07:00 CDT",
       "component": "toggl-weekly-summary",
       "severity": "warn",
       "status": "open",
       "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
-      "meaning": "The weekly Toggl summary ran and produced output successfully, but the Slack delivery failed because the channel target format is invalid. The report was not posted to #toggl.",
-      "suggestedFix": "Update the job delivery config: change `to` from `channel:C0AMWT9JB5Y` to just the channel ID `C0AMWT9JB5Y`, or verify the channel target format matches what the delivery system expects."
+      "meaning": "The weekly Toggl summary ran successfully and produced output, but failed to deliver to Slack because the delivery target format is invalid. The job completed but the message was never posted to #toggl.",
+      "suggestedFix": "Update the toggl-weekly-summary cron job delivery config: change 'to' from 'channel:C0AMWT9JB5Y' to the raw channel ID 'C0AMWT9JB5Y', or verify the channel ID format matches what the delivery system expects."
     }
   ]
 }
