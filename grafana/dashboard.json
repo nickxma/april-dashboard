@@ -1414,6 +1414,7 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "afgnlkc6o06bkb"
       },
+      "description": "Stripe expressed preliminary acquisition interest in February 2026, but PayPal is not actively seeking a sale, leaving a deal possible but unlikely near-term. Method: credibility of Bloomberg/CNBC reports vs. Semafor counter-signal.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4141,5 +4142,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 60
+  "version": 61
 }
