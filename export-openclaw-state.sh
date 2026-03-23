@@ -596,9 +596,9 @@ except Exception as e:
     print(f"research-evidence: skipped ({e})")
 PYEOF_EVIDENCE
 
-# ─── OBJECTIVES ENRICHMENT (add progressPct from bullet indicators) ──────────
+# ─── OBJECTIVES ENRICHMENT (add statusOrder for sort) ──────────────────────
 python3 - "$LIVE_DIR" <<'PYEOF_OBJ'
-import json, sys, os, re
+import json, sys, os
 live = sys.argv[1]
 src = os.path.join(live, "objectives.json")
 out = os.path.join(live, "objectives-enriched.json")
@@ -606,15 +606,9 @@ try:
     data = json.load(open(src))
     objs = []
     for o in data.get("objectives", []):
-        latest = o.get("latest", "")
-        filled = latest.count("\u25cf")   # ●
-        total  = filled + latest.count("\u25cb")  # ○
-        pct    = round(filled / total * 100) if total > 0 else 0
-        # Strip bullet prefix from latest text
-        clean  = re.sub(r'^[\u25cf\u25cb]+\s*', '', latest).strip()
         status = o.get("status", "")
         status_order = {"Active": 1, "Paused": 2, "Done": 3, "Dropped": 4}.get(status, 5)
-        objs.append({**o, "progressPct": pct, "latest": clean, "statusOrder": status_order})
+        objs.append({**o, "statusOrder": status_order})
     objs.sort(key=lambda x: x["statusOrder"])
     with open(out, "w") as f:
         json.dump({"objectives": objs, "updatedAt": data.get("updatedAt", ""),
