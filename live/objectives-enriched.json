@@ -4,35 +4,30 @@
       "name": "Baddies",
       "status": "Active",
       "latest": "NYC trip is live NOW \u2014 Carly & Diana texted about yoga but no confirmations yet; window closes today or it evaporates.",
-      "progressPct": 0,
       "statusOrder": 1
     },
     {
       "name": "Mindfulness Content",
       "status": "Active",
       "latest": "Engine built, 5 interactive sites live, paradoxofacceptance.xyz still has zero content; Tweet 1 A/B/C drafts sitting unanswered 3+ rounds; 5 Paperclip RAG tickets (OLU-439-443) queued for Waking Up Q&A engine.",
-      "progressPct": 0,
       "statusOrder": 1
     },
     {
       "name": "Selling Co-op",
       "status": "Active",
       "latest": "Matylda Pearson meeting Wednesday Mar 25 9am ET \u2014 2 days out, questions unprepped, OLU-630/256 orphaned; in-person possible since Nick is in NYC.",
-      "progressPct": 0,
       "statusOrder": 1
     },
     {
       "name": "Stablecoin Expertise",
       "status": "Paused",
       "latest": "28 days to April 20 \u2014 PYUSD at $4.1B / 70-country expansion / PYUSDx launched, but Smitha pitch is CRITICAL (OLU-629 orphaned, no assignee, zero motion); all assets built, zero execution.",
-      "progressPct": 0,
       "statusOrder": 2
     },
     {
       "name": "Formula",
       "status": "Paused",
       "latest": "Employee back but unreliable; no backup candidate identified or contacted \u2014 keeps getting deprioritized, fragile single point of failure.",
-      "progressPct": 0,
       "statusOrder": 2
     }
   ],

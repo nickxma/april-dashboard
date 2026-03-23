@@ -1,25 +1,79 @@
 {
-  "updatedAt": "2026-03-23 09:10 CDT",
-  "updatedAtIso": "2026-03-23T14:10:01Z",
-  "total": 2,
+  "updatedAt": "2026-03-23 12:45 CDT",
+  "updatedAtIso": "2026-03-23T17:45:00Z",
+  "total": 8,
   "errors": [
+    {
+      "time": "2026-03-23 10:59 CDT",
+      "component": "dashboard-system-health-refresh",
+      "severity": "critical",
+      "status": "open",
+      "error": "\u26a0\ufe0f API rate limit reached. Please try again later.",
+      "meaning": "Anthropic Sonnet rate limit hit during scheduled run; job failed to execute and write health data.",
+      "suggestedFix": "Reduce concurrent Anthropic cron job density or switch this job to a non-Anthropic model (e.g. Codex/gpt-4o)."
+    },
+    {
+      "time": "2026-03-23 11:36 CDT",
+      "component": "paperclip-activity-feed",
+      "severity": "critical",
+      "status": "open",
+      "error": "\u26a0\ufe0f API rate limit reached. Please try again later.",
+      "meaning": "Paperclip watchdog failed 4 consecutive times due to Anthropic rate limiting; Paperclip alerts may be delayed.",
+      "suggestedFix": "Switch paperclip-activity-feed to a non-Anthropic model or stagger its 30-min cadence to avoid peak load windows."
+    },
+    {
+      "time": "2026-03-23 11:39 CDT",
+      "component": "gmail-calendar-sync",
+      "severity": "critical",
+      "status": "open",
+      "error": "\u26a0\ufe0f API rate limit reached. Please try again later.",
+      "meaning": "Gmail-to-calendar sync failed 5 consecutive times; calendar events from recent emails may be missing.",
+      "suggestedFix": "Switch gmail-calendar-sync to a non-Anthropic model (Sonnet is over-allocated); this job is low-complexity and works on Haiku or gpt-4o-mini."
+    },
+    {
+      "time": "2026-03-23 11:44 CDT",
+      "component": "healthcheck:context-monitor",
+      "severity": "critical",
+      "status": "open",
+      "error": "\u26a0\ufe0f API rate limit reached. Please try again later.",
+      "meaning": "Context usage monitor failed 3 consecutive times; session context overflow warnings are not being generated.",
+      "suggestedFix": "Switch to Haiku or gpt-4o-mini \u2014 this job only calls session_status and sends a Slack message, no heavy reasoning needed."
+    },
+    {
+      "time": "2026-03-23 10:57 CDT",
+      "component": "control-tower-telemetry-refresh",
+      "severity": "warn",
+      "status": "open",
+      "error": "\u26a0\ufe0f API rate limit reached. Please try again later.",
+      "meaning": "Control tower JSON not updated this cycle; dashboard may show stale telemetry.",
+      "suggestedFix": "Stagger this job's 2-hour cadence anchor by 30 min to avoid collision with other hourly Anthropic jobs."
+    },
     {
       "time": "2026-03-23 07:02 CDT",
       "component": "infra-version-check",
       "severity": "warn",
       "status": "open",
-      "error": "\u26a0\ufe0f \u2709\ufe0f Message failed",
-      "meaning": "Job ran and detected an openclaw update (2026.3.13 \u2192 2026.3.22) but failed to post to #infrastructure \u2014 channel not found.",
-      "suggestedFix": "Fix the delivery target in infra-version-check job config \u2014 update channel to a valid channel ID (e.g. C0ANLFZD1TJ)."
+      "error": "\u26a0\ufe0f \u2709\ufe0f Message failed \u2014 channel not found (C0ANLFZD1TJ)",
+      "meaning": "Version check ran successfully and found openclaw update (2026.3.13 \u2192 2026.3.22), but failed to post to #infrastructure because the channel target was not found.",
+      "suggestedFix": "Verify Slack channel ID C0ANLFZD1TJ is correct and the bot is a member; update delivery.to in job config if the channel was renamed."
     },
     {
-      "time": "2026-03-17 09:00 CDT",
+      "time": "2026-03-22 09:00 CDT",
       "component": "toggl-weekly-summary",
       "severity": "warn",
       "status": "open",
       "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
-      "meaning": "Weekly Toggl summary ran successfully and generated output but failed to deliver \u2014 delivery target format is invalid (channel name used instead of channel ID).",
-      "suggestedFix": "Update toggl-weekly-summary delivery target from 'channel:c0amwt9jb5y' to 'channel:C0AMWT9JB5Y' (correct casing) or verify the channel ID is correct."
+      "meaning": "Weekly Toggl summary ran and generated report but failed to deliver because the delivery target format is invalid.",
+      "suggestedFix": "Update toggl-weekly-summary delivery config: change 'to' field from 'c0amwt9jb5y' to 'channel:C0AMWT9JB5Y' (requires channel: prefix)."
+    },
+    {
+      "time": "2026-03-23T12:02:15Z",
+      "component": "infra-version-check",
+      "severity": "error",
+      "status": "open",
+      "error": "\u26a0\ufe0f \u2709\ufe0f Message failed",
+      "meaning": "Cron job failed with 1 consecutive errors",
+      "suggestedFix": "Check cron job logs for details"
     }
   ]
 }

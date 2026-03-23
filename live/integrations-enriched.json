@@ -5,63 +5,63 @@
       "status": "connected",
       "description": "Bot token (xoxb) and app token (xapp) verified OK",
       "lastVerified": "2026-03-23T11:46:00Z",
-      "lastVerifiedAge": "2h ago"
+      "lastVerifiedAge": "5h ago"
     },
     {
       "name": "GitHub",
       "status": "connected",
       "description": "Logged in as nickxma via keyring; scopes: repo, read:org, gist",
       "lastVerified": "2026-03-23T11:46:00Z",
-      "lastVerifiedAge": "2h ago"
+      "lastVerifiedAge": "5h ago"
     },
     {
       "name": "Obsidian",
       "status": "connected",
       "description": "obsidian-cli found at /opt/homebrew/bin/obsidian-cli; vault at ~/Obsidian",
       "lastVerified": "2026-03-23T11:46:00Z",
-      "lastVerifiedAge": "2h ago"
+      "lastVerifiedAge": "5h ago"
     },
     {
       "name": "Google Workspace",
       "status": "connected",
       "description": "OAuth credentials present (credentials.json); authenticated as nickxma@gmail.com",
       "lastVerified": "2026-03-23T11:46:00Z",
-      "lastVerifiedAge": "2h ago"
+      "lastVerifiedAge": "5h ago"
     },
     {
       "name": "Google Calendar",
       "status": "connected",
       "description": "OAuth active; calendar events returned successfully for today",
       "lastVerified": "2026-03-23T11:46:00Z",
-      "lastVerifiedAge": "2h ago"
+      "lastVerifiedAge": "5h ago"
     },
     {
       "name": "Paperclip",
       "status": "connected",
       "description": "Server responding on http://127.0.0.1:3100",
       "lastVerified": "2026-03-23T11:46:00Z",
-      "lastVerifiedAge": "2h ago"
+      "lastVerifiedAge": "5h ago"
     },
     {
       "name": "Tailscale",
       "status": "connected",
       "description": "mmm4 active on tailnet; mbm4-1 active via direct connection",
       "lastVerified": "2026-03-23T11:46:00Z",
-      "lastVerifiedAge": "2h ago"
+      "lastVerifiedAge": "5h ago"
     },
     {
       "name": "Things 3",
       "status": "connected",
       "description": "things CLI found at /opt/homebrew/bin/things",
       "lastVerified": "2026-03-23T11:46:00Z",
-      "lastVerifiedAge": "2h ago"
+      "lastVerifiedAge": "5h ago"
     },
     {
       "name": "1Password",
       "status": "connected",
       "description": "op CLI found at /opt/homebrew/bin/op",
       "lastVerified": "2026-03-23T11:46:00Z",
-      "lastVerifiedAge": "2h ago"
+      "lastVerifiedAge": "5h ago"
     }
   ],
   "updatedAt": "2026-03-23T11:46:00Z"
