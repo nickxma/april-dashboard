@@ -204,9 +204,24 @@
                 "value": [
                   {
                     "options": {
+                      "-1": {
+                        "color": "dark-red",
+                        "index": 0,
+                        "text": "OVERDUE"
+                      },
+                      "0": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "TODAY"
+                      },
+                      "1": {
+                        "color": "orange",
+                        "index": 2,
+                        "text": "tmrw"
+                      },
                       "999": {
                         "color": "text",
-                        "index": 0,
+                        "index": 3,
                         "text": "\u2014"
                       }
                     },
@@ -1314,17 +1329,9 @@
             },
             "properties": [
               {
-                "id": "custom.overflow",
-                "value": "truncate"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Latest"
-            },
-            "properties": [
+                "id": "custom.width",
+                "value": 500
+              },
               {
                 "id": "custom.overflow",
                 "value": "truncate"
@@ -3535,6 +3542,48 @@
               {
                 "id": "custom.width",
                 "value": 80
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "April": {
+                        "color": "blue",
+                        "index": 1,
+                        "text": "April"
+                      },
+                      "Nick": {
+                        "color": "orange",
+                        "index": 0,
+                        "text": "Nick"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "text",
+                      "value": null
+                    }
+                  ]
+                }
               }
             ]
           },
@@ -3852,6 +3901,11 @@
                         "color": "green",
                         "index": 0,
                         "text": "ok"
+                      },
+                      "running": {
+                        "color": "blue",
+                        "index": 5,
+                        "text": "running"
                       }
                     },
                     "type": "value"
@@ -4207,5 +4261,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 66
+  "version": 69
 }
