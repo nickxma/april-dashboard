@@ -471,6 +471,9 @@ try: sh = json.load(open(os.path.join(live, "system-health.json")))
 except: pass
 try: cj = json.load(open(os.path.join(live, "cron-jobs.json")))
 except: pass
+sa = {}
+try: sa = json.load(open(os.path.join(live, "session-activity.json")))
+except: pass
 gw_state = gw.get("gateway",{}).get("state","unknown")
 slack_state = gw.get("channels",{}).get("slack","unknown")
 model_val = gw.get("model","unknown")
@@ -504,6 +507,8 @@ flat = [{
     "enabledJobs": enabled_jobs,
     "openErrors": open_errors,
     "staleJobs": stale_jobs,
+    "totalTokensK": sum(s.get("tokensK", 0) for s in sa.get("sessions", [])),
+    "activeSessions": len([s for s in sa.get("sessions", []) if s.get("tokensK", 0) > 0]),
     "updatedAt": cj.get("updatedAt", local_ts),
 }]
 with open(os.path.join(live, "system-summary.json"), "w") as f:
