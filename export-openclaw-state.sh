@@ -551,7 +551,7 @@ PYEOF_EVIDENCE
 
 # ─── OPEN LOOPS ENRICHMENT (add daysUntilDeadline, sort by urgency) ──────────
 python3 - "$LIVE_DIR" <<'PYEOF_LOOPS'
-import json, sys, os, datetime
+import json, sys, os, datetime, re
 live = sys.argv[1]
 src = os.path.join(live, "open-loops.json")
 out = os.path.join(live, "open-loops-enriched.json")
@@ -565,7 +565,7 @@ try:
             days_until = (datetime.date.fromisoformat(dl) - today).days if dl else None
         except Exception:
             days_until = None
-        # Format deadline as "Mar 24" for display
+        # Format deadline as "3/24" for display
         deadline_short = ""
         if dl:
             try:
@@ -573,8 +573,12 @@ try:
                 deadline_short = d_obj.strftime("%-m/%-d")
             except Exception:
                 deadline_short = dl
+        # Extract first OLU-XXXX reference for data link
+        item_text = l.get("item", "")
+        olu_match = re.search(r'OLU-(\d+)', item_text)
+        olu_link = f"/OLU/issues/OLU-{olu_match.group(1)}" if olu_match else ""
         loops.append({**l, "daysUntilDeadline": days_until if days_until is not None else 999,
-                      "deadlineShort": deadline_short})
+                      "deadlineShort": deadline_short, "oluLink": olu_link})
     # Sort: deadline items first (ascending), then no-deadline items
     loops.sort(key=lambda x: x["daysUntilDeadline"])
     with open(out, "w") as f:
