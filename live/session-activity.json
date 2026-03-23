@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-03-23 00:45 CDT",
-  "updatedAtIso": "2026-03-23T05:45:00Z",
-  "total": 189,
+  "updatedAt": "2026-03-23 06:45 CDT",
+  "updatedAtIso": "2026-03-23T11:45:01Z",
+  "total": 197,
   "sessions": [
     {
       "kind": "direct",
@@ -32,9 +32,20 @@
       "label": "paperclip-activity-feed",
       "age": "9m ago",
       "model": "claude-sonnet-4-6",
-      "tokensK": 137,
+      "tokensK": 136,
       "maxK": 1000,
-      "pct": 13.7
+      "pct": 13.6
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...b63100",
+      "label": "daily-brief",
+      "age": "30m ago",
+      "model": "claude-sonnet-4-6",
+      "tokensK": 21,
+      "maxK": 1000,
+      "pct": 2.1
     },
     {
       "kind": "direct",
@@ -43,15 +54,15 @@
       "label": "agent:main:main",
       "age": "32m ago",
       "model": "claude-opus-4-6",
-      "tokensK": 26,
+      "tokensK": 25,
       "maxK": 1000,
-      "pct": 2.6
+      "pct": 2.5
     },
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...9b788b",
-      "label": "agent:main:cron:...9b788b",
+      "key": "agent:main:cron:...b26462",
+      "label": "agent:main:cron:...b26462",
       "age": "35m ago",
       "model": "claude-sonnet-4-6",
       "tokensK": 17,
@@ -61,13 +72,35 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...e27010",
-      "label": "agent:main:cron:...e27010",
+      "key": "agent:main:cron:...23330a",
+      "label": "agent:main:cron:...23330a",
       "age": "39m ago",
       "model": "claude-sonnet-4-6",
-      "tokensK": 137,
+      "tokensK": 54,
       "maxK": 1000,
-      "pct": 13.7
+      "pct": 5.4
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...d26990",
+      "label": "daily-obsidian-note",
+      "age": "40m ago",
+      "model": "claude-sonnet-4-6",
+      "tokensK": 18,
+      "maxK": 1000,
+      "pct": 1.8
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...6ffe2e",
+      "label": "journal-prompt",
+      "age": "45m ago",
+      "model": "claude-sonnet-4-6",
+      "tokensK": 17,
+      "maxK": 1000,
+      "pct": 1.7
     },
     {
       "kind": "direct",
@@ -83,8 +116,8 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...1b06bf",
-      "label": "agent:main:cron:...1b06bf",
+      "key": "agent:main:cron:...ce68ce",
+      "label": "agent:main:cron:...ce68ce",
       "age": "1h ago",
       "model": "claude-sonnet-4-6",
       "tokensK": 18,
@@ -94,8 +127,8 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...17d6bb",
-      "label": "agent:main:cron:...17d6bb",
+      "key": "agent:main:cron:...40c298",
+      "label": "agent:main:cron:...40c298",
       "age": "1h ago",
       "model": "claude-sonnet-4-6",
       "tokensK": 17,
@@ -105,13 +138,13 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...c7eafb",
-      "label": "agent:main:cron:...c7eafb",
+      "key": "agent:main:cron:...a1a0ca",
+      "label": "agent:main:cron:...a1a0ca",
       "age": "1h ago",
       "model": "claude-sonnet-4-6",
-      "tokensK": 142,
+      "tokensK": 143,
       "maxK": 1000,
-      "pct": 14.2
+      "pct": 14.3
     },
     {
       "kind": "direct",
@@ -120,49 +153,49 @@
       "label": "control-tower-telemetry-refresh",
       "age": "2h ago",
       "model": "claude-sonnet-4-6",
-      "tokensK": 37,
+      "tokensK": 20,
       "maxK": 1000,
-      "pct": 3.7
+      "pct": 2.0
     },
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...6ed4f5",
-      "label": "journal-to-paperclip-sync",
+      "key": "agent:main:cron:...d1fc60",
+      "label": "agent:main:cron:...d1fc60",
       "age": "3h ago",
       "model": "claude-sonnet-4-6",
-      "tokensK": 109,
+      "tokensK": 17,
       "maxK": 1000,
-      "pct": 10.9
-    },
-    {
-      "kind": "group",
-      "type": "channel",
-      "key": "agent:main:slack...1q3nkc",
-      "label": "agent:main:slack...1q3nkc",
-      "age": "3h ago",
-      "model": "claude-opus-4-6",
-      "tokensK": 104,
-      "maxK": 1000,
-      "pct": 10.4
-    },
-    {
-      "kind": "group",
-      "type": "channel",
-      "key": "agent:main:slack...8f223b",
-      "label": "agent:main:slack...8f223b",
-      "age": "4h ago",
-      "model": "claude-opus-4-6",
-      "tokensK": 58,
-      "maxK": 1000,
-      "pct": 5.8
+      "pct": 1.7
     },
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...30cd5d",
-      "label": "agent:main:cron:...30cd5d",
-      "age": "4h ago",
+      "key": "agent:main:cron:...4c652c",
+      "label": "agent:main:cron:...4c652c",
+      "age": "3h ago",
+      "model": "claude-sonnet-4-6",
+      "tokensK": 46,
+      "maxK": 1000,
+      "pct": 4.6
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...af1b5f",
+      "label": "agent:main:cron:...af1b5f",
+      "age": "3h ago",
+      "model": "claude-sonnet-4-6",
+      "tokensK": 35,
+      "maxK": 1000,
+      "pct": 3.5
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...f3d8e0",
+      "label": "agent:main:cron:...f3d8e0",
+      "age": "3h ago",
       "model": "claude-sonnet-4-6",
       "tokensK": 18,
       "maxK": 1000,
@@ -171,19 +204,52 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...1693aa",
-      "label": "agent:main:cron:...1693aa",
-      "age": "4h ago",
+      "key": "agent:main:cron:...2467c5",
+      "label": "agent:main:cron:...2467c5",
+      "age": "3h ago",
       "model": "claude-sonnet-4-6",
-      "tokensK": 234,
+      "tokensK": 17,
       "maxK": 1000,
-      "pct": 23.4
+      "pct": 1.7
     },
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...6376a4",
-      "label": "agent:main:cron:...6376a4",
+      "key": "agent:main:cron:...91a1e6",
+      "label": "agent:main:cron:...91a1e6",
+      "age": "3h ago",
+      "model": "claude-sonnet-4-6",
+      "tokensK": 50,
+      "maxK": 1000,
+      "pct": 5.0
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...7796b2",
+      "label": "agent:main:cron:...7796b2",
+      "age": "4h ago",
+      "model": "claude-sonnet-4-6",
+      "tokensK": 17,
+      "maxK": 1000,
+      "pct": 1.7
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...c4ca47",
+      "label": "agent:main:cron:...c4ca47",
+      "age": "4h ago",
+      "model": "claude-sonnet-4-6",
+      "tokensK": 50,
+      "maxK": 1000,
+      "pct": 5.0
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...787216",
+      "label": "agent:main:cron:...787216",
       "age": "4h ago",
       "model": "claude-sonnet-4-6",
       "tokensK": 35,
@@ -193,30 +259,19 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...87e193",
-      "label": "agent:main:cron:...87e193",
+      "key": "agent:main:cron:...b60ddd",
+      "label": "agent:main:cron:...b60ddd",
       "age": "4h ago",
       "model": "claude-sonnet-4-6",
-      "tokensK": 20,
+      "tokensK": 37,
       "maxK": 1000,
-      "pct": 2.0
+      "pct": 3.7
     },
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...abec51",
-      "label": "agent:main:cron:...abec51",
-      "age": "4h ago",
-      "model": "claude-sonnet-4-6",
-      "tokensK": 18,
-      "maxK": 1000,
-      "pct": 1.8
-    },
-    {
-      "kind": "direct",
-      "type": "cron",
-      "key": "agent:main:cron:...24a80d",
-      "label": "agent:main:cron:...24a80d",
+      "key": "agent:main:cron:...d4fb57",
+      "label": "agent:main:cron:...d4fb57",
       "age": "4h ago",
       "model": "claude-sonnet-4-6",
       "tokensK": 18,
@@ -226,8 +281,19 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...0ccbc5",
-      "label": "agent:main:cron:...0ccbc5",
+      "key": "agent:main:cron:...9b9deb",
+      "label": "agent:main:cron:...9b9deb",
+      "age": "4h ago",
+      "model": "claude-sonnet-4-6",
+      "tokensK": 17,
+      "maxK": 1000,
+      "pct": 1.7
+    },
+    {
+      "kind": "direct",
+      "type": "cron",
+      "key": "agent:main:cron:...02ea74",
+      "label": "agent:main:cron:...02ea74",
       "age": "4h ago",
       "model": "claude-sonnet-4-6",
       "tokensK": 140,
@@ -237,8 +303,8 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...01cf6a",
-      "label": "agent:main:cron:...01cf6a",
+      "key": "agent:main:cron:...3ff65c",
+      "label": "agent:main:cron:...3ff65c",
       "age": "5h ago",
       "model": "claude-sonnet-4-6",
       "tokensK": 17,
@@ -248,90 +314,24 @@
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...354a3e",
-      "label": "agent:main:cron:...354a3e",
+      "key": "agent:main:cron:...8c74ea",
+      "label": "agent:main:cron:...8c74ea",
       "age": "5h ago",
       "model": "claude-sonnet-4-6",
-      "tokensK": 55,
+      "tokensK": 139,
       "maxK": 1000,
-      "pct": 5.5
+      "pct": 13.9
     },
     {
       "kind": "direct",
       "type": "cron",
-      "key": "agent:main:cron:...ceaef0",
-      "label": "agent:main:cron:...ceaef0",
+      "key": "agent:main:cron:...d9be96",
+      "label": "agent:main:cron:...d9be96",
       "age": "5h ago",
       "model": "claude-sonnet-4-6",
       "tokensK": 35,
       "maxK": 1000,
       "pct": 3.5
-    },
-    {
-      "kind": "direct",
-      "type": "direct",
-      "key": "agent:main:paper...ccb0c8",
-      "label": "agent:main:paper...ccb0c8",
-      "age": "5h ago",
-      "model": "claude-opus-4-6",
-      "tokensK": 40,
-      "maxK": 1000,
-      "pct": 4.0
-    },
-    {
-      "kind": "direct",
-      "type": "cron",
-      "key": "agent:main:cron:...68d1e6",
-      "label": "agent:main:cron:...68d1e6",
-      "age": "5h ago",
-      "model": "claude-sonnet-4-6",
-      "tokensK": 18,
-      "maxK": 1000,
-      "pct": 1.8
-    },
-    {
-      "kind": "direct",
-      "type": "direct",
-      "key": "agent:main:paper...a1c6db",
-      "label": "agent:main:paper...a1c6db",
-      "age": "5h ago",
-      "model": "claude-opus-4-6",
-      "tokensK": 34,
-      "maxK": 1000,
-      "pct": 3.4
-    },
-    {
-      "kind": "direct",
-      "type": "cron",
-      "key": "agent:main:cron:...d1a3b8",
-      "label": "agent:main:cron:...d1a3b8",
-      "age": "5h ago",
-      "model": "claude-sonnet-4-6",
-      "tokensK": 17,
-      "maxK": 1000,
-      "pct": 1.7
-    },
-    {
-      "kind": "direct",
-      "type": "cron",
-      "key": "agent:main:cron:...afd1c2",
-      "label": "agent:main:cron:...afd1c2",
-      "age": "5h ago",
-      "model": "claude-sonnet-4-6",
-      "tokensK": 137,
-      "maxK": 1000,
-      "pct": 13.7
-    },
-    {
-      "kind": "direct",
-      "type": "cron",
-      "key": "agent:main:cron:...5c8f4c",
-      "label": "dashboard-integrations-refresh",
-      "age": "6h ago",
-      "model": "claude-sonnet-4-6",
-      "tokensK": 21,
-      "maxK": 1000,
-      "pct": 2.1
     }
   ]
 }

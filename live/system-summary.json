@@ -14,9 +14,12 @@
       "enabledJobs": 21,
       "openErrors": 1,
       "staleJobs": 0,
-      "totalTokensK": 1729,
+      "totalTokensK": 1244,
       "activeSessions": 30,
-      "updatedAt": "2026-03-23 00:45 CDT"
+      "cronSuccessPct": 90,
+      "urgentLoops": 2,
+      "totalLoops": 14,
+      "updatedAt": "2026-03-23 06:40 CDT"
     }
   ]
 }

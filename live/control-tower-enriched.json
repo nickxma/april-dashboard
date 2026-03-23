@@ -16,136 +16,158 @@
   ],
   "agents": [
     {
-      "name": "Main (Claw)",
-      "status": "On-demand",
-      "workstream": "Orchestration, approvals, reverse prompting",
-      "cadence": "Runs when Nick messages"
-    },
-    {
-      "name": "Sub-agents",
-      "status": "0 active",
-      "workstream": "Spawned for focused tasks only",
-      "cadence": "None active right now"
+      "name": "toggl-weekly-summary",
+      "status": "error",
+      "workstream": "Weekly Toggl time allocation summary (delivery config error)",
+      "cadence": "09:00 America/Chicago Sundays",
+      "agentSortOrder": 1
     },
     {
       "name": "control-tower-telemetry-refresh",
       "status": "ok",
       "workstream": "Refreshes live/control-tower.json",
-      "cadence": "Every 2h"
+      "cadence": "Every 2h",
+      "agentSortOrder": 3
     },
     {
       "name": "dashboard-system-health-refresh",
       "status": "ok",
       "workstream": "Dashboard/system reliability checks",
-      "cadence": "Every 1h"
+      "cadence": "Every 1h",
+      "agentSortOrder": 3
     },
     {
       "name": "healthcheck:context-monitor",
       "status": "ok",
       "workstream": "Context health monitoring",
-      "cadence": "Every 1h"
+      "cadence": "Every 1h",
+      "agentSortOrder": 3
     },
     {
       "name": "paperclip-activity-feed",
       "status": "ok",
       "workstream": "Paperclip task update summaries to #paperclip",
-      "cadence": "Every 30m"
+      "cadence": "Every 30m",
+      "agentSortOrder": 3
     },
     {
       "name": "gmail-calendar-sync",
       "status": "ok",
       "workstream": "Email-to-calendar auto-add for bookings/invites",
-      "cadence": "Every 30m"
+      "cadence": "Every 30m",
+      "agentSortOrder": 3
     },
     {
       "name": "dashboard-integrations-refresh",
       "status": "ok",
       "workstream": "Integration status checks (Slack, GitHub, Obsidian, etc.)",
-      "cadence": "Every 6h"
+      "cadence": "Every 6h",
+      "agentSortOrder": 3
     },
     {
       "name": "infrastructure-daily-scan",
       "status": "ok",
       "workstream": "Daily infra tooling intel for #infrastructure",
-      "cadence": "08:00 America/Chicago daily"
+      "cadence": "08:00 America/Chicago daily",
+      "agentSortOrder": 3
     },
     {
       "name": "daily-obsidian-note",
       "status": "ok",
       "workstream": "Morning Obsidian daily note automation",
-      "cadence": "06:05 America/Chicago daily"
+      "cadence": "06:05 America/Chicago daily",
+      "agentSortOrder": 3
     },
     {
       "name": "daily-brief",
       "status": "ok",
       "workstream": "Morning brief: calendar, email, Toggl, weather to #daily-brief",
-      "cadence": "06:15 America/Chicago daily"
+      "cadence": "06:15 America/Chicago daily",
+      "agentSortOrder": 3
     },
     {
       "name": "journal-prompt + journal-prompt-evening",
       "status": "ok",
       "workstream": "Morning/evening journal prompts",
-      "cadence": "06:00 and 18:00 America/Chicago daily"
+      "cadence": "06:00 and 18:00 America/Chicago daily",
+      "agentSortOrder": 3
     },
     {
       "name": "calendar-daily-fill",
       "status": "ok",
       "workstream": "Fills tomorrow's calendar gaps with time blocks",
-      "cadence": "17:00 America/Chicago daily"
+      "cadence": "17:00 America/Chicago daily",
+      "agentSortOrder": 3
     },
     {
       "name": "journal-to-paperclip-sync",
       "status": "ok",
       "workstream": "Syncs journal entries to Paperclip tickets",
-      "cadence": "22:00 America/Chicago daily"
+      "cadence": "22:00 America/Chicago daily",
+      "agentSortOrder": 3
     },
     {
       "name": "research-tasks-daily-refresh",
       "status": "ok",
       "workstream": "Daily research task refresh (PayPal acquisition probability)",
-      "cadence": "07:35 America/Chicago daily"
+      "cadence": "07:35 America/Chicago daily",
+      "agentSortOrder": 3
     },
     {
       "name": "infra-version-check",
       "status": "ok",
-      "workstream": "Checks openclaw/claude-code/paperclip for version updates → #infrastructure",
-      "cadence": "07:00 America/Chicago daily"
+      "workstream": "Checks openclaw/claude-code/paperclip for version updates \u2192 #infrastructure",
+      "cadence": "07:00 America/Chicago daily",
+      "agentSortOrder": 3
     },
     {
       "name": "obj-95-mindfulness-tweet-drafts",
       "status": "ok",
       "workstream": "Tweet drafts for @quiet_drift (Mon/Wed/Fri)",
-      "cadence": "08:00 America/Chicago Mon/Wed/Fri"
+      "cadence": "08:00 America/Chicago Mon/Wed/Fri",
+      "agentSortOrder": 3
     },
     {
       "name": "obj-106-stablecoin-research",
       "status": "ok",
       "workstream": "Stablecoin research drops (PYUSD/Arbitrum)",
-      "cadence": "09:00 America/Chicago Tue/Thu/Sat"
-    },
-    {
-      "name": "toggl-weekly-summary",
-      "status": "error",
-      "workstream": "Weekly Toggl time allocation summary (delivery config error)",
-      "cadence": "09:00 America/Chicago Sundays"
+      "cadence": "09:00 America/Chicago Tue/Thu/Sat",
+      "agentSortOrder": 3
     },
     {
       "name": "readwise-weekly-groom",
       "status": "ok",
       "workstream": "Weekly Readwise library triage",
-      "cadence": "10:00 America/Chicago Sundays"
+      "cadence": "10:00 America/Chicago Sundays",
+      "agentSortOrder": 3
     },
     {
       "name": "dashboard-objectives-refresh",
       "status": "ok",
       "workstream": "Daily objectives + open loops refresh",
-      "cadence": "07:00 America/Chicago daily"
+      "cadence": "07:00 America/Chicago daily",
+      "agentSortOrder": 3
     },
     {
       "name": "infrastructure-weekly-scorecard",
       "status": "ok",
       "workstream": "Weekly infrastructure progress scorecard",
-      "cadence": "08:00 America/Chicago Mondays"
+      "cadence": "08:00 America/Chicago Mondays",
+      "agentSortOrder": 3
+    },
+    {
+      "name": "Main (Claw)",
+      "status": "On-demand",
+      "workstream": "Orchestration, approvals, reverse prompting",
+      "cadence": "Runs when Nick messages",
+      "agentSortOrder": 4
+    },
+    {
+      "name": "Sub-agents",
+      "status": "0 active",
+      "workstream": "Spawned for focused tasks only",
+      "cadence": "None active right now",
+      "agentSortOrder": 6
     }
   ],
   "blockers": [

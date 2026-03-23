@@ -1,0 +1,54 @@
+{
+  "hours": [
+    {
+      "hour": "6am",
+      "hourNum": 6,
+      "timedJobs": 1,
+      "jobNames": "journal-prompt"
+    },
+    {
+      "hour": "7am",
+      "hourNum": 7,
+      "timedJobs": 2,
+      "jobNames": "dashboard-objectives-r, infra-version-check"
+    },
+    {
+      "hour": "8am",
+      "hourNum": 8,
+      "timedJobs": 3,
+      "jobNames": "infrastructure-weekly-, obj-95-mindfulness-twe, infrastructure-daily-s"
+    },
+    {
+      "hour": "9am",
+      "hourNum": 9,
+      "timedJobs": 2,
+      "jobNames": "obj-106-stablecoin-res, toggl-weekly-summary"
+    },
+    {
+      "hour": "10am",
+      "hourNum": 10,
+      "timedJobs": 1,
+      "jobNames": "readwise-weekly-groom"
+    },
+    {
+      "hour": "5pm",
+      "hourNum": 17,
+      "timedJobs": 1,
+      "jobNames": "calendar-daily-fill"
+    },
+    {
+      "hour": "6pm",
+      "hourNum": 18,
+      "timedJobs": 1,
+      "jobNames": "journal-prompt-evening"
+    },
+    {
+      "hour": "10pm",
+      "hourNum": 22,
+      "timedJobs": 1,
+      "jobNames": "journal-to-paperclip-s"
+    }
+  ],
+  "intervalJobs": 6,
+  "updatedAt": "2026-03-23 06:40 CDT"
+}

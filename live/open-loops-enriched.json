@@ -7,7 +7,9 @@
       "owner": "Nick",
       "status": "blocked",
       "deadline": "2026-03-24",
-      "daysUntilDeadline": 1
+      "daysUntilDeadline": 1,
+      "deadlineShort": "3/24",
+      "oluLink": ""
     },
     {
       "item": "Matylda meeting prep \u2014 OLU-256 orphaned, 3 days out",
@@ -16,7 +18,9 @@
       "owner": "Nick",
       "status": "blocked",
       "deadline": "2026-03-25",
-      "daysUntilDeadline": 2
+      "daysUntilDeadline": 2,
+      "deadlineShort": "3/25",
+      "oluLink": "/OLU/issues/OLU-256"
     },
     {
       "item": "Smitha pitch \u2014 OLU-255 unassigned, zero progress",
@@ -25,7 +29,9 @@
       "owner": "Nick",
       "status": "blocked",
       "deadline": "2026-04-20",
-      "daysUntilDeadline": 28
+      "daysUntilDeadline": 28,
+      "deadlineShort": "4/20",
+      "oluLink": "/OLU/issues/OLU-255"
     },
     {
       "item": "OLU-225: convergence-mvp.vercel.app site not loading \u2014 in_review 8h+",
@@ -34,7 +40,9 @@
       "owner": "Nick",
       "status": "blocked",
       "deadline": null,
-      "daysUntilDeadline": 999
+      "daysUntilDeadline": 999,
+      "deadlineShort": "",
+      "oluLink": "/OLU/issues/OLU-225"
     },
     {
       "item": "OLU-338: Newsletter pipeline blocked \u2014 RESEND_API_KEY missing in Vercel",
@@ -43,7 +51,9 @@
       "owner": "Nick",
       "status": "blocked",
       "deadline": null,
-      "daysUntilDeadline": 999
+      "daysUntilDeadline": 999,
+      "deadlineShort": "",
+      "oluLink": "/OLU/issues/OLU-338"
     },
     {
       "item": "OLU-259/238/236: Course audio generation blocked \u2014 ELEVENLABS_API_KEY missing",
@@ -52,7 +62,9 @@
       "owner": "Nick",
       "status": "blocked",
       "deadline": null,
-      "daysUntilDeadline": 999
+      "daysUntilDeadline": 999,
+      "deadlineShort": "",
+      "oluLink": "/OLU/issues/OLU-259"
     },
     {
       "item": "OLU-245: Content Lead can't assign tasks \u2014 4th escalation cycle",
@@ -61,7 +73,9 @@
       "owner": "Nick",
       "status": "blocked",
       "deadline": null,
-      "daysUntilDeadline": 999
+      "daysUntilDeadline": 999,
+      "deadlineShort": "",
+      "oluLink": "/OLU/issues/OLU-245"
     },
     {
       "item": "OLU-271: Privy app shows 'Acceptance Pass' instead of 'Convergence' in auth emails",
@@ -70,7 +84,9 @@
       "owner": "Nick",
       "status": "blocked",
       "deadline": null,
-      "daysUntilDeadline": 999
+      "daysUntilDeadline": 999,
+      "deadlineShort": "",
+      "oluLink": "/OLU/issues/OLU-271"
     },
     {
       "item": "paradoxofacceptance.xyz \u2014 zero content live, OLU-175 deploy stuck in queued",
@@ -79,7 +95,9 @@
       "owner": "Claw",
       "status": "actionable",
       "deadline": null,
-      "daysUntilDeadline": 999
+      "daysUntilDeadline": 999,
+      "deadlineShort": "",
+      "oluLink": "/OLU/issues/OLU-175"
     },
     {
       "item": "#obj-95 Tweet 1 variants \u2014 A/B/C pick pending Nick approval",
@@ -88,7 +106,9 @@
       "owner": "Nick",
       "status": "blocked",
       "deadline": null,
-      "daysUntilDeadline": 999
+      "daysUntilDeadline": 999,
+      "deadlineShort": "",
+      "oluLink": ""
     },
     {
       "item": "Formula backup employee \u2014 no candidate identified",
@@ -97,7 +117,9 @@
       "owner": "Nick",
       "status": "blocked",
       "deadline": null,
-      "daysUntilDeadline": 999
+      "daysUntilDeadline": 999,
+      "deadlineShort": "",
+      "oluLink": ""
     },
     {
       "item": "Google Calendar re-auth needed",
@@ -106,7 +128,9 @@
       "owner": "Nick",
       "status": "blocked",
       "deadline": null,
-      "daysUntilDeadline": 999
+      "daysUntilDeadline": 999,
+      "deadlineShort": "",
+      "oluLink": ""
     },
     {
       "item": "Convergence project vacation \u2014 MVP scope + vacation dates TBD",
@@ -115,7 +139,9 @@
       "owner": "Nick",
       "status": "blocked",
       "deadline": null,
-      "daysUntilDeadline": 999
+      "daysUntilDeadline": 999,
+      "deadlineShort": "",
+      "oluLink": ""
     },
     {
       "item": "Waking Up content licensing \u2014 check before publishing Convergence product",
@@ -124,7 +150,9 @@
       "owner": "Claw",
       "status": "actionable",
       "deadline": null,
-      "daysUntilDeadline": 999
+      "daysUntilDeadline": 999,
+      "deadlineShort": "",
+      "oluLink": ""
     }
   ],
   "updatedAt": "2026-03-22T12:00:00Z"

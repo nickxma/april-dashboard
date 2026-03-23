@@ -1,0 +1,50 @@
+{
+  "objectives": [
+    {
+      "name": "Baddies",
+      "status": "Active",
+      "latest": "NYC trip in 2 days \u2014 Carly + Diana texted about yoga, no confirmations yet; approaching is the muscle, not any one person.",
+      "progressPct": 100,
+      "statusOrder": 1
+    },
+    {
+      "name": "Mindfulness Content",
+      "status": "Active",
+      "latest": "Engine built, 1 tweet live @quiet_drift; paradoxofacceptance.xyz still zero content \u2014 deploy (OLU-175) stuck queued; 5 Convergence improvement tickets (OLU-271\u2013275) sent to Paperclip CEO this morning.",
+      "progressPct": 80,
+      "statusOrder": 1
+    },
+    {
+      "name": "Selling Co-op",
+      "status": "Active",
+      "latest": "Matylda Pearson (Corcoran) meeting Wed Mar 25 9-10am ET \u2014 apartment prepped, but OLU-256 meeting prep orphaned and unassigned; sell-now vs. wait-for-fall paint job is the decision.",
+      "progressPct": 80,
+      "statusOrder": 1
+    },
+    {
+      "name": "Stablecoin Expertise",
+      "status": "Paused",
+      "latest": "29 days to April 20 \u2014 PYUSD $4.1B, 70-country expansion confirmed; all deliverables built but Smitha pitch (OLU-255) still unassigned and unstarted; NYC trip eats this week.",
+      "progressPct": 40,
+      "statusOrder": 2
+    },
+    {
+      "name": "Formula (Dad's Business)",
+      "status": "Paused",
+      "latest": "Employee back but unreliable \u2014 no backup hire identified or contacted; keeps getting deprioritized, single point of failure.",
+      "progressPct": 60,
+      "statusOrder": 2
+    }
+  ],
+  "updatedAt": "2026-03-22T12:00:00Z",
+  "sources": [
+    "journal-state/2026-03-20.md",
+    "#april-journal (C0AL3MWCR40) \u2014 last 5 messages",
+    "#toggl (C0AMWT9JB5Y) \u2014 no time data available, system architecture discussion only",
+    "#obj-95 (C0AL3MQV41W) \u2014 tweet draft variants awaiting Nick A/B/C pick",
+    "#obj-106 (C0AJTUZED2B) \u2014 PYUSD signal drops Mar 19+21",
+    "#obj-95b (C0AK3RYHE0P) \u2014 5 Paperclip tickets created for Convergence MVP",
+    "#paperclip (C0AN38F223B) \u2014 Paperclip task status with multiple Nick blockers",
+    "MEMORY.md"
+  ]
+}

@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-03-23 00:45 CDT",
-  "updatedAtIso": "2026-03-23T05:45:00Z",
+  "updatedAt": "2026-03-23 06:45 CDT",
+  "updatedAtIso": "2026-03-23T11:45:01Z",
   "gateway": {
     "state": "running",
     "pid": 26968,
@@ -54,6 +54,20 @@
       },
       {
         "kind": "direct",
+        "key": "agent:main:cron:37b597ef-0cbf-4\u2026",
+        "age": "\u2502",
+        "model": "direct",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
+        "key": "agent:main:cron:37b597ef-0cbf-4\u2026",
+        "age": "\u2502",
+        "model": "direct",
+        "tokens": "\u2502"
+      },
+      {
+        "kind": "direct",
         "key": "agent:main:main",
         "age": "\u2502",
         "model": "direct",
@@ -62,20 +76,6 @@
       {
         "kind": "direct",
         "key": "agent:main:cron:b3605742-fa0f-4\u2026",
-        "age": "\u2502",
-        "model": "direct",
-        "tokens": "\u2502"
-      },
-      {
-        "kind": "direct",
-        "key": "agent:main:cron:b22c07ef-a3cc-4\u2026",
-        "age": "\u2502",
-        "model": "direct",
-        "tokens": "\u2502"
-      },
-      {
-        "kind": "direct",
-        "key": "agent:main:cron:0152176b-6576-4\u2026",
         "age": "\u2502",
         "model": "direct",
         "tokens": "\u2502"
@@ -90,5 +90,5 @@
     "chunks": 40
   },
   "model": "main",
-  "rawStatus": "OpenClaw status\n\nOverview\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Item            \u2502 Value                                                                                              \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n\u2502 Dashboard       \u2502 http://127.0.0.1:18789/                                                                            \u2502\n\u2502 OS              \u2502 macos 26.3.1 (arm64) \u00b7 node 25.6.1                                                                 \u2502\n\u2502 Tailscale       \u2502 serve \u00b7 mmm4.tail7a0b9.ts.net \u00b7 https://mmm4.tail7a0b9.ts.net                                      \u2502\n\u2502 Channel         \u2502 stable (default)                                                                                   \u2502\n\u2502 Update          \u2502 pnpm \u00b7 npm latest 2026.3.13                                                                        \u2502\n\u2502 Gateway         \u2502 local \u00b7 ws://127.0.0.1:18789 (local loopback) \u00b7 unreachable (missing scope: operator.read)         \u2502\n\u2502 Gateway service \u2502 LaunchAgent installed \u00b7 loaded \u00b7 running (pid 26968, state active)                                 \u2502\n\u2502 Node service    \u2502 LaunchAgent not installed                                                                          \u2502\n\u2502 Agents          \u2502 1 \u00b7 no bootstrap files \u00b7 sessions 272 \u00b7 default main active 1m ago                                 \u2502\n\u2502 Memory          \u2502 8 files \u00b7 40 chunks \u00b7 sources memory \u00b7 plugin memory-core \u00b7 vector ready \u00b7 fts ready \u00b7 cache on    \u2502\n\u2502                 \u2502 (293)                                                                                              \u2502\n\u2502 Probes          \u2502 skipped (use --deep)                                                                               \u2502\n\u2502 Events          \u2502 none                                                                                               \u2502\n\u2502 Heartbeat       \u2502 1h (main)         "
+  "rawStatus": "OpenClaw status\n\nOverview\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Item            \u2502 Value                                                                                              \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n\u2502 Dashboard       \u2502 http://127.0.0.1:18789/                                                                            \u2502\n\u2502 OS              \u2502 macos 26.3.1 (arm64) \u00b7 node 25.6.1                                                                 \u2502\n\u2502 Tailscale       \u2502 serve \u00b7 mmm4.tail7a0b9.ts.net \u00b7 https://mmm4.tail7a0b9.ts.net                                      \u2502\n\u2502 Channel         \u2502 stable (default)                                                                                   \u2502\n\u2502 Update          \u2502 available \u00b7 pnpm \u00b7 npm update 2026.3.22                                                            \u2502\n\u2502 Gateway         \u2502 local \u00b7 ws://127.0.0.1:18789 (local loopback) \u00b7 unreachable (missing scope: operator.read)         \u2502\n\u2502 Gateway service \u2502 LaunchAgent installed \u00b7 loaded \u00b7 running (pid 26968, state active)                                 \u2502\n\u2502 Node service    \u2502 LaunchAgent not installed                                                                          \u2502\n\u2502 Agents          \u2502 1 \u00b7 no bootstrap files \u00b7 sessions 272 \u00b7 default main active 1m ago                                 \u2502\n\u2502 Memory          \u2502 8 files \u00b7 40 chunks \u00b7 sources memory \u00b7 plugin memory-core \u00b7 vector ready \u00b7 fts ready \u00b7 cache on    \u2502\n\u2502                 \u2502 (295)                                                                                              \u2502\n\u2502 Probes          \u2502 skipped (use --deep)                                                                               \u2502\n\u2502 Events          \u2502 none                                                                                               \u2502\n\u2502 Heartbeat       \u2502 1h (main)         "
 }

@@ -577,7 +577,12 @@ try:
         item_text = l.get("item", "")
         olu_match = re.search(r'OLU-(\d+)', item_text)
         olu_link = f"/OLU/issues/OLU-{olu_match.group(1)}" if olu_match else ""
-        loops.append({**l, "daysUntilDeadline": days_until if days_until is not None else 999,
+        # Strip redundant owner prefix from nextAction (e.g., "Nick: " or "Claw: ")
+        next_action = l.get("nextAction", "")
+        next_action = re.sub(r'^(?:Nick|Claw|[A-Z][a-z]+):\s*', '', next_action)
+        loops.append({**{k: v for k, v in l.items() if k != "nextAction"},
+                      "nextAction": next_action,
+                      "daysUntilDeadline": days_until if days_until is not None else 999,
                       "deadlineShort": deadline_short, "oluLink": olu_link})
     # Sort: deadline items first (ascending), then no-deadline items
     loops.sort(key=lambda x: x["daysUntilDeadline"])
