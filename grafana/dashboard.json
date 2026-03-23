@@ -444,8 +444,12 @@
             },
             "properties": [
               {
-                "id": "custom.wrap",
-                "value": true
+                "id": "custom.width",
+                "value": 300
+              },
+              {
+                "id": "custom.overflow",
+                "value": "truncate"
               }
             ]
           },
@@ -1629,14 +1633,12 @@
             },
             "properties": [
               {
-                "id": "links",
-                "value": [
-                  {
-                    "targetBlank": true,
-                    "title": "Source",
-                    "url": "${__data.fields.url}"
-                  }
-                ]
+                "id": "custom.width",
+                "value": 380
+              },
+              {
+                "id": "custom.overflow",
+                "value": "truncate"
               }
             ]
           },
@@ -2031,6 +2033,10 @@
               "options": "Status"
             },
             "properties": [
+              {
+                "id": "custom.width",
+                "value": 70
+              },
               {
                 "id": "custom.displayMode",
                 "value": "color-background"
@@ -2737,6 +2743,54 @@
               {
                 "id": "custom.width",
                 "value": 200
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Error"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 260
+              },
+              {
+                "id": "custom.overflow",
+                "value": "truncate"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Meaning"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 300
+              },
+              {
+                "id": "custom.overflow",
+                "value": "truncate"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Suggested Fix"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 260
+              },
+              {
+                "id": "custom.overflow",
+                "value": "truncate"
               }
             ]
           }
@@ -3785,6 +3839,22 @@
                 "value": 220
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Workstream"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 260
+              },
+              {
+                "id": "custom.overflow",
+                "value": "truncate"
+              }
+            ]
           }
         ]
       },
@@ -4047,5 +4117,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 56
+  "version": 57
 }
