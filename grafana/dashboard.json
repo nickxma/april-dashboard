@@ -2198,6 +2198,18 @@
                 "value": 70
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Schedule"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 130
+              }
+            ]
           }
         ]
       },
@@ -2227,6 +2239,11 @@
             {
               "selector": "name",
               "text": "Job",
+              "type": "string"
+            },
+            {
+              "selector": "schedule",
+              "text": "Schedule",
               "type": "string"
             },
             {
@@ -4289,5 +4306,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 72
+  "version": 73
 }
