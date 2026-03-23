@@ -1295,70 +1295,12 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Progress"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 80
-              },
-              {
-                "id": "custom.displayMode",
-                "value": "gradient-gauge"
-              },
-              {
-                "id": "max",
-                "value": 100
-              },
-              {
-                "id": "min",
-                "value": 0
-              },
-              {
-                "id": "unit",
-                "value": "percent"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "red",
-                      "value": null
-                    },
-                    {
-                      "color": "orange",
-                      "value": 30
-                    },
-                    {
-                      "color": "yellow",
-                      "value": 60
-                    },
-                    {
-                      "color": "green",
-                      "value": 80
-                    }
-                  ]
-                }
-              },
-              {
-                "id": "color",
-                "value": {
-                  "mode": "thresholds"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
               "options": "Latest"
             },
             "properties": [
               {
                 "id": "custom.width",
-                "value": 500
+                "value": 650
               },
               {
                 "id": "custom.overflow",
@@ -1397,11 +1339,6 @@
               "selector": "status",
               "text": "Status",
               "type": "string"
-            },
-            {
-              "selector": "progressPct",
-              "text": "Progress",
-              "type": "number"
             },
             {
               "selector": "latest",
@@ -4306,5 +4243,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 73
+  "version": 74
 }
