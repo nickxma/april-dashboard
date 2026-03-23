@@ -484,6 +484,8 @@ stale_jobs = sh_summary.get("staleJobs", 0)
 cj_jobs = cj.get("jobs", [])
 failing_jobs = len([j for j in cj_jobs if j.get("status") == "error"])
 enabled_jobs = len([j for j in cj_jobs if j.get("enabled", True)])
+ok_jobs = len([j for j in cj_jobs if j.get("status") == "ok"])
+cron_success_pct = round(ok_jobs / enabled_jobs * 100) if enabled_jobs > 0 else 100
 # Compute overall freshly: error state if any subsystem is down, degraded if jobs failing
 gw_ok = gw_state == "running"
 slack_ok = slack_state == "ok"
@@ -509,6 +511,7 @@ flat = [{
     "staleJobs": stale_jobs,
     "totalTokensK": sum(s.get("tokensK", 0) for s in sa.get("sessions", [])),
     "activeSessions": len([s for s in sa.get("sessions", []) if s.get("tokensK", 0) > 0]),
+    "cronSuccessPct": cron_success_pct,
     "updatedAt": cj.get("updatedAt", local_ts),
 }]
 with open(os.path.join(live, "system-summary.json"), "w") as f:
