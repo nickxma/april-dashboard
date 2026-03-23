@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-23 05:59 CDT",
+  "updatedAt": "2026-03-23 06:59 CDT",
   "summary": {
     "overall": "degraded",
     "enabledJobs": 21,
@@ -9,13 +9,13 @@
   },
   "errors": [
     {
-      "time": "2026-03-22 09:00 CDT",
+      "time": "2026-03-22 11:00 CDT",
       "component": "toggl-weekly-summary",
       "severity": "warn",
       "status": "open",
       "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
-      "meaning": "The weekly Toggl summary job ran successfully and generated a report, but failed to post it to Slack because the delivery target format was invalid.",
-      "suggestedFix": "Update the job's delivery config: change `to` from `channel:C0AMWT9JB5Y` to the raw channel ID `C0AMWT9JB5Y` (or ensure the channel: prefix is supported by the current delivery config)."
+      "meaning": "The weekly Toggl summary ran and produced a complete report, but delivery to Slack failed because the delivery target format was invalid.",
+      "suggestedFix": "Update the job's delivery config: set `to` to `channel:C0AMWT9JB5Y` (explicit channel: prefix required)."
     }
   ]
 }

@@ -3,38 +3,38 @@
     {
       "name": "Baddies",
       "status": "Active",
-      "latest": "●●●●● NYC trip in 2 days — Carly + Diana texted about yoga, no confirmations yet; approaching is the muscle, not any one person."
+      "latest": "NYC trip is live NOW — Carly & Diana texted about yoga but no confirmations yet; window closes today or it evaporates."
     },
     {
       "name": "Mindfulness Content",
       "status": "Active",
-      "latest": "●●●●○ Engine built, 1 tweet live @quiet_drift; paradoxofacceptance.xyz still zero content — deploy (OLU-175) stuck queued; 5 Convergence improvement tickets (OLU-271–275) sent to Paperclip CEO this morning."
+      "latest": "Engine built, 5 interactive sites live, paradoxofacceptance.xyz still has zero content; Tweet 1 A/B/C drafts sitting unanswered 3+ rounds; 5 Paperclip RAG tickets (OLU-439-443) queued for Waking Up Q&A engine."
     },
     {
       "name": "Stablecoin Expertise",
       "status": "Paused",
-      "latest": "●●○○○ 29 days to April 20 — PYUSD $4.1B, 70-country expansion confirmed; all deliverables built but Smitha pitch (OLU-255) still unassigned and unstarted; NYC trip eats this week."
+      "latest": "28 days to April 20 — PYUSD at $4.1B / 70-country expansion / PYUSDx launched, but Smitha pitch is CRITICAL (OLU-629 orphaned, no assignee, zero motion); all assets built, zero execution."
     },
     {
       "name": "Selling Co-op",
       "status": "Active",
-      "latest": "●●●●○ Matylda Pearson (Corcoran) meeting Wed Mar 25 9-10am ET — apartment prepped, but OLU-256 meeting prep orphaned and unassigned; sell-now vs. wait-for-fall paint job is the decision."
+      "latest": "Matylda Pearson meeting Wednesday Mar 25 9am ET — 2 days out, questions unprepped, OLU-630/256 orphaned; in-person possible since Nick is in NYC."
     },
     {
-      "name": "Formula (Dad's Business)",
+      "name": "Formula",
       "status": "Paused",
-      "latest": "●●●○○ Employee back but unreliable — no backup hire identified or contacted; keeps getting deprioritized, single point of failure."
+      "latest": "Employee back but unreliable; no backup candidate identified or contacted — keeps getting deprioritized, fragile single point of failure."
     }
   ],
-  "updatedAt": "2026-03-22T12:00:00Z",
+  "updatedAt": "2026-03-23T12:00:00.000Z",
   "sources": [
     "journal-state/2026-03-20.md",
     "#april-journal (C0AL3MWCR40) — last 5 messages",
-    "#toggl (C0AMWT9JB5Y) — no time data available, system architecture discussion only",
-    "#obj-95 (C0AL3MQV41W) — tweet draft variants awaiting Nick A/B/C pick",
-    "#obj-106 (C0AJTUZED2B) — PYUSD signal drops Mar 19+21",
-    "#obj-95b (C0AK3RYHE0P) — 5 Paperclip tickets created for Convergence MVP",
-    "#paperclip (C0AN38F223B) — Paperclip task status with multiple Nick blockers",
+    "#toggl (C0AMWT9JB5Y) — last 3 messages (no new weekly summary yet, last was Sat Mar 21)",
+    "#obj-95 (C0AL3MQV41W) — last 3 messages (tweet drafts, no Nick approval)",
+    "#obj-106 (C0AJTUZED2B) — last 3 messages (PYUSD signal drops Mar 19 + Mar 21)",
+    "#obj-95b (C0AK3RYHE0P) — last 3 messages (Paperclip RAG tickets OLU-439-443 created Mar 22)",
+    "#paperclip (C0AN38F223B) — last 3 messages (multiple blocked/needs-Nick items)",
     "MEMORY.md"
   ]
 }

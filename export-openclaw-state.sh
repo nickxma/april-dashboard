@@ -462,7 +462,7 @@ PYEOF_RESEARCH
 # ─── SYSTEM SUMMARY (flat for stat panels) ────────────────────────────────
 log "Building system summary..."
 python3 - "$LIVE_DIR" "$LOCAL_TS" <<'PYEOF2'
-import json, sys, os
+import json, sys, os, datetime
 live, local_ts = sys.argv[1], sys.argv[2]
 gw = {}; sh = {}; cj = {}
 try: gw = json.load(open(os.path.join(live, "gateway-status.json")))
@@ -518,6 +518,7 @@ flat = [{
     "urgentLoops": len([l for l in ol.get("loops", []) if 0 <= l.get("daysUntilDeadline", 999) <= 7]),
     "totalLoops": len(ol.get("loops", [])),
     "updatedAt": cj.get("updatedAt", local_ts),
+    "dataAgeMinutes": round((datetime.datetime.now(datetime.timezone.utc) - datetime.datetime.fromisoformat(cj["updatedAtIso"].replace("Z","+00:00"))).total_seconds() / 60) if cj.get("updatedAtIso") else 0,
 }]
 with open(os.path.join(live, "system-summary.json"), "w") as f:
     json.dump({"summary": flat}, f, indent=2)

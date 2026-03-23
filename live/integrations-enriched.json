@@ -3,66 +3,66 @@
     {
       "name": "Slack",
       "status": "connected",
-      "description": "Bot token active (xoxb), app token active (xapp). Both OK.",
-      "lastVerified": "2026-03-23T05:46:00Z",
-      "lastVerifiedAge": "5h ago"
+      "description": "Bot token (xoxb) and app token (xapp) verified OK",
+      "lastVerified": "2026-03-23T11:46:00Z",
+      "lastVerifiedAge": "14m ago"
     },
     {
       "name": "GitHub",
       "status": "connected",
-      "description": "Logged in as nickxma via keyring. Scopes: repo, admin:public_key, gist, read:org.",
-      "lastVerified": "2026-03-23T05:46:00Z",
-      "lastVerifiedAge": "5h ago"
+      "description": "Logged in as nickxma via keyring; scopes: repo, read:org, gist",
+      "lastVerified": "2026-03-23T11:46:00Z",
+      "lastVerifiedAge": "14m ago"
     },
     {
       "name": "Obsidian",
       "status": "connected",
-      "description": "obsidian-cli found at /opt/homebrew/bin/obsidian-cli. Vault at ~/Obsidian accessible.",
-      "lastVerified": "2026-03-23T05:46:00Z",
-      "lastVerifiedAge": "5h ago"
+      "description": "obsidian-cli found at /opt/homebrew/bin/obsidian-cli; vault at ~/Obsidian",
+      "lastVerified": "2026-03-23T11:46:00Z",
+      "lastVerifiedAge": "14m ago"
     },
     {
       "name": "Google Workspace",
       "status": "connected",
-      "description": "OAuth credentials present (credentials.json exists). Account: nickxma@gmail.com.",
-      "lastVerified": "2026-03-23T05:46:00Z",
-      "lastVerifiedAge": "5h ago"
+      "description": "OAuth credentials present (credentials.json); authenticated as nickxma@gmail.com",
+      "lastVerified": "2026-03-23T11:46:00Z",
+      "lastVerifiedAge": "14m ago"
     },
     {
       "name": "Google Calendar",
       "status": "connected",
-      "description": "gog cal list returned live events. OAuth token valid.",
-      "lastVerified": "2026-03-23T05:46:00Z",
-      "lastVerifiedAge": "5h ago"
+      "description": "OAuth active; calendar events returned successfully for today",
+      "lastVerified": "2026-03-23T11:46:00Z",
+      "lastVerifiedAge": "14m ago"
     },
     {
       "name": "Paperclip",
       "status": "connected",
-      "description": "HTTP 200 from http://127.0.0.1:3100/health. Service running.",
-      "lastVerified": "2026-03-23T05:46:00Z",
-      "lastVerifiedAge": "5h ago"
+      "description": "Server responding on http://127.0.0.1:3100",
+      "lastVerified": "2026-03-23T11:46:00Z",
+      "lastVerifiedAge": "14m ago"
     },
     {
       "name": "Tailscale",
       "status": "connected",
-      "description": "mmm4 online. mbm4-1 active (direct). n1, n2 reachable. 2 iOS nodes offline (expected).",
-      "lastVerified": "2026-03-23T05:46:00Z",
-      "lastVerifiedAge": "5h ago"
+      "description": "mmm4 active on tailnet; mbm4-1 active via direct connection",
+      "lastVerified": "2026-03-23T11:46:00Z",
+      "lastVerifiedAge": "14m ago"
     },
     {
       "name": "Things 3",
       "status": "connected",
-      "description": "things CLI found at /opt/homebrew/bin/things.",
-      "lastVerified": "2026-03-23T05:46:00Z",
-      "lastVerifiedAge": "5h ago"
+      "description": "things CLI found at /opt/homebrew/bin/things",
+      "lastVerified": "2026-03-23T11:46:00Z",
+      "lastVerifiedAge": "14m ago"
     },
     {
       "name": "1Password",
       "status": "connected",
-      "description": "op CLI found at /opt/homebrew/bin/op.",
-      "lastVerified": "2026-03-23T05:46:00Z",
-      "lastVerifiedAge": "5h ago"
+      "description": "op CLI found at /opt/homebrew/bin/op",
+      "lastVerified": "2026-03-23T11:46:00Z",
+      "lastVerifiedAge": "14m ago"
     }
   ],
-  "updatedAt": "2026-03-23T05:46:00Z"
+  "updatedAt": "2026-03-23T11:46:00Z"
 }

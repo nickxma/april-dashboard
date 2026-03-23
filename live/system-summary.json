@@ -5,7 +5,7 @@
       "gatewayOk": 1,
       "model": "main",
       "modelOk": 1,
-      "sessions": 272,
+      "sessions": 274,
       "slack": "ok",
       "slackOk": 1,
       "overall": "degraded",
@@ -14,12 +14,12 @@
       "enabledJobs": 21,
       "openErrors": 1,
       "staleJobs": 0,
-      "totalTokensK": 1244,
+      "totalTokensK": 1090,
       "activeSessions": 30,
       "cronSuccessPct": 90,
       "urgentLoops": 2,
       "totalLoops": 14,
-      "updatedAt": "2026-03-23 06:40 CDT"
+      "updatedAt": "2026-03-23 07:00 CDT"
     }
   ]
 }
