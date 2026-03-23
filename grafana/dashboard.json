@@ -1292,6 +1292,18 @@
                 "value": "truncate"
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Latest"
+            },
+            "properties": [
+              {
+                "id": "custom.overflow",
+                "value": "truncate"
+              }
+            ]
           }
         ]
       },
@@ -4117,5 +4129,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 57
+  "version": 58
 }
