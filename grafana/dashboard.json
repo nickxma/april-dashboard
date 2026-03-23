@@ -1094,19 +1094,43 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "text",
-            "mode": "fixed"
+            "mode": "thresholds"
           },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "0m"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "noValue": "--",
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "text",
+                "color": "green",
                 "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 10
+              },
+              {
+                "color": "orange",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 60
               }
             ]
-          }
+          },
+          "unit": "short"
         },
         "overrides": []
       },
@@ -1118,7 +1142,7 @@
       },
       "id": 8,
       "options": {
-        "colorMode": "none",
+        "colorMode": "background",
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
@@ -1126,7 +1150,7 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/Updated/",
+          "fields": "/^Age$/",
           "values": false
         },
         "textMode": "value_and_name"
@@ -1135,9 +1159,9 @@
         {
           "columns": [
             {
-              "selector": "updatedAt",
-              "text": "Updated",
-              "type": "string"
+              "selector": "dataAgeMinutes",
+              "text": "Age",
+              "type": "number"
             }
           ],
           "datasource": {
@@ -1159,7 +1183,7 @@
           }
         }
       ],
-      "title": "Data Updated",
+      "title": "Data Age (min)",
       "type": "stat"
     },
     {
@@ -4261,5 +4285,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 69
+  "version": 70
 }
