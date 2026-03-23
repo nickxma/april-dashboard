@@ -616,6 +616,39 @@ except Exception as e:
     print(f"objectives-enriched: skipped ({e})")
 PYEOF_OBJ
 
+# ─── INTEGRATIONS ENRICHMENT (add relative lastVerifiedAge) ──────────────────
+python3 - "$LIVE_DIR" <<'PYEOF_INTEG'
+import json, sys, os, datetime
+live = sys.argv[1]
+src = os.path.join(live, "integrations.json")
+out = os.path.join(live, "integrations-enriched.json")
+try:
+    data = json.load(open(src))
+    now = datetime.datetime.now(datetime.timezone.utc)
+    enriched = []
+    for item in data.get("connected", []):
+        lv = item.get("lastVerified", "")
+        age_str = ""
+        if lv:
+            try:
+                dt = datetime.datetime.fromisoformat(lv.replace("Z", "+00:00"))
+                secs = (now - dt).total_seconds()
+                if secs < 3600:
+                    age_str = f"{int(secs/60)}m ago"
+                elif secs < 86400:
+                    age_str = f"{int(secs/3600)}h ago"
+                else:
+                    age_str = f"{int(secs/86400)}d ago"
+            except Exception:
+                age_str = lv[:10]
+        enriched.append({**item, "lastVerifiedAge": age_str})
+    with open(out, "w") as f:
+        json.dump({"connected": enriched, "updatedAt": data.get("updatedAt", "")}, f, indent=2)
+    print(f"Wrote integrations-enriched.json ({len(enriched)} integrations)")
+except Exception as e:
+    print(f"integrations-enriched: skipped ({e})")
+PYEOF_INTEG
+
 # ─── CRON SCHEDULE BY HOUR (for schedule distribution bargauge) ──────────────
 python3 - "$LIVE_DIR" <<'PYEOF_SCHED'
 import json, sys, os

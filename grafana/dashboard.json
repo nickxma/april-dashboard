@@ -3039,12 +3039,12 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Last Verified"
+              "options": "Verified"
             },
             "properties": [
               {
                 "id": "custom.width",
-                "value": 160
+                "value": 80
               }
             ]
           },
@@ -3093,8 +3093,8 @@
               "type": "string"
             },
             {
-              "selector": "lastVerified",
-              "text": "Last Verified",
+              "selector": "lastVerifiedAge",
+              "text": "Verified",
               "type": "string"
             }
           ],
@@ -3110,7 +3110,7 @@
           "root_selector": "connected",
           "source": "url",
           "type": "json",
-          "url": "http://127.0.0.1:3001/integrations.json",
+          "url": "http://127.0.0.1:3001/integrations-enriched.json",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -4179,5 +4179,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 63
+  "version": 64
 }
