@@ -527,6 +527,7 @@ try:
             "direction": e.get("direction", ""),
             "strength":  e.get("strength", ""),
             "signal":    e.get("signal", ""),
+            "url":       e.get("url", ""),
         })
     with open(out_path, "w") as f:
         json.dump({"evidence": rows}, f, indent=2)
