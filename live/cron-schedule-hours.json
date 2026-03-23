@@ -16,7 +16,7 @@
       "hour": "8am",
       "hourNum": 8,
       "timedJobs": 3,
-      "jobNames": "infrastructure-weekly-, obj-95-mindfulness-twe, infrastructure-daily-s"
+      "jobNames": "infrastructure-daily-s, obj-95-mindfulness-twe, infrastructure-weekly-"
     },
     {
       "hour": "9am",
@@ -50,5 +50,5 @@
     }
   ],
   "intervalJobs": 6,
-  "updatedAt": "2026-03-23 07:00 CDT"
+  "updatedAt": "2026-03-23 09:10 CDT"
 }

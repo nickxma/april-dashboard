@@ -5,21 +5,22 @@
       "gatewayOk": 1,
       "model": "main",
       "modelOk": 1,
-      "sessions": 274,
+      "sessions": 277,
       "slack": "ok",
       "slackOk": 1,
       "overall": "degraded",
       "statusLevel": 0,
-      "failingJobs": 1,
+      "failingJobs": 2,
       "enabledJobs": 21,
-      "openErrors": 1,
+      "openErrors": 2,
       "staleJobs": 0,
-      "totalTokensK": 1090,
-      "activeSessions": 30,
+      "totalTokensK": 1041,
+      "activeSessions": 28,
       "cronSuccessPct": 90,
       "urgentLoops": 2,
-      "totalLoops": 14,
-      "updatedAt": "2026-03-23 07:00 CDT"
+      "totalLoops": 12,
+      "updatedAt": "2026-03-23 09:10 CDT",
+      "dataAgeMinutes": 0
     }
   ]
 }

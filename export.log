@@ -8262,3 +8262,582 @@ Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
 [07:01:59] Exporting cron jobs...
 Wrote 21 cron jobs
 [07:02:00] Exporting gateway status...
+Wrote gateway-status.json
+[07:02:02] Exporting session activity...
+Wrote 274 sessions
+[07:02:04] Building errors log...
+Wrote 1 errors
+[07:02:04] --- Export complete at 2026-03-23 07:01 CDT ---
+Wrote research-summary.json (probability=28%)
+[07:02:04] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote open-loops-enriched.json (12 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[07:05:00] --- Export started at 2026-03-23 07:05 CDT ---
+[07:05:00] Exporting cron jobs...
+Wrote 21 cron jobs
+[07:05:06] Exporting gateway status...
+Wrote gateway-status.json
+[07:05:11] Exporting session activity...
+Wrote 271 sessions
+[07:05:16] Building errors log...
+Wrote 2 errors
+[07:05:16] --- Export complete at 2026-03-23 07:05 CDT ---
+Wrote research-summary.json (probability=28%)
+[07:05:16] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote open-loops-enriched.json (12 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[07:05:50] --- Export started at 2026-03-23 07:05 CDT ---
+[07:05:50] Exporting cron jobs...
+Wrote 21 cron jobs
+[07:05:52] Exporting gateway status...
+Wrote gateway-status.json
+[07:05:54] Exporting session activity...
+Wrote 271 sessions
+[07:05:55] Building errors log...
+Wrote 2 errors
+[07:05:55] --- Export complete at 2026-03-23 07:05 CDT ---
+Wrote research-summary.json (probability=28%)
+[07:05:55] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote open-loops-enriched.json (12 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[07:07:08] --- Export started at 2026-03-23 07:07 CDT ---
+[07:07:08] Exporting cron jobs...
+Wrote 21 cron jobs
+[07:07:11] Exporting gateway status...
+Wrote gateway-status.json
+[07:07:13] Exporting session activity...
+Wrote 272 sessions
+[07:07:15] Building errors log...
+Wrote 2 errors
+[07:07:15] --- Export complete at 2026-03-23 07:07 CDT ---
+Wrote research-summary.json (probability=28%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[07:07:15] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote open-loops-enriched.json (12 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[07:10:00] --- Export started at 2026-03-23 07:10 CDT ---
+[07:10:00] Exporting cron jobs...
+Wrote 21 cron jobs
+[07:10:07] Exporting gateway status...
+Wrote gateway-status.json
+[07:10:12] Exporting session activity...
+Wrote 272 sessions
+[07:10:17] Building errors log...
+Wrote 2 errors
+[07:10:17] --- Export complete at 2026-03-23 07:10 CDT ---
+Wrote research-summary.json (probability=28%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[07:10:17] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote open-loops-enriched.json (12 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[07:15:00] --- Export started at 2026-03-23 07:15 CDT ---
+[07:15:00] Exporting cron jobs...
+Wrote 21 cron jobs
+[07:15:07] Exporting gateway status...
+Wrote gateway-status.json
+[07:15:13] Exporting session activity...
+Wrote 271 sessions
+[07:15:17] Building errors log...
+Wrote 2 errors
+[07:15:17] --- Export complete at 2026-03-23 07:15 CDT ---
+Wrote research-summary.json (probability=28%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[07:15:18] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote open-loops-enriched.json (12 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[07:20:01] --- Export started at 2026-03-23 07:20 CDT ---
+[07:20:01] Exporting cron jobs...
+Wrote 21 cron jobs
+[07:20:07] Exporting gateway status...
+Wrote gateway-status.json
+[07:20:13] Exporting session activity...
+Wrote 271 sessions
+[07:20:18] Building errors log...
+Wrote 2 errors
+[07:20:18] --- Export complete at 2026-03-23 07:20 CDT ---
+Wrote research-summary.json (probability=28%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[07:20:18] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote open-loops-enriched.json (12 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[07:25:00] --- Export started at 2026-03-23 07:25 CDT ---
+[07:25:00] Exporting cron jobs...
+Wrote 21 cron jobs
+[07:25:05] Exporting gateway status...
+Wrote gateway-status.json
+[07:25:10] Exporting session activity...
+Wrote 271 sessions
+[07:25:15] Building errors log...
+Wrote 2 errors
+[07:25:16] --- Export complete at 2026-03-23 07:25 CDT ---
+Wrote research-summary.json (probability=28%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[07:25:16] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote open-loops-enriched.json (12 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[07:30:00] --- Export started at 2026-03-23 07:30 CDT ---
+[07:30:00] Exporting cron jobs...
+Wrote 21 cron jobs
+[07:30:04] Exporting gateway status...
+Wrote gateway-status.json
+[07:30:10] Exporting session activity...
+Wrote 271 sessions
+[07:30:14] Building errors log...
+Wrote 2 errors
+[07:30:14] --- Export complete at 2026-03-23 07:30 CDT ---
+Wrote research-summary.json (probability=28%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[07:30:14] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote open-loops-enriched.json (12 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[07:35:00] --- Export started at 2026-03-23 07:35 CDT ---
+[07:35:00] Exporting cron jobs...
+Wrote 21 cron jobs
+[07:35:05] Exporting gateway status...
+Wrote gateway-status.json
+[07:35:11] Exporting session activity...
+Wrote 271 sessions
+[07:35:16] Building errors log...
+Wrote 2 errors
+[07:35:16] --- Export complete at 2026-03-23 07:35 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[07:35:16] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote open-loops-enriched.json (12 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[07:40:00] --- Export started at 2026-03-23 07:40 CDT ---
+[07:40:00] Exporting cron jobs...
+Wrote 0 cron jobs (skipped: kept previous cron-jobs.json)
+[07:40:07] Exporting gateway status...
+Wrote gateway-status.json
+[07:40:12] Exporting session activity...
+Wrote 272 sessions
+[07:40:17] Building errors log...
+Wrote 2 errors
+[07:40:17] --- Export complete at 2026-03-23 07:40 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[07:40:17] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote open-loops-enriched.json (12 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[07:45:01] --- Export started at 2026-03-23 07:45 CDT ---
+[07:45:01] Exporting cron jobs...
+Wrote 21 cron jobs
+[07:45:07] Exporting gateway status...
+Wrote gateway-status.json
+[07:45:13] Exporting session activity...
+Wrote 271 sessions
+[07:45:17] Building errors log...
+Wrote 2 errors
+[07:45:18] --- Export complete at 2026-03-23 07:45 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[07:45:18] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote open-loops-enriched.json (12 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[07:50:00] --- Export started at 2026-03-23 07:50 CDT ---
+[07:50:00] Exporting cron jobs...
+Wrote 21 cron jobs
+[07:50:05] Exporting gateway status...
+Wrote gateway-status.json
+[07:50:11] Exporting session activity...
+Wrote 271 sessions
+[07:50:15] Building errors log...
+Wrote 2 errors
+[07:50:15] --- Export complete at 2026-03-23 07:50 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[07:50:15] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote open-loops-enriched.json (12 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[07:55:00] --- Export started at 2026-03-23 07:55 CDT ---
+[07:55:00] Exporting cron jobs...
+Wrote 21 cron jobs
+[07:55:07] Exporting gateway status...
+Wrote gateway-status.json
+[07:55:12] Exporting session activity...
+Wrote 271 sessions
+[07:55:17] Building errors log...
+Wrote 2 errors
+[07:55:17] --- Export complete at 2026-03-23 07:55 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[07:55:17] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote open-loops-enriched.json (12 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[08:00:00] --- Export started at 2026-03-23 08:00 CDT ---
+[08:00:00] Exporting cron jobs...
+Wrote 21 cron jobs
+[08:00:07] Exporting gateway status...
+Wrote gateway-status.json
+[08:00:12] Exporting session activity...
+Wrote 273 sessions
+[08:00:16] Building errors log...
+Wrote 2 errors
+[08:00:16] --- Export complete at 2026-03-23 08:00 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[08:00:16] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote open-loops-enriched.json (12 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[08:05:00] --- Export started at 2026-03-23 08:05 CDT ---
+[08:05:00] Exporting cron jobs...
+Wrote 21 cron jobs
+[08:05:05] Exporting gateway status...
+Wrote gateway-status.json
+[08:05:10] Exporting session activity...
+Wrote 273 sessions
+[08:05:15] Building errors log...
+Wrote 2 errors
+[08:05:15] --- Export complete at 2026-03-23 08:05 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[08:05:15] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote open-loops-enriched.json (12 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[08:09:37] --- Export started at 2026-03-23 08:09 CDT ---
+[08:09:37] Exporting cron jobs...
+Wrote 21 cron jobs
+[08:09:40] Exporting gateway status...
+Wrote gateway-status.json
+[08:09:42] Exporting session activity...
+Wrote 274 sessions
+[08:09:43] Building errors log...
+Wrote 2 errors
+[08:09:43] --- Export complete at 2026-03-23 08:09 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[08:09:43] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[08:10:00] --- Export started at 2026-03-23 08:10 CDT ---
+[08:10:00] Exporting cron jobs...
+Wrote 21 cron jobs
+[08:10:07] Exporting gateway status...
+Wrote gateway-status.json
+[08:10:12] Exporting session activity...
+Wrote 275 sessions
+[08:10:17] Building errors log...
+Wrote 2 errors
+[08:10:17] --- Export complete at 2026-03-23 08:10 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[08:10:17] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[08:15:00] --- Export started at 2026-03-23 08:15 CDT ---
+[08:15:00] Exporting cron jobs...
+Wrote 21 cron jobs
+[08:15:06] Exporting gateway status...
+Wrote gateway-status.json
+[08:15:12] Exporting session activity...
+Wrote 274 sessions
+[08:15:16] Building errors log...
+Wrote 2 errors
+[08:15:16] --- Export complete at 2026-03-23 08:15 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[08:15:17] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[08:20:01] --- Export started at 2026-03-23 08:20 CDT ---
+[08:20:01] Exporting cron jobs...
+Wrote 21 cron jobs
+[08:20:07] Exporting gateway status...
+Wrote gateway-status.json
+[08:20:12] Exporting session activity...
+Wrote 274 sessions
+[08:20:16] Building errors log...
+Wrote 2 errors
+[08:20:16] --- Export complete at 2026-03-23 08:20 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[08:20:17] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[08:25:01] --- Export started at 2026-03-23 08:25 CDT ---
+[08:25:01] Exporting cron jobs...
+Wrote 21 cron jobs
+[08:25:07] Exporting gateway status...
+Wrote gateway-status.json
+[08:25:12] Exporting session activity...
+Wrote 274 sessions
+[08:25:17] Building errors log...
+Wrote 2 errors
+[08:25:17] --- Export complete at 2026-03-23 08:25 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[08:25:17] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[08:30:00] --- Export started at 2026-03-23 08:30 CDT ---
+[08:30:00] Exporting cron jobs...
+Wrote 21 cron jobs
+[08:30:05] Exporting gateway status...
+Wrote gateway-status.json
+[08:30:11] Exporting session activity...
+Wrote 274 sessions
+[08:30:15] Building errors log...
+Wrote 2 errors
+[08:30:15] --- Export complete at 2026-03-23 08:30 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[08:30:15] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[08:35:00] --- Export started at 2026-03-23 08:35 CDT ---
+[08:35:00] Exporting cron jobs...
+Wrote 0 cron jobs (skipped: kept previous cron-jobs.json)
+[08:35:07] Exporting gateway status...
+Wrote gateway-status.json
+[08:35:13] Exporting session activity...
+Wrote 274 sessions
+[08:35:17] Building errors log...
+Wrote 2 errors
+[08:35:17] --- Export complete at 2026-03-23 08:35 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[08:35:17] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[08:40:00] --- Export started at 2026-03-23 08:40 CDT ---
+[08:40:00] Exporting cron jobs...
+Wrote 21 cron jobs
+[08:40:05] Exporting gateway status...
+Wrote gateway-status.json
+[08:40:10] Exporting session activity...
+Wrote 275 sessions
+[08:40:15] Building errors log...
+Wrote 2 errors
+[08:40:15] --- Export complete at 2026-03-23 08:40 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[08:40:15] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[08:45:01] --- Export started at 2026-03-23 08:45 CDT ---
+[08:45:01] Exporting cron jobs...
+Wrote 21 cron jobs
+[08:45:07] Exporting gateway status...
+Wrote gateway-status.json
+[08:45:13] Exporting session activity...
+Wrote 275 sessions
+[08:45:18] Building errors log...
+Wrote 2 errors
+[08:45:18] --- Export complete at 2026-03-23 08:45 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[08:45:19] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[08:50:01] --- Export started at 2026-03-23 08:50 CDT ---
+[08:50:01] Exporting cron jobs...
+Wrote 21 cron jobs
+[08:50:07] Exporting gateway status...
+Wrote gateway-status.json
+[08:50:12] Exporting session activity...
+Wrote 274 sessions
+[08:50:17] Building errors log...
+Wrote 2 errors
+[08:50:17] --- Export complete at 2026-03-23 08:50 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[08:50:17] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[08:55:00] --- Export started at 2026-03-23 08:55 CDT ---
+[08:55:00] Exporting cron jobs...
+Wrote 21 cron jobs
+[08:55:07] Exporting gateway status...
+Wrote gateway-status.json
+[08:55:12] Exporting session activity...
+Wrote 275 sessions
+[08:55:17] Building errors log...
+Wrote 2 errors
+[08:55:17] --- Export complete at 2026-03-23 08:55 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[08:55:17] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[09:00:00] --- Export started at 2026-03-23 09:00 CDT ---
+[09:00:00] Exporting cron jobs...
+Wrote 21 cron jobs
+[09:00:07] Exporting gateway status...
+Wrote gateway-status.json
+[09:00:13] Exporting session activity...
+Wrote 278 sessions
+[09:00:17] Building errors log...
+Wrote 2 errors
+[09:00:17] --- Export complete at 2026-03-23 09:00 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[09:00:17] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[09:05:00] --- Export started at 2026-03-23 09:05 CDT ---
+[09:05:00] Exporting cron jobs...
+Wrote 21 cron jobs
+[09:05:07] Exporting gateway status...
+Wrote gateway-status.json
+[09:05:12] Exporting session activity...
+Wrote 276 sessions
+[09:05:16] Building errors log...
+Wrote 2 errors
+[09:05:17] --- Export complete at 2026-03-23 09:05 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[09:05:17] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)
+[09:10:01] --- Export started at 2026-03-23 09:10 CDT ---
+[09:10:01] Exporting cron jobs...
+Wrote 21 cron jobs
+[09:10:07] Exporting gateway status...
+Wrote gateway-status.json
+[09:10:12] Exporting session activity...
+Wrote 277 sessions
+[09:10:17] Building errors log...
+Wrote 2 errors
+[09:10:17] --- Export complete at 2026-03-23 09:10 CDT ---
+Wrote research-summary.json (probability=22%)
+Wrote open-loops-enriched.json (12 items, early pass)
+[09:10:17] Building system summary...
+Wrote system-summary.json
+Wrote research-evidence.json (3 items)
+Wrote objectives-enriched.json (5 objectives)
+Wrote integrations-enriched.json (9 integrations)
+Wrote control-tower-enriched.json (22 agents)
+Wrote cron-schedule-hours.json (8 active hours, 6 interval jobs)

@@ -1,21 +1,30 @@
 {
-  "updatedAt": "2026-03-23 06:59 CDT",
+  "updatedAt": "2026-03-23 08:59 CDT",
   "summary": {
     "overall": "degraded",
     "enabledJobs": 21,
-    "failingJobs": 1,
+    "failingJobs": 2,
     "staleJobs": 0,
-    "openErrors": 1
+    "openErrors": 2
   },
   "errors": [
     {
-      "time": "2026-03-22 11:00 CDT",
+      "time": "2026-03-23 07:02 CDT",
+      "component": "infra-version-check",
+      "severity": "warn",
+      "status": "open",
+      "error": "⚠️ ✉️ Message failed",
+      "meaning": "Job ran and detected an openclaw update (2026.3.13 → 2026.3.22) but failed to post to #infrastructure — channel not found.",
+      "suggestedFix": "Fix the delivery target in infra-version-check job config — update channel to a valid channel ID (e.g. C0ANLFZD1TJ)."
+    },
+    {
+      "time": "2026-03-17 09:00 CDT",
       "component": "toggl-weekly-summary",
       "severity": "warn",
       "status": "open",
       "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
-      "meaning": "The weekly Toggl summary ran and produced a complete report, but delivery to Slack failed because the delivery target format was invalid.",
-      "suggestedFix": "Update the job's delivery config: set `to` to `channel:C0AMWT9JB5Y` (explicit channel: prefix required)."
+      "meaning": "Weekly Toggl summary ran successfully and generated output but failed to deliver — delivery target format is invalid (channel name used instead of channel ID).",
+      "suggestedFix": "Update toggl-weekly-summary delivery target from 'channel:c0amwt9jb5y' to 'channel:C0AMWT9JB5Y' (correct casing) or verify the channel ID is correct."
     }
   ]
 }

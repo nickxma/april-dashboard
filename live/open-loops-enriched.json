@@ -1,159 +1,137 @@
 {
   "loops": [
     {
-      "item": "Carly + Diana yoga confirmation \u2014 NYC trip in 2 days",
-      "daysOpen": 2,
-      "owner": "Nick",
-      "status": "blocked",
-      "deadline": "2026-03-24",
-      "nextAction": "follow up if no reply by tonight; logistics need to lock before departure",
-      "daysUntilDeadline": 1,
-      "deadlineShort": "3/24",
-      "oluLink": ""
-    },
-    {
-      "item": "Matylda meeting prep \u2014 OLU-256 orphaned, 3 days out",
-      "daysOpen": 3,
-      "owner": "Nick",
-      "status": "blocked",
-      "deadline": "2026-03-25",
-      "nextAction": "prep questions for sell-now vs. wait-for-fall decision before Tue night",
-      "daysUntilDeadline": 2,
-      "deadlineShort": "3/25",
-      "oluLink": "http://127.0.0.1:3000/OLU/issues/OLU-256"
-    },
-    {
-      "item": "Smitha pitch \u2014 OLU-255 unassigned, zero progress",
-      "daysOpen": 10,
-      "owner": "Nick",
-      "status": "blocked",
-      "deadline": "2026-04-20",
-      "nextAction": "draft opening ask to Smitha today (last clear window before NYC trip eats the week)",
-      "daysUntilDeadline": 28,
-      "deadlineShort": "4/20",
-      "oluLink": "http://127.0.0.1:3000/OLU/issues/OLU-255"
-    },
-    {
-      "item": "OLU-225: convergence-mvp.vercel.app site not loading \u2014 in_review 8h+",
-      "daysOpen": 1,
-      "owner": "Nick",
-      "status": "blocked",
-      "deadline": null,
-      "nextAction": "review and merge the fix PR so Convergence MVP goes live",
-      "daysUntilDeadline": 999,
-      "deadlineShort": "",
-      "oluLink": "http://127.0.0.1:3000/OLU/issues/OLU-225"
-    },
-    {
-      "item": "OLU-338: Newsletter pipeline blocked \u2014 RESEND_API_KEY missing in Vercel",
+      "item": "Confirm Carly/Diana yoga in NYC",
       "daysOpen": 4,
       "owner": "Nick",
       "status": "blocked",
-      "deadline": null,
-      "nextAction": "add RESEND_API_KEY to Vercel env vars to unblock 26K-audience first send",
-      "daysUntilDeadline": 999,
-      "deadlineShort": "",
-      "oluLink": "http://127.0.0.1:3000/OLU/issues/OLU-338"
+      "deadline": "2026-03-23T23:59:00.000Z",
+      "nextAction": "text Carly and Diana to lock yoga session TODAY \u2014 window closes by end of day",
+      "daysUntilDeadline": 0,
+      "deadlineShort": "3/23",
+      "oluLink": ""
     },
     {
-      "item": "OLU-259/238/236: Course audio generation blocked \u2014 ELEVENLABS_API_KEY missing",
+      "item": "Matylda Pearson meeting prep (OLU-630/OLU-256)",
       "daysOpen": 5,
       "owner": "Nick",
       "status": "blocked",
-      "deadline": null,
-      "nextAction": "provision ELEVENLABS_API_KEY to Course Designer agent in Paperclip adapterConfig",
-      "daysUntilDeadline": 999,
-      "deadlineShort": "",
-      "oluLink": "http://127.0.0.1:3000/OLU/issues/OLU-259"
+      "deadline": "2026-03-25T14:00:00.000Z",
+      "nextAction": "prep questions for Matylda tonight \u2014 meeting Wed Mar 25 9am ET, sell-now vs. wait-for-fall decision",
+      "daysUntilDeadline": 2,
+      "deadlineShort": "3/25",
+      "oluLink": "http://127.0.0.1:3000/OLU/issues/OLU-630"
     },
     {
-      "item": "OLU-245: Content Lead can't assign tasks \u2014 4th escalation cycle",
-      "daysOpen": 7,
+      "item": "Smitha PYUSD pitch (OLU-629)",
+      "daysOpen": 14,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": "2026-04-20T00:00:00.000Z",
+      "nextAction": "draft and send Smitha outreach TODAY \u2014 all assets built, zero motion, deadline Apr 20 (28 days)",
+      "daysUntilDeadline": 28,
+      "deadlineShort": "4/20",
+      "oluLink": "http://127.0.0.1:3000/OLU/issues/OLU-629"
+    },
+    {
+      "item": "Content Lead tasks:assign permission (OLU-245)",
+      "daysOpen": 10,
       "owner": "Nick",
       "status": "blocked",
       "deadline": null,
-      "nextAction": "grant tasks:assign permission via Paperclip board-level permissions",
+      "nextAction": "grant board-level permission via API \u2014 PATCH /api/companies/{id}/members/{memberId}/permissions (4th escalation, blocking every content batch)",
       "daysUntilDeadline": 999,
       "deadlineShort": "",
       "oluLink": "http://127.0.0.1:3000/OLU/issues/OLU-245"
     },
     {
-      "item": "OLU-271: Privy app shows 'Acceptance Pass' instead of 'Convergence' in auth emails",
-      "daysOpen": 2,
+      "item": "ElevenLabs API key for Course Designer audio (OLU-236/OLU-259)",
+      "daysOpen": 3,
       "owner": "Nick",
       "status": "blocked",
       "deadline": null,
-      "nextAction": "update app name in Privy dashboard (config only, no code)",
+      "nextAction": "provide ELEVENLABS_API_KEY \u2014 then Claw can PATCH /api/agents/578b4c0a to unblock all 10 course audio sessions",
       "daysUntilDeadline": 999,
       "deadlineShort": "",
-      "oluLink": "http://127.0.0.1:3000/OLU/issues/OLU-271"
+      "oluLink": "http://127.0.0.1:3000/OLU/issues/OLU-236"
     },
     {
-      "item": "paradoxofacceptance.xyz \u2014 zero content live, OLU-175 deploy stuck in queued",
+      "item": "Resend account + API key for newsletter platform (OLU-250/OLU-111/OLU-112)",
       "daysOpen": 7,
-      "owner": "Claw",
-      "status": "actionable",
-      "deadline": null,
-      "nextAction": "investigate and restart OLU-175 queued run; escalate to Paperclip CEO if stuck",
-      "daysUntilDeadline": 999,
-      "deadlineShort": "",
-      "oluLink": "http://127.0.0.1:3000/OLU/issues/OLU-175"
-    },
-    {
-      "item": "#obj-95 Tweet 1 variants \u2014 A/B/C pick pending Nick approval",
-      "daysOpen": 3,
       "owner": "Nick",
       "status": "blocked",
       "deadline": null,
-      "nextAction": "reply A, B, or C to approve Tweet 1 opener in #obj-95 channel",
+      "nextAction": "create Resend account and provide API key \u2014 blocks bulk email CSV import and 3-email welcome sequence to 26K list",
       "daysUntilDeadline": 999,
       "deadlineShort": "",
-      "oluLink": ""
+      "oluLink": "http://127.0.0.1:3000/OLU/issues/OLU-250"
     },
     {
-      "item": "Formula backup employee \u2014 no candidate identified",
-      "daysOpen": 14,
-      "owner": "Nick",
-      "status": "blocked",
-      "deadline": null,
-      "nextAction": "identify and contact at least one backup hire candidate (single point of failure risk)",
-      "daysUntilDeadline": 999,
-      "deadlineShort": "",
-      "oluLink": ""
-    },
-    {
-      "item": "Google Calendar re-auth needed",
-      "daysOpen": 3,
-      "owner": "Nick",
-      "status": "blocked",
-      "deadline": null,
-      "nextAction": "run `gog auth` to restore Google Calendar access (daily brief + calendar agent degraded)",
-      "daysUntilDeadline": 999,
-      "deadlineShort": "",
-      "oluLink": ""
-    },
-    {
-      "item": "Convergence project vacation \u2014 MVP scope + vacation dates TBD",
+      "item": "OLU-566 hermes-paperclip-adapter review",
       "daysOpen": 2,
       "owner": "Nick",
       "status": "blocked",
       "deadline": null,
-      "nextAction": "decide vacation dates and MVP scope for Mindfulness \u00d7 Crypto \u00d7 AI build sprint",
+      "nextAction": "give go/no-go decision on hermes-paperclip-adapter PR (assigned to local-board, sitting unread)",
+      "daysUntilDeadline": 999,
+      "deadlineShort": "",
+      "oluLink": "http://127.0.0.1:3000/OLU/issues/OLU-566"
+    },
+    {
+      "item": "paradoxofacceptance.xyz \u2014 zero content live",
+      "daysOpen": 6,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": null,
+      "nextAction": "approve tweet/essay drafts (Tweet 1 A/B/C unanswered 3+ rounds in #obj-95) then Claw deploys",
       "daysUntilDeadline": 999,
       "deadlineShort": "",
       "oluLink": ""
     },
     {
-      "item": "Waking Up content licensing \u2014 check before publishing Convergence product",
-      "daysOpen": 2,
+      "item": "Formula backup employee candidate",
+      "daysOpen": 21,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": null,
+      "nextAction": "identify and contact at least one backup candidate for Formula (kept getting deprioritized)",
+      "daysUntilDeadline": 999,
+      "deadlineShort": "",
+      "oluLink": ""
+    },
+    {
+      "item": "OLU-531 ghost bubble bug (stale)",
+      "daysOpen": 1,
       "owner": "Claw",
       "status": "actionable",
       "deadline": null,
-      "nextAction": "research Waking Up content licensing terms for commercial/tokenized use",
+      "nextAction": "restart or reassign OLU-531 \u2014 in_progress with no active run for 10+ hours, effectively abandoned",
+      "daysUntilDeadline": 999,
+      "deadlineShort": "",
+      "oluLink": "http://127.0.0.1:3000/OLU/issues/OLU-531"
+    },
+    {
+      "item": "OLU-388 Stripe checkout review",
+      "daysOpen": 3,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": null,
+      "nextAction": "review and merge or reassign OLU-388 Stripe checkout (in_review, no assignee)",
+      "daysUntilDeadline": 999,
+      "deadlineShort": "",
+      "oluLink": "http://127.0.0.1:3000/OLU/issues/OLU-388"
+    },
+    {
+      "item": "Convergence project (Mindfulness \u00d7 Crypto \u00d7 AI)",
+      "daysOpen": 3,
+      "owner": "Nick",
+      "status": "blocked",
+      "deadline": null,
+      "nextAction": "decide vacation dates for V1 build sprint + confirm Waking Up content licensing \u2014 idea from Mar 20 voice memos, no forward motion yet",
       "daysUntilDeadline": 999,
       "deadlineShort": "",
       "oluLink": ""
     }
   ],
-  "updatedAt": "2026-03-22T12:00:00Z"
+  "updatedAt": "2026-03-23T12:00:00.000Z"
 }

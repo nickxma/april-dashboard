@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-23 06:57 CDT",
+  "updatedAt": "2026-03-23 08:57 CDT",
   "projects": [
     {
       "name": "Launch Twitter account for AI + mindfulness content",
@@ -15,6 +15,13 @@
     }
   ],
   "agents": [
+    {
+      "name": "infra-version-check",
+      "status": "error",
+      "workstream": "Checks openclaw/claude-code/paperclip for version updates \u2192 #infrastructure",
+      "cadence": "07:00 America/Chicago daily",
+      "agentSortOrder": 1
+    },
     {
       "name": "toggl-weekly-summary",
       "status": "error",
@@ -111,13 +118,6 @@
       "status": "ok",
       "workstream": "Daily research task refresh (PayPal acquisition probability)",
       "cadence": "07:35 America/Chicago daily",
-      "agentSortOrder": 3
-    },
-    {
-      "name": "infra-version-check",
-      "status": "ok",
-      "workstream": "Checks openclaw/claude-code/paperclip for version updates \u2192 #infrastructure",
-      "cadence": "07:00 America/Chicago daily",
       "agentSortOrder": 3
     },
     {

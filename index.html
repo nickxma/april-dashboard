@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>April — Dashboard</title>
+  <title>Claw — Dashboard</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,6 +27,7 @@
       --red: #DC3545;
       --green-bg: rgba(25, 135, 84, 0.08);
       --amber-bg: rgba(204, 136, 0, 0.08);
+      --red-bg: rgba(220, 53, 69, 0.08);
       --gray-bg: rgba(248, 249, 250, 0.6);
       --opus-accent: #D63384;
       --codex-accent: #0077B6;
@@ -40,8 +41,8 @@
       --surface: #0d1421;
       --surface2: #111827;
       --text: #c8d6e5;
-      --muted: #7a9ab8;
-      --secondary: #4a6a82;
+      --muted: #8899aa;
+      --secondary: #5a7a92;
       --border: rgba(0, 212, 255, 0.12);
       --border-strong: rgba(0, 212, 255, 0.25);
       --hover: rgba(0, 212, 255, 0.05);
@@ -52,6 +53,7 @@
       --red: #ff4466;
       --green-bg: rgba(0, 229, 160, 0.08);
       --amber-bg: rgba(245, 200, 66, 0.08);
+      --red-bg: rgba(255, 68, 102, 0.08);
       --gray-bg: rgba(13, 20, 33, 0.6);
       --opus-accent: #ff2d8a;
       --codex-accent: #00d4ff;
@@ -62,34 +64,23 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-    /* ── Scanline / CRT overlay ── */
     body::after {
       content: '';
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 3px,
-        rgba(0, 0, 0, 0.06) 3px,
-        rgba(0, 0, 0, 0.06) 4px
-      );
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 1;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.06) 3px, rgba(0,0,0,0.06) 4px);
+      pointer-events: none; z-index: 9999; opacity: 1;
     }
 
     body {
       background: var(--bg);
       background-image:
-        radial-gradient(ellipse 80% 60% at 20% 0%, rgba(0, 212, 255, 0.04) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(255, 45, 138, 0.04) 0%, transparent 60%);
+        radial-gradient(ellipse 80% 60% at 20% 0%, rgba(0,212,255,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(255,45,138,0.04) 0%, transparent 60%);
       color: var(--text);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100vh;
-      font-size: 14px;
-      line-height: 1.5;
+      font-size: 15px;
+      line-height: 1.6;
       padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     }
 
@@ -97,479 +88,352 @@
     header {
       position: sticky; top: 0; z-index: 20;
       background: rgba(10, 14, 23, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-strong);
-      box-shadow: 0 1px 0 0 rgba(0, 212, 255, 0.08), 0 4px 24px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 1px 0 0 rgba(0,212,255,0.08), 0 4px 24px rgba(0,0,0,0.4);
     }
-    .header-inner {
-      max-width: 1280px; margin: 0 auto;
-      padding: 8px 24px 0;
-    }
-    .header-top {
-      display: flex; align-items: center;
-      justify-content: space-between; gap: 12px; flex-wrap: wrap;
-    }
+    .header-inner { max-width: 1320px; margin: 0 auto; padding: 8px 24px 0; }
+    .header-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
     .header-left { display: flex; align-items: center; gap: 12px; }
     h1 {
       font-family: 'Rajdhani', 'Inter', sans-serif;
       font-size: 20px; font-weight: 700; color: var(--accent-cyan);
       letter-spacing: 0.12em; text-transform: uppercase;
-      text-shadow: 0 0 20px rgba(0, 212, 255, 0.5), 0 0 40px rgba(0, 212, 255, 0.2);
+      text-shadow: 0 0 20px rgba(0,212,255,0.5), 0 0 40px rgba(0,212,255,0.2);
     }
     .version-badge {
-      font-size: 11px; font-weight: 600;
-      font-family: 'Rajdhani', sans-serif;
-      letter-spacing: 0.06em;
-      color: var(--accent-cyan);
-      background: rgba(0, 212, 255, 0.08);
-      border: 1px solid rgba(0, 212, 255, 0.2);
-      padding: 2px 8px;
-      border-radius: 3px;
+      font-size: 11px; font-weight: 600; font-family: 'Rajdhani', sans-serif;
+      letter-spacing: 0.06em; color: var(--accent-cyan);
+      background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.2);
+      padding: 2px 8px; border-radius: 3px;
     }
 
     /* ── Tabs ── */
     .tabs { display: flex; flex-wrap: nowrap; gap: 4px; padding: 6px 0 0; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
     .tabs::-webkit-scrollbar { display: none; }
     .tab {
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--secondary);
-      border-radius: 3px;
-      padding: 4px 14px;
-      font-size: 10px; font-weight: 600;
-      font-family: 'Rajdhani', 'Inter', sans-serif;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      cursor: pointer;
-      transition: all .15s;
+      border: 1px solid var(--border); background: transparent; color: var(--secondary);
+      border-radius: 3px; padding: 5px 16px;
+      font-size: 11px; font-weight: 600; font-family: 'Rajdhani', 'Inter', sans-serif;
+      letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: all .15s; white-space: nowrap;
     }
-    .tab:hover {
-      color: var(--accent-cyan);
-      border-color: rgba(0, 212, 255, 0.3);
-      background: rgba(0, 212, 255, 0.05);
-    }
-    .tab.active {
-      background: rgba(0, 212, 255, 0.1);
-      color: var(--accent-cyan);
-      border-color: var(--accent-cyan);
-      box-shadow: var(--glow-cyan);
-    }
+    .tab:hover { color: var(--accent-cyan); border-color: rgba(0,212,255,0.3); background: rgba(0,212,255,0.05); }
+    .tab.active { background: rgba(0,212,255,0.1); color: var(--accent-cyan); border-color: var(--accent-cyan); box-shadow: var(--glow-cyan); }
 
-    /* ── Subtitle ── */
     .view-subtitle {
-      font-size: 10px; color: var(--secondary);
-      padding: 4px 0 6px; border-top: 1px solid var(--border); margin-top: 6px;
-      letter-spacing: 0.03em;
-      display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+      font-size: 10px; color: var(--secondary); padding: 4px 0 6px;
+      border-top: 1px solid var(--border); margin-top: 6px;
+      letter-spacing: 0.03em; display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
     }
     .subtitle-pill {
-      display: inline-block;
-      font-size: 10px; font-weight: 600;
-      font-family: 'Rajdhani', sans-serif;
-      letter-spacing: 0.04em;
-      color: var(--accent-cyan);
-      background: rgba(0, 212, 255, 0.06);
-      border: 1px solid rgba(0, 212, 255, 0.15);
-      padding: 1px 7px;
-      border-radius: 3px;
+      display: inline-block; font-size: 10px; font-weight: 600; font-family: 'Rajdhani', sans-serif;
+      letter-spacing: 0.04em; color: var(--accent-cyan);
+      background: rgba(0,212,255,0.06); border: 1px solid rgba(0,212,255,0.15);
+      padding: 1px 7px; border-radius: 3px;
     }
 
     /* ── Layout ── */
-    main { max-width: 1280px; margin: 0 auto; padding: 8px 20px; }
+    main { max-width: 1320px; margin: 0 auto; padding: 10px 20px; }
     .view { display: none; }
     .view.active { display: block; }
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; }
-    @media(max-width: 900px) { [class*="span-"] { grid-column: span 12 !important; } }
-    .span-2  { grid-column: span 2 }
-    .span-3  { grid-column: span 3 }
-    .span-4  { grid-column: span 4 }
-    .span-5  { grid-column: span 5 }
-    .span-6  { grid-column: span 6 }
-    .span-7  { grid-column: span 7 }
-    .span-8  { grid-column: span 8 }
-    .span-9  { grid-column: span 9 }
-    .span-12 { grid-column: span 12 }
 
     /* ── Cards ── */
     .card {
-      background: rgba(13, 20, 33, 0.65);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 8px 10px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(0, 212, 255, 0.06);
+      background: rgba(13,20,33,0.65); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 12px 14px; margin-bottom: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2), inset 0 1px 0 rgba(0,212,255,0.06);
     }
     .card-title {
       font-size: 12px; text-transform: uppercase; letter-spacing: .1em;
-      color: var(--accent-cyan); font-weight: 700; margin-bottom: 6px;
-      font-family: 'Rajdhani', sans-serif;
-      text-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+      color: var(--accent-cyan); font-weight: 700; margin-bottom: 8px;
+      font-family: 'Rajdhani', sans-serif; text-shadow: 0 0 12px rgba(0,212,255,0.4);
     }
 
-    /* ── KPI ── */
-    .kpi { font-size: 28px; font-weight: 700; line-height: 1; margin: 4px 0 4px; color: var(--text); }
-    .kpi-sub { font-size: 12px; color: var(--muted); }
+    /* ── KPI Strip ── */
+    .kpi-strip { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 12px; }
+    @media(max-width: 900px) { .kpi-strip { grid-template-columns: repeat(3, 1fr); } }
+    @media(max-width: 500px) { .kpi-strip { grid-template-columns: repeat(2, 1fr); } }
+    .kpi-card {
+      background: rgba(13,20,33,0.5); border: 1px solid var(--border); border-radius: 6px;
+      padding: 10px 12px; text-align: center;
+    }
+    .kpi-value { font-size: 26px; font-weight: 700; line-height: 1.2; color: var(--text); }
+    .kpi-value.ok { color: var(--green); }
+    .kpi-value.warn { color: var(--amber); }
+    .kpi-value.bad { color: var(--red); }
+    .kpi-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; font-family: 'Rajdhani', sans-serif; margin-top: 2px; }
 
-    /* ── Objectives cards ── */
-    .obj-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
-    @media(max-width: 900px) { .obj-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media(max-width: 500px) { .obj-grid { grid-template-columns: 1fr; } }
+    /* ── Objectives ── */
+    .obj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px; }
     .obj-card {
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 6px 8px;
-      background: rgba(13, 20, 33, 0.6);
-      backdrop-filter: blur(8px);
-      transition: border-color .2s, box-shadow .2s;
+      border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px;
+      background: rgba(13,20,33,0.6); backdrop-filter: blur(8px); transition: border-color .2s;
     }
     .obj-card:hover { border-color: var(--border-strong); }
     .obj-card.status-active  { border-left: 3px solid var(--green); }
     .obj-card.status-paused  { border-left: 3px solid var(--amber); }
     .obj-card.status-blocked { border-left: 3px solid var(--red); }
     .obj-card.status-unknown { border-left: 3px solid var(--secondary); }
-    .obj-name { font-weight: 600; font-size: 12px; margin-bottom: 2px; color: var(--text); }
-    .obj-status { font-size: 10px; margin-bottom: 2px; }
-    .obj-latest { font-size: 11px; color: var(--muted); line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+    .obj-name { font-weight: 600; font-size: 13px; margin-bottom: 4px; color: var(--text); }
+    .obj-status { font-size: 11px; margin-bottom: 4px; }
+    .obj-latest {
+      font-size: 12px; color: var(--muted); line-height: 1.5;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .obj-progress { margin-top: 6px; }
+    .obj-progress-bar {
+      height: 4px; background: rgba(0,212,255,0.1); border-radius: 2px; overflow: hidden;
+    }
+    .obj-progress-fill { height: 100%; background: var(--accent-cyan); border-radius: 2px; transition: width 0.3s; }
+    .obj-progress-label { font-size: 10px; color: var(--secondary); margin-top: 2px; }
 
-    /* ── Tags/pills ── */
+    /* ── Tags ── */
     .tag {
-      display: inline-block; border-radius: 3px;
-      padding: 2px 8px; font-size: 11px; font-weight: 600;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      background: rgba(13, 20, 33, 0.5);
-      letter-spacing: 0.03em;
+      display: inline-block; border-radius: 3px; padding: 2px 8px;
+      font-size: 11px; font-weight: 600; border: 1px solid var(--border);
+      color: var(--muted); background: rgba(13,20,33,0.5); letter-spacing: 0.03em;
     }
-    .tag.opus   { border-left: 3px solid var(--opus-accent);   color: var(--opus-accent); }
-    .tag.codex  { border-left: 3px solid var(--codex-accent);  color: var(--codex-accent); }
+    .tag.ok   { color: var(--green); border-color: rgba(0,229,160,0.4); background: var(--green-bg); }
+    .tag.warn { color: var(--amber); border-color: rgba(245,200,66,0.4); background: var(--amber-bg); }
+    .tag.bad  { color: var(--red); border-color: rgba(255,68,102,0.4); background: var(--red-bg); }
+    .tag.plain { color: var(--muted); }
+    .tag.opus   { border-left: 3px solid var(--opus-accent); color: var(--opus-accent); }
     .tag.sonnet { border-left: 3px solid var(--sonnet-accent); color: var(--sonnet-accent); }
-    .tag.haiku  { border-left: 3px solid var(--haiku-accent);  color: var(--haiku-accent); }
-    .tag.ok     { color: var(--green);  border-color: rgba(0, 229, 160, 0.4);  background: var(--green-bg); }
-    .tag.warn   { color: var(--amber);  border-color: rgba(245, 200, 66, 0.4); background: var(--amber-bg); }
-    .tag.bad    { color: var(--red);    border-color: rgba(255, 44, 68, 0.4);  background: rgba(255, 44, 68, 0.08); }
-    .tag.plain  { color: var(--muted); }
+    .tag.haiku  { border-left: 3px solid var(--haiku-accent); color: var(--haiku-accent); }
 
-    /* ── Integration pill strip ── */
-    .pill-strip { display: flex; flex-wrap: wrap; gap: 4px; }
+    /* ── Integration pills ── */
+    .pill-strip { display: flex; flex-wrap: wrap; gap: 5px; }
     .int-pill {
-      display: inline-flex; align-items: center; gap: 4px;
-      padding: 2px 8px 2px 6px; border-radius: 12px;
-      font-size: 11px; font-weight: 500; border: 1px solid;
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 10px 4px 8px; border-radius: 14px;
+      font-size: 12px; font-weight: 500; border: 1px solid; cursor: default;
     }
-    .int-pill.connected {
-      background: rgba(0, 229, 160, 0.07);
-      border-color: rgba(0, 229, 160, 0.3);
-      color: var(--green);
-    }
-    .int-pill.attention {
-      background: rgba(245, 200, 66, 0.07);
-      border-color: rgba(245, 200, 66, 0.3);
-      color: var(--amber);
-    }
-    .int-pill.available {
-      background: rgba(74, 106, 130, 0.1);
-      border-color: var(--border);
-      color: var(--secondary);
-    }
-    .int-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-    .int-dot.connected { background: var(--green);    box-shadow: 0 0 6px rgba(0, 229, 160, 0.6); }
-    .int-dot.attention { background: var(--amber);    box-shadow: 0 0 6px rgba(245, 200, 66, 0.6); }
+    .int-pill .int-age { font-size: 10px; opacity: 0.7; margin-left: 2px; }
+    .int-pill.connected { background: rgba(0,229,160,0.07); border-color: rgba(0,229,160,0.3); color: var(--green); }
+    .int-pill.attention { background: rgba(245,200,66,0.07); border-color: rgba(245,200,66,0.3); color: var(--amber); }
+    .int-pill.available { background: rgba(90,122,146,0.1); border-color: var(--border); color: var(--secondary); }
+    .int-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .int-dot.connected { background: var(--green); box-shadow: 0 0 6px rgba(0,229,160,0.6); }
+    .int-dot.attention { background: var(--amber); box-shadow: 0 0 6px rgba(245,200,66,0.6); }
     .int-dot.available { background: var(--secondary); }
 
-    /* ── Quick stats ── */
-    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    @media(max-width:600px) { .stats-row { grid-template-columns: 1fr; } }
-    .stat-item {
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 14px 16px;
-      display: flex; flex-direction: column; gap: 4px;
-      background: rgba(13, 20, 33, 0.5);
-    }
-    .stat-num { font-size: 24px; font-weight: 700; color: var(--accent-cyan); }
-    .stat-label { font-size: 12px; color: var(--muted); }
-
-    /* ── Open loops (table widget) ── */
-    .loop-widget {
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      background: rgba(13, 20, 33, 0.4);
-      overflow: hidden;
-    }
-    .loop-list { display: flex; flex-direction: column; gap: 0; }
+    /* ── Open Loops ── */
+    .loop-widget { border: 1px solid var(--border); border-radius: 6px; background: rgba(13,20,33,0.4); overflow: hidden; }
     .loop-group-label {
-      font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
-      padding: 4px 8px 2px; color: var(--secondary);
-      background: rgba(13, 20, 33, 0.3);
-      border-bottom: 1px solid var(--border);
+      font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 6px 10px 4px; color: var(--secondary);
+      background: rgba(13,20,33,0.3); border-bottom: 1px solid var(--border);
     }
     .loop-group-label.blocked { color: var(--amber); }
     .loop-group-label.actionable { color: var(--accent-cyan); }
-    .loop-table { width: auto; border-collapse: collapse; font-size: 11px; }
-    .loop-table td { padding: 3px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; white-space: nowrap; }
+    .loop-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .loop-table td { padding: 6px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
     .loop-table tr:last-child td { border-bottom: none; }
     .loop-table tr:hover td { background: var(--hover); }
-    .loop-table .lt-item { color: var(--text); font-weight: 500; }
-    .loop-table .lt-next { color: var(--secondary); font-size: 10px; }
+    .loop-table .lt-item { color: var(--text); font-weight: 500; min-width: 140px; }
+    .loop-table .lt-next { color: var(--muted); font-size: 11px; }
     .loop-table .lt-next::before { content: "→ "; color: var(--accent-cyan); }
     .loop-table .lt-owner {
-      font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
-      padding: 0px 5px; border-radius: 8px; white-space: nowrap;
+      font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+      padding: 1px 6px; border-radius: 8px; white-space: nowrap; display: inline-block;
     }
     .loop-table .lt-owner.nick { background: rgba(138,92,246,0.15); color: #a78bfa; border: 1px solid rgba(138,92,246,0.3); }
     .loop-table .lt-owner.claw { background: rgba(0,212,255,0.1); color: var(--accent-cyan); border: 1px solid rgba(0,212,255,0.3); }
     .loop-table .lt-age {
       font-size: 10px; font-weight: 600; text-align: center; white-space: nowrap;
-      padding: 0px 5px; border-radius: 8px;
+      padding: 1px 6px; border-radius: 8px; display: inline-block;
     }
-    .loop-table .lt-age.stale { background: rgba(245, 200, 66, 0.1); color: var(--amber); border: 1px solid rgba(245, 200, 66, 0.3); }
-    .loop-table .lt-age.fresh { background: var(--green-bg); color: var(--green); border: 1px solid rgba(0, 229, 160, 0.3); }
-    .loop-table .lt-deadline { font-size: 9px; color: var(--secondary); white-space: nowrap; }
+    .loop-table .lt-age.stale { background: rgba(245,200,66,0.1); color: var(--amber); border: 1px solid rgba(245,200,66,0.3); }
+    .loop-table .lt-age.fresh { background: var(--green-bg); color: var(--green); border: 1px solid rgba(0,229,160,0.3); }
+    .loop-table .lt-deadline { font-size: 10px; color: var(--secondary); white-space: nowrap; }
     .loop-table .lt-deadline.soon { color: var(--amber); font-weight: 600; }
     .loop-table .lt-deadline.overdue { color: var(--red); font-weight: 600; }
-    .loop-table .lt-resolved { opacity: 0.4; }
     .loop-table thead th {
-      font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
-      color: var(--secondary); padding: 3px 8px; border-bottom: 1px solid var(--border);
-      text-align: left;
+      font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--secondary); padding: 6px 10px; border-bottom: 1px solid var(--border); text-align: left;
+    }
+    @media(max-width: 700px) {
+      .loop-table .hide-mobile { display: none; }
     }
 
     /* ── Tables ── */
-    table { width: 100%; border-collapse: collapse; font-size: 11px; }
-    th, td {
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-      padding: 3px 6px;
-      vertical-align: top;
-    }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th, td { text-align: left; border-bottom: 1px solid var(--border); padding: 6px 10px; vertical-align: top; }
     th {
-      color: var(--accent-cyan);
-      font-weight: 600; font-size: 10px;
-      text-transform: uppercase; letter-spacing: .08em;
-      font-family: 'Rajdhani', sans-serif;
+      color: var(--accent-cyan); font-weight: 600; font-size: 10px;
+      text-transform: uppercase; letter-spacing: .08em; font-family: 'Rajdhani', sans-serif;
     }
     tr:last-child td { border-bottom: none; }
     tr:hover td { background: var(--hover); }
 
-    /* ── Misc ── */
+    /* ── Dots ── */
     .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; vertical-align: middle; }
-    .dot-ok   { background: var(--green);    box-shadow: 0 0 5px rgba(0, 229, 160, 0.5); }
-    .dot-warn { background: var(--amber);    box-shadow: 0 0 5px rgba(245, 200, 66, 0.5); }
-    .dot-bad  { background: var(--red);      box-shadow: 0 0 5px rgba(255, 44, 68, 0.5); }
+    .dot-ok   { background: var(--green); box-shadow: 0 0 5px rgba(0,229,160,0.5); }
+    .dot-warn { background: var(--amber); box-shadow: 0 0 5px rgba(245,200,66,0.5); }
+    .dot-bad  { background: var(--red); box-shadow: 0 0 5px rgba(255,68,102,0.5); }
     .dot-gray { background: var(--secondary); }
-    code {
-      color: var(--accent-cyan);
-      font-size: 11px;
-      background: rgba(0, 212, 255, 0.07);
-      padding: 1px 5px;
-      border-radius: 3px;
-      font-family: ui-monospace, 'SF Mono', monospace;
-      border: 1px solid rgba(0, 212, 255, 0.1);
-    }
-    .note { color: var(--secondary); font-size: 11px; line-height: 1.5; margin-top: 6px; }
-    .section-intro { font-size: 12px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
-    .section-title {
-      font-size: 13px; font-weight: 600; color: var(--text);
-      margin: 16px 0 8px; padding-top: 16px;
-      border-top: 1px solid var(--border);
-    }
-    .section-title:first-child { margin-top: 0; border-top: none; padding-top: 0; }
 
-    /* ── Integration cards ── */
-    .int-section { margin-bottom: 24px; }
-    .int-section:last-child { margin-bottom: 0; }
-    .int-section-header {
-      font-size: 10px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: .1em; margin-bottom: 10px; padding-bottom: 6px;
+    /* ── Error Log ── */
+    .error-card {
+      border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px;
+      margin-bottom: 6px; background: rgba(13,20,33,0.5);
+    }
+    .error-card.severity-warn { border-left: 3px solid var(--amber); }
+    .error-card.severity-error { border-left: 3px solid var(--red); }
+    .error-card.severity-info { border-left: 3px solid var(--accent-cyan); }
+    .error-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+    .error-component { font-weight: 600; font-size: 13px; color: var(--text); }
+    .error-time { font-size: 11px; color: var(--secondary); }
+    .error-msg { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+    .error-fix { font-size: 12px; color: var(--accent-cyan); padding: 6px 8px; background: rgba(0,212,255,0.04); border-radius: 4px; border: 1px solid rgba(0,212,255,0.1); }
+
+    /* ── Research Tracker ── */
+    .research-hero { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 12px; }
+    .research-prob { font-size: 48px; font-weight: 700; line-height: 1; color: var(--accent-cyan); }
+    .research-prob-label { font-size: 11px; color: var(--secondary); text-transform: uppercase; letter-spacing: 0.06em; }
+    .research-thesis { font-size: 13px; color: var(--muted); line-height: 1.6; flex: 1; }
+    .evidence-item {
+      display: flex; align-items: flex-start; gap: 10px; padding: 6px 0;
+      border-bottom: 1px solid var(--border); font-size: 12px;
+    }
+    .evidence-item:last-child { border-bottom: none; }
+    .evidence-date { font-weight: 600; color: var(--secondary); white-space: nowrap; min-width: 80px; }
+    .evidence-dir { font-weight: 600; padding: 1px 6px; border-radius: 3px; font-size: 10px; text-transform: uppercase; white-space: nowrap; }
+    .evidence-dir.bullish { color: var(--green); background: var(--green-bg); }
+    .evidence-dir.bearish { color: var(--red); background: var(--red-bg); }
+    .evidence-signal { color: var(--muted); flex: 1; }
+
+    /* ── Cron Status Table ── */
+    .cron-status-table { width: 100%; }
+    .cron-status-table td { font-size: 12px; }
+    .cron-status-table .cron-name { font-weight: 500; color: var(--text); }
+    .cron-status-table .cron-schedule { color: var(--secondary); font-size: 11px; }
+    .cron-status-table .cron-time { color: var(--muted); font-size: 11px; white-space: nowrap; }
+
+    /* ── Progress bars ── */
+    .progress-bar-wrap { background: rgba(0,212,255,0.08); border-radius: 4px; height: 8px; overflow: hidden; flex: 1; }
+    .progress-bar-fill { height: 100%; border-radius: 4px; background: var(--accent-cyan); transition: width 0.3s; }
+    .progress-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .progress-label { font-size: 13px; font-weight: 500; color: var(--text); min-width: 200px; }
+    .progress-pct { font-size: 12px; font-weight: 600; color: var(--accent-cyan); min-width: 36px; text-align: right; }
+
+    /* ── Agent cards ── */
+    .agent-row {
+      display: flex; align-items: flex-start; gap: 10px; padding: 8px 10px;
       border-bottom: 1px solid var(--border);
-      font-family: 'Rajdhani', sans-serif;
     }
-    .int-section-header.connected { color: var(--green); }
-    .int-section-header.attention { color: var(--amber); }
-    .int-section-header.available { color: var(--secondary); }
-    .int-card {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      gap: 12px; padding: 12px 14px; border: 1px solid var(--border);
-      border-radius: 6px; margin-bottom: 8px;
-      background: rgba(13, 20, 33, 0.5);
-    }
-    .int-card.connected { border-left: 3px solid var(--green); }
-    .int-card.attention { border-left: 3px solid var(--amber); }
-    .int-card.available { border-left: 3px solid var(--secondary); }
-    .int-card-body { flex: 1; }
-    .int-card-name { font-weight: 600; font-size: 13px; margin-bottom: 2px; color: var(--text); }
-    .int-card-desc { font-size: 12px; color: var(--muted); }
-    .int-card-meta { text-align: right; flex-shrink: 0; }
-    .int-card-verified { font-size: 11px; color: var(--secondary); margin-top: 4px; }
+    .agent-row:last-child { border-bottom: none; }
+    .agent-name { font-weight: 600; font-size: 13px; color: var(--text); min-width: 180px; }
+    .agent-workstream { font-size: 12px; color: var(--muted); flex: 1; }
+    .agent-cadence { font-size: 11px; color: var(--secondary); white-space: nowrap; }
+    .agent-status-dot { margin-top: 5px; }
 
     /* ── Calendar ── */
     .cal-wrap { overflow-x: auto; }
     .cal-grid {
       display: grid;
       grid-template-columns: 52px repeat(7, minmax(100px, 1fr));
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-      font-size: 11px;
-      min-width: 700px;
+      border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+      font-size: 11px; min-width: 700px;
     }
     .cal-header {
-      background: rgba(0, 212, 255, 0.05);
-      padding: 6px 6px;
-      font-weight: 700; font-size: 10px; text-transform: uppercase;
-      letter-spacing: .08em;
-      text-align: center;
-      border-bottom: 1px solid var(--border-strong);
-      color: var(--accent-cyan);
-      font-family: 'Rajdhani', sans-serif;
+      background: rgba(0,212,255,0.05); padding: 6px; font-weight: 700; font-size: 10px;
+      text-transform: uppercase; letter-spacing: .08em; text-align: center;
+      border-bottom: 1px solid var(--border-strong); color: var(--accent-cyan); font-family: 'Rajdhani', sans-serif;
     }
     .cal-time {
-      padding: 3px 6px 3px 3px;
-      font-size: 10px; color: var(--secondary);
-      text-align: right;
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid rgba(0, 212, 255, 0.06);
-      background: rgba(13, 20, 33, 0.4);
-      display: flex; align-items: flex-start; justify-content: flex-end;
+      padding: 3px 6px; font-size: 10px; color: var(--secondary); text-align: right;
+      border-right: 1px solid var(--border); border-bottom: 1px solid rgba(0,212,255,0.06);
+      background: rgba(13,20,33,0.4); display: flex; align-items: flex-start; justify-content: flex-end;
     }
     .cal-cell {
-      border-right: 1px solid rgba(0, 212, 255, 0.06);
-      border-bottom: 1px solid rgba(0, 212, 255, 0.06);
-      padding: 2px;
-      min-height: 24px;
+      border-right: 1px solid rgba(0,212,255,0.06); border-bottom: 1px solid rgba(0,212,255,0.06);
+      padding: 2px; min-height: 24px;
     }
-    .cal-cell.has-events { min-height: 36px; }
     .cal-cell:last-child { border-right: none; }
-    .cal-row-last .cal-time,
-    .cal-row-last .cal-cell { border-bottom: none; }
     .cal-event {
-      font-size: 10px;
-      padding: 2px 4px;
-      border-radius: 3px;
-      line-height: 1.3;
-      border: 1px solid var(--border);
-      background: rgba(13, 20, 33, 0.7);
-      width: 100%;
-      box-sizing: border-box;
-      margin-bottom: 1px;
-      display: block;
+      font-size: 10px; padding: 2px 4px; border-radius: 3px; line-height: 1.3;
+      border: 1px solid var(--border); background: rgba(13,20,33,0.7);
+      width: 100%; margin-bottom: 1px; display: block;
     }
-    .cal-event.sonnet { border-left: 3px solid var(--sonnet-accent); background: rgba(155, 109, 255, 0.07); }
-    .cal-event.codex  { border-left: 3px solid var(--codex-accent);  background: rgba(0, 212, 255, 0.07); }
-    .cal-event.haiku  { border-left: 3px solid var(--haiku-accent);  background: rgba(245, 200, 66, 0.07); }
-    .cal-event.opus   { border-left: 3px solid var(--opus-accent);   background: rgba(255, 45, 138, 0.07); }
+    .cal-event.sonnet { border-left: 3px solid var(--sonnet-accent); background: rgba(155,109,255,0.07); }
+    .cal-event.codex  { border-left: 3px solid var(--codex-accent); background: rgba(0,212,255,0.07); }
+    .cal-event.haiku  { border-left: 3px solid var(--haiku-accent); background: rgba(245,200,66,0.07); }
+    .cal-event.opus   { border-left: 3px solid var(--opus-accent); background: rgba(255,45,138,0.07); }
     .cal-event-name { font-weight: 600; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); }
     .cal-event-meta { color: var(--secondary); font-size: 9px; white-space: nowrap; }
+    .cal-layout { display: flex; gap: 10px; }
+    .cal-sidebar { flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; padding-top: 28px; min-width: 72px; }
     .cal-legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
     .cal-legend-dot { width: 10px; height: 10px; border-radius: 2px; }
 
-    /* ── Calendar sidebar layout ── */
-    .cal-layout { display: flex; gap: 10px; }
-    .cal-sidebar { flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; padding-top: 28px; min-width: 72px; }
-
-    /* ── Identity / System layout ── */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media(max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
-    .file-list { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
-    .file-item {
-      padding: 9px 12px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      background: rgba(13, 20, 33, 0.4);
+    /* ── Section headers ── */
+    .section-header-row {
+      display: flex; align-items: baseline; justify-content: space-between; margin: 12px 0 6px;
     }
-    .file-item code { background: transparent; padding: 0; border: none; color: var(--accent-cyan); font-weight: 600; }
-    .file-item-desc { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.5; }
+    .section-header-row:first-child { margin-top: 0; }
+    .section-header-row h3 {
+      font-size: 12px; font-weight: 700; color: var(--text);
+      text-transform: uppercase; letter-spacing: 0.08em; font-family: 'Rajdhani', sans-serif;
+    }
+    .section-header-row .updated { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 3px; }
+    .section-header-row .updated.fresh { color: var(--green); background: var(--green-bg); border: 1px solid rgba(0,229,160,0.25); }
+    .section-header-row .updated.stale { color: var(--accent-magenta); background: rgba(255,45,138,0.08); border: 1px solid rgba(255,45,138,0.25); }
+    .section-header-row .updated.unknown { color: var(--secondary); }
 
-    /* ── System grid (2x2) ── */
-    .system-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    /* ── Identity tab ── */
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; }
+    @media(max-width: 900px) { [class*="span-"] { grid-column: span 12 !important; } }
+    .span-6  { grid-column: span 6; }
+    .span-12 { grid-column: span 12; }
+    .system-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .system-grid-title {
       font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
       color: var(--accent-cyan); font-family: 'Rajdhani', sans-serif;
       margin-bottom: 4px; padding-bottom: 3px; border-bottom: 1px solid var(--border);
     }
-
-    /* ── Diagram ── */
+    .note { color: var(--secondary); font-size: 12px; line-height: 1.5; margin-top: 6px; }
+    code {
+      color: var(--accent-cyan); font-size: 11px;
+      background: rgba(0,212,255,0.07); padding: 1px 5px; border-radius: 3px;
+      font-family: ui-monospace, 'SF Mono', monospace; border: 1px solid rgba(0,212,255,0.1);
+    }
     .diagram { width: 100%; max-width: 100%; height: auto; max-height: 320px; border: 1px solid var(--border); border-radius: 4px; background: var(--surface); display: block; }
 
-    /* ── Refresh indicator ── */
-    .refresh-bar {
-      display: flex; align-items: center; justify-content: space-between;
-      font-size: 11px; color: var(--secondary); margin-bottom: 16px;
-    }
-    .refresh-dot {
-      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
-      background: var(--green); margin-right: 5px;
-      box-shadow: 0 0 6px rgba(0, 229, 160, 0.7);
-    }
-
-    /* ── Section header row ── */
-    .section-header-row {
-      display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4px;
-    }
-    .section-header-row h3 {
-      font-size: 11px; font-weight: 700; color: var(--text);
-      text-transform: uppercase; letter-spacing: 0.08em;
-      font-family: 'Rajdhani', sans-serif;
-    }
-    .section-header-row .updated { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 3px; }
-    .section-header-row .updated.fresh {
-      color: var(--green);
-      background: var(--green-bg);
-      border: 1px solid rgba(0, 229, 160, 0.25);
-      box-shadow: 0 0 6px rgba(0, 229, 160, 0.2);
-    }
-    .section-header-row .updated.stale {
-      color: var(--accent-magenta);
-      background: rgba(255, 45, 138, 0.08);
-      border: 1px solid rgba(255, 45, 138, 0.25);
-      box-shadow: 0 0 6px rgba(255, 45, 138, 0.2);
-    }
-    .section-header-row .updated.unknown { color: var(--secondary); }
-
     /* ── Theme Toggle ── */
-    .theme-toggle { background: none; border: none; cursor: pointer; padding: 2px; display: flex; align-items: center; gap: 6px; -webkit-tap-highlight-color: transparent; }
-    .toggle-track { width: 40px; height: 22px; background: #555555; border-radius: 11px; position: relative; transition: background 0.25s; display: block; flex-shrink: 0; }
-    html:not([data-theme="dark"]) .toggle-track { background: #DDDDDD; }
-    .toggle-knob { width: 16px; height: 16px; background: #EEEEEE; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: transform 0.25s; box-shadow: 0 1px 3px rgba(0,0,0,0.25); transform: translateX(18px); }
-    html:not([data-theme="dark"]) .toggle-knob { transform: translateX(0); background: #FFFFFF; }
-    .moon-icon { color: #DDDDDD; flex-shrink: 0; transition: color 0.25s; display: block; }
-    html:not([data-theme="dark"]) .moon-icon { color: #CCCCCC; }
+    .theme-toggle { background: none; border: none; cursor: pointer; padding: 2px; display: flex; align-items: center; gap: 6px; }
+    .toggle-track { width: 40px; height: 22px; background: #555; border-radius: 11px; position: relative; transition: background 0.25s; display: block; flex-shrink: 0; }
+    html:not([data-theme="dark"]) .toggle-track { background: #DDD; }
+    .toggle-knob { width: 16px; height: 16px; background: #EEE; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: transform 0.25s; box-shadow: 0 1px 3px rgba(0,0,0,0.25); transform: translateX(18px); }
+    html:not([data-theme="dark"]) .toggle-knob { transform: translateX(0); background: #FFF; }
+    .moon-icon { color: #DDD; flex-shrink: 0; transition: color 0.25s; display: block; }
+    html:not([data-theme="dark"]) .moon-icon { color: #CCC; }
 
-    /* ── Light mode overrides ── */
+    /* ── Light mode ── */
     html:not([data-theme="dark"]) body::after { opacity: 0; }
     html:not([data-theme="dark"]) header { background: rgba(255,255,255,0.92); box-shadow: 0 1px 0 0 rgba(0,0,0,0.05), 0 4px 24px rgba(0,0,0,0.08); }
     html:not([data-theme="dark"]) body { background-image: none; }
-    html:not([data-theme="dark"]) .card { background: rgba(255,255,255,0.8); box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
-    html:not([data-theme="dark"]) .obj-card { background: rgba(255,255,255,0.7); }
-    html:not([data-theme="dark"]) .loop-widget { background: rgba(255,255,255,0.6); }
-    html:not([data-theme="dark"]) .stat-item { background: rgba(255,255,255,0.6); }
-    html:not([data-theme="dark"]) .int-card { background: rgba(255,255,255,0.6); }
+    html:not([data-theme="dark"]) .card, html:not([data-theme="dark"]) .kpi-card,
+    html:not([data-theme="dark"]) .obj-card, html:not([data-theme="dark"]) .loop-widget,
+    html:not([data-theme="dark"]) .error-card { background: rgba(255,255,255,0.8); box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
     html:not([data-theme="dark"]) .cal-event { background: rgba(255,255,255,0.7); }
     html:not([data-theme="dark"]) .cal-time { background: rgba(248,249,250,0.6); }
-    html:not([data-theme="dark"]) .file-item { background: rgba(255,255,255,0.6); }
     html:not([data-theme="dark"]) .tag { background: rgba(248,249,250,0.7); }
     html:not([data-theme="dark"]) code { background: rgba(0,119,182,0.06); border-color: rgba(0,119,182,0.1); }
-    html:not([data-theme="dark"]) .cal-header { background: rgba(0,119,182,0.04); }
-    html:not([data-theme="dark"]) h1 { text-shadow: none; }
-    html:not([data-theme="dark"]) .card-title { text-shadow: none; }
-
-    /* ── Integration Groupings ── */
-    .int-group { margin-bottom: 6px; }
-    .int-group:last-child { margin-bottom: 0; }
-    .int-group-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--secondary); margin-bottom: 3px; font-family: 'Rajdhani', sans-serif; }
+    html:not([data-theme="dark"]) h1, html:not([data-theme="dark"]) .card-title { text-shadow: none; }
 
     /* ── Mobile ── */
     @media(max-width: 600px) {
       .header-inner { padding: 8px 12px 0; }
-      .tab { min-height: 36px; }
       main { padding: 8px 12px; }
-      .two-col { grid-template-columns: 1fr; }
-      .obj-grid { grid-template-columns: 1fr; }
-      .cal-wrap { overflow-x: auto; }
+      .system-grid { grid-template-columns: 1fr; }
+      .research-hero { flex-direction: column; }
       .cal-layout { flex-direction: column; }
       .cal-sidebar { flex-direction: row; flex-wrap: wrap; padding-top: 0; }
-      .system-grid { grid-template-columns: 1fr; }
+      .agent-row { flex-direction: column; gap: 4px; }
+      .agent-name { min-width: unset; }
+      .progress-label { min-width: 120px; font-size: 12px; }
     }
   </style>
 </head>
@@ -579,8 +443,8 @@
   <div class="header-inner">
     <div class="header-top">
       <div class="header-left">
-        <h1>&#10022; April</h1>
-        <span class="version-badge" id="version-badge">v26.13.0</span>
+        <h1>&#10022; Claw</h1>
+        <span class="version-badge">v26.14.0</span>
         <span style="font-size:10px;color:var(--secondary);letter-spacing:0.04em;">MMM4</span>
       </div>
       <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
@@ -595,47 +459,62 @@
 
 <main>
 
-<!-- ══════════════════════ TAB 1: OVERVIEW ══════════════════════ -->
+<!-- ═══════════ TAB 1: OVERVIEW ═══════════ -->
 <section class="view active" data-view="overview">
 
+  <!-- KPI Strip -->
+  <div class="kpi-strip" id="kpi-strip">
+    <div class="kpi-card"><div class="kpi-value" id="kpi-gateway">—</div><div class="kpi-label">Gateway</div></div>
+    <div class="kpi-card"><div class="kpi-value" id="kpi-sessions">—</div><div class="kpi-label">Sessions</div></div>
+    <div class="kpi-card"><div class="kpi-value" id="kpi-cron">—</div><div class="kpi-label">Cron Success</div></div>
+    <div class="kpi-card"><div class="kpi-value" id="kpi-failing">—</div><div class="kpi-label">Failing Jobs</div></div>
+    <div class="kpi-card"><div class="kpi-value" id="kpi-loops">—</div><div class="kpi-label">Urgent Loops</div></div>
+    <div class="kpi-card"><div class="kpi-value" id="kpi-tokens">—</div><div class="kpi-label">Tokens (K)</div></div>
+  </div>
+
   <!-- Objectives -->
-  <div class="section-header-row" style="margin-top:0">
+  <div class="section-header-row">
     <h3>Objectives</h3>
     <span class="updated" id="obj-updated"></span>
   </div>
-  <div class="obj-grid" id="obj-grid">
-    <div class="obj-card status-unknown"><div class="obj-name">Baddies</div><div class="obj-status"><span class="tag plain">Loading…</span></div><div class="obj-latest"></div></div>
-    <div class="obj-card status-unknown"><div class="obj-name">Mindfulness Content</div><div class="obj-status"><span class="tag plain">Loading…</span></div><div class="obj-latest"></div></div>
-    <div class="obj-card status-unknown"><div class="obj-name">Stablecoin Expertise</div><div class="obj-status"><span class="tag plain">Loading…</span></div><div class="obj-latest"></div></div>
-    <div class="obj-card status-unknown"><div class="obj-name">Selling Co-op</div><div class="obj-status"><span class="tag plain">Loading…</span></div><div class="obj-latest"></div></div>
-  </div>
+  <div class="obj-grid" id="obj-grid"></div>
 
   <!-- Open Loops -->
-  <div class="section-header-row" style="margin-top:10px">
+  <div class="section-header-row">
     <h3>Open Loops</h3>
     <span class="updated" id="loops-updated"></span>
   </div>
   <div class="loop-widget" id="loop-widget">
-    <div class="loop-list" id="loop-list">
-      <div style="color:var(--secondary); font-size:11px; padding: 6px 8px;">Loading open loops…</div>
-    </div>
+    <div id="loop-list"><div style="color:var(--secondary);font-size:12px;padding:8px 10px;">Loading…</div></div>
   </div>
 
-  <!-- Integration Health Strip -->
-  <div class="section-header-row" style="margin-top:10px">
+  <!-- Integration Health -->
+  <div class="section-header-row">
     <h3>Integration Health</h3>
     <span class="updated" id="int-strip-updated"></span>
   </div>
-  <div id="int-strip">
-    <!-- filled by JS -->
+  <div id="int-strip"></div>
+
+  <!-- Error Log -->
+  <div class="section-header-row">
+    <h3>Error Log</h3>
+    <span class="updated" id="errors-updated"></span>
   </div>
+  <div id="error-log"></div>
+
+  <!-- Research Tracker -->
+  <div class="section-header-row">
+    <h3>Research Tracker</h3>
+    <span class="updated" id="research-updated"></span>
+  </div>
+  <div class="card" id="research-panel"></div>
 
 </section>
 
-<!-- ══════════════════════ TAB 2: CRON CALENDAR ══════════════════════ -->
+<!-- ═══════════ TAB 2: CRON CALENDAR ═══════════ -->
 <section class="view" data-view="cron-calendar">
   <div class="card">
-    <div class="card-title">Weekly Cron Schedule — All times Central (America/Chicago)</div>
+    <div class="card-title">Weekly Cron Schedule — Central Time</div>
     <div class="cal-layout">
       <div class="cal-wrap" style="flex:1;min-width:0">
         <div class="cal-grid" id="cron-calendar"></div>
@@ -648,13 +527,36 @@
     </div>
     <div id="cron-recurring"></div>
   </div>
+
+  <!-- Live Cron Job Status -->
+  <div class="section-header-row">
+    <h3>Cron Job Status (Live)</h3>
+    <span class="updated" id="cron-status-updated"></span>
+  </div>
+  <div class="card" id="cron-status-card">
+    <div style="color:var(--secondary);font-size:12px;">Loading…</div>
+  </div>
 </section>
 
-<!-- ══════════════════════ TAB 3: IDENTITY & SYSTEM ══════════════════════ -->
+<!-- ═══════════ TAB 3: CONTROL TOWER ═══════════ -->
+<section class="view" data-view="control-tower">
+
+  <div class="section-header-row">
+    <h3>Projects</h3>
+    <span class="updated" id="ct-updated"></span>
+  </div>
+  <div class="card" id="ct-projects"></div>
+
+  <div class="section-header-row">
+    <h3>Agents</h3>
+  </div>
+  <div class="card" id="ct-agents"></div>
+
+</section>
+
+<!-- ═══════════ TAB 4: IDENTITY & SYSTEM ═══════════ -->
 <section class="view" data-view="identity">
   <div class="grid">
-
-    <!-- Identity Files — compact -->
     <article class="card span-6">
       <div class="card-title">Identity Files (auto-loaded)</div>
       <table>
@@ -672,7 +574,6 @@
       <p class="note">Support: <code>CLAUDE.md</code>, <code>CODEX.md</code>, <code>TOOLS.md</code></p>
     </article>
 
-    <!-- Obsidian + Principles -->
     <article class="card span-6">
       <div class="card-title">Obsidian Vault (canonical store)</div>
       <table>
@@ -686,7 +587,7 @@
       </table>
       <p class="note"><strong>Dual-write:</strong> MEMORY.md = working index. Obsidian = canonical. Conflicts → Obsidian wins.</p>
 
-      <div class="card-title" style="margin-top:10px">Claw vs Claude</div>
+      <div class="card-title" style="margin-top:12px">Claw vs Claude</div>
       <table>
         <thead><tr><th>Layer</th><th>Claude</th><th>Claw</th></tr></thead>
         <tbody>
@@ -698,7 +599,6 @@
       </table>
     </article>
 
-    <!-- Consolidated System Config: 2x2 grid -->
     <article class="card span-12">
       <div class="card-title">System Configuration</div>
       <div class="system-grid">
@@ -729,7 +629,6 @@
             <tbody>
               <tr><td>Main model</td><td><span class="tag opus">claude-opus-4-6</span></td></tr>
               <tr><td>Sub-agent default</td><td><span class="tag sonnet">claude-sonnet-4-6</span></td></tr>
-              <tr><td>Mid-tier</td><td><span class="tag sonnet">claude-sonnet-4-6</span></td></tr>
               <tr><td>Cheap</td><td><span class="tag haiku">claude-haiku-3-5</span></td></tr>
               <tr><td>Concurrency</td><td>5 main / 2 sub</td></tr>
             </tbody>
@@ -751,7 +650,6 @@
       </div>
     </article>
 
-    <!-- Architecture SVG — clean 3-column diagram -->
     <article class="card span-12">
       <div class="card-title">System Architecture</div>
       <svg class="diagram" viewBox="0 0 880 235" xmlns="http://www.w3.org/2000/svg" font-family="Inter,system-ui,sans-serif">
@@ -760,8 +658,6 @@
             <path d="M0 0L10 5L0 10z" style="fill:var(--accent-cyan);opacity:0.5"/>
           </marker>
         </defs>
-
-        <!-- YOU zone -->
         <rect x="0" y="0" width="140" height="235" rx="4" style="fill:var(--surface);stroke:var(--border-strong);stroke-width:1"/>
         <text x="10" y="16" style="fill:var(--secondary);font-size:10px;font-weight:700;letter-spacing:.06em;font-family:Rajdhani,sans-serif">YOU</text>
         <rect x="10" y="28" width="120" height="34" rx="3" style="fill:var(--surface2);stroke:var(--border)"/>
@@ -770,22 +666,14 @@
         <rect x="10" y="68" width="120" height="34" rx="3" style="fill:var(--surface2);stroke:var(--border)"/>
         <text x="70" y="84" text-anchor="middle" style="fill:var(--text);font-size:11px;font-weight:600">Webchat</text>
         <text x="70" y="96" text-anchor="middle" style="fill:var(--muted);font-size:8px">Browser</text>
-
-        <!-- MAC MINI zone -->
         <rect x="155" y="0" width="425" height="235" rx="4" style="fill:var(--surface);stroke:var(--border-strong);stroke-width:1"/>
         <text x="165" y="16" style="fill:var(--secondary);font-size:10px;font-weight:700;letter-spacing:.06em;font-family:Rajdhani,sans-serif">MAC MINI — MMM4 (always-on)</text>
-
-        <!-- Gateway -->
         <rect x="168" y="26" width="400" height="40" rx="3" style="fill:var(--surface2);stroke:var(--border)"/>
         <text x="368" y="43" text-anchor="middle" style="fill:var(--text);font-size:12px;font-weight:700">OpenClaw Gateway :18789</text>
         <text x="368" y="57" text-anchor="middle" style="fill:var(--muted);font-size:9px">Session Mgr · Router · Memory Hooks · Cron Engine</text>
-
-        <!-- Main Agent -->
         <rect x="168" y="72" width="400" height="34" rx="3" style="fill:var(--surface2);stroke:var(--opus-accent);stroke-width:1.5"/>
         <text x="368" y="88" text-anchor="middle" style="fill:var(--text);font-size:12px;font-weight:700">Claw — Orchestrator (Opus 4-6)</text>
         <text x="368" y="100" text-anchor="middle" style="fill:var(--muted);font-size:9px">Delegates to sub-agents · minimal direct usage</text>
-
-        <!-- Sub-agents -->
         <rect x="168" y="114" width="130" height="30" rx="3" style="fill:var(--surface2);stroke:var(--sonnet-accent)"/>
         <text x="233" y="129" text-anchor="middle" style="fill:var(--text);font-size:10px;font-weight:600">Coding</text>
         <text x="233" y="140" text-anchor="middle" style="fill:var(--muted);font-size:8px">Sonnet 4-6</text>
@@ -795,19 +683,12 @@
         <rect x="438" y="114" width="130" height="30" rx="3" style="fill:var(--surface2);stroke:var(--haiku-accent)"/>
         <text x="503" y="129" text-anchor="middle" style="fill:var(--text);font-size:10px;font-weight:600">Cheap</text>
         <text x="503" y="140" text-anchor="middle" style="fill:var(--muted);font-size:8px">Haiku 3-5</text>
-
-        <!-- Workspace -->
         <rect x="168" y="150" width="400" height="26" rx="3" style="fill:var(--surface2);stroke:var(--border)"/>
         <text x="368" y="166" text-anchor="middle" style="fill:var(--text);font-size:10px;font-weight:600">~/.openclaw/workspace — SOUL · USER · MEMORY · dashboard-ui</text>
-
-        <!-- Cron -->
         <rect x="168" y="182" width="400" height="26" rx="3" style="fill:var(--surface2);stroke:var(--border)"/>
-        <text x="368" y="198" text-anchor="middle" style="fill:var(--text);font-size:10px;font-weight:600">Cron Scheduler — 16 jobs · journal · research · health · sync</text>
-
-        <!-- EXTERNAL zone -->
+        <text x="368" y="198" text-anchor="middle" style="fill:var(--text);font-size:10px;font-weight:600">Cron Scheduler — 21 jobs · journal · research · health · sync</text>
         <rect x="595" y="0" width="280" height="235" rx="4" style="fill:var(--surface);stroke:var(--border-strong);stroke-width:1"/>
         <text x="605" y="16" style="fill:var(--secondary);font-size:10px;font-weight:700;letter-spacing:.06em;font-family:Rajdhani,sans-serif">EXTERNAL SERVICES</text>
-
         <rect x="608" y="26" width="255" height="24" rx="3" style="fill:var(--surface2);stroke:var(--border)"/>
         <text x="735" y="42" text-anchor="middle" style="fill:var(--text);font-size:10px;font-weight:600">Anthropic — Opus · Sonnet · Haiku</text>
         <rect x="608" y="54" width="255" height="24" rx="3" style="fill:var(--surface2);stroke:var(--border)"/>
@@ -822,8 +703,6 @@
         <text x="735" y="182" text-anchor="middle" style="fill:var(--text);font-size:10px;font-weight:600">Tailscale — mmm4 · VPN mesh</text>
         <rect x="608" y="194" width="255" height="24" rx="3" style="fill:var(--surface2);stroke:var(--border)"/>
         <text x="735" y="210" text-anchor="middle" style="fill:var(--text);font-size:10px;font-weight:600">Obsidian — ~/Obsidian · canonical</text>
-
-        <!-- Arrows -->
         <line x1="140" y1="45" x2="168" y2="45" style="stroke:var(--accent-cyan);stroke-width:1;opacity:0.4" stroke-dasharray="4,3" marker-end="url(#arr)"/>
         <line x1="368" y1="66" x2="368" y2="72" style="stroke:var(--accent-cyan);stroke-width:1.5;opacity:0.6" marker-end="url(#arr)"/>
         <line x1="233" y1="106" x2="233" y2="114" style="stroke:var(--accent-cyan);stroke-width:1;opacity:0.4" stroke-dasharray="4,3" marker-end="url(#arr)"/>
@@ -838,7 +717,6 @@
         <line x1="568" y1="66" x2="608" y2="206" style="stroke:var(--accent-cyan);stroke-width:1;opacity:0.2" stroke-dasharray="4,3" marker-end="url(#arr)"/>
       </svg>
     </article>
-
   </div>
 </section>
 
@@ -847,23 +725,22 @@
 <script>
 // ── Tab config ──
 const TABS = [
-  ["overview",      "Overview",           "Objectives \u00b7 Open Loops \u00b7 Integrations"],
-  ["cron-calendar", "Cron Calendar",      "Weekly Schedule \u00b7 Colored by Model"],
-  ["identity",      "Identity & System",  "Files \u00b7 Architecture \u00b7 Config"]
+  ["overview",       "Overview",          "KPIs \u00b7 Objectives \u00b7 Loops \u00b7 Integrations \u00b7 Errors \u00b7 Research"],
+  ["cron-calendar",  "Cron Calendar",     "Weekly Schedule \u00b7 Live Job Status"],
+  ["control-tower",  "Control Tower",     "Projects \u00b7 Agents"],
+  ["identity",       "Identity & System", "Files \u00b7 Architecture \u00b7 Config"]
 ];
 
-const tabsEl    = document.getElementById("tabs");
+const tabsEl = document.getElementById("tabs");
 const subtitleEl = document.getElementById("subtitle-bar");
-const views     = [...document.querySelectorAll(".view")];
+const views = [...document.querySelectorAll(".view")];
 
 function setView(id) {
   views.forEach(v => v.classList.toggle("active", v.dataset.view === id));
   [...tabsEl.querySelectorAll(".tab")].forEach(t => t.classList.toggle("active", t.dataset.view === id));
   const tab = TABS.find(([tid]) => tid === id);
   if (tab && subtitleEl) {
-    subtitleEl.innerHTML = tab[2].split(' \u00b7 ').map(s =>
-      '<span class="subtitle-pill">' + s + '</span>'
-    ).join('');
+    subtitleEl.innerHTML = tab[2].split(' \u00b7 ').map(s => '<span class="subtitle-pill">' + s + '</span>').join('');
   }
   history.replaceState({}, "", "#" + id);
 }
@@ -876,11 +753,8 @@ TABS.forEach(([id, label]) => {
   tabsEl.appendChild(b);
 });
 
-// ── Escape ──
-const esc = s => String(s ?? "").replace(/[&<>"']/g, c =>
-  ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
 
-// ── Last-updated badge helper ──
 function setUpdatedBadge(el, rawDate) {
   if (!el) return;
   if (!rawDate) { el.textContent = "No data"; el.className = "updated unknown"; return; }
@@ -894,7 +768,6 @@ function setUpdatedBadge(el, rawDate) {
   el.className = `updated ${cls}`;
 }
 
-// ── Status → CSS class ──
 function objStatusClass(s) {
   const l = (s || "").toLowerCase();
   if (["active","on track","green","healthy"].includes(l)) return "status-active";
@@ -905,195 +778,257 @@ function objStatusClass(s) {
 function objTagClass(s) {
   const l = (s || "").toLowerCase();
   if (["active","on track","green","healthy"].includes(l)) return "ok";
-  if (["paused","amber","recovering","blocked","stalled","red"].includes(l)) return "warn";
+  if (["paused","amber","recovering"].includes(l)) return "warn";
+  if (["blocked","stalled","red"].includes(l)) return "bad";
   return "plain";
 }
 
-// ── OBJECTIVES ──
-const DEFAULT_OBJECTIVES = [
-  { name: "Baddies",             status: "Unknown", latest: "" },
-  { name: "Mindfulness Content", status: "Unknown", latest: "" },
-  { name: "Stablecoin Expertise",status: "Unknown", latest: "" },
-  { name: "Selling Co-op",       status: "Unknown", latest: "" }
-];
-
-function renderObjectives(data) {
-  const grid   = document.getElementById("obj-grid");
-  const updEl  = document.getElementById("obj-updated");
-  const objs   = (data && Array.isArray(data.objectives)) ? data.objectives : DEFAULT_OBJECTIVES;
-  setUpdatedBadge(updEl, data && data.updatedAt);
-  grid.innerHTML = objs.map(o => `
-    <div class="obj-card ${objStatusClass(o.status)}">
-      <div class="obj-name">${esc(o.name)}</div>
-      <div class="obj-status"><span class="tag ${objTagClass(o.status)}">${esc(o.status || "Unknown")}</span></div>
-      <div class="obj-latest">${esc(o.latest || "")}</div>
-    </div>`).join("");
-}
-
-async function loadObjectives() {
+// ── KPI STRIP ──
+async function loadKPIs() {
   try {
-    const r = await fetch(`./live/objectives.json?t=${Date.now()}`, {cache:"no-store"});
-    if (!r.ok) { renderObjectives(null); return; }
-    renderObjectives(await r.json());
-  } catch { renderObjectives(null); }
+    const r = await fetch(`./live/system-summary.json?t=${Date.now()}`, {cache:"no-store"});
+    if (!r.ok) return;
+    const data = await r.json();
+    const s = Array.isArray(data.summary) ? data.summary[0] : data;
+    if (!s) return;
+
+    const gwEl = document.getElementById("kpi-gateway");
+    gwEl.textContent = s.gateway === "running" ? "●" : "✖";
+    gwEl.className = "kpi-value " + (s.gateway === "running" ? "ok" : "bad");
+
+    const sessEl = document.getElementById("kpi-sessions");
+    sessEl.textContent = s.activeSessions || s.sessions || "—";
+
+    const cronEl = document.getElementById("kpi-cron");
+    const cronPct = s.cronSuccessPct != null ? s.cronSuccessPct : "—";
+    cronEl.textContent = cronPct !== "—" ? cronPct + "%" : "—";
+    cronEl.className = "kpi-value " + (cronPct >= 95 ? "ok" : cronPct >= 80 ? "warn" : "bad");
+
+    const failEl = document.getElementById("kpi-failing");
+    failEl.textContent = s.failingJobs != null ? s.failingJobs : "—";
+    failEl.className = "kpi-value " + (s.failingJobs === 0 ? "ok" : "bad");
+
+    const loopEl = document.getElementById("kpi-loops");
+    loopEl.textContent = s.urgentLoops != null ? s.urgentLoops : "—";
+    loopEl.className = "kpi-value " + (s.urgentLoops === 0 ? "ok" : s.urgentLoops <= 2 ? "warn" : "bad");
+
+    const tokEl = document.getElementById("kpi-tokens");
+    tokEl.textContent = s.totalTokensK != null ? s.totalTokensK.toLocaleString() : "—";
+  } catch(e) { console.error("KPI load error:", e); }
 }
 
-// ── OPEN LOOPS ──
-function renderLoops(data) {
-  const list  = document.getElementById("loop-list");
+// ── OBJECTIVES (enriched) ──
+async function loadObjectives() {
+  const grid = document.getElementById("obj-grid");
+  const updEl = document.getElementById("obj-updated");
+  try {
+    const r = await fetch(`./live/objectives-enriched.json?t=${Date.now()}`, {cache:"no-store"});
+    if (!r.ok) { grid.innerHTML = '<div style="color:var(--secondary);padding:8px;">No data</div>'; return; }
+    const data = await r.json();
+    const objs = data.objectives || [];
+    setUpdatedBadge(updEl, data.updatedAt);
+    grid.innerHTML = objs.map(o => {
+      const progressHtml = o.progressPct > 0 ? `
+        <div class="obj-progress">
+          <div class="obj-progress-bar"><div class="obj-progress-fill" style="width:${o.progressPct}%"></div></div>
+          <div class="obj-progress-label">${o.progressPct}% complete</div>
+        </div>` : '';
+      return `<div class="obj-card ${objStatusClass(o.status)}">
+        <div class="obj-name">${esc(o.name)}</div>
+        <div class="obj-status"><span class="tag ${objTagClass(o.status)}">${esc(o.status || "Unknown")}</span></div>
+        <div class="obj-latest">${esc(o.latest || "")}</div>
+        ${progressHtml}
+      </div>`;
+    }).join("");
+  } catch { grid.innerHTML = '<div style="color:var(--secondary);padding:8px;">Failed to load</div>'; }
+}
+
+// ── OPEN LOOPS (enriched) ──
+async function loadLoops() {
+  const list = document.getElementById("loop-list");
   const updEl = document.getElementById("loops-updated");
-  if (!data || !Array.isArray(data.loops) || data.loops.length === 0) {
-    list.innerHTML = '<div style="color:var(--secondary);font-size:11px;padding:6px 8px;">No open loops</div>';
-    return;
-  }
-  setUpdatedBadge(updEl, data.updatedAt);
+  try {
+    const r = await fetch(`./live/open-loops-enriched.json?t=${Date.now()}`, {cache:"no-store"});
+    if (!r.ok) { list.innerHTML = '<div style="color:var(--secondary);padding:8px;">No data</div>'; return; }
+    const data = await r.json();
+    const loops = data.loops || [];
+    setUpdatedBadge(updEl, data.updatedAt);
 
-  const blocked = data.loops.filter(l => l.status === "blocked");
-  const actionable = data.loops.filter(l => l.status === "actionable");
-  const active = data.loops.filter(l => !l.status || l.status === "active");
-  const resolved = data.loops.filter(l => l.status === "resolved");
+    if (!loops.length) { list.innerHTML = '<div style="color:var(--secondary);padding:8px;">No open loops</div>'; return; }
 
-  function renderRow(l) {
-    const days = Number(l.daysOpen) || 0;
-    const fresh = days <= 2;
-    const ownerCls = (l.owner || "").toLowerCase() === "claw" ? "claw" : "nick";
-    const ownerLabel = (l.owner || "").toLowerCase() === "claw" ? "Claw" : "Nick";
-    const isResolved = l.status === "resolved";
+    const blocked = loops.filter(l => l.status === "blocked");
+    const actionable = loops.filter(l => l.status === "actionable");
+    const active = loops.filter(l => !l.status || l.status === "active");
+    const resolved = loops.filter(l => l.status === "resolved");
 
-    let deadlineHtml = "";
-    if (l.deadline) {
-      const dl = new Date(l.deadline);
-      const now = new Date();
-      const daysLeft = Math.ceil((dl - now) / 86400000);
-      const cls = daysLeft < 0 ? "overdue" : daysLeft <= 3 ? "soon" : "";
-      const label = daysLeft < 0 ? `${Math.abs(daysLeft)}d overdue` : daysLeft === 0 ? "today" : `${daysLeft}d left`;
-      deadlineHtml = `<span class="lt-deadline ${cls}">${label}</span>`;
+    function renderRow(l) {
+      const days = Number(l.daysOpen) || 0;
+      const fresh = days <= 2;
+      const ownerCls = (l.owner || "").toLowerCase() === "claw" ? "claw" : "nick";
+      const ownerLabel = (l.owner || "").toLowerCase() === "claw" ? "Claw" : "Nick";
+      let deadlineHtml = "";
+      if (l.deadline) {
+        const daysLeft = l.daysUntilDeadline != null ? l.daysUntilDeadline : Math.ceil((new Date(l.deadline) - new Date()) / 86400000);
+        const cls = daysLeft < 0 ? "overdue" : daysLeft <= 3 ? "soon" : "";
+        const label = daysLeft < 0 ? `${Math.abs(daysLeft)}d overdue` : daysLeft === 0 ? "today" : `${daysLeft}d left`;
+        deadlineHtml = `<span class="lt-deadline ${cls}">${l.deadlineShort ? esc(l.deadlineShort) + ' · ' : ''}${label}</span>`;
+      }
+      return `<tr>
+        <td class="lt-item">${esc(l.item)}</td>
+        <td class="lt-next hide-mobile">${l.nextAction ? esc(l.nextAction) : ""}</td>
+        <td><span class="lt-owner ${ownerCls}">${ownerLabel}</span></td>
+        <td><span class="lt-age ${fresh ? "fresh" : "stale"}">${days}d</span></td>
+        <td>${deadlineHtml}</td>
+      </tr>`;
     }
 
-    return `<tr class="${isResolved ? "lt-resolved" : ""}">
-      <td class="lt-item">${isResolved ? "✓ " : ""}${esc(l.item)}</td>
-      <td class="lt-next">${l.nextAction ? esc(l.nextAction) : ""}</td>
-      <td><span class="lt-owner ${ownerCls}">${ownerLabel}</span></td>
-      <td><span class="lt-age ${fresh ? "fresh" : "stale"}">${days}d open</span></td>
-      <td>${deadlineHtml}</td>
-    </tr>`;
-  }
+    function renderGroup(label, cssClass, items) {
+      if (!items.length) return "";
+      let html = `<div class="loop-group-label ${cssClass}">${label}</div>`;
+      html += `<table class="loop-table"><thead><tr><th>Item</th><th class="hide-mobile">Next Action</th><th>Owner</th><th>Age</th><th>Deadline</th></tr></thead><tbody>`;
+      html += items.map(renderRow).join("");
+      html += `</tbody></table>`;
+      return html;
+    }
 
-  function renderGroup(label, cssClass, loops) {
-    if (!loops.length) return "";
-    let html = `<div class="loop-group-label ${cssClass}">${label}</div>`;
-    html += `<table class="loop-table"><thead><tr><th>Item</th><th>Next Action</th><th>Owner</th><th>Age</th><th>Deadline</th></tr></thead><tbody>`;
-    html += loops.map(renderRow).join("");
-    html += `</tbody></table>`;
-    return html;
-  }
-
-  let html = "";
-  html += renderGroup("⚠ Needs Nick (" + blocked.length + ")", "blocked", blocked);
-  html += renderGroup("⚡ Claw Can Handle (" + actionable.length + ")", "actionable", actionable);
-  if (active.length) {
-    html += `<table class="loop-table"><thead><tr><th>Item</th><th>Next Action</th><th>Owner</th><th>Age</th><th>Deadline</th></tr></thead><tbody>`;
-    html += active.map(renderRow).join("");
-    html += `</tbody></table>`;
-  }
-  html += renderGroup("✓ Recently Resolved (" + resolved.length + ")", "", resolved);
-  list.innerHTML = html;
+    let html = "";
+    html += renderGroup(`\u26a0 Needs Nick (${blocked.length})`, "blocked", blocked);
+    html += renderGroup(`\u26a1 Claw Can Handle (${actionable.length})`, "actionable", actionable);
+    if (active.length) {
+      html += `<table class="loop-table"><thead><tr><th>Item</th><th class="hide-mobile">Next Action</th><th>Owner</th><th>Age</th><th>Deadline</th></tr></thead><tbody>`;
+      html += active.map(renderRow).join("");
+      html += `</tbody></table>`;
+    }
+    if (resolved.length) html += renderGroup(`\u2713 Recently Resolved (${resolved.length})`, "", resolved);
+    list.innerHTML = html;
+  } catch { list.innerHTML = '<div style="color:var(--secondary);padding:8px;">Failed to load</div>'; }
 }
 
-async function loadLoops() {
-  try {
-    const r = await fetch(`./live/open-loops.json?t=${Date.now()}`, {cache:"no-store"});
-    if (!r.ok) { renderLoops(null); return; }
-    renderLoops(await r.json());
-  } catch { renderLoops(null); }
-}
-
-// ── INTEGRATIONS ──
-const DEFAULT_INTEGRATIONS = {
-  connected: [
-    { name: "Slack",            status: "connected", description: "Socket Mode \u2014 10 channels",   lastVerified: "\u2014" },
-    { name: "GitHub",           status: "connected", description: "gh CLI \u00b7 nickxma",             lastVerified: "\u2014" },
-    { name: "Obsidian",         status: "connected", description: "vault read/write",             lastVerified: "\u2014" },
-    { name: "Brave Search",     status: "connected", description: "web_search tool",              lastVerified: "\u2014" },
-    { name: "Google Workspace", status: "connected", description: "gog CLI \u2014 Gmail, Drive, Docs", lastVerified: "\u2014" },
-    { name: "Paperclip",        status: "connected", description: "localhost:3100",               lastVerified: "\u2014" },
-    { name: "Tailscale",        status: "connected", description: "mmm4 node",                   lastVerified: "\u2014" }
-  ],
-  attention: [
-    { name: "Google Calendar",  status: "attention", description: "OAuth expired",               lastVerified: "\u2014" }
-  ],
-  available: [
-    { name: "Things 3",         status: "available", description: "MCP available",               lastVerified: "\u2014" },
-    { name: "1Password",        status: "available", description: "CLI ready",                   lastVerified: "\u2014" }
-  ],
-  updatedAt: null
-};
-
-let cachedIntegrations = null;
-
-function renderIntegrationStrip(data) {
+// ── INTEGRATIONS (enriched) ──
+async function loadIntegrations() {
   const strip = document.getElementById("int-strip");
   const updEl = document.getElementById("int-strip-updated");
-  const d = data || DEFAULT_INTEGRATIONS;
-  setUpdatedBadge(updEl, d.updatedAt);
-
-  const allItems = [
-    ...(d.connected || []).map(i => ({ ...i, tier: "connected" })),
-    ...(d.attention || []).map(i => ({ ...i, tier: "attention" })),
-    ...(d.available || []).map(i => ({ ...i, tier: "available" }))
-  ];
-
-  let html = '<div class="pill-strip">';
-  html += allItems.map(i => '<span class="int-pill ' + i.tier + '"><span class="int-dot ' + i.tier + '"></span>' + esc(i.name) + '</span>').join("");
-  html += '</div>';
-
-  strip.innerHTML = html;
-}
-
-async function loadIntegrations() {
-  let data = null;
   try {
-    const r = await fetch(`./live/integrations.json?t=${Date.now()}`, {cache:"no-store"});
-    if (r.ok) data = await r.json();
-  } catch {}
-  cachedIntegrations = data;
-  renderIntegrationStrip(data);
+    const r = await fetch(`./live/integrations-enriched.json?t=${Date.now()}`, {cache:"no-store"});
+    if (!r.ok) { strip.innerHTML = '<div style="color:var(--secondary);">No data</div>'; return; }
+    const data = await r.json();
+    setUpdatedBadge(updEl, data.updatedAt);
+
+    const allItems = [
+      ...(data.connected || []).map(i => ({ ...i, tier: "connected" })),
+      ...(data.attention || []).map(i => ({ ...i, tier: "attention" })),
+      ...(data.available || []).map(i => ({ ...i, tier: "available" }))
+    ];
+
+    strip.innerHTML = '<div class="pill-strip">' + allItems.map(i => {
+      const age = i.lastVerifiedAge ? `<span class="int-age">${esc(i.lastVerifiedAge)}</span>` : '';
+      return `<span class="int-pill ${i.tier}" title="${esc(i.description || '')}"><span class="int-dot ${i.tier}"></span>${esc(i.name)}${age}</span>`;
+    }).join("") + '</div>';
+  } catch { strip.innerHTML = '<div style="color:var(--secondary);">Failed to load</div>'; }
 }
 
-// ── CRON CALENDAR ──
+// ── ERROR LOG ──
+async function loadErrors() {
+  const el = document.getElementById("error-log");
+  const updEl = document.getElementById("errors-updated");
+  try {
+    const r = await fetch(`./live/errors-log.json?t=${Date.now()}`, {cache:"no-store"});
+    if (!r.ok) { el.innerHTML = '<div style="color:var(--secondary);font-size:12px;">No data</div>'; return; }
+    const data = await r.json();
+    setUpdatedBadge(updEl, data.updatedAt || data.updatedAtIso);
+    const errors = data.errors || [];
+    if (!errors.length) {
+      el.innerHTML = '<div class="card" style="color:var(--green);font-size:13px;">✓ No active errors</div>';
+      return;
+    }
+    el.innerHTML = errors.map(e => `
+      <div class="error-card severity-${e.severity || 'warn'}">
+        <div class="error-header">
+          <span class="error-component">${esc(e.component)}</span>
+          <span class="tag ${e.severity === 'error' ? 'bad' : 'warn'}">${esc(e.severity || 'warn')}</span>
+          <span class="error-time">${esc(e.time)}</span>
+        </div>
+        <div class="error-msg">${esc(e.error || e.meaning)}</div>
+        ${e.suggestedFix ? `<div class="error-fix">💡 ${esc(e.suggestedFix)}</div>` : ''}
+      </div>
+    `).join("");
+  } catch { el.innerHTML = '<div style="color:var(--secondary);font-size:12px;">Failed to load</div>'; }
+}
+
+// ── RESEARCH TRACKER ──
+async function loadResearch() {
+  const panel = document.getElementById("research-panel");
+  const updEl = document.getElementById("research-updated");
+  try {
+    const [rRes, rEv] = await Promise.all([
+      fetch(`./live/research-tasks.json?t=${Date.now()}`, {cache:"no-store"}),
+      fetch(`./live/research-evidence.json?t=${Date.now()}`, {cache:"no-store"})
+    ]);
+    if (!rRes.ok) { panel.innerHTML = '<div style="color:var(--secondary);">No data</div>'; return; }
+    const tasks = await rRes.json();
+    const evData = rEv.ok ? await rEv.json() : {};
+    setUpdatedBadge(updEl, tasks.updatedAt);
+
+    const prob = tasks.paypalAcquisitionProbabilityPct;
+    const evidence = evData.evidence || tasks.evidence || [];
+
+    let html = `<div class="card-title">PayPal Acquisition Probability</div>`;
+    html += `<div class="research-hero">
+      <div>
+        <div class="research-prob">${prob != null ? prob + '%' : '—'}</div>
+        <div class="research-prob-label">Probability</div>
+      </div>
+      <div class="research-thesis">${esc(tasks.thesis || '')}</div>
+    </div>`;
+
+    if (evidence.length) {
+      html += `<div class="card-title" style="margin-top:8px;">Evidence Timeline</div>`;
+      html += evidence.map(e => `
+        <div class="evidence-item">
+          <span class="evidence-date">${esc(e.date)}</span>
+          <span class="evidence-dir ${e.direction}">${esc(e.direction)}</span>
+          <span class="evidence-signal">${esc(e.signal)}</span>
+        </div>
+      `).join("");
+    }
+    if (tasks.method) {
+      html += `<div class="note" style="margin-top:8px;"><strong>Method:</strong> ${esc(tasks.method)}</div>`;
+    }
+    panel.innerHTML = html;
+  } catch { panel.innerHTML = '<div style="color:var(--secondary);">Failed to load</div>'; }
+}
+
+// ── CRON CALENDAR (hardcoded schedule) ──
 function buildCronCalendar() {
   const cal = document.getElementById("cron-calendar");
   if (!cal) return;
-
   const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
   const allDays = [0,1,2,3,4,5,6];
-
-  // Jobs: [label, model, hour, minute, daysArray]
-  // All cron jobs now run on sonnet
   const jobs = [
     ["journal-prompt",                   "sonnet", 6,  0,  allDays],
     ["daily-obsidian-note",              "sonnet", 6,  5,  allDays],
+    ["daily-brief",                      "sonnet", 6,  15, allDays],
     ["research-tasks-daily-refresh",     "sonnet", 7,  35, allDays],
-    ["dashboard-objectives-weekly",      "sonnet", 7,  0,  [0]],
+    ["dashboard-objectives-refresh",     "sonnet", 7,  0,  [0]],
+    ["infra-version-check",              "sonnet", 7,  0,  allDays],
     ["infrastructure-daily-scan",        "sonnet", 8,  0,  allDays],
     ["infrastructure-weekly-scorecard",  "sonnet", 8,  0,  [0]],
     ["obj-95-mindfulness-tweet-drafts",  "sonnet", 8,  0,  [0,2,4]],
-    ["stablecoin-research",              "sonnet", 9,  0,  [1,3,5]],
+    ["obj-106-stablecoin-research",      "sonnet", 9,  0,  [1,3,5]],
+    ["toggl-weekly-summary",             "sonnet", 9,  0,  [6]],
     ["readwise-weekly-groom",            "sonnet", 10, 0,  [6]],
+    ["calendar-daily-fill",              "sonnet", 17, 0,  allDays],
     ["journal-prompt-evening",           "sonnet", 18, 0,  allDays],
     ["journal-to-paperclip-sync",        "sonnet", 22, 0,  allDays],
   ];
-
-  // Recurring jobs (shown as compact strip below calendar)
   const recurring = [
-    ["paperclip-activity-feed",            "sonnet", "every 5m"],
-    ["healthcheck:context-monitor",        "sonnet", "every 1h"],
-    ["dashboard-system-health-refresh",    "sonnet", "every 1h"],
-    ["control-tower-telemetry-refresh",    "sonnet", "every 2h"],
-    ["dashboard-integrations-refresh",     "sonnet", "every 6h"],
+    ["paperclip-activity-feed",         "sonnet", "every 5m"],
+    ["gmail-calendar-sync",             "sonnet", "every 30m"],
+    ["healthcheck:context-monitor",     "sonnet", "every 1h"],
+    ["dashboard-system-health-refresh", "sonnet", "every 1h"],
+    ["control-tower-telemetry-refresh", "sonnet", "every 2h"],
+    ["dashboard-integrations-refresh",  "sonnet", "every 6h"],
   ];
-
-  // Only show hours that have events
   const eventHours = new Set();
   jobs.forEach(j => eventHours.add(j[2]));
   const hours = [...eventHours].sort((a,b) => a - b);
@@ -1103,39 +1038,29 @@ function buildCronCalendar() {
 
   hours.forEach((h, hi) => {
     const isLast = hi === hours.length - 1;
-    const rowClass = isLast ? " cal-row-last" : "";
-
     const hLabel = h === 0 ? "12AM" : h < 12 ? `${h}AM` : h === 12 ? "12PM" : `${h-12}PM`;
-    html += `<div class="cal-time${rowClass}">${hLabel}</div>`;
-
+    html += `<div class="cal-time">${hLabel}</div>`;
     for (let d = 0; d < 7; d++) {
       const events = jobs.filter(j => j[2] === h && j[4].includes(d));
-      const hasEv = events.length > 0;
-
       let cellHtml = "";
       events.forEach(j => {
-        const idleTag = j[0] === "infrastructure-weekly-scorecard" ? ' <span style="opacity:0.5;font-size:8px">(idle)</span>' : '';
         cellHtml += `<div class="cal-event ${j[1]}">
-          <span class="cal-event-name">${esc(j[0])}${idleTag}</span>
+          <span class="cal-event-name">${esc(j[0])}</span>
           <span class="cal-event-meta">${j[1]} \u00b7 ${j[3] > 0 ? h + ":" + String(j[3]).padStart(2,"0") : h + ":00"}</span>
         </div>`;
       });
-
-      html += `<div class="cal-cell${hasEv ? " has-events" : ""}${rowClass}">${cellHtml}</div>`;
+      html += `<div class="cal-cell${events.length ? " has-events" : ""}">${cellHtml}</div>`;
     }
   });
-
   cal.innerHTML = html;
 
-  // Render recurring strip
   const recurEl = document.getElementById("cron-recurring");
   if (recurEl) {
     let rhtml = '<div style="margin-top:8px;border-top:1px solid var(--border);padding-top:6px">';
-    rhtml += '<div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--secondary);margin-bottom:4px;font-family:Rajdhani,sans-serif">Recurring (all days)</div>';
+    rhtml += '<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--secondary);margin-bottom:4px;font-family:Rajdhani,sans-serif">Recurring (all days)</div>';
     rhtml += '<div style="display:flex;flex-wrap:wrap;gap:4px">';
     recurring.forEach(([name, model, freq]) => {
-      const borderColor = model === 'sonnet' ? 'var(--sonnet-accent)' : model === 'haiku' ? 'var(--haiku-accent)' : 'var(--codex-accent)';
-      rhtml += `<span style="display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:3px;border:1px solid var(--border);border-left:3px solid ${borderColor};background:rgba(155,109,255,0.07);font-size:10px;white-space:nowrap">
+      rhtml += `<span style="display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:3px;border:1px solid var(--border);border-left:3px solid var(--sonnet-accent);background:rgba(155,109,255,0.07);font-size:10px;white-space:nowrap">
         <span style="font-weight:600;color:var(--text)">${esc(name)}</span>
         <span style="color:var(--secondary);font-size:9px">${freq}</span>
       </span>`;
@@ -1145,21 +1070,107 @@ function buildCronCalendar() {
   }
 }
 
-// ── Init ──
+// ── CRON JOB STATUS TABLE (live) ──
+async function loadCronStatus() {
+  const card = document.getElementById("cron-status-card");
+  const updEl = document.getElementById("cron-status-updated");
+  try {
+    const r = await fetch(`./live/cron-jobs.json?t=${Date.now()}`, {cache:"no-store"});
+    if (!r.ok) { card.innerHTML = '<div style="color:var(--secondary);">No data</div>'; return; }
+    const data = await r.json();
+    setUpdatedBadge(updEl, data.updatedAt || data.updatedAtIso);
+    const jobs = (data.jobs || []).sort((a,b) => {
+      if (a.status === "error" && b.status !== "error") return -1;
+      if (b.status === "error" && a.status !== "error") return 1;
+      return (a.name || "").localeCompare(b.name || "");
+    });
+
+    let html = `<table class="cron-status-table">
+      <thead><tr><th></th><th>Job</th><th>Schedule</th><th>Last Run</th><th>Next Run</th><th>Errors</th><th>Duration</th></tr></thead><tbody>`;
+    jobs.forEach(j => {
+      const dotCls = j.status === "ok" ? "dot-ok" : j.status === "error" ? "dot-bad" : "dot-warn";
+      const errCls = j.consecutiveErrors > 0 ? ' style="color:var(--red);font-weight:600"' : '';
+      const dur = j.lastDurationMs ? (j.lastDurationMs / 1000).toFixed(1) + "s" : "—";
+      html += `<tr>
+        <td><span class="dot ${dotCls}"></span></td>
+        <td class="cron-name">${esc(j.name)}</td>
+        <td class="cron-schedule">${esc(j.schedule)}</td>
+        <td class="cron-time">${esc(j.lastRun || "—")}</td>
+        <td class="cron-time">${esc(j.nextRun || "—")}</td>
+        <td${errCls}>${j.consecutiveErrors || 0}</td>
+        <td class="cron-time">${dur}</td>
+      </tr>`;
+    });
+    html += `</tbody></table>`;
+    card.innerHTML = html;
+  } catch { card.innerHTML = '<div style="color:var(--secondary);">Failed to load</div>'; }
+}
+
+// ── CONTROL TOWER ──
+async function loadControlTower() {
+  const projEl = document.getElementById("ct-projects");
+  const agentEl = document.getElementById("ct-agents");
+  const updEl = document.getElementById("ct-updated");
+  try {
+    const r = await fetch(`./live/control-tower-enriched.json?t=${Date.now()}`, {cache:"no-store"});
+    if (!r.ok) {
+      projEl.innerHTML = agentEl.innerHTML = '<div style="color:var(--secondary);">No data</div>';
+      return;
+    }
+    const data = await r.json();
+    setUpdatedBadge(updEl, data.updatedAt);
+
+    // Projects
+    const projects = data.projects || [];
+    if (projects.length) {
+      projEl.innerHTML = '<div class="card-title">Progress</div>' + projects.map(p => `
+        <div class="progress-row">
+          <span class="progress-label">${esc(p.name)}</span>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${p.percent || 0}%"></div></div>
+          <span class="progress-pct">${p.percent || 0}%</span>
+        </div>
+      `).join("");
+    } else {
+      projEl.innerHTML = '<div style="color:var(--secondary);">No projects</div>';
+    }
+
+    // Agents
+    const agents = data.agents || [];
+    if (agents.length) {
+      agentEl.innerHTML = '<div class="card-title">Active Agents</div>' + agents.map(a => {
+        const st = (a.status || "").toLowerCase();
+        const dotCls = st === "ok" || st === "scheduled" ? "dot-ok" : st === "error" ? "dot-bad" : "dot-gray";
+        return `<div class="agent-row">
+          <span class="dot ${dotCls} agent-status-dot"></span>
+          <span class="agent-name">${esc(a.name)}</span>
+          <span class="agent-workstream">${esc(a.workstream || "")}</span>
+          <span class="agent-cadence">${esc(a.cadence || "")}</span>
+        </div>`;
+      }).join("");
+    } else {
+      agentEl.innerHTML = '<div style="color:var(--secondary);">No agents</div>';
+    }
+  } catch { projEl.innerHTML = agentEl.innerHTML = '<div style="color:var(--secondary);">Failed to load</div>'; }
+}
+
+// ── Init & Refresh ──
 function init() {
   const hash = (location.hash || "#overview").slice(1);
   const validTab = TABS.some(([id]) => id === hash) ? hash : "overview";
   setView(validTab);
-  loadObjectives();
-  loadLoops();
-  loadIntegrations();
+  loadAll();
   buildCronCalendar();
 }
 
-function refreshAll() {
+function loadAll() {
+  loadKPIs();
   loadObjectives();
   loadLoops();
   loadIntegrations();
+  loadErrors();
+  loadResearch();
+  loadCronStatus();
+  loadControlTower();
 }
 
 function toggleTheme() {
@@ -1175,8 +1186,7 @@ function toggleTheme() {
 document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
 
 init();
-setInterval(refreshAll, 60000);
-
+setInterval(loadAll, 60000);
 window.addEventListener("hashchange", () => {
   const h = (location.hash || "#overview").slice(1);
   if (TABS.some(([id]) => id === h)) setView(h);
