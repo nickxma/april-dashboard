@@ -593,7 +593,7 @@ flat = [{
     "urgentLoops": len([l for l in ol.get("loops", []) if 0 <= l.get("daysUntilDeadline", 999) <= 7]),
     "totalLoops": len(ol.get("loops", [])),
     "updatedAt": cj.get("updatedAt", local_ts),
-    "dataAgeMinutes": round((datetime.datetime.now(datetime.timezone.utc) - datetime.datetime.fromisoformat(cj["updatedAtIso"].replace("Z","+00:00"))).total_seconds() / 60) if cj.get("updatedAtIso") else 0,
+    "dataAgeMinutes": round((datetime.datetime.now(datetime.timezone.utc) - datetime.datetime.fromtimestamp(os.path.getmtime(os.path.join(live, "system-health.json")), tz=datetime.timezone.utc)).total_seconds() / 60) if os.path.exists(os.path.join(live, "system-health.json")) else 0,
 }]
 with open(os.path.join(live, "system-summary.json"), "w") as f:
     json.dump({"summary": flat}, f, indent=2)
