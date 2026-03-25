@@ -1,66 +1,129 @@
 {
-  "updatedAt": "2026-03-23 11:59 CDT",
+  "updatedAt": "2026-03-25 18:18 CDT",
   "summary": {
     "overall": "critical",
     "enabledJobs": 21,
-    "failingJobs": 7,
+    "failingJobs": 14,
     "staleJobs": 0,
-    "openErrors": 7
+    "openErrors": 14
   },
   "errors": [
     {
-      "time": "2026-03-23 10:59 CDT",
-      "component": "dashboard-system-health-refresh",
-      "severity": "critical",
-      "status": "open",
-      "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "Anthropic Sonnet rate limit hit during scheduled run; job failed to execute and write health data.",
-      "suggestedFix": "Reduce concurrent Anthropic cron job density or switch this job to a non-Anthropic model (e.g. Codex/gpt-4o)."
-    },
-    {
-      "time": "2026-03-23 11:36 CDT",
-      "component": "paperclip-activity-feed",
-      "severity": "critical",
-      "status": "open",
-      "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "Paperclip watchdog failed 4 consecutive times due to Anthropic rate limiting; Paperclip alerts may be delayed.",
-      "suggestedFix": "Switch paperclip-activity-feed to a non-Anthropic model or stagger its 30-min cadence to avoid peak load windows."
-    },
-    {
-      "time": "2026-03-23 11:39 CDT",
-      "component": "gmail-calendar-sync",
-      "severity": "critical",
-      "status": "open",
-      "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "Gmail-to-calendar sync failed 5 consecutive times; calendar events from recent emails may be missing.",
-      "suggestedFix": "Switch gmail-calendar-sync to a non-Anthropic model (Sonnet is over-allocated); this job is low-complexity and works on Haiku or gpt-4o-mini."
-    },
-    {
-      "time": "2026-03-23 11:44 CDT",
-      "component": "healthcheck:context-monitor",
-      "severity": "critical",
-      "status": "open",
-      "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "Context usage monitor failed 3 consecutive times; session context overflow warnings are not being generated.",
-      "suggestedFix": "Switch to Haiku or gpt-4o-mini — this job only calls session_status and sends a Slack message, no heavy reasoning needed."
-    },
-    {
-      "time": "2026-03-23 10:57 CDT",
+      "time": "2026-03-25 16:57 CDT",
       "component": "control-tower-telemetry-refresh",
+      "severity": "critical",
+      "status": "open",
+      "error": "⚠️ API rate limit reached. Please try again later.",
+      "meaning": "Control tower dashboard JSON has not updated in 26 consecutive runs (~52h of failures). Rate limit on Anthropic Sonnet exhausted repeatedly.",
+      "suggestedFix": "Switch model to haiku in job payload to reduce token cost and rate limit pressure."
+    },
+    {
+      "time": "2026-03-25 12:46 CDT",
+      "component": "dashboard-integrations-refresh",
+      "severity": "critical",
+      "status": "open",
+      "error": "⚠️ API rate limit reached. Please try again later.",
+      "meaning": "Integrations status panel has failed 8 consecutive times. Rate limit on Sonnet hits every 6h refresh cycle.",
+      "suggestedFix": "Switch model to haiku or reduce refresh frequency to 12h."
+    },
+    {
+      "time": "2026-03-25 17:00 CDT",
+      "component": "calendar-daily-fill",
       "severity": "warn",
       "status": "open",
       "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "Control tower JSON not updated this cycle; dashboard may show stale telemetry.",
-      "suggestedFix": "Stagger this job's 2-hour cadence anchor by 30 min to avoid collision with other hourly Anthropic jobs."
+      "meaning": "Evening calendar-fill job failed for the 3rd consecutive run. Tomorrow's calendar may have unfilled gaps.",
+      "suggestedFix": "Switch model to haiku or reduce prompt length."
     },
     {
-      "time": "2026-03-23 07:02 CDT",
+      "time": "2026-03-25 07:00 CDT",
       "component": "infra-version-check",
       "severity": "warn",
       "status": "open",
-      "error": "⚠️ ✉️ Message failed — channel not found (C0ANLFZD1TJ)",
-      "meaning": "Version check ran successfully and found openclaw update (2026.3.13 → 2026.3.22), but failed to post to #infrastructure because the channel target was not found.",
-      "suggestedFix": "Verify Slack channel ID C0ANLFZD1TJ is correct and the bot is a member; update delivery.to in job config if the channel was renamed."
+      "error": "⚠️ API rate limit reached. Please try again later.",
+      "meaning": "Daily version check has failed 3 consecutive mornings. Version update alerts are silenced.",
+      "suggestedFix": "Switch model to haiku (lightContext is already true — model is the bottleneck)."
+    },
+    {
+      "time": "2026-03-25 06:00 CDT",
+      "component": "journal-prompt",
+      "severity": "warn",
+      "status": "open",
+      "error": "⚠️ API rate limit reached. Please try again later.",
+      "meaning": "Morning journal prompt failed 2 consecutive days. Prompt was still delivered (lastDelivered=true) but job errored internally.",
+      "suggestedFix": "Switch model to haiku for lighter morning prompts."
+    },
+    {
+      "time": "2026-03-25 06:15 CDT",
+      "component": "daily-brief",
+      "severity": "warn",
+      "status": "open",
+      "error": "⚠️ API rate limit reached. Please try again later.",
+      "meaning": "PDB brief failed 2 consecutive mornings. Brief was still delivered but may be incomplete.",
+      "suggestedFix": "Stagger start time away from other 6AM jobs, or switch model to sonnet with reduced context."
+    },
+    {
+      "time": "2026-03-25 06:05 CDT",
+      "component": "daily-obsidian-note",
+      "severity": "warn",
+      "status": "open",
+      "error": "⚠️ API rate limit reached. Please try again later.",
+      "meaning": "Daily Obsidian morning planning note has failed 2 consecutive days. Today's daily note may be missing the ## Morning section.",
+      "suggestedFix": "Stagger to 6:20 AM to avoid rate limit collision with journal-prompt and daily-brief."
+    },
+    {
+      "time": "2026-03-25 07:00 CDT",
+      "component": "dashboard-objectives-refresh",
+      "severity": "warn",
+      "status": "open",
+      "error": "⚠️ API rate limit reached. Please try again later.",
+      "meaning": "Objectives and open-loops JSON have not refreshed today. Dashboard showing stale objective data.",
+      "suggestedFix": "Switch model to haiku or break into two smaller jobs."
+    },
+    {
+      "time": "2026-03-25 07:35 CDT",
+      "component": "research-tasks-daily-refresh",
+      "severity": "warn",
+      "status": "open",
+      "error": "⚠️ API rate limit reached. Please try again later.",
+      "meaning": "PayPal acquisition probability research task failed 2 consecutive runs. research-tasks.json is stale.",
+      "suggestedFix": "Switch model to haiku (single web_search + write only, no heavy reasoning needed)."
+    },
+    {
+      "time": "2026-03-25 08:00 CDT",
+      "component": "infrastructure-daily-scan",
+      "severity": "warn",
+      "status": "open",
+      "error": "⚠️ API rate limit reached. Please try again later.",
+      "meaning": "Infrastructure intel scan failed 2 consecutive mornings. Version mismatch alerts may be missed.",
+      "suggestedFix": "Switch model to haiku or move schedule to 10 AM to clear morning rate limit window."
+    },
+    {
+      "time": "2026-03-25 08:00 CDT",
+      "component": "obj-95-mindfulness-tweet-drafts",
+      "severity": "warn",
+      "status": "open",
+      "error": "⚠️ API rate limit reached. Please try again later.",
+      "meaning": "Monday tweet draft generation failed. No new drafts presented for @quiet_drift today.",
+      "suggestedFix": "Move schedule to 9 AM to clear 8 AM rate limit window."
+    },
+    {
+      "time": "2026-03-24 22:00 CDT",
+      "component": "journal-to-paperclip-sync",
+      "severity": "warn",
+      "status": "open",
+      "error": "⚠️ API rate limit reached. Please try again later.",
+      "meaning": "Evening journal→Paperclip sync failed 2 consecutive nights. Journal insights are not propagating to Paperclip tickets.",
+      "suggestedFix": "Switch model to haiku; this is mostly read+write work, not heavy reasoning."
+    },
+    {
+      "time": "2026-03-24 09:00 CDT",
+      "component": "obj-106-stablecoin-research",
+      "severity": "warn",
+      "status": "open",
+      "error": "⚠️ API rate limit reached. Please try again later.",
+      "meaning": "Stablecoin research drop missed last scheduled run (Tue/Thu/Sat). One consecutive error.",
+      "suggestedFix": "Move schedule to 10 AM to avoid morning rate limit congestion."
     },
     {
       "time": "2026-03-22 09:00 CDT",
@@ -68,8 +131,8 @@
       "severity": "warn",
       "status": "open",
       "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
-      "meaning": "Weekly Toggl summary ran and generated report but failed to deliver because the delivery target format is invalid.",
-      "suggestedFix": "Update toggl-weekly-summary delivery config: change 'to' field from 'c0amwt9jb5y' to 'channel:C0AMWT9JB5Y' (requires channel: prefix)."
+      "meaning": "Weekly Toggl summary failed due to misconfigured delivery target. The 'to' field in delivery config is malformed — channel C0AMWT9JB5Y is set in channel field but not in 'to'.",
+      "suggestedFix": "Update job delivery to set to: 'channel:C0AMWT9JB5Y' in the delivery object."
     }
   ]
 }
