@@ -415,14 +415,34 @@ if os.path.exists(cj_path):
     except:
         pass
 
-# Deduplicate by component
-seen = set()
-deduped = []
+# Deduplicate: first by (component, error), then group by error message
+seen_comp = set()
+deduped_comp = []
 for e in errors:
     key = (e.get("component",""), e.get("error",""))
-    if key not in seen:
-        seen.add(key)
-        deduped.append(e)
+    if key not in seen_comp:
+        seen_comp.add(key)
+        deduped_comp.append(e)
+
+# Second pass: collapse entries with identical error messages into one row
+from collections import OrderedDict
+by_error = OrderedDict()
+for e in deduped_comp:
+    err_key = e.get("error", "")
+    if err_key not in by_error:
+        by_error[err_key] = {"entry": e, "components": [e.get("component","")]}
+    else:
+        by_error[err_key]["components"].append(e.get("component",""))
+
+deduped = []
+for err_key, info in by_error.items():
+    entry = dict(info["entry"])
+    comps = info["components"]
+    if len(comps) > 1:
+        first = comps[0]
+        entry["component"] = f"{first} (+{len(comps)-1} more)"
+        entry["meaning"] = entry.get("meaning","") + f" [{len(comps)} jobs affected]"
+    deduped.append(entry)
 
 out = {
     "updatedAt": local_ts,
@@ -534,7 +554,7 @@ stale_jobs = sh_summary.get("staleJobs", 0)
 # Compute live error counts from errors-log.json (fresher than system-health.json)
 el_errors = el.get("errors", [])
 open_errors = len(el_errors)
-critical_errors = len([e for e in el_errors if e.get("severity") == "critical"])
+critical_errors = len([e for e in el_errors if e.get("severity") in ("critical", "error")])
 # Compute live job counts directly from cron-jobs.json (fresher than system-health.json)
 cj_jobs = cj.get("jobs", [])
 failing_jobs = len([j for j in cj_jobs if j.get("status") == "error"])
