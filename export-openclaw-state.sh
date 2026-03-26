@@ -594,6 +594,12 @@ flat = [{
     "totalLoops": len(ol.get("loops", [])),
     "updatedAt": cj.get("updatedAt", local_ts),
     "dataAgeMinutes": round((datetime.datetime.now(datetime.timezone.utc) - datetime.datetime.fromtimestamp(os.path.getmtime(os.path.join(live, "system-health.json")), tz=datetime.timezone.utc)).total_seconds() / 60) if os.path.exists(os.path.join(live, "system-health.json")) else 0,
+    "maxDataAgeMinutes": (_mdam := max(
+        round((datetime.datetime.now(datetime.timezone.utc) - datetime.datetime.fromtimestamp(os.path.getmtime(os.path.join(live, f)), tz=datetime.timezone.utc)).total_seconds() / 60)
+        for f in ["system-health.json", "open-loops.json", "objectives.json", "control-tower.json"]
+        if os.path.exists(os.path.join(live, f))
+    ) if any(os.path.exists(os.path.join(live, f)) for f in ["system-health.json", "open-loops.json", "objectives.json", "control-tower.json"]) else 0),
+    "maxDataAgeHours": round(_mdam / 60, 1),
 }]
 with open(os.path.join(live, "system-summary.json"), "w") as f:
     json.dump({"summary": flat}, f, indent=2)

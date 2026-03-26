@@ -4402,7 +4402,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 0,
+          "decimals": 1,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -4413,15 +4413,15 @@
               },
               {
                 "color": "yellow",
-                "value": 10
+                "value": 1
               },
               {
                 "color": "orange",
-                "value": 30
+                "value": 4
               },
               {
                 "color": "red",
-                "value": 60
+                "value": 12
               }
             ]
           },
@@ -4455,8 +4455,8 @@
         {
           "columns": [
             {
-              "selector": "dataAgeMinutes",
-              "text": "Health Age (m)",
+              "selector": "maxDataAgeHours",
+              "text": "Stale (h)",
               "type": "number"
             }
           ],
@@ -4479,7 +4479,7 @@
           }
         }
       ],
-      "title": "Health Age (m)",
+      "title": "Stale (h)",
       "type": "stat"
     }
   ],
@@ -4487,5 +4487,5 @@
   "schemaVersion": 42,
   "title": "OpenClaw Control Tower",
   "uid": "addd75r",
-  "version": 79
+  "version": 80
 }
