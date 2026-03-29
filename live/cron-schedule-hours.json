@@ -10,13 +10,13 @@
       "hour": "7am",
       "hourNum": 7,
       "timedJobs": 2,
-      "jobNames": "dashboard-objectives-r, infra-version-check"
+      "jobNames": "infra-version-check, readwise-triage"
     },
     {
       "hour": "8am",
       "hourNum": 8,
       "timedJobs": 3,
-      "jobNames": "infrastructure-daily-s, obj-95-mindfulness-twe, infrastructure-weekly-"
+      "jobNames": "infrastructure-weekly-, obj-95-mindfulness-twe, infrastructure-daily-s"
     },
     {
       "hour": "9am",
@@ -43,12 +43,18 @@
       "jobNames": "journal-prompt-evening"
     },
     {
+      "hour": "9pm",
+      "hourNum": 21,
+      "timedJobs": 1,
+      "jobNames": "daily-brief"
+    },
+    {
       "hour": "10pm",
       "hourNum": 22,
       "timedJobs": 1,
       "jobNames": "journal-to-paperclip-s"
     }
   ],
-  "intervalJobs": 6,
-  "updatedAt": "2026-03-25 18:40 CDT"
+  "intervalJobs": 4,
+  "updatedAt": "2026-03-29 16:19 CDT"
 }

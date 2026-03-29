@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-03-25 18:45 CDT",
-  "updatedAtIso": "2026-03-25T23:45:00Z",
-  "total": 3,
+  "updatedAt": "2026-03-29 16:19 CDT",
+  "updatedAtIso": "2026-03-29T21:19:27Z",
+  "total": 5,
   "errors": [
     {
-      "time": "2026-03-25 16:57 CDT",
-      "component": "control-tower-telemetry-refresh (+12 more)",
-      "severity": "critical",
+      "time": "2026-03-25 06:00 CDT",
+      "component": "journal-prompt (+9 more)",
+      "severity": "warn",
       "status": "open",
       "error": "\u26a0\ufe0f API rate limit reached. Please try again later.",
-      "meaning": "Control tower dashboard JSON has not updated in 26 consecutive runs (~52h of failures). Rate limit on Anthropic Sonnet exhausted repeatedly. [13 jobs affected]",
-      "suggestedFix": "Switch model to haiku in job payload to reduce token cost and rate limit pressure."
+      "meaning": "Morning journal prompt failed to run \u2014 rate limit hit at 6AM during the burst of morning cron jobs. [10 jobs affected]",
+      "suggestedFix": "Stagger morning cron schedules by at least 10\u201315 minutes to avoid simultaneous Anthropic API calls."
     },
     {
       "time": "2026-03-22 09:00 CDT",
@@ -18,16 +18,34 @@
       "severity": "warn",
       "status": "open",
       "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
-      "meaning": "Weekly Toggl summary failed due to misconfigured delivery target. The 'to' field in delivery config is malformed \u2014 channel C0AMWT9JB5Y is set in channel field but not in 'to'.",
-      "suggestedFix": "Update job delivery to set to: 'channel:C0AMWT9JB5Y' in the delivery object."
+      "meaning": "Weekly Toggl time summary failed to post \u2014 delivery config uses short channel ID without 'channel:' prefix.",
+      "suggestedFix": "Update job delivery.to from 'C0AMWT9JB5Y' to 'channel:C0AMWT9JB5Y' to match required format."
     },
     {
-      "time": "2026-03-25T23:30:22Z",
-      "component": "gmail-calendar-sync",
+      "time": "2026-03-29T21:06:27Z",
+      "component": "healthcheck:context-monitor",
+      "severity": "error",
+      "status": "open",
+      "error": "\u26a0\ufe0f \ud83d\udcca Session Status: `agent:main:slack:channel:c0akd1vh8cu` failed",
+      "meaning": "Cron job failed with 7 consecutive errors",
+      "suggestedFix": "Check cron job logs for details"
+    },
+    {
+      "time": "2026-03-29T02:00:00Z",
+      "component": "daily-brief",
+      "severity": "error",
+      "status": "open",
+      "error": "cron: job execution timed out",
+      "meaning": "Cron job failed with 1 consecutive errors",
+      "suggestedFix": "Check cron job logs for details"
+    },
+    {
+      "time": "2026-03-29T11:00:00Z",
+      "component": "journal-prompt (+1 more)",
       "severity": "error",
       "status": "open",
       "error": "\u26a0\ufe0f \u2709\ufe0f Message failed",
-      "meaning": "Cron job failed with 1 consecutive errors",
+      "meaning": "Cron job failed with 1 consecutive errors [2 jobs affected]",
       "suggestedFix": "Check cron job logs for details"
     }
   ]

@@ -3,23 +3,23 @@
     {
       "date": "2026-03-18",
       "direction": "bearish",
-      "strength": "medium",
-      "signal": "PayPal remains independent as of March 18; Stripe interest described as 'preliminary' with no deal announced",
+      "strength": "high",
+      "signal": "PayPal remains independent publicly traded company; Stripe interest described as only preliminary",
       "url": "https://www.airwallex.com/us/blog/paypal-acquisition"
     },
     {
       "date": "2026-02-27",
       "direction": "bearish",
       "strength": "medium",
-      "signal": "Semafor report: PayPal may not be actively seeking a sale, dampening deal speculation",
+      "signal": "Semafor report states PayPal may not be actively seeking a sale, dampening acquisition narrative",
       "url": "https://www.indexbox.io/blog/paypal-acquisition-interest-reported-amid-ceo-transition/"
     },
     {
       "date": "2026-02-24",
       "direction": "bullish",
-      "strength": "high",
-      "signal": "Bloomberg reported Stripe is considering acquiring all or parts of PayPal; stock surged ~7%",
-      "url": "https://www.bloomberg.com/news/articles/2026-02-24/payments-processor-stripe-expresses-interest-in-paypal"
+      "strength": "medium",
+      "signal": "PayPal stock surged ~7% on CNBC report that Stripe is weighing an acquisition of the payments platform",
+      "url": "https://www.cnbc.com/2026/02/24/paypal-stock-stripe-acquisition-report.html"
     }
   ]
 }

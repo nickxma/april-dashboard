@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-23 12:57 CDT",
+  "updatedAt": "2026-03-29 12:57 CDT",
   "projects": [
     {
       "name": "Launch Twitter account for AI + mindfulness content",
@@ -16,6 +16,20 @@
   ],
   "agents": [
     {
+      "name": "healthcheck:context-monitor",
+      "status": "error",
+      "workstream": "Context health monitoring",
+      "cadence": "Every 1h",
+      "agentSortOrder": 1
+    },
+    {
+      "name": "daily-brief",
+      "status": "error",
+      "workstream": "Evening brief: calendar, email, Toggl, weather via email + #daily-brief ping",
+      "cadence": "21:00 UTC daily",
+      "agentSortOrder": 1
+    },
+    {
       "name": "infra-version-check",
       "status": "error",
       "workstream": "Checks openclaw/claude-code/paperclip for version updates \u2192 #infrastructure",
@@ -23,31 +37,10 @@
       "agentSortOrder": 1
     },
     {
-      "name": "toggl-weekly-summary",
-      "status": "error",
-      "workstream": "Weekly Toggl time allocation summary (delivery config error)",
-      "cadence": "09:00 America/Chicago Sundays",
-      "agentSortOrder": 1
-    },
-    {
       "name": "control-tower-telemetry-refresh",
       "status": "ok",
       "workstream": "Refreshes live/control-tower.json",
       "cadence": "Every 2h",
-      "agentSortOrder": 3
-    },
-    {
-      "name": "dashboard-system-health-refresh",
-      "status": "ok",
-      "workstream": "Dashboard/system reliability checks",
-      "cadence": "Every 1h",
-      "agentSortOrder": 3
-    },
-    {
-      "name": "healthcheck:context-monitor",
-      "status": "ok",
-      "workstream": "Context health monitoring",
-      "cadence": "Every 1h",
       "agentSortOrder": 3
     },
     {
@@ -65,13 +58,6 @@
       "agentSortOrder": 3
     },
     {
-      "name": "dashboard-integrations-refresh",
-      "status": "ok",
-      "workstream": "Integration status checks (Slack, GitHub, Obsidian, etc.)",
-      "cadence": "Every 6h",
-      "agentSortOrder": 3
-    },
-    {
       "name": "infrastructure-daily-scan",
       "status": "ok",
       "workstream": "Daily infra tooling intel for #infrastructure",
@@ -83,20 +69,6 @@
       "status": "ok",
       "workstream": "Morning Obsidian daily note automation",
       "cadence": "06:05 America/Chicago daily",
-      "agentSortOrder": 3
-    },
-    {
-      "name": "daily-brief",
-      "status": "ok",
-      "workstream": "Morning brief: calendar, email, Toggl, weather to #daily-brief",
-      "cadence": "06:15 America/Chicago daily",
-      "agentSortOrder": 3
-    },
-    {
-      "name": "journal-prompt + journal-prompt-evening",
-      "status": "ok",
-      "workstream": "Morning/evening journal prompts",
-      "cadence": "06:00 and 18:00 America/Chicago daily",
       "agentSortOrder": 3
     },
     {
@@ -135,17 +107,17 @@
       "agentSortOrder": 3
     },
     {
+      "name": "toggl-weekly-summary",
+      "status": "ok",
+      "workstream": "Weekly Toggl time allocation summary",
+      "cadence": "09:00 America/Chicago Sundays",
+      "agentSortOrder": 3
+    },
+    {
       "name": "readwise-weekly-groom",
       "status": "ok",
       "workstream": "Weekly Readwise library triage",
       "cadence": "10:00 America/Chicago Sundays",
-      "agentSortOrder": 3
-    },
-    {
-      "name": "dashboard-objectives-refresh",
-      "status": "ok",
-      "workstream": "Daily objectives + open loops refresh",
-      "cadence": "07:00 America/Chicago daily",
       "agentSortOrder": 3
     },
     {
@@ -167,6 +139,13 @@
       "status": "0 active",
       "workstream": "Spawned for focused tasks only",
       "cadence": "None active right now",
+      "agentSortOrder": 6
+    },
+    {
+      "name": "journal-prompt + journal-prompt-evening",
+      "status": "mixed",
+      "workstream": "Morning/evening journal prompts",
+      "cadence": "06:00 and 18:00 America/Chicago daily",
       "agentSortOrder": 6
     }
   ],
@@ -204,7 +183,7 @@
       "task": "Lock remote access path standard",
       "ball": "Nick",
       "agent": "Main (April)",
-      "next": "Confirm SSH tunnel or Tailscale Serve as default"
+      "next": "Confirm SSH tunnel or Tailscale Serve default"
     }
   ]
 }

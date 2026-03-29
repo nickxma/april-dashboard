@@ -1,66 +1,21 @@
 {
-  "updatedAt": "2026-03-25 18:18 CDT",
+  "updatedAt": "2026-03-25 23:57 CDT",
   "summary": {
     "overall": "critical",
     "enabledJobs": 21,
-    "failingJobs": 14,
-    "staleJobs": 0,
-    "openErrors": 14
+    "failingJobs": 10,
+    "staleJobs": 2,
+    "openErrors": 10
   },
   "errors": [
-    {
-      "time": "2026-03-25 16:57 CDT",
-      "component": "control-tower-telemetry-refresh",
-      "severity": "critical",
-      "status": "open",
-      "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "Control tower dashboard JSON has not updated in 26 consecutive runs (~52h of failures). Rate limit on Anthropic Sonnet exhausted repeatedly.",
-      "suggestedFix": "Switch model to haiku in job payload to reduce token cost and rate limit pressure."
-    },
-    {
-      "time": "2026-03-25 12:46 CDT",
-      "component": "dashboard-integrations-refresh",
-      "severity": "critical",
-      "status": "open",
-      "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "Integrations status panel has failed 8 consecutive times. Rate limit on Sonnet hits every 6h refresh cycle.",
-      "suggestedFix": "Switch model to haiku or reduce refresh frequency to 12h."
-    },
-    {
-      "time": "2026-03-25 17:00 CDT",
-      "component": "calendar-daily-fill",
-      "severity": "warn",
-      "status": "open",
-      "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "Evening calendar-fill job failed for the 3rd consecutive run. Tomorrow's calendar may have unfilled gaps.",
-      "suggestedFix": "Switch model to haiku or reduce prompt length."
-    },
-    {
-      "time": "2026-03-25 07:00 CDT",
-      "component": "infra-version-check",
-      "severity": "warn",
-      "status": "open",
-      "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "Daily version check has failed 3 consecutive mornings. Version update alerts are silenced.",
-      "suggestedFix": "Switch model to haiku (lightContext is already true — model is the bottleneck)."
-    },
     {
       "time": "2026-03-25 06:00 CDT",
       "component": "journal-prompt",
       "severity": "warn",
       "status": "open",
       "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "Morning journal prompt failed 2 consecutive days. Prompt was still delivered (lastDelivered=true) but job errored internally.",
-      "suggestedFix": "Switch model to haiku for lighter morning prompts."
-    },
-    {
-      "time": "2026-03-25 06:15 CDT",
-      "component": "daily-brief",
-      "severity": "warn",
-      "status": "open",
-      "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "PDB brief failed 2 consecutive mornings. Brief was still delivered but may be incomplete.",
-      "suggestedFix": "Stagger start time away from other 6AM jobs, or switch model to sonnet with reduced context."
+      "meaning": "Morning journal prompt failed to run — rate limit hit at 6AM during the burst of morning cron jobs.",
+      "suggestedFix": "Stagger morning cron schedules by at least 10–15 minutes to avoid simultaneous Anthropic API calls."
     },
     {
       "time": "2026-03-25 06:05 CDT",
@@ -68,8 +23,8 @@
       "severity": "warn",
       "status": "open",
       "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "Daily Obsidian morning planning note has failed 2 consecutive days. Today's daily note may be missing the ## Morning section.",
-      "suggestedFix": "Stagger to 6:20 AM to avoid rate limit collision with journal-prompt and daily-brief."
+      "meaning": "Daily Obsidian planning note was not written — rate limit hit 5 minutes after journal-prompt.",
+      "suggestedFix": "Move daily-obsidian-note to 6:20 CDT to clear the 6AM rate limit burst window."
     },
     {
       "time": "2026-03-25 07:00 CDT",
@@ -77,8 +32,17 @@
       "severity": "warn",
       "status": "open",
       "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "Objectives and open-loops JSON have not refreshed today. Dashboard showing stale objective data.",
-      "suggestedFix": "Switch model to haiku or break into two smaller jobs."
+      "meaning": "Objectives and open-loops JSON not refreshed today — dashboard data is stale.",
+      "suggestedFix": "Offset this job to 7:20 CDT and ensure infra-version-check runs at 7:00 CDT instead (lighter job)."
+    },
+    {
+      "time": "2026-03-25 07:00 CDT",
+      "component": "infra-version-check",
+      "severity": "critical",
+      "status": "open",
+      "error": "⚠️ API rate limit reached. Please try again later.",
+      "meaning": "Version update check has failed 3 consecutive times — infrastructure drift may be going undetected.",
+      "suggestedFix": "Switch this job model to 'haiku' (lighter, fewer tokens) and offset schedule to 7:05 CDT."
     },
     {
       "time": "2026-03-25 07:35 CDT",
@@ -86,17 +50,8 @@
       "severity": "warn",
       "status": "open",
       "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "PayPal acquisition probability research task failed 2 consecutive runs. research-tasks.json is stale.",
-      "suggestedFix": "Switch model to haiku (single web_search + write only, no heavy reasoning needed)."
-    },
-    {
-      "time": "2026-03-25 08:00 CDT",
-      "component": "infrastructure-daily-scan",
-      "severity": "warn",
-      "status": "open",
-      "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "Infrastructure intel scan failed 2 consecutive mornings. Version mismatch alerts may be missed.",
-      "suggestedFix": "Switch model to haiku or move schedule to 10 AM to clear morning rate limit window."
+      "meaning": "PayPal acquisition probability estimate not updated — research-tasks.json is stale.",
+      "suggestedFix": "Move to 8:30 CDT or later to run after the morning burst window clears."
     },
     {
       "time": "2026-03-25 08:00 CDT",
@@ -104,26 +59,35 @@
       "severity": "warn",
       "status": "open",
       "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "Monday tweet draft generation failed. No new drafts presented for @quiet_drift today.",
-      "suggestedFix": "Move schedule to 9 AM to clear 8 AM rate limit window."
+      "meaning": "Monday tweet draft generation failed — no new @quiet_drift drafts in #obj-95 today.",
+      "suggestedFix": "Move to 9:00 CDT to avoid the 8AM rate limit collision with infrastructure-daily-scan."
     },
     {
-      "time": "2026-03-24 22:00 CDT",
-      "component": "journal-to-paperclip-sync",
+      "time": "2026-03-25 08:00 CDT",
+      "component": "infrastructure-daily-scan",
       "severity": "warn",
       "status": "open",
       "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "Evening journal→Paperclip sync failed 2 consecutive nights. Journal insights are not propagating to Paperclip tickets.",
-      "suggestedFix": "Switch model to haiku; this is mostly read+write work, not heavy reasoning."
+      "meaning": "Daily infrastructure intel post to #infrastructure did not run — ecosystem changes may be missed.",
+      "suggestedFix": "Offset to 8:15 CDT; also consider using Codex (OpenAI) instead of Sonnet to offload Anthropic quota."
     },
     {
-      "time": "2026-03-24 09:00 CDT",
+      "time": "2026-03-23 09:00 CDT",
       "component": "obj-106-stablecoin-research",
       "severity": "warn",
       "status": "open",
       "error": "⚠️ API rate limit reached. Please try again later.",
-      "meaning": "Stablecoin research drop missed last scheduled run (Tue/Thu/Sat). One consecutive error.",
-      "suggestedFix": "Move schedule to 10 AM to avoid morning rate limit congestion."
+      "meaning": "Saturday stablecoin research drop to #obj-106 failed — PYUSD/Arbitrum signals not surfaced.",
+      "suggestedFix": "Reschedule to a non-peak time (e.g., 10:00 CDT) or switch model to Codex to avoid Anthropic rate limits."
+    },
+    {
+      "time": "2026-03-25 17:00 CDT",
+      "component": "calendar-daily-fill",
+      "severity": "critical",
+      "status": "open",
+      "error": "⚠️ API rate limit reached. Please try again later.",
+      "meaning": "Tomorrow's calendar was not gap-filled — the 5PM daily schedule automation has failed 3 consecutive days.",
+      "suggestedFix": "Switch model to 'haiku' for this job; it only needs calendar reads/writes, not heavy reasoning."
     },
     {
       "time": "2026-03-22 09:00 CDT",
@@ -131,8 +95,8 @@
       "severity": "warn",
       "status": "open",
       "error": "Delivering to Slack requires target <channelId|user:ID|channel:ID>",
-      "meaning": "Weekly Toggl summary failed due to misconfigured delivery target. The 'to' field in delivery config is malformed — channel C0AMWT9JB5Y is set in channel field but not in 'to'.",
-      "suggestedFix": "Update job delivery to set to: 'channel:C0AMWT9JB5Y' in the delivery object."
+      "meaning": "Weekly Toggl time summary failed to post — delivery config uses short channel ID without 'channel:' prefix.",
+      "suggestedFix": "Update job delivery.to from 'C0AMWT9JB5Y' to 'channel:C0AMWT9JB5Y' to match required format."
     }
   ]
 }

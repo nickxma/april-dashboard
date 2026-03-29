@@ -1,28 +1,28 @@
 {
-  "updatedAt": "2026-03-23T12:35:00Z",
+  "updatedAt": "2026-03-29T12:35:00Z",
   "paypalAcquisitionProbabilityPct": 22,
-  "thesis": "Stripe expressed preliminary acquisition interest in PayPal in late February 2026 causing a ~7% stock pop, but PayPal is reportedly not actively seeking a sale and no deal has materialized as of mid-March.",
-  "method": "Weighted search-snippet signals: strong initial buy-side signal (Bloomberg/CNBC) discounted by subsequent Semafor report that PayPal is not seeking a sale and no further deal progress in 4 weeks.",
+  "thesis": "Stripe showed preliminary acquisition interest in late February 2026, but PayPal is not actively seeking a sale and remains independent, keeping a deal possible but unlikely near-term.",
+  "method": "Probability estimated from recency and credibility of acquisition signals vs. counter-signals (no active sale process, company still independent as of mid-March 2026).",
   "evidence": [
     {
       "date": "2026-02-24",
-      "signal": "Bloomberg reported Stripe is considering acquiring all or parts of PayPal; stock surged ~7%",
+      "signal": "PayPal stock surged ~7% on CNBC report that Stripe is weighing an acquisition of the payments platform",
       "direction": "bullish",
-      "strength": "high",
-      "url": "https://www.bloomberg.com/news/articles/2026-02-24/payments-processor-stripe-expresses-interest-in-paypal"
+      "strength": "medium",
+      "url": "https://www.cnbc.com/2026/02/24/paypal-stock-stripe-acquisition-report.html"
     },
     {
       "date": "2026-02-27",
-      "signal": "Semafor report: PayPal may not be actively seeking a sale, dampening deal speculation",
+      "signal": "Semafor report states PayPal may not be actively seeking a sale, dampening acquisition narrative",
       "direction": "bearish",
       "strength": "medium",
       "url": "https://www.indexbox.io/blog/paypal-acquisition-interest-reported-amid-ceo-transition/"
     },
     {
       "date": "2026-03-18",
-      "signal": "PayPal remains independent as of March 18; Stripe interest described as 'preliminary' with no deal announced",
+      "signal": "PayPal remains independent publicly traded company; Stripe interest described as only preliminary",
       "direction": "bearish",
-      "strength": "medium",
+      "strength": "high",
       "url": "https://www.airwallex.com/us/blog/paypal-acquisition"
     }
   ]

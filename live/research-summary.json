@@ -2,9 +2,9 @@
   "summary": [
     {
       "probabilityPct": 22,
-      "thesis": "Stripe expressed preliminary acquisition interest in PayPal in late February 2026 causing a ~7% stock pop, but PayPal is reportedly not actively seeking a sale and no deal has materialized as of mid-March.",
-      "method": "Weighted search-snippet signals: strong initial buy-side signal (Bloomberg/CNBC) discounted by subsequent Semafor report that PayPal is not seeking a sale and no further deal progress in 4 weeks.",
-      "updatedAt": "2026-03-23T12:35:00Z"
+      "thesis": "Stripe showed preliminary acquisition interest in late February 2026, but PayPal is not actively seeking a sale and remains independent, keeping a deal possible but unlikely near-term.",
+      "method": "Probability estimated from recency and credibility of acquisition signals vs. counter-signals (no active sale process, company still independent as of mid-March 2026).",
+      "updatedAt": "2026-03-29T12:35:00Z"
     }
   ]
 }

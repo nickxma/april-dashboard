@@ -7,7 +7,7 @@
       "status": "blocked",
       "deadline": "2026-03-23T23:59:00.000Z",
       "nextAction": "text Carly and Diana to lock yoga session TODAY \u2014 window closes by end of day",
-      "daysUntilDeadline": -2,
+      "daysUntilDeadline": -6,
       "deadlineShort": "3/23",
       "oluLink": ""
     },
@@ -18,7 +18,7 @@
       "status": "blocked",
       "deadline": "2026-03-25T14:00:00.000Z",
       "nextAction": "prep questions for Matylda tonight \u2014 meeting Wed Mar 25 9am ET, sell-now vs. wait-for-fall decision",
-      "daysUntilDeadline": 0,
+      "daysUntilDeadline": -4,
       "deadlineShort": "3/25",
       "oluLink": "http://127.0.0.1:3000/OLU/issues/OLU-630"
     },
@@ -29,7 +29,7 @@
       "status": "blocked",
       "deadline": "2026-04-20T00:00:00.000Z",
       "nextAction": "draft and send Smitha outreach TODAY \u2014 all assets built, zero motion, deadline Apr 20 (28 days)",
-      "daysUntilDeadline": 26,
+      "daysUntilDeadline": 22,
       "deadlineShort": "4/20",
       "oluLink": "http://127.0.0.1:3000/OLU/issues/OLU-629"
     },
